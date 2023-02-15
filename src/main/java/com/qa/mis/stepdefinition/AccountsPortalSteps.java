@@ -28,10 +28,10 @@ public class AccountsPortalSteps {
     @Then("Click {string} sub-tab inside {string} tab")
     public void clickSubTabInsideTab(String subtab, String tab) {
         DriverAction.waitSec(5);
-        System.out.println(tab);
+
         DriverAction.click(AccountsPortalLocator.sideTab(tab));
         DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        System.out.println(subtab);
+
         if (DriverAction.isExist(AccountsPortalLocator.sideTab(subtab))) {
 
             DriverAction.click(AccountsPortalLocator.sideTab(subtab), subtab);

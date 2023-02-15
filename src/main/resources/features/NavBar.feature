@@ -1,7 +1,8 @@
 Feature: NavBar
 
   Background: Login
-    Given User should be on MIS login page and enter smita.mishra and Gemini@123
+
+    Given User should be on MIS login page and enter smita.mishra and R2VtaW5pQDEyMw==
     When Click on submit button
     Then User should be navigated to MIS homepage
 
@@ -11,7 +12,6 @@ Feature: NavBar
   Scenario Outline: Verify Update profile Section
     Then Click on Profile menu
     And Verify all the <Fields> and <Buttons> are present
-
     Examples:
       | Fields                                                                                                                                                  | Buttons      |
       | Update Profile:Mobile number,Extn. number;Update Address:Country,State,City,Pin code,Address;Change Password:Old Password,New Password,Confirm Password | Update,Close |
@@ -20,24 +20,25 @@ Feature: NavBar
     Then Click on Gemini logo
     And User should be navigated to MIS homepage
 
-
   Scenario Outline: Verify Add skill close button after entering all values
     Then Click on Skills menu
     And Enter all the details "<Technology>","<Proficiency Level>","<Skill Type>","<Tech Experience>","<Total Work Exp>"
     And Click on close button
+
     Examples:
       | Technology | Proficiency Level | Skill Type | Tech Experience | Total Work Exp |
       | Accounting | Beginner          | Secondary  | 24              | 2              |
 
   Scenario Outline: Verify Success Message box when adding new skills
+
     Then Click on Skills menu
     And Enter all the details "<Technology>","<Proficiency Level>","<Skill Type>","<Tech Experience>","<Total Work Exp>"
     And Click on Save button
     And Verify popup with message "<AlertType>" and "<Message>"
 
     Examples:
-      | Technology        | Proficiency Level | Skill Type | Tech Experience | Total Work Exp | AlertType | Message                             |
-      | .NET(Server Side) | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
+      | Technology | Proficiency Level | Skill Type | Tech Experience | Total Work Exp | AlertType | Message                             |
+      | C++       | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
 
 
   Scenario Outline: Verify Warning Message box when adding duplicate skills
@@ -75,15 +76,9 @@ Feature: NavBar
     And Click on Update button
     And Verify "no" card is shown on the dashboard
 
-
   Scenario: Verify all cards re appear when checked from dashboard setting
     Then Click on Dashboard setting
     And Verify Dashboard setting table is visible on the current screen
     Then Verify all check boxes are check
     And Click on Update button
     And Verify "all" card is shown on the dashboard
-
-
-
-
-
