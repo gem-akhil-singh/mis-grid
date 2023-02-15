@@ -12,7 +12,6 @@ public class NavBarLocator {
 
     public static By Dashboardheading = By.xpath("//span[text()='Dashboard']");
     public static By SkillPopup = By.id("mypopupUpdateSkills");
-
     public static By Togglebtn = By.className("toggle-menu");
 
     public static By Sidebar = By.tagName("nav");
@@ -72,7 +71,5 @@ public class NavBarLocator {
 
     public static By DashboardUpdatebtn= By.id("btnSaveSetting");
     public static By Cardname = By.className("panel-title");
-
 }
-
 

@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class AccountsPortalSteps {
     public void checkElement(WebElement element) {
@@ -28,10 +29,10 @@ public class AccountsPortalSteps {
     @Then("Click {string} sub-tab inside {string} tab")
     public void clickSubTabInsideTab(String subtab, String tab) {
         DriverAction.waitSec(5);
-
+        System.out.println(tab);
         DriverAction.click(AccountsPortalLocator.sideTab(tab));
         DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
+        System.out.println(subtab);
         if (DriverAction.isExist(AccountsPortalLocator.sideTab(subtab))) {
 
             DriverAction.click(AccountsPortalLocator.sideTab(subtab), subtab);
@@ -111,6 +112,7 @@ public class AccountsPortalSteps {
     @Then("Click on login button without entering username and password")
     public void clickOnLoginButtonWithoutEnteringUsernameAndPassword() {
         verifyLoginButton();
+        DriverAction.waitSec(5);
         DriverAction.click(AccountsPortalLocator.loginButton);
     }
 
