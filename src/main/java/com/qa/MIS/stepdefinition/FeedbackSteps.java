@@ -1,10 +1,10 @@
-package com.qa.MIS.stepdefinition;
+package com.qa.mis.stepdefinition;
 
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
-import com.qa.MIS.locators.LNSA_FeedbackLocator;
+import com.qa.mis.locators.LNSA_FeedbackLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

@@ -1,3 +1,4 @@
+@leavemanagement
 Feature: MIS - Leave Management
 
   Background: Login into MIS
