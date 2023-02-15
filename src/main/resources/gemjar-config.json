@@ -6,7 +6,7 @@
   "gemjarToken": "3548cf51-4f28-4949-a8db-bdbb2f3027091673956073987",
   "jewelEntryUrl": "https://apis.gemecosystem.com/enter-point",
   "glueCode":"com.qa.mis.stepdefinition",
-  "feature": "src/main/resources/features/LeaveManagement.feature",
+  "feature": "src/main/resources/features/",
   "scenario": "",
   "dev": {
     "browserName": "firefox",
