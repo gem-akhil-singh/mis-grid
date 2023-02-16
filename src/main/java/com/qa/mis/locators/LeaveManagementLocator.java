@@ -74,4 +74,25 @@ public class LeaveManagementLocator {
         return By.xpath("//input[@id='" + option + "']");
     }
 
+    public static By title_LeaveViewRequestHeaders(String tab) {
+        return By.xpath("//div[@id='" + tab + "']/section/div/div/div//thead//th[not(contains(" +
+                "@style,'display: none'))]");
+    }
+
+    public static By dropdown_leaveHistoryFY = By.xpath("//span[@id='select2-financialYearScroll-container" +
+            "']");
+    public static By input_dateRangeFY = By.xpath("//input[@class='select2-search__field']");
+    public static By result_dateRangeFY = By.xpath("//ul[@class='select2-results__options']/li");
+
+    public static By button_leaveExport(String tab) {
+        return By.xpath("//div[@id='" + tab + "']/section//div[@class='dt-buttons']/a");
+    }
+
+    public static By options_leaveExport = By.xpath("//div[@class='dt-button-collection']/a/span");
+
+    public static By button_leaveExportOption(String option) {
+        return By.xpath("//div[@class='dt-button-collection']/a/span[text()='" + option + "']");
+    }
+
+    public static By heading_copyToClipboard = By.xpath("//div[@id='datatables_buttons_info']/h2");
 }

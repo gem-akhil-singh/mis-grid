@@ -1,4 +1,3 @@
-@leavemanagement
 Feature: MIS - Leave Management
 
   Background: Login into MIS
@@ -322,3 +321,178 @@ Feature: MIS - Leave Management
     Examples:
       | parentTab        | childTab | tab            | heading                                                  |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
+
+  Scenario Outline: Verify field is Auto Populated by default in WFH tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And Verify "<heading>" of "<childTab>" tab
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" is displayed
+    And Verify auto populated "textField" field for "<mobileNo>"
+
+    Examples:
+      | parentTab        | childTab | tab            | heading                                                  | mobileNo |
+      | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | mobileNo |
+
+  Scenario Outline: Verify WFH Date and WFH Reason are mandatory fields
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And Verify "<heading>" of "<childTab>" tab
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" is displayed
+    And User clicks on submit button for "<tab>"
+    And Verify mandatory "dropdown" field for "<date>"
+    And Verify mandatory "textArea" field for "<reason>"
+
+    Examples:
+      | parentTab        | childTab | tab            | heading                                                  | date             | reason    |
+      | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | WorkFromHomeDate | WFHReason |
+
+  Scenario Outline: Select Date from WFH Date dropdown
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And Verify "<heading>" of "<childTab>" tab
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" is displayed
+    And Select WFH date "<dateOption>" for "<date>" field
+
+    Examples:
+      | parentTab        | childTab | tab            | heading                                                  | dateOption | date             |
+      | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 02/15/2023 | WorkFromHomeDate |
+
+  Scenario Outline: Enter reason for WFH
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And Verify "<heading>" of "<childTab>" tab
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" is displayed
+    And Enter outing reason "<reasonMessage>" for "<reason>" field
+
+    Examples:
+      | parentTab        | childTab | tab            | heading                                                  | reasonMessage      | reason    |
+      | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | WFH Reason Message | WFHReason |
+
+  Scenario Outline: Enter required data and click on Submit WFH
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And Verify "<heading>" of "<childTab>" tab
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" is displayed
+    And Select WFH date "<dateOption>" for "<date>" field
+    And Enter outing reason "<reasonMessage>" for "<reason>" field
+    And User clicks on submit button for "<tab>"
+    And Verify popup alert with message "<alertType>" and "<successMessage>"
+
+    Examples:
+      | parentTab        | childTab | tab            | heading                                                  | dateOption | date             | reasonMessage      | reason    | alertType | successMessage                 |
+      | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 02/15/2023 | WorkFromHomeDate | WFH Reason Message | WFHReason | Success   | Request processed successfully |
+
+  Scenario Outline: Navigate to Leave Management > View Request Status tab > Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Change Request |
+
+  Scenario Outline: Verify Date Range field is present for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Change Request |
+
+  Scenario Outline: Enter Invalid Date Range for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Invalid" date "<date>" in Date range field
+    And Verify "Invalid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab            | date         | message          |
+      | Leave Management | View Request Status | Change Request | 01 Apr 20000 | No results found |
+
+  Scenario Outline: Enter Valid Date Range for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Valid" date "<date>" in Date range field
+    And Verify "Valid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab            | date                      | message                   |
+      | Leave Management | View Request Status | Change Request | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
+
+  Scenario Outline: Click on Export Options Option for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              |
+      | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print |
+
+  Scenario Outline: Click on Print Option for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Print page appears
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton |
+      | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Print        |
+
+  Scenario Outline: Click on Copy Option for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Copy to clipboard message "<message>"
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | message           |
+      | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
+
+  Scenario Outline: Click on Excel Option for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | fileName                |
+      | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Excel        | Leave History List.xlsx |
+
+  Scenario Outline: Verify PDF option for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | fileName               |
+      | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | PDF          | Leave History List.pdf |
+
+  Scenario Outline: Navigate to Leave Management > View Request Status tab > Comp Off
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+
+    Examples:
+      | parentTab        | childTab            | tab      |
+      | Leave Management | View Request Status | Comp Off |
