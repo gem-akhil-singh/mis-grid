@@ -11,16 +11,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.codec.binary.Base64;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
@@ -29,9 +27,10 @@ public class LeaveManagementSteps {
 
     static int halfDayLeaveCount = 0;
     static String totalWorkingDaysBeforeApplyingHalfDay = null;
+    static String leaveHistoryDateRange = null;
 
     @Given("User is logged into MIS using username and password")
-    public void enteringUsernameAndPassword(DataTable credTable) {
+    public void userIsLoggedIntoMISUsingUsernameAndPassword(DataTable credTable) {
         List<Map<String, String>> credentials = credTable.asMaps(String.class, String.class);
         String username = credentials.get(0).get("username");
         String password = credentials.get(0).get("password");
@@ -488,5 +487,225 @@ public class LeaveManagementSteps {
             GemTestReporter.addTestStep("Error Occur", "Fail to type text in contact number", STATUS.FAIL,
                     DriverAction.takeSnapShot());
         }
+    }
+
+    @And("Select WFH date {string} for {string} field")
+    public void selectWFHDateForField(String date, String field) {
+        if (DriverAction.isExist(LeaveManagementLocator.field_leaveDropDown(field))) {
+            DriverAction.dropDown(LeaveManagementLocator.field_leaveDropDown(field), date);
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to click on dropdown", STATUS.FAIL,
+                    DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify {string} headers are displayed")
+    public void verifyHeadersAreDisplayed(String tab) {
+        DriverAction.waitSec(2);
+        List<String> expectedFields = null;
+        String id = null;
+        switch (tab) {
+            case "Leave":
+                id = "tabApplyLeave";
+                expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status");
+                break;
+            case "Work From Home":
+                id = "tabApplyWFH";
+                expectedFields = Arrays.asList("Period", "Half Day", "Reason", "Remarks", "Status");
+                break;
+            case "Comp Off":
+                id = "tabApplyCompOff";
+                expectedFields = Arrays.asList("Applied for", "Days", "Reason", "Remarks", "Status",
+                        "Applied On", "Availability", "Lapse Date");
+                break;
+            case "Out Duty/Tour":
+                id = "tabApplyOnDutyReq";
+                expectedFields = Arrays.asList("Period", "Duty Type", "Reason", "Remarks");
+                break;
+            case "Change Request":
+                id = "tabLWPChangeRequest";
+                expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status", "Applied On");
+                break;
+        }
+
+        List<String> actualFields =
+                DriverAction.getElementsText(LeaveManagementLocator.title_LeaveViewRequestHeaders(id));
+        if (actualFields.equals(expectedFields)) {
+            GemTestReporter.addTestStep("Verifying Fields",
+                    "Fields matching passed.\nExpected Fields - " + expectedFields +
+                            "\nActual Fields - " + actualFields, STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Verifying Fields",
+                    "Fields matching failed.\nExpected Fields - " + expectedFields +
+                            "\nActual Fields - " + actualFields, STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify Date Range field is present")
+    public void verifyDateRangeFieldIsPresent() {
+        if (DriverAction.isExist(LeaveManagementLocator.dropdown_leaveHistoryFY)) {
+            GemTestReporter.addTestStep("Date Range", "Date Range is present", STATUS.PASS,
+                    DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Date Range is not present", STATUS.FAIL,
+                    DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Click on View Request Status {string} dropdown")
+    public void clickOnVIewRequestStatusDropdown(String field) {
+        if (field.equals("Date Range")) {
+            if (DriverAction.isExist(LeaveManagementLocator.dropdown_leaveHistoryFY)) {
+                DriverAction.click(LeaveManagementLocator.dropdown_leaveHistoryFY, "date range");
+            } else {
+                GemTestReporter.addTestStep("Error Occur", "Fail to click Date Range",
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        }
+    }
+
+    @And("Enter {string} date {string} in Date range field")
+    public void enterDateInDateRangeField(String dateType, String date) {
+        if (DriverAction.isExist(LeaveManagementLocator.input_dateRangeFY)) {
+            DriverAction.typeText(LeaveManagementLocator.input_dateRangeFY, date, "date range");
+            leaveHistoryDateRange = date;
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to type in Date Range",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify {string} message {string} displays")
+    public void verifyMessageDisplays(String dateType, String message) {
+        String expectedResult = null;
+        if (dateType.equals("Invalid")) {
+            if (DriverAction.isExist(LeaveManagementLocator.result_dateRangeFY)) {
+                expectedResult = DriverAction.getElementText(LeaveManagementLocator.result_dateRangeFY);
+                assertEquals(message, expectedResult);
+                GemTestReporter.addTestStep("Verifying Result", "Search Result matching passed." +
+                                "\nExpected Result - " + expectedResult + "\nActual Result - " + message, STATUS.PASS,
+                        DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("Verifying Result", "Search Result matching failed." +
+                                "\nExpected Result - " + expectedResult + "\nActual Result - " + message,
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } else {
+            if (DriverAction.isExist(LeaveManagementLocator.result_dateRangeFY)) {
+                expectedResult = DriverAction.getElementText(LeaveManagementLocator.result_dateRangeFY);
+                assertEquals(leaveHistoryDateRange, expectedResult);
+                GemTestReporter.addTestStep("Verifying Result", "Search Result matching passed." +
+                                "\nExpected Result - " + expectedResult + "\nActual Result - " + leaveHistoryDateRange,
+                        STATUS.PASS, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("Verifying Result", "Search Result matching failed." +
+                                "\nExpected Result - " + expectedResult + "\nActual Result - " + leaveHistoryDateRange,
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        }
+
+    }
+
+    @And("Click on View Request Status export button for {string}")
+    public void clickOnViewRequestStatusExportButtonFor(String tab) {
+        DriverAction.waitSec(2);
+        String id = switch (tab) {
+            case "Leave" -> "tabApplyLeave";
+            case "Work From Home" -> "tabApplyWFH";
+            case "Comp Off" -> "tabApplyCompOff";
+            case "Out Duty/Tour" -> "tabApplyOnDutyReq";
+            case "Change Request" -> "tabLWPChangeRequest";
+            default -> null;
+        };
+
+        DriverAction.click(LeaveManagementLocator.button_leaveExport(id), "export");
+    }
+
+    @And("Verify available export options {string}")
+    public void verifyAvailableExportOptions(String options) {
+        List<String> optList = Arrays.asList(options.split(","));
+        optList.replaceAll(String::trim);
+        List<String> actualOptions = DriverAction.getElementsText(LeaveManagementLocator.options_leaveExport);
+        if (optList.equals(actualOptions)) {
+            GemTestReporter.addTestStep("Verifying Options", "Export Options matching passed." +
+                            "\nExpected Result - " + optList + "\nActual Result - " + actualOptions,
+                    STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Verifying Options", "Export Options matching failed." +
+                            "\nExpected Result - " + optList + "\nActual Result - " + actualOptions,
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Click on View Request Status {string} button")
+    public void clickOnViewRequestStatusButton(String button) {
+        if (DriverAction.isExist(LeaveManagementLocator.button_leaveExportOption(button))) {
+            DriverAction.click(LeaveManagementLocator.button_leaveExportOption(button), button);
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to click export button",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify Print page appears")
+    public void verifyPrintPageAppears() {
+        List<String> windows = new ArrayList<>(DriverAction.getWindowHandles());
+        if (windows.size() == 2) {
+            GemTestReporter.addTestStep("Verifying Print Page", "Print page is available",
+                    STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Print page is not available",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify Copy to clipboard message {string}")
+    public void verifyCopyToClipboardMessage(String message) {
+        String actualMessage = DriverAction.getElementText(LeaveManagementLocator.heading_copyToClipboard);
+        if (actualMessage.equals(message)) {
+            GemTestReporter.addTestStep("Verifying Message", "Header matching passed." +
+                            "\nExpected Result - " + message + "\nActual Result - " + actualMessage,
+                    STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Verifying Options", "Header matching failed." +
+                            "\nExpected Result - " + message + "\nActual Result - " + actualMessage,
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify file {string} is downloaded in MIS")
+    public void verifyFileIsDownloadedInMIS(String fileName) {
+        // static wait to download the file.
+        DriverAction.waitSec(5);
+        String downloadPath = "C:\\Users\\" + System.getProperty("user.name") + "\\Downloads\\";
+        boolean isDownloaded = isFileDownloaded(downloadPath, fileName);
+        if (isDownloaded) {
+            GemTestReporter.addTestStep("Verifying Downloaded File", "File downloaded successfully",
+                    STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "File downloading failed",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+        deleteDownloadedFile(downloadPath, fileName);
+        DriverAction.waitSec(2);
+    }
+
+    public boolean isFileDownloaded(String downloadPath, String fileName) {
+        boolean flag = false;
+        File dir = new File(downloadPath);
+        File[] dir_contents = dir.listFiles();
+
+        for (int i = 0; i < dir_contents.length; i++) {
+            if (dir_contents[i].getName().equals(fileName)) {
+                return flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public void deleteDownloadedFile(String downloadPath, String fileName) {
+        File folder = new File(downloadPath);
+        File tempFile = new File(folder + "/" + fileName);
+        tempFile.delete();
     }
 }
