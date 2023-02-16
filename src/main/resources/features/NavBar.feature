@@ -38,7 +38,7 @@ Feature: NavBar
 
     Examples:
       | Technology | Proficiency Level | Skill Type | Tech Experience | Total Work Exp | AlertType | Message                             |
-      | C++       | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
+      | HTML     | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
 
 
   Scenario Outline: Verify Warning Message box when adding duplicate skills

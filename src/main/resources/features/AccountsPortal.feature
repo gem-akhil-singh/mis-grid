@@ -26,7 +26,6 @@ Feature: AccountsPortal
 
     Then Click on login button without entering username and password
     And Verify "<Message>" text is present on the current page
-
     Examples:
       | Message                            |
       | Username and password is required. |
