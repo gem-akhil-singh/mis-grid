@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NavBarSteps {
-
     static int cardnumber = 0;
 
     public void presenceOfElement(By elementXpath, int time) {
@@ -466,21 +465,22 @@ public class NavBarSteps {
     @And("Verify {string} card is shown on the dashboard")
     public void verifyCardIsShownOnTheDashboard(String isCardPresent) {
         DriverAction.waitSec(5);
-        List<WebElement> Cardpanel = null;
+        List<WebElement> CardpanelList;
+
         switch (isCardPresent) {
             case "no":
-                Cardpanel = DriverAction.getElements(NavBarLocator.Cardname);
-                if (Cardpanel.size() == 0) {
-                    GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is updated", STATUS.PASS, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is not updated", STATUS.FAIL, DriverAction.takeSnapShot());
 
+                try{
+                    DriverManager.getWebDriver().findElement(NavBarLocator.Cardname);
+                    GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is not updated", STATUS.FAIL, DriverAction.takeSnapShot());
+                }catch (Exception e){
+                    GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is updated", STATUS.PASS, DriverAction.takeSnapShot());
                 }
                 break;
             case "all":
-                Cardpanel = DriverAction.getElements(NavBarLocator.Cardname);
+                CardpanelList = DriverAction.getElements(NavBarLocator.Cardname);
 
-                if (Cardpanel.size() == cardnumber - 1) {
+                if (CardpanelList.size() == cardnumber - 1) {
                     GemTestReporter.addTestStep("checked all the widget ", "All the cards are reappear", STATUS.PASS, DriverAction.takeSnapShot());
                 } else {
                     GemTestReporter.addTestStep("checked all the widget ", "All the cards are not reappear", STATUS.FAIL, DriverAction.takeSnapShot());

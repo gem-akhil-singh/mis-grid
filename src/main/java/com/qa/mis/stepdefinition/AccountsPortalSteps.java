@@ -7,6 +7,7 @@ import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.AccountsPortalLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
@@ -29,12 +30,9 @@ public class AccountsPortalSteps {
     @Then("Click {string} sub-tab inside {string} tab")
     public void clickSubTabInsideTab(String subtab, String tab) {
         DriverAction.waitSec(5);
-        System.out.println(tab);
         DriverAction.click(AccountsPortalLocator.sideTab(tab));
         DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        System.out.println(subtab);
         if (DriverAction.isExist(AccountsPortalLocator.sideTab(subtab))) {
-
             DriverAction.click(AccountsPortalLocator.sideTab(subtab), subtab);
         } else {
             GemTestReporter.addTestStep("Click on SubTab", "Subtab is not clickable", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -113,7 +111,10 @@ public class AccountsPortalSteps {
     public void clickOnLoginButtonWithoutEnteringUsernameAndPassword() {
         verifyLoginButton();
         DriverAction.waitSec(5);
-        DriverAction.click(AccountsPortalLocator.loginButton);
+//        DriverAction.click(AccountsPortalLocator.loginButton);
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getWebDriver();
+        js.executeScript("arguments[0].click()", AccountsPortalLocator.loginButton);
+
     }
 
     @And("Verify {string} text is present on the current page")

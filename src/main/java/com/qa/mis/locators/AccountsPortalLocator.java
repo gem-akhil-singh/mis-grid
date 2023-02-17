@@ -14,9 +14,8 @@ public class AccountsPortalLocator {
         return By.xpath("//label[text()='" + field + "']/..//input");
 
     }
-
     public static By header = By.xpath("//header/div[contains(text(),'Hello there!')]");
-    public static By loginButton = By.xpath("//button[@type='submit']");
+    public static By loginButton = By.xpath("//button[text()=' Log in ']");
     public static By forgetpasswordLink = By.xpath("//a[contains(text(),'Forgot password?')]");
 
     public static By message(String message) {
