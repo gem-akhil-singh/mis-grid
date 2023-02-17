@@ -38,7 +38,7 @@ Feature: NavBar
 
     Examples:
       | Technology | Proficiency Level | Skill Type | Tech Experience | Total Work Exp | AlertType | Message                             |
-      | HTML     | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
+      | Scripting  | Beginner          | Secondary  | 24              | 2              | Success   | Skills has been saved successfully. |
 
 
   Scenario Outline: Verify Warning Message box when adding duplicate skills
@@ -82,3 +82,14 @@ Feature: NavBar
     Then Verify all check boxes are check
     And Click on Update button
     And Verify "all" card is shown on the dashboard
+
+  Scenario Outline: Verify EC DC Hierarchy Popup
+    Then Click on EC DC Hierarchy link
+    And Verify EC DC Hierarchy popup should be open
+    And Verify tab <tab> with columns <columnsname>
+
+    Examples:
+      | tab                 | columnsname                                                                                            |
+      | Engineering Council | Engineering Council,Chair,Co-Chair,EC Teams Channel,EC Email,Governance Teams Channel,Governance Email |
+      | Delivery Council    | Delivery Council,Sub Delivery Council,Chair,Co-Chair,HRBP,Associate HR,Teams Channel,Email Alias / DL  |
+

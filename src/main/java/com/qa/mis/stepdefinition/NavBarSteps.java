@@ -4,6 +4,7 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
+import com.qa.mis.locators.DashboardLeaveBalanceLocator;
 import com.qa.mis.locators.NavBarLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NavBarSteps {
+
     static int cardnumber = 0;
 
     public void presenceOfElement(By elementXpath, int time) {
@@ -440,6 +442,7 @@ public class NavBarSteps {
         DriverAction.waitUntilElementAppear(NavBarLocator.DashboardPopup, 10);
         if (DriverAction.isExist(NavBarLocator.DashboardPopup)) {
             List<WebElement> element = DriverAction.getElements(NavBarLocator.DashboardCheckbox);
+
             for (WebElement checkbox : element) {
                 if (checkbox.isSelected()) {
 
@@ -470,12 +473,14 @@ public class NavBarSteps {
         switch (isCardPresent) {
             case "no":
 
-                try{
+                try {
                     DriverManager.getWebDriver().findElement(NavBarLocator.Cardname);
                     GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is not updated", STATUS.FAIL, DriverAction.takeSnapShot());
-                }catch (Exception e){
+                } catch (Exception e) {
                     GemTestReporter.addTestStep("Unchecked all the widget ", "Dashboard setting is updated", STATUS.PASS, DriverAction.takeSnapShot());
+
                 }
+
                 break;
             case "all":
                 CardpanelList = DriverAction.getElements(NavBarLocator.Cardname);
@@ -513,5 +518,52 @@ public class NavBarSteps {
     }
 
 
+    @Then("Click on EC DC Hierarchy link")
+    public void clickOnECDCHierarchyLink() {
+        DriverAction.waitSec(5);
+        if (DriverAction.isExist(NavBarLocator.ECDCHierarchyLink)) {
+            DriverAction.click(NavBarLocator.ECDCHierarchyLink, "ECDCHierarchy Link");
+        } else {
+            GemTestReporter.addTestStep("ECDCHierarchy Link", "ECDCHierarchy Link is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify EC DC Hierarchy popup should be open")
+    public void verifyECDCHierarchyPopupShouldBeOpen() {
+        DriverAction.waitSec(5);
+
+        if (DriverAction.isExist(NavBarLocator.ECDCHierarchyPopup)) {
+            GemTestReporter.addTestStep("ECDCHierarchyPopup", "EC DC Hierarchy Popup is present", STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("ECDCHierarchyPopup", "EC DC Hierarchy Popup is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("^Verify tab (.+) with columns (.+)")
+    public void verifyECDCColumns(String tab, String columns) {
+        int Flag = 0;
+        String Column = "";
+        String[] tabColumns = columns.split(",");
+
+        if (tab.equals("Delivery Council")) {
+            DriverAction.click(NavBarLocator.ECDCHierarchyTab(tab), tab);
+        }
+        DriverAction.waitSec(5);
+        for (int j = 0; j < tabColumns.length; j++) {
+            Column = tabColumns[j];
+            WebElement TabColumns = DriverAction.getElement(NavBarLocator.ECDCHierarchycolumns(Column));
+            if (TabColumns.isDisplayed()) {
+                Flag = 1;
+            } else {
+                Flag = 0;
+                break;
+            }
+        }
+        if (Flag == 1) {
+            GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", "All columns are present", STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", Column + " Column " + "is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
 }
 
