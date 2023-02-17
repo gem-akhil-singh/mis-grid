@@ -108,5 +108,47 @@ public class PolicySteps {
             GemTestReporter.addTestStep("Error message", "Error message: " + actualMsg, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
+    @Then("Verify the {string}")
+    public void verifyThe(String expectedPolicy) {
+        DriverAction.waitUntilElementAppear(PolicyLocator.policyName(expectedPolicy), 5);
+        String actualPolicy = DriverAction.getElement(PolicyLocator.policyName(expectedPolicy)).getText();
+        try {
+            if (actualPolicy.equals(expectedPolicy))
+                GemTestReporter.addTestStep("Policy", "Verified the Policy: " + actualPolicy, STATUS.PASS, DriverAction.takeSnapShot());
+        } catch (Exception exception) {
+            GemTestReporter.addTestStep("Policy", "User not able to verify the policy: " + actualPolicy, STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+    @And("Click on view policy")
+    public void clickOnViewPolicy() {
+        try {
+            DriverAction.click(PolicyLocator.viewPolicy);
+            GemTestReporter.addTestStep("Policy", "Verify user clicks on view policy", STATUS.PASS, DriverAction.takeSnapShot());
+        } catch (Exception exception) {
+            GemTestReporter.addTestStep("Policy", "User not able to click on view policy", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
 
+    }
+    @Then("Click on {string} Button")
+    public void clickOnButton(String btn) {
+        try {
+            if (btn.contains("Next")) {
+                DriverAction.click(PolicyLocator.navigateButton(btn));
+                GemTestReporter.addTestStep("Next", "Verify user clicks on Next button", STATUS.PASS, DriverAction.takeSnapShot());
+            }
+        } catch (Exception exception) {
+            GemTestReporter.addTestStep("Next", "User not able to click on Next button", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+        try {
+            if (btn.contains("Previous")) {
+                DriverAction.click(PolicyLocator.navigateButton(btn));
+                GemTestReporter.addTestStep("Previous", "Verify user clicks on Previous button", STATUS.PASS, DriverAction.takeSnapShot());
+            }
+        }
+        catch(Exception exception)
+        {
+            GemTestReporter.addTestStep("Previous", "User not able to click on Previous button", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
 }
+

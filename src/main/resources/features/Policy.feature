@@ -49,3 +49,23 @@ Feature: Policy
     Examples:
       | policyName | message                   |
       | ABC Policy | No matching records found |
+
+  Scenario Outline: View Policy
+    When User clicks on Policy
+    And Click on View Policies
+    And Enter "<policyName>" in Search Box
+    And Click on view policy
+    Then Verify the "<policyName>"
+    Examples:
+      | policyName |
+      | E-Policy   |
+
+  Scenario: Verify Next button is clickable
+    When User clicks on Policy
+    And Click on View Policies
+    Then Click on "Next" Button
+
+  Scenario: Verify Previous button is clickable
+    When User clicks on Policy
+    And Click on View Policies
+    Then Click on "Previous" Button
