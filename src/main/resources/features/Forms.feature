@@ -91,7 +91,7 @@ Feature: Forms Automation
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the undesired document "<formType>" from "<path>"
-    And  Verify the "<warningMsg>"
+    And  Verify the warning "<warningMsg>"
     Then User clicks on ok button
     Examples:
       | parentTab | childTab | formType                | warningMsg                                                      | path |
