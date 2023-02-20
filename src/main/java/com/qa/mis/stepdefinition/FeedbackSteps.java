@@ -8,9 +8,12 @@ import com.qa.mis.locators.LNSA_FeedbackLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class FeedbackSteps {
     private static final Logger logger = LoggerFactory.getLogger(FeedbackSteps.class);
@@ -113,7 +116,7 @@ public class FeedbackSteps {
     }
 
     @Then("^User clicks on the \"(.*?)\" button of Feedback page$")
-    public void userClicksOnTheButtonOfFeedbackPage(String stepName) {
+    public void userTriesToNavigateOnFeedbackPage(String stepName) {
         DriverAction.waitSec(3);
         switch (stepName) {
 
@@ -145,5 +148,101 @@ public class FeedbackSteps {
 
         }
 
+    }
+
+    @Then("^User enters \"(.*?)\" in the search box$")
+    public void userEntersValidText(String sampleText) {
+        if (DriverAction.isExist(LNSA_FeedbackLocator.feedbackSearchFeedback)) {
+            DriverAction.click(LNSA_FeedbackLocator.feedbackSearchFeedback, "Clicking on Search text box to place cursor and focus on it",
+                    "Clicked on the Search text box");
+            DriverAction.typeText(LNSA_FeedbackLocator.feedbackSearchFeedback, sampleText);
+        }
+        else {
+            logger.info("Unable to click on the Search text box of the Feedback page");
+            GemTestReporter.addTestStep("Clicking on Search text box",
+                    "Unable to click and enter text in the Search text box of the Feedback page",
+                    STATUS.FAIL);
+            Assert.fail("Unable to click and type in the Search text box of the Feedback page");
+        }
+    }
+
+    @And("^User checks if \"(.*?)\" is in search result$")
+    public void userChecksIfIsInSearchResult(String expectedText) {
+        String numOfRows = DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.feedbackSearchResultsTotal).getText().split(" ")[5];
+        try {
+            int rowCount = Integer.parseInt(numOfRows);
+            if (rowCount == 0){
+                Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.feedbackSearchResultsEmpty),"Row Count is 0 but some data was still found" );
+                logger.info("No results were found, skipping the rest of the validations");
+            }
+            else {
+                List<WebElement> searchResults = DriverManager.getWebDriver().findElements(LNSA_FeedbackLocator.feedbackSearchResultsRow);
+                for (int i = 0; i<searchResults.size(); i++){
+                    String results = searchResults.get(i).getText();
+                    System.out.println(results);
+                    if (results.contains(expectedText))
+                        logger.info(expectedText + "was found in the search results");
+
+                    else {
+                        logger.info(expectedText + "was invalid entry and was not found in the search results");
+                        GemTestReporter.addReasonOfFailure(expectedText + "was invalid entry and was not found in the search results " + STATUS.FAIL);
+                    }
+                }
+            }
+        }catch (Exception e){
+            logger.info("Expected a numeric row count, instead found " + numOfRows);
+            Assert.fail("Expected a numeric row count, instead found " + numOfRows);
+        }
+
+    }
+
+    @Then("^User checks if the Export button is available$")
+    public void userChecksIfTheExportButtonIsAvailable() {
+        if (DriverAction.isExist(LNSA_FeedbackLocator.exportButton))
+            logger.info("Export button is present on the Feedback Page");
+        else {
+            logger.info("Export button is present on the Feedback Page");
+            Assert.fail("Export button is present on the Feedback Page");
+
+        }
+    }
+
+    @And("^User clicks on the Export button$")
+    public void userClicksOnTheExportButton() {
+        try {
+            DriverAction.click(LNSA_FeedbackLocator.exportButton, "Click on the Export Button",
+                    "Export button was clicked successfully");
+        } catch (Exception e){
+            logger.info("Could not click on the button due to exception: "+ e);
+            Assert.fail("Could not click on the button due to exception: "+ e);
+        }
+        Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionCopy), "No copy button was found");
+        Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionExcel), "No Excel button was found");
+        Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionPDF), "No PDF button was found");
+        Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionPrint), "No print button was found");
+    }
+
+    @Then("^User clicks on the View icon of the Feedback page$")
+    public void userClicksOnTheViewIconOfTheFeedbackPage() {
+        if(DriverAction.isExist(LNSA_FeedbackLocator.viewFeedbackIcon))
+            DriverAction.click(LNSA_FeedbackLocator.viewFeedbackIcon,"Trying to click on View Icon", "View Icon clicked");
+        else{
+            logger.info("View icon not found and unable to click on it");
+            Assert.fail("View icon not found and unable to click on it");
+        }
+    }
+
+    @And("^User verifies that the View Feedback pop-up appears$")
+    public void userVerifiesThatTheViewFeedbackPopUpAppears() {
+        DriverAction.waitSec(5);
+        if(DriverAction.isExist(LNSA_FeedbackLocator.headingOfViewFeedback)){
+            logger.info("View Feedback pop-up verified successfully");
+            DriverAction.click(LNSA_FeedbackLocator.closeButtonOfViewFeedback, "Clicking on Close button of View Feedback",
+                    "Close button clicked");
+        }
+        else {
+            logger.info("View Feedback popup was not found");
+            Assert.fail("View Feedback popup was not found");
+        }
     }
 }

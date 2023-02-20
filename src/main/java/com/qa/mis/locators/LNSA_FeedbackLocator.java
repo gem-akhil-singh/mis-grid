@@ -33,4 +33,17 @@ public class LNSA_FeedbackLocator {
     public static By feedbackNextButton = By.xpath("//a[text()='Next']/..");
     public static By feedbackPreviousButton = By.xpath("//a[text() ='Previous']/..");
     public static By feedbackSearchFeedback = By.xpath("//input[@type='search']");
+    public static By feedbackSearchResultsRow = By.xpath("//td[@tabindex='0']");
+    public static By feedbackSearchResultsTotal = By.id("tblFeedback_info");
+    public static By feedbackSearchResultsEmpty = By.xpath("//td[@class='dataTables_empty']");
+    public static By exportButton = By.xpath("//span[text()= 'Export']/..");
+    public static By exportOptionCopy = By.xpath("//span[text()= 'Copy']/..");
+    public static By exportOptionExcel = By.xpath("//span[text()= 'Excel']/..");
+    public static By exportOptionPDF = By.xpath("//span[text()= 'PDF']/..");
+    public static By exportOptionPrint = By.xpath("//span[text()= 'Print']/..");
+    public static By viewFeedbackIcon = By.xpath("(//i[@class= 'fa fa-eye']/..)[1]");
+    public static By headingOfViewFeedback = By.xpath("//h4[text() = 'View Feedback']");
+    public static By closeButtonOfViewFeedback = By.xpath("//div[@id='modal-feedback']//button[contains(@class,'Close')]");
+
+
 }

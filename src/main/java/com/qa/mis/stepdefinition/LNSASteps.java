@@ -31,8 +31,8 @@ public class LNSASteps {
     public void userEntersLoginDetails(String username, String password) {
         DriverAction.typeText(LNSA_FeedbackLocator.txtUserName, username);
 
-        byte[] decodingString = Base64.decodeBase64(password);
-        DriverAction.typeText(LNSA_FeedbackLocator.txtPassword, password);
+        byte[] decodedPassword = Base64.decodeBase64(password);
+        DriverAction.typeText(LNSA_FeedbackLocator.txtPassword, new String(decodedPassword));
         DriverAction.click(LNSA_FeedbackLocator.buttonLogin, "User clicks on Sign-in button", "Click on Sign-in button was a success");
         DriverAction.waitSec(10);
     }
