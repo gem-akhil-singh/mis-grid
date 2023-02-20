@@ -708,4 +708,149 @@ public class LeaveManagementSteps {
         File tempFile = new File(folder + "/" + fileName);
         tempFile.delete();
     }
+
+    @And("User enters {string} period in search box for {string}")
+    public void userEntersPeriodInSearchBoxFor(String period, String tab) {
+        String id = switch (tab) {
+            case "Comp Off" -> "tblCompOffHistory_filter";
+            case "Leave" -> "tblLeaveHistory_filter";
+            default -> null;
+        };
+
+        if (DriverAction.isExist(LeaveManagementLocator.input_viewRequestFilter(id))) {
+            DriverAction.typeText(LeaveManagementLocator.input_viewRequestFilter(id), period, "period");
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to type text in search",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify {string} period as search result for {string}")
+    public void verifyPeriodAsSearchResultFor(String period, String tab) {
+        String id = switch (tab) {
+            case "Leave" -> "tabApplyLeave";
+            case "Work From Home" -> "tabApplyWFH";
+            case "Comp Off" -> "tabApplyCompOff";
+            case "Out Duty/Tour" -> "tabApplyOnDutyReq";
+            case "Change Request" -> "tabLWPChangeRequest";
+            default -> null;
+        };
+
+        if (DriverAction.isExist(LeaveManagementLocator.tableRowData_viewRequestStatus(id))) {
+            List<WebElement> rows =
+                    DriverAction.getElements(LeaveManagementLocator.tableRows_viewRequestStatus(id));
+            for (WebElement row : rows) {
+                String rowData = DriverAction.getElementText(row);
+                if (rowData.contains(period)) {
+                    GemTestReporter.addTestStep("Verifying Result", "Result matching passed." +
+                                    "\nExpected Result - " + period + "\nActual Result - " + rowData,
+                            STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Verifying Result", "Result matching failed." +
+                                    "\nExpected Result - " + period + "\nActual Result - " + rowData,
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+            }
+        }
+    }
+
+
+    @And("Sort column {string} for {string}")
+    public void sortColumnFor(String column, String tab) {
+        String id = switch (tab) {
+            case "Leave" -> "tabApplyLeave";
+            case "Work From Home" -> "tabApplyWFH";
+            case "Comp Off" -> "tabApplyCompOff";
+            case "Out Duty/Tour" -> "tabApplyOnDutyReq";
+            case "Change Request" -> "tabLWPChangeRequest";
+            default -> null;
+        };
+
+        List<WebElement> headers =
+                DriverAction.getElements(LeaveManagementLocator.title_LeaveViewRequestHeaders(id));
+        for (WebElement header : headers) {
+            String headerText = DriverAction.getElementText(header);
+            if (headerText.equals(column)) {
+                DriverAction.click(header, "header");
+                break;
+            }
+        }
+    }
+
+    @And("Verify sorted column {string} result for {string}")
+    public void verifySortedColumnResultFor(String column, String tab) {
+        String id = switch (tab) {
+            case "Leave" -> "tabApplyLeave";
+            case "Work From Home" -> "tabApplyWFH";
+            case "Comp Off" -> "tabApplyCompOff";
+            case "Out Duty/Tour" -> "tabApplyOnDutyReq";
+            case "Change Request" -> "tabLWPChangeRequest";
+            default -> null;
+        };
+
+        List<WebElement> headers =
+                DriverAction.getElements(LeaveManagementLocator.title_LeaveViewRequestHeaders(id));
+        for (WebElement header : headers) {
+            String headerText = DriverAction.getElementText(header);
+            if (headerText.equals(column)) {
+                String sorting = DriverAction.getAttributeName(header, "aria-sort");
+                if (sorting.equals("ascending")) {
+                    GemTestReporter.addTestStep("Verifying Sorting", "Sorting completed successfully",
+                            STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Verifying Sorting", "Sorting failed",
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+                break;
+            }
+        }
+
+    }
+
+    @And("Verify number of rows displayed for {string} tab")
+    public void verifyNumberOfRowsDisplayedForTab(String tab) {
+        String id = switch (tab) {
+            case "Leave" -> "tabApplyLeave";
+            case "Work From Home" -> "tabApplyWFH";
+            case "Comp Off" -> "tabApplyCompOff";
+            case "Out Duty/Tour" -> "tabApplyOnDutyReq";
+            case "Change Request" -> "tabLWPChangeRequest";
+            default -> null;
+        };
+        int rows = DriverAction.getElements(LeaveManagementLocator.tableRows_viewRequestStatus(id)).size();
+        if (DriverAction.isExist(LeaveManagementLocator.label_leaveTableEntries)) {
+            String entries = DriverAction.getElementText(LeaveManagementLocator.label_leaveTableEntries);
+            if (entries.contains(rows + "")) {
+                GemTestReporter.addTestStep("Verifying Entries", "Entries matching passed",
+                        STATUS.PASS, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("Verifying Entries", "Entries matching failed",
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        }
+    }
+
+    @And("Cancel the leave for given period")
+    public void cancelTheLeaveForGivenPeriod() {
+        String id = "tabApplyLeave";
+
+        if(DriverAction.isExist(LeaveManagementLocator.button_leaveCancel(id))){
+            DriverAction.click(LeaveManagementLocator.button_leaveCancel(id), "cancel");
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to click cancel button",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+
+    }
+
+    @And("User clicks on yes button to cancel the leave")
+    public void userClicksOnYesButtonToCancelTheLeave() {
+        DriverAction.waitUntilElementAppear(LeaveManagementLocator.button_leaveCancelYes, 10);
+        if(DriverAction.isExist(LeaveManagementLocator.button_leaveCancelYes)){
+            DriverAction.click(LeaveManagementLocator.button_leaveCancelYes, "yes");
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to click yes button",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
 }

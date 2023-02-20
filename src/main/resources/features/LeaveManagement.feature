@@ -1,3 +1,4 @@
+@leaveManagement
 Feature: MIS - Leave Management
 
   Background: Login into MIS
@@ -496,3 +497,274 @@ Feature: MIS - Leave Management
     Examples:
       | parentTab        | childTab            | tab      |
       | Leave Management | View Request Status | Comp Off |
+
+  Scenario Outline: Verify Date Range field is present for Change Request
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+
+    Examples:
+      | parentTab        | childTab            | tab      |
+      | Leave Management | View Request Status | Comp Off |
+
+  Scenario Outline: Enter Invalid Date Range for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Invalid" date "<date>" in Date range field
+    And Verify "Invalid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab      | date         | message          |
+      | Leave Management | View Request Status | Comp Off | 01 Apr 20000 | No results found |
+
+  Scenario Outline: Enter Valid Date Range for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Valid" date "<date>" in Date range field
+    And Verify "Valid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab      | date                      | message                   |
+      | Leave Management | View Request Status | Comp Off | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
+
+  Scenario Outline: Click on Export Options Option for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    Examples:
+      | parentTab        | childTab            | tab      | exportList              |
+      | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print |
+
+  Scenario Outline: Click on Print Option for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Print page appears
+    Examples:
+      | parentTab        | childTab            | tab      | exportList              | exportButton |
+      | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | Print        |
+
+  Scenario Outline: Click on Excel Option for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab      | exportList              | exportButton | fileName                  |
+      | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | Excel        | CompOff History List.xlsx |
+
+  Scenario Outline: Verify PDF option for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab      | exportList              | exportButton | fileName                 |
+      | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | PDF          | CompOff History List.pdf |
+
+  Scenario Outline: Enter Comp Off Period Name in Search Box for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<compOffPeriod>" period in search box for "<tab>"
+    And Verify "<compOffPeriod>" period as search result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab      | compOffPeriod |
+      | Leave Management | View Request Status | Comp Off | 11-Feb-2023   |
+
+  Scenario Outline: Sort columns for Comp Off Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Sort column "<columnName>" for "<tab>"
+    And Verify sorted column "<columnName>" result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab      | columnName |
+      | Leave Management | View Request Status | Comp Off | Applied On |
+
+#  Scenario Outline: Expand Details of Comp Off
+#    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+#    And User clicks on "<tab>" Tab
+#    And Verify "<tab>" headers are displayed
+#    And Verify Date Range field is present
+#    And User enters "<compOffPeriod>" period in search box for "<tab>"
+#    And Click on Expand Comp Off button
+#    And Verify details box appears
+#
+#
+#    Examples:
+#      | parentTab        | childTab            | tab      | compOffPeriod |
+#      | Leave Management | View Request Status | Comp Off | 11-Feb-2023   |
+
+#  20-feb
+
+  Scenario Outline: Navigate to Leave Management > View Request Status tab > Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+
+    Examples:
+      | parentTab        | childTab            | tab   |
+      | Leave Management | View Request Status | Leave |
+
+  Scenario Outline: Verify Date Range field is present for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+
+    Examples:
+      | parentTab        | childTab            | tab   |
+      | Leave Management | View Request Status | Leave |
+
+  Scenario Outline: Enter Invalid Date Range for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Invalid" date "<date>" in Date range field
+    And Verify "Invalid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab   | date         | message          |
+      | Leave Management | View Request Status | Leave | 01 Apr 20000 | No results found |
+
+  Scenario Outline: Verify Export Options for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    Examples:
+      | parentTab        | childTab            | tab   | exportList              |
+      | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print |
+
+  Scenario Outline: Click on Print Option for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Print page appears
+    Examples:
+      | parentTab        | childTab            | tab   | exportList              | exportButton |
+      | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Print        |
+
+  Scenario Outline: Click on Excel Option for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab   | exportList              | exportButton | fileName                |
+      | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Excel        | Leave History List.xlsx |
+
+  Scenario Outline: Click on Copy Option for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Copy to clipboard message "<message>"
+    Examples:
+      | parentTab        | childTab            | tab   | exportList              | exportButton | message           |
+      | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
+
+  Scenario Outline: Verify PDF option for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab   | exportList              | exportButton | fileName               |
+      | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | PDF          | Leave History List.pdf |
+
+  Scenario Outline: Verify Number of Entries displayed for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Verify number of rows displayed for "<tab>" tab
+    Examples:
+      | parentTab        | childTab            | tab   |
+      | Leave Management | View Request Status | Leave |
+
+  Scenario Outline: Enter Leave Period Name in Search Box for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab   | leavePeriod |
+      | Leave Management | View Request Status | Leave | 08-Mar-2023 |
+
+  Scenario Outline: Sort columns for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Sort column "<columnName>" for "<tab>"
+    And Verify sorted column "<columnName>" result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab   | columnName |
+      | Leave Management | View Request Status | Leave | Period     |
+
+#    Next Button
+#  Previous Button
+
+  Scenario Outline: Cancel Leave for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+    And Cancel the leave for given period
+    And Verify popup alert with message "Confirm" and "Are you sure you want to cancel this request ?"
+    And User clicks on yes button to cancel the leave
+    And Verify popup alert with message "Success" and "Request processed successfully"
+
+    Examples:
+      | parentTab        | childTab            | tab   | leavePeriod                |
+      | Leave Management | View Request Status | Leave | 21-Feb-2023 to 21-Feb-2023 |

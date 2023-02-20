@@ -95,4 +95,24 @@ public class LeaveManagementLocator {
     }
 
     public static By heading_copyToClipboard = By.xpath("//div[@id='datatables_buttons_info']/h2");
+
+    public static By input_viewRequestFilter(String id) {
+        return By.xpath("//div[@id='" + id + "']//input");
+    }
+
+    public static By tableRows_viewRequestStatus(String id) {
+        return By.xpath("//div[@id='" + id + "']/section/div/div/div//tbody//tr");
+    }
+
+    public static By tableRowData_viewRequestStatus(String id) {
+        return By.xpath("//div[@id='" + id + "']/section/div/div/div//tbody//tr/td");
+    }
+
+    public static By label_leaveTableEntries = By.xpath("//div[@id='tblLeaveHistory_info']");
+
+    public static By button_leaveCancel(String id) {
+        return By.xpath("//div[@id='" + id + "']/section/div/div/div//tbody//tr/td/button");
+    }
+
+    public static By button_leaveCancelYes = By.xpath("//div[@class='sa-confirm-button-container']/button");
 }
