@@ -26,7 +26,7 @@ public class MySkillsSteps {
     @Given("User scrolls to skills view")
     public void userScrollsToSkills() {
         try {
-            DriverAction.waitUntilElementAppear(MySkillsLocator.skillsUpdated, 4);
+            DriverAction.waitSec(7);
             DriverAction.scrollIntoView(MySkillsLocator.skillsUpdated);
         } catch (Exception e) {
             GemTestReporter.addTestStep("User scrolls to skills view area", "Scrolling is unsuccessful", STATUS.FAIL);
@@ -48,7 +48,7 @@ public class MySkillsSteps {
     @Given("User clicks on user image button")
     public void userClicksOnUserImgButton() {
         try {
-            DriverAction.waitSec(6);
+            DriverAction.waitSec(7);
             DriverAction.click(MySkillsLocator.userImg);
         } catch (Exception e) {
             GemTestReporter.addTestStep("User clicks on user image", "Click is Unsuccessful", STATUS.FAIL);
