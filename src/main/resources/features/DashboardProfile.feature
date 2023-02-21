@@ -1,4 +1,3 @@
-@Dashtag
 Feature: MIS_Automation
 
   #Background: These steps are common for every scenario
