@@ -112,11 +112,7 @@ public class LeaveManagementSteps {
     @And("User clicks on {string} Tab")
     public void userClicksOnTab(String tabs) {
         DriverAction.waitSec(2);
-        if (tabs.equals("Out Duty/Tour")) {
-            tabs = " Out Duty/Tour";
-        }
         DriverAction.click(LeaveManagementLocator.navigation_tabs(tabs), tabs);
-
     }
 
     @And("Verify {string} is displayed")
@@ -507,7 +503,8 @@ public class LeaveManagementSteps {
         switch (tab) {
             case "Leave":
                 id = "tabApplyLeave";
-                expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status");
+                expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status", "Applied " +
+                        "On", "Action");
                 break;
             case "Work From Home":
                 id = "tabApplyWFH";
@@ -520,7 +517,8 @@ public class LeaveManagementSteps {
                 break;
             case "Out Duty/Tour":
                 id = "tabApplyOnDutyReq";
-                expectedFields = Arrays.asList("Period", "Duty Type", "Reason", "Remarks");
+                expectedFields = Arrays.asList("Period", "Duty Type", "Reason", "Remarks", "Status",
+                        "Applied On", "Action");
                 break;
             case "Change Request":
                 id = "tabLWPChangeRequest";
@@ -650,7 +648,7 @@ public class LeaveManagementSteps {
     @And("Verify Print page appears")
     public void verifyPrintPageAppears() {
         List<String> windows = new ArrayList<>(DriverAction.getWindowHandles());
-        if (windows.size() == 2) {
+        if (windows.size() > 1) {
             GemTestReporter.addTestStep("Verifying Print Page", "Print page is available",
                     STATUS.PASS, DriverAction.takeSnapShot());
         } else {
@@ -714,6 +712,7 @@ public class LeaveManagementSteps {
         String id = switch (tab) {
             case "Comp Off" -> "tblCompOffHistory_filter";
             case "Leave" -> "tblLeaveHistory_filter";
+            case "Out Duty/Tour" -> "tblOnDutyReqHistory_filter";
             default -> null;
         };
 
@@ -834,7 +833,7 @@ public class LeaveManagementSteps {
     public void cancelTheLeaveForGivenPeriod() {
         String id = "tabApplyLeave";
 
-        if(DriverAction.isExist(LeaveManagementLocator.button_leaveCancel(id))){
+        if (DriverAction.isExist(LeaveManagementLocator.button_leaveCancel(id))) {
             DriverAction.click(LeaveManagementLocator.button_leaveCancel(id), "cancel");
         } else {
             GemTestReporter.addTestStep("Error Occur", "Fail to click cancel button",
@@ -846,10 +845,32 @@ public class LeaveManagementSteps {
     @And("User clicks on yes button to cancel the leave")
     public void userClicksOnYesButtonToCancelTheLeave() {
         DriverAction.waitUntilElementAppear(LeaveManagementLocator.button_leaveCancelYes, 10);
-        if(DriverAction.isExist(LeaveManagementLocator.button_leaveCancelYes)){
+        if (DriverAction.isExist(LeaveManagementLocator.button_leaveCancelYes)) {
             DriverAction.click(LeaveManagementLocator.button_leaveCancelYes, "yes");
         } else {
             GemTestReporter.addTestStep("Error Occur", "Fail to click yes button",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Click on view button for Out Duty Tour searched result")
+    public void clickOnViewButtonForOutDutyTourSearchedResult() {
+        if (DriverAction.isExist(LeaveManagementLocator.button_outDutyView)) {
+            DriverAction.click(LeaveManagementLocator.button_outDutyView, "view");
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to click view button",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify the detailed popup {string} for Out Duty Tour")
+    public void verifyTheDetailedPopupForOutDutyTour(String header) {
+        DriverAction.waitUntilElementAppear(LeaveManagementLocator.header_outDutyViewDetails, 10);
+        if (DriverAction.getElementText(LeaveManagementLocator.header_outDutyViewDetails).equals(header)) {
+            GemTestReporter.addTestStep("Verifying Header", "Header matching passed",
+                    STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("Verifying Header", "Header matching failed",
                     STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }

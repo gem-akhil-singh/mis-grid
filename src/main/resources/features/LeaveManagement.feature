@@ -752,7 +752,6 @@ Feature: MIS - Leave Management
 
 #    Next Button
 #  Previous Button
-
   Scenario Outline: Cancel Leave for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
@@ -768,3 +767,159 @@ Feature: MIS - Leave Management
     Examples:
       | parentTab        | childTab            | tab   | leavePeriod                |
       | Leave Management | View Request Status | Leave | 21-Feb-2023 to 21-Feb-2023 |
+
+  Scenario Outline: Navigate to Leave Management > View Request Status tab > Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+
+    Examples:
+      | parentTab        | childTab            | tab           |
+      | Leave Management | View Request Status | Out Duty/Tour |
+
+  Scenario Outline: Verify Date Range field is present for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+
+    Examples:
+      | parentTab        | childTab            | tab           |
+      | Leave Management | View Request Status | Out Duty/Tour |
+
+  Scenario Outline: Enter Invalid Date Range for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Invalid" date "<date>" in Date range field
+    And Verify "Invalid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab           | date         | message          |
+      | Leave Management | View Request Status | Out Duty/Tour | 01 Apr 20000 | No results found |
+
+  Scenario Outline: Enter Valid Date Range for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Valid" date "<date>" in Date range field
+    And Verify "Valid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab           | date                      | message                   |
+      | Leave Management | View Request Status | Out Duty/Tour | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
+
+  Scenario Outline: Click on Export Options Option for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    Examples:
+      | parentTab        | childTab            | tab           | exportList              |
+      | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print |
+
+  Scenario Outline: Click on Print Option for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Print page appears
+    Examples:
+      | parentTab        | childTab            | tab           | exportList              | exportButton |
+      | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Print        |
+
+  Scenario Outline: Click on Excel Option for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab           | exportList              | exportButton | fileName          |
+      | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Excel        | Gemini - MIS.xlsx |
+
+  Scenario Outline: Click on Copy Option for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Copy to clipboard message "<message>"
+    Examples:
+      | parentTab        | childTab            | tab           | exportList              | exportButton | message           |
+      | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
+
+  Scenario Outline: Verify PDF option for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab           | exportList              | exportButton | fileName         |
+      | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | PDF          | Gemini - MIS.pdf |
+
+  Scenario Outline: Sort columns for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Sort column "<columnName>" for "<tab>"
+    And Verify sorted column "<columnName>" result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab           | columnName |
+      | Leave Management | View Request Status | Out Duty/Tour | Duty Type  |
+
+  Scenario Outline: Enter Out Duty/Tour Period in Search Box for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab           | leavePeriod                |
+      | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 |
+
+  Scenario Outline: Verify Data is present for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab           | leavePeriod                |
+      | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 |
+
+  Scenario Outline: Click on View button for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+    And Click on view button for Out Duty Tour searched result
+    And Verify the detailed popup "<header>" for Out Duty Tour
+
+    Examples:
+      | parentTab        | childTab            | tab           | leavePeriod                | header                       |
+      | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 | Out Duty/Tour Request Detail |
