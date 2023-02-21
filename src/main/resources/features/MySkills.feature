@@ -8,6 +8,16 @@ Feature: MySkills Automation
 
 
   Scenario Outline: Verify my skills are updating with valid data
+    When User scrolls to skills view
+    And Skills are updated with "<mySkills>"
+    Then User clicks on close button
+
+    Examples:
+      | mySkills   |
+      | Accounting |
+
+    ###########Failed Scenario as skills will not be updated with invalid data ###############
+  Scenario Outline: Verify my skills are updating with in invalid data
     When User clicks on user image button
     Then User clicks on skills button
     Then User clicks on technology dropdown
@@ -26,20 +36,3 @@ Feature: MySkills Automation
     Examples:
       | technology | professionalLevel | mySkills   |
       | Accounting | Beginner          | Accounting |
-
-    ###########Failed Scenario as skills will not be updated with invalid data ###############
-  Scenario Outline: Verify my skills are updating with in invalid data
-    When User clicks on user image button
-    Then User clicks on skills button
-    Then User clicks on technology dropdown
-    Then User selects the professional level as "<professionalLevel>"
-    And User enters the tech experience "17"
-    And User enters the total experience "48"
-    When User clicks on skill save button
-    Then User scrolls to skills view
-    And Skills are updated with "<mySkills>"
-    Then User clicks on close button
-
-    Examples:
-      | professionalLevel | mySkills   |
-      | Beginner          | Accounting |
