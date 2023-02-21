@@ -50,10 +50,10 @@ Feature: AppraisalManagement
     Then Click on Add Goals link
     Then Verify Add goal window
     Given Click on Add new KPI-KRA mapping button
-    Then Click on close button
+    Then Click on a close button
     Then Verify Add goal window
     And Click on Add new KPI-KRA mapping button
-    Then Click on submit button
+    Then Click on a submit button
     Then Check validation for KRA textbox
     Then Validate and click add KPI button
     When Click on submit button

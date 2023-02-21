@@ -199,7 +199,7 @@ public class AppraisalManagementSteps {
 
     }
 
-    @Then("Click on submit button")
+    @Then("Click on a submit button")
     public void click_On_Submit_Button() {
         DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnSubmit, 2);
         if (DriverAction.getElement(AppraisalManagementLocator.btnSubmit).isDisplayed() && DriverAction.getElement(AppraisalManagementLocator.btnSubmit).isEnabled()) {
@@ -210,7 +210,7 @@ public class AppraisalManagementSteps {
         }
     }
 
-    @Then("Click on close button")
+    @Then("Click on a close button")
     public void click_On_Close_Button() {
         DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnClose, 2);
         DriverAction.getElement(AppraisalManagementLocator.btnClose).isEnabled();
