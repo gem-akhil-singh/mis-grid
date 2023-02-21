@@ -1,3 +1,4 @@
+@Dashtag
 Feature: MIS_Automation
 
   #Background: These steps are common for every scenario
@@ -11,20 +12,20 @@ Feature: MIS_Automation
     When user click on url
     And Enter username
     And Enter Password
-    Then click on SignIn button
+    And click on SignIn button
     Then click on close button
 
-    Scenario: user enter invalid phone number
-      When click on edit details button
-      And enter mobile number
-      And click on update mobile number
-      Then verify invalid phone number
+  Scenario: user enter invalid phone number
+    When click on edit details button
+    And enter mobile number
+    And click on update mobile number
+    Then verify invalid phone number
 
-      Scenario: user enters invalid extension number
-        When click on edit details button
-        And enter extension number
-        And click on update mobile number
-        Then verify invalid ext number
+  Scenario: user enters invalid extension number
+    When click on edit details button
+    And enter extension number
+    And click on update mobile number
+    Then verify invalid ext number
 
 
   #Scenario: click on mobile details
@@ -62,7 +63,6 @@ Feature: MIS_Automation
     And click on change password
     And click on update password
     Then verify password is blank
-
 
 
   Scenario:user applies for lunch

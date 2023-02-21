@@ -29,7 +29,8 @@ public class DashboardProfileSteps {
 
     @And("^click on SignIn button$")
     public void signIn() {
-        DriverAction.waitUntilElementAppear(signIn, 2);
+       // DriverAction.waitUntilElementAppear(signIn, 2);
+        DriverAction.waitSec(5);
         DriverAction.click(signIn);
         //DriverAction.waitSec(10);
     }
@@ -38,14 +39,16 @@ public class DashboardProfileSteps {
     public void clickOnMobile() {
         // DriverAction.click(popUpCloseButton);
         // DriverAction.waitSec(7);
-        DriverAction.waitUntilElementAppear(clickOnChangeDetails, 2);
+        //DriverAction.waitUntilElementAppear(clickOnChangeDetails, 2);
+        DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "change details button");
         // DriverAction.waitSec(7);
     }
 
     @When("^Enter mobile number and ext number$")
     public void enterMobileNoAndExtNo() {
-        DriverAction.waitUntilElementAppear(contactNo, 2);
+       //DriverAction.waitUntilElementAppear(contactNo, 2);
+        DriverAction.waitSec(5);
         DriverAction.typeText(contactNo, "1234567890");
         DriverAction.waitUntilElementAppear(enterExtNo, 2);
         DriverAction.typeText(enterExtNo, "111");
@@ -53,7 +56,8 @@ public class DashboardProfileSteps {
 
     @When("^click on update$")
     public void clickOnUpdate() {
-        DriverAction.waitUntilElementAppear(clickOnUpdate, 1);
+       // DriverAction.waitUntilElementAppear(clickOnUpdate, 1);
+        DriverAction.waitSec(5);
         DriverAction.click(clickOnUpdate);
         //   DriverAction.waitSec(5);
     }
@@ -135,6 +139,7 @@ public class DashboardProfileSteps {
 
     @Then("^verify the the password is incorrect$")
     public void verifyPasswordIncorrect() {
+        DriverAction.waitSec(5);
         DriverAction.getElementText(warning);
         String warng = DriverAction.getElementText(warning);
         if (warng.equals("Warning")) {
@@ -162,11 +167,14 @@ public class DashboardProfileSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        DriverAction.waitUntilElementAppear(newPassword, 2);
+       // DriverAction.waitUntilElementAppear(newPassword, 2);
+        DriverAction.waitSec(5);
         DriverAction.typeText(newPassword, "Gemini");
-        DriverAction.waitUntilElementAppear(confirmPassword, 2);
+       //DriverAction.waitUntilElementAppear(confirmPassword, 2);
+        DriverAction.waitSec(5);
         DriverAction.typeText(confirmPassword, "Gemini123");
-        DriverAction.waitUntilElementAppear(updatePassword, 2);
+       // DriverAction.waitUntilElementAppear(updatePassword, 2);
+        DriverAction.waitSec(5);
         DriverAction.click(updatePassword, "update button");
 
     }
@@ -174,8 +182,9 @@ public class DashboardProfileSteps {
     @And("^click on update password$")
     public void clickOnUpdatePassword() {
         try{
-        DriverAction.waitUntilElementAppear(updatePassword,5);
-        DriverAction.click(updatePassword, "update password button");
+        //DriverAction.waitUntilElementAppear(updatePassword,5);
+            DriverAction.waitSec(5);
+            DriverAction.click(updatePassword, "update password button");
     }
         catch(Exception e){
             e.printStackTrace();
@@ -196,7 +205,7 @@ public class DashboardProfileSteps {
     public void clickOnCloseButton() {
 
         try {
-            DriverAction.waitSec(5);
+            DriverAction.waitSec(10);
             //DriverAction.waitUntilElementAppear(popUpCloseButton, 5);
             DriverAction.click(popUpCloseButton, "close button");
             // DriverAction.click(clickOnChangeDetails,"change details button");
@@ -210,7 +219,8 @@ public class DashboardProfileSteps {
     public void userClickOnApplyLunch() {
 
         try {
-            DriverAction.waitUntilElementAppear(applyLunch, 7);
+           // DriverAction.waitUntilElementAppear(applyLunch, 7);
+            DriverAction.waitSec(5);
             DriverAction.click(applyLunch, "apply lunch");
         }catch (Exception e){
             e.printStackTrace();
@@ -221,14 +231,16 @@ public class DashboardProfileSteps {
     @And("^user click on from date and click on select from date$")
     public void userClickOnFromDate() {
         try {
-            DriverAction.waitUntilElementAppear(fromDate, 7);
+            //DriverAction.waitUntilElementAppear(fromDate, 7);
+            DriverAction.waitSec(5);
             DriverAction.click(fromDate, "from date");
         }catch (Exception e)
         {
             e.printStackTrace();
         }
             try {
-                DriverAction.waitUntilElementAppear(selectFromDate, 3);
+               // DriverAction.waitUntilElementAppear(selectFromDate, 3);
+                DriverAction.waitSec(5);
                 DriverAction.click(selectFromDate, "select from date");
         } catch (Exception e) {
             e.printStackTrace();
@@ -238,7 +250,8 @@ public class DashboardProfileSteps {
     @And("^user click on till date and select till date$")
     public void userClickOnTillDate() {
         try {
-            DriverAction.waitUntilElementAppear(tillDate, 3);
+           // DriverAction.waitUntilElementAppear(tillDate, 3);
+            DriverAction.waitSec(5);
             DriverAction.click(tillDate, "till date");
         } catch (Exception e) {
             e.printStackTrace();
@@ -253,13 +266,15 @@ public class DashboardProfileSteps {
 
     @And("^click on location container$")
     public void clickOnLocationContainer() {
-        DriverAction.waitUntilElementAppear(locationContainer,3);
+       // DriverAction.waitUntilElementAppear(locationContainer,3);
+        DriverAction.waitSec(5);
         DriverAction.click(locationContainer, "location container");
     }
 
     @And("^select the location from the list$")
     public void selectTheLocationFromTheList() {
-        DriverAction.waitUntilElementAppear(selectLocation, 2);
+        //DriverAction.waitUntilElementAppear(selectLocation, 2);
+        DriverAction.waitSec(5);
         DriverAction.click(selectLocation, "select location");
         //DriverAction.waitSec(5);
     }
@@ -302,6 +317,7 @@ public class DashboardProfileSteps {
 
     @When("^enter address in the update address tab$")
     public void enterAddressInTheUpdateAddressTab() {
+        DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "change details button");
         DriverAction.click(clickOnUpdateAdd, "update add button");
         //DriverAction.waitSec(3);
@@ -326,6 +342,7 @@ public class DashboardProfileSteps {
 
     @Then("^verify password is blank$")
     public void verifyPasswordIsBlank() {
+        DriverAction.waitSec(5);
         DriverAction.getElementText(enterOldPassword);
         String op = DriverAction.getElementText(enterOldPassword);
         if (op.equals("Old Password")) {
@@ -335,32 +352,37 @@ public class DashboardProfileSteps {
 
     @When("click on edit details button")
     public void clickOnEditDetailsButton() {
-        DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+        //DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+        DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails,"click on edit details button");
     }
 
     @When("click on change details button")
     public void clickOnChangeDetailsButton() {
-        DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+        //DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+        DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails,"click on edit details button");
     }
 
     @And("enter mobile number")
     public void enterMobileNumber() {
-        DriverAction.waitUntilElementAppear(enterMobileNo,2);
+        //DriverAction.waitUntilElementAppear(enterMobileNo,2);
+        DriverAction.waitSec(5);
         DriverAction.typeText(enterMobileNo,"123456789");
     }
 
     @And("click on update mobile number")
     public void clickOnUpdateMobileNumber() {
-        DriverAction.waitUntilElementAppear(updateMobileNo,2);
+        //DriverAction.waitUntilElementAppear(updateMobileNo,2);
+        DriverAction.waitSec(5);
         DriverAction.click(updateMobileNo,"click on update mobile no. button");
     }
 
 
     @Then("verify invalid phone number")
     public void verifyInvalidPhoneNumber() {
-        DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+        //DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+        DriverAction.waitSec(5);
         DriverAction.getElementText(invalidPhNumber);
         String invalidNo = DriverAction.getElementText(warning);
         if (invalidNo.equals("Warning")) {
@@ -370,20 +392,24 @@ public class DashboardProfileSteps {
 
     @And("enter extension number")
     public void enterExtensionNumber() {
-        DriverAction.waitUntilElementAppear(enterExtNo,2);
+       //DriverAction.waitUntilElementAppear(enterExtNo,2);
+        DriverAction.waitSec(5);
         DriverAction.typeText(enterExtNo,"11");
     }
 
     @Then("verify invalid ext number")
     public void verifyInvalidExtNumber() {
-        DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+        //DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+        DriverAction.waitSec(5);
         DriverAction.getElementText(invalidPhNumber);
         String invalidNo = DriverAction.getElementText(warning);
         if (invalidNo.equals("Warning")) {
             GemTestReporter.addTestStep("warning", "Extension number should only be 3 digits.", STATUS.PASS, DriverAction.takeSnapShot());
         }
     }
-}
+
+    }
+
 
 
 
