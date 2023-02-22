@@ -71,4 +71,11 @@ public class KnowledgeBaseLocator {
     public static By previousList = By.xpath("//a[text()='Previous']");
     public static By viewDocument = By.xpath("//*[@id=\"tblShareDocumentList\"]/tbody/tr/td[5]/button");
      public static By verifyDocument = By.xpath("//h4[text()='View Document']");
+
+     public static By sharedAsc = By.xpath("//*[@id=\"tblShareDocumentList\"]/thead/tr/th[2]");
+    public static By sharedAscEl = By.xpath("//*[@id=\"tblShareDocumentList\"]/tbody/tr[1]/td[2]");
+    public static By tagAsc = By.xpath("//*[@id=\"tblShareDocumentList\"]/thead/tr/th[3]");
+    public static By tagAscEl = By.xpath("//*[@id=\"tblShareDocumentList\"]/tbody/tr[1]/td[3]");
+    public static By dateAsc = By.xpath("//*[@id=\"tblShareDocumentList\"]/thead/tr/th[4]");
+    public static By dateAscEl = By.xpath("//*[@id=\"tblShareDocumentList\"]/tbody/tr[1]/td[4]");
 }

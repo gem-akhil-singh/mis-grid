@@ -22,9 +22,7 @@ public class KnowledgeBaseSteps {
 
     @Given("logged in successfully")
     public void logged_in_successfully() throws InterruptedException {
-        //DriverAction.typeText(KnowledgeBaseLocator.usernameByXpath,"prajjwal.negi");
-        //DriverAction.typeText(KnowledgeBaseLocator.passwordByXpath,"Gemini@123");
-        //Thread.sleep(5000);
+
         DriverAction.waitSec(5);
         if (DriverAction.isExist(KnowledgeBaseLocator.usernameByXpath)) {
             DriverAction.typeText(KnowledgeBaseLocator.usernameByXpath, "prajjwal.negi");
@@ -53,7 +51,7 @@ public class KnowledgeBaseSteps {
     @Then("add new document tags icon is present and functional")
     public void add_new_document_tags_icon_is_present_and_functional() {
          DriverAction.click(KnowledgeBaseLocator.addDocumentTag,"Add document Tag");
-        DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag,"Test31");
+        DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag,"Test32");
         DriverAction.click(KnowledgeBaseLocator.saveDocumentTag,"Document Tag saved");
         String successMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagSuccessfullyAdded);
 
@@ -82,14 +80,12 @@ public class KnowledgeBaseSteps {
     public void throws_warning_message() {
         String warningMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagWarningMessage);
         System.out.println(warningMessage);
-        if(warningMessage.equalsIgnoreCase("Please fill required field")){
-
-
-
-        }
-        else{
+        if(!warningMessage.equalsIgnoreCase("Please fill required field")){
             Assert.fail();
+
+
         }
+
 //        if(!warningMessage.equalsIgnoreCase("Please fill required field")){
 //            Assert.fail();
 //        }
@@ -144,12 +140,10 @@ public class KnowledgeBaseSteps {
     }
     @Then("invalid document type warning should be displayed")
     public void invalid_document_type_warning_should_be_displayed() {
-        if(DriverAction.getElementText(KnowledgeBaseLocator.invalidDoc).equalsIgnoreCase("Invalid file selected. supported extensions are .xlsx,.xls,.pdf")){
-
-        }
-        else{
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.invalidDoc).equalsIgnoreCase("Invalid file selected. supported extensions are .xlsx,.xls,.pdf")){
             Assert.fail();
         }
+
 
 
     }
@@ -184,12 +178,10 @@ public class KnowledgeBaseSteps {
         // Write code here that turns the phrase above into concrete actions
         DriverAction.typeText(KnowledgeBaseLocator.search,"xyz");
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.searchDocument);
-        if(documentName.equalsIgnoreCase("xyz")){
-
-        }
-        else{
+        if(!documentName.equalsIgnoreCase("xyz")){
             Assert.fail();
         }
+
 
 
 
@@ -210,12 +202,10 @@ public class KnowledgeBaseSteps {
         // Write code here that turns the phrase above into concrete actions
         DriverAction.typeText(KnowledgeBaseLocator.search,"xyz2");
         String mismatch = DriverAction.getElementText(KnowledgeBaseLocator.documentSearch);
-        if(mismatch.equalsIgnoreCase("No matching records found")){
-
-        }
-        else{
+        if(!mismatch.equalsIgnoreCase("No matching records found")){
             Assert.fail();
         }
+
 
 
     }
@@ -315,9 +305,7 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.titleSort);
         DriverAction.click(KnowledgeBaseLocator.titleSort);
         Thread.sleep(5000);
-        if(DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("zyx")){
-
-        }else{
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("zyx")){
             Assert.fail();
         }
 
@@ -466,13 +454,11 @@ public class KnowledgeBaseSteps {
         Select list = new Select(el1);
         list.selectByValue(string);
         Thread.sleep(5000);
-        if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains(string)){
-
-
-        }
-        else{
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains(string)){
             Assert.fail();
+
         }
+
     }
     @Then("dropdown is functional in view shared")
     public void dropdown_is_functional_in_view_shared() {
@@ -487,10 +473,7 @@ public class KnowledgeBaseSteps {
         DriverAction.typeText(KnowledgeBaseLocator.search,string);
         Thread.sleep(2000);
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.searchDocumentShared);
-        if(documentName.equalsIgnoreCase(string)){
-
-        }
-        else{
+        if(!documentName.equalsIgnoreCase(string)){
             Assert.fail();
         }
 
@@ -509,12 +492,10 @@ public class KnowledgeBaseSteps {
         DriverAction.typeText(KnowledgeBaseLocator.search,string);
         Thread.sleep(2000);
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.noMatchFound);
-        if(documentName.equalsIgnoreCase("No matching records found")){
-
-        }
-        else{
+        if(!documentName.equalsIgnoreCase("No matching records found")){
             Assert.fail();
         }
+
 
     }
     @Then("search functionlity is working by displaying no document")
@@ -528,13 +509,11 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
-        if(DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("An introduction to Python for absolute beginners")){
-
-
-        }
-        else{
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("An introduction to Python for absolute beginners")){
             Assert.fail();
+
         }
+
 
     }
     @Then("list is sorted ascendingly")
@@ -550,13 +529,11 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
         Thread.sleep(2000);
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
-        if(DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("Unix Tutorials")){
-
-
-        }
-        else{
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("Unix Tutorials")){
             Assert.fail();
+
         }
+
 
     }
     @Then("list is sorted descendingly")
@@ -570,13 +547,11 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.nextList);
-        if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
-
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
+                Assert.fail();
 
         }
-        else{
-            Assert.fail();
-        }
+
 
 
     }
@@ -595,16 +570,11 @@ public class KnowledgeBaseSteps {
         if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
             Thread.sleep(2000);
             DriverAction.click(KnowledgeBaseLocator.previousList);
-            if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("1")){
-
-            }
-            else{
-                Assert.fail();
+            if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("1")){
+                    Assert.fail();
             }
 
 
-        }else{
-            Assert.fail();
         }
 
     }
@@ -627,13 +597,126 @@ public class KnowledgeBaseSteps {
     public void document_is_opened() throws InterruptedException {
         DriverAction.click(KnowledgeBaseLocator.viewDocument);
         Thread.sleep(5000);
-        if(DriverAction.isExist(KnowledgeBaseLocator.verifyDocument)){}
-        else{
+        if(!DriverAction.isExist(KnowledgeBaseLocator.verifyDocument)){
             Assert.fail();
         }
 
+
     }
 
+    @When("navigating to view shared documents page and applying ascending shared by sort")
+    public void navigating_to_view_shared_documents_page_and_applying_ascending_shared_by_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.sharedAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.sharedAscEl).equalsIgnoreCase("Amrita Tiwari")){
+            Assert.fail();
+        }
+
+
+    }
+    @Then("list is sorted by shared ascendingly")
+    public void list_is_sorted_by_shared_ascendingly() {
+
+    }
+
+    @When("navigating to view shared documents page and applying descending shared by sort")
+    public void navigating_to_view_shared_documents_page_and_applying_descending_shared_by_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.sharedAsc);
+        Thread.sleep(2000);
+        DriverAction.click(KnowledgeBaseLocator.sharedAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.sharedAscEl).equalsIgnoreCase("Rahul Paul")){
+            Assert.fail();
+
+        }
+    }
+    @Then("list is sorted by shared descendingly")
+    public void list_is_sorted_by_shared_descendingly() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+
+
+
+    @When("navigating to view shared documents page and applying ascending tag  sort")
+    public void navigating_to_view_shared_documents_page_and_applying_ascending_tag_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.tagAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.tagAscEl).equalsIgnoreCase("Autosys")){
+            Assert.fail();
+        }
+
+
+
+    }
+    @Then("list is sorted by tag ascendingly")
+    public void list_is_sorted_by_tag_ascendingly() {
+
+
+    }
+
+    @When("navigating to view shared documents page and applying descending tag  sort")
+    public void navigating_to_view_shared_documents_page_and_applying_descending_tag_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.tagAsc);
+        Thread.sleep(2000);
+        DriverAction.click(KnowledgeBaseLocator.tagAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.tagAscEl).equalsIgnoreCase("Unix Tutorial, finance")){
+            Assert.fail();
+
+        }
+
+    }
+    @Then("list is sorted by tag descendingly")
+    public void list_is_sorted_by_tag_descendingly() {
+
+    }
+
+
+    @When("navigating to view shared documents page and applying ascending date sort")
+    public void navigating_to_view_shared_documents_page_and_applying_ascending_date_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.dateAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.dateAscEl).equalsIgnoreCase("31-Mar-2015")){
+            Assert.fail();
+        }
+
+
+    }
+    @Then("list is sorted by date ascendingly")
+    public void list_is_sorted_by_date_ascendingly() {
+
+    }
+
+    @When("navigating to view shared documents page and applying descending date sort")
+    public void navigating_to_view_shared_documents_page_and_applying_descending_date_sort() throws InterruptedException {
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
+        Thread.sleep(5000);
+        DriverAction.click(KnowledgeBaseLocator.dateAsc);
+        Thread.sleep(2000);
+        DriverAction.click(KnowledgeBaseLocator.dateAsc);
+        if(!DriverAction.getElementText(KnowledgeBaseLocator.dateAscEl).equalsIgnoreCase("12-Sep-2018")){
+            Assert.fail();
+
+        }
+
+    }
+    @Then("list is sorted by date descendingly")
+    public void list_is_sorted_by_date_descendingly() {
+
+    }
 
 
 

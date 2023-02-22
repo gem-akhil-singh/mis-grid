@@ -7,6 +7,7 @@ import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.AccountsPortalLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
@@ -16,36 +17,40 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class AccountsPortalSteps {
     public void checkElement(WebElement element) {
-        //It's Mandatory
-        DriverAction.waitSec(5);
-        if (element.isDisplayed()) {
-            GemTestReporter.addTestStep("element visibility", element.getText() + " is present", STATUS.PASS, DriverAction.takeSnapShot());
+        try {
+            //It's Mandatory
+            DriverAction.waitSec(5);
+            if (element.isDisplayed()) {
+                GemTestReporter.addTestStep("element visibility", element.getText() + " is present", STATUS.PASS, DriverAction.takeSnapShot());
 
-        } else {
-            GemTestReporter.addTestStep("element visibility", element.getText() + " is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("element visibility", element.getText() + " is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
 
     @Then("Click {string} sub-tab inside {string} tab")
     public void clickSubTabInsideTab(String subtab, String tab) {
-        DriverAction.waitSec(5);
-        System.out.println(tab);
-        DriverAction.click(AccountsPortalLocator.sideTab(tab));
-        DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        System.out.println(subtab);
-        if (DriverAction.isExist(AccountsPortalLocator.sideTab(subtab))) {
-
-            DriverAction.click(AccountsPortalLocator.sideTab(subtab), subtab);
-        } else {
-            GemTestReporter.addTestStep("Click on SubTab", "Subtab is not clickable", STATUS.FAIL, DriverAction.takeSnapShot());
+        try {
+            DriverAction.waitSec(5);
+            DriverAction.click(AccountsPortalLocator.sideTab(tab));
+            DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            if (DriverAction.isExist(AccountsPortalLocator.sideTab(subtab))) {
+                DriverAction.click(AccountsPortalLocator.sideTab(subtab), subtab);
+            } else {
+                GemTestReporter.addTestStep("Click on SubTab", "Subtab is not clickable", STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
 
     @And("Verify new tab is open {string}")
     public void verifyNewTabIsOpen(String title) {
-        //It's Mandatory
-        DriverAction.waitSec(5);
         try {
+            DriverAction.waitSec(5);
             String parentWindow = DriverAction.getWindowHandle();
             Set<String> S = DriverAction.getWindowHandles();
             Iterator<String> I1 = S.iterator();
@@ -63,8 +68,8 @@ public class AccountsPortalSteps {
                     }
                 }
             }
-        } catch (Exception exception) {
-            GemTestReporter.addTestStep("New Tab ", "New Tab is not open", STATUS.FAIL, DriverAction.takeSnapShot());
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
 
     }
@@ -72,54 +77,89 @@ public class AccountsPortalSteps {
     @Then("Verify greytHR logo is present on the current page")
     public void verifyGreytHRLogoIsPresentOnTheCurrentPage() {
         //It's Mandatory
-        DriverAction.waitSec(5);
+        try {
+            DriverAction.waitSec(5);
 
-        WebElement greytHRLogo = DriverAction.getElement(AccountsPortalLocator.greytHRLogo);
-        checkElement(greytHRLogo);
+            WebElement greytHRLogo = DriverAction.getElement(AccountsPortalLocator.greytHRLogo);
+            checkElement(greytHRLogo);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @Then("Verify Gemini logo is present on the current page")
     public void verifyGeminiLogoIsPresentOnTheCurrentPage() {
-        WebElement GeminiLogo = DriverAction.getElement(AccountsPortalLocator.greytHRLogo);
-        checkElement(GeminiLogo);
+        try {
+            WebElement GeminiLogo = DriverAction.getElement(AccountsPortalLocator.greytHRLogo);
+            checkElement(GeminiLogo);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @Then("Verify {string} field is present on the current page")
     public void verifyFieldIsPresentOnTheCurrentPage(String field) {
-        WebElement textField = DriverAction.getElement(AccountsPortalLocator.textField(field));
-        checkElement(textField);
+        try {
+            WebElement textField = DriverAction.getElement(AccountsPortalLocator.textField(field));
+            checkElement(textField);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @And("Verify Hello there! text is present on the current page")
     public void verifyHelloThereTextIsPresentOnTheCurrentPage() {
-        WebElement helloText = DriverAction.getElement(AccountsPortalLocator.header);
-        checkElement(helloText);
+        try {
+            WebElement helloText = DriverAction.getElement(AccountsPortalLocator.header);
+            checkElement(helloText);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @And("Verify login button is present on current page")
     public void verifyLoginButton() {
-        WebElement loginButton = DriverAction.getElement(AccountsPortalLocator.loginButton);
-        checkElement(loginButton);
+        try {
+            WebElement loginButton = DriverAction.getElement(AccountsPortalLocator.loginButton);
+            checkElement(loginButton);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @And("Verify forget password link is present on current page")
     public void verifyForgetPasswordLink() {
-        WebElement forgetPassword = DriverAction.getElement(AccountsPortalLocator.forgetpasswordLink);
-        checkElement(forgetPassword);
+        try {
+            WebElement forgetPassword = DriverAction.getElement(AccountsPortalLocator.forgetpasswordLink);
+            checkElement(forgetPassword);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
 
     @Then("Click on login button without entering username and password")
     public void clickOnLoginButtonWithoutEnteringUsernameAndPassword() {
-        verifyLoginButton();
-        DriverAction.waitSec(5);
-        DriverAction.click(AccountsPortalLocator.loginButton);
+        try {
+            verifyLoginButton();
+            DriverAction.waitSec(5);
+//        DriverAction.click(AccountsPortalLocator.loginButton);
+            JavascriptExecutor js = (JavascriptExecutor) DriverManager.getWebDriver();
+            js.executeScript("arguments[0].click()", AccountsPortalLocator.loginButton);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+
     }
 
     @And("Verify {string} text is present on the current page")
     public void verifyTextIsPresentOnTheCurrentPage(String message) {
-        WebElement messageText = DriverAction.getElement(AccountsPortalLocator.message(message));
-        checkElement(messageText);
+        try {
+            WebElement messageText = DriverAction.getElement(AccountsPortalLocator.message(message));
+            checkElement(messageText);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
 

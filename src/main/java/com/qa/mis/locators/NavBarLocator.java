@@ -32,8 +32,8 @@ public class NavBarLocator {
         return By.xpath("//div[@role='tabpanel']//label[text()='" + field + "']");
     }
 
-    public static By buttons(String button){
-        return By.xpath("//div[@class='tab-pane active']//button[contains(text(),'"+button+"')]");
+    public static By buttons(String button) {
+        return By.xpath("//div[@class='tab-pane active']//button[contains(text(),'" + button + "')]");
     }
 
     public static By SiteLogo = By.xpath("//a[@class='site-logo']/img");
@@ -42,12 +42,14 @@ public class NavBarLocator {
 
     public static By Setting = By.id("dashBoardSettings");
 
-    public  static  By technologySelect= By.xpath("//span[@id='select2-ddlSkills-container']");
-    public static By technologyOption(String option){
-        return By.xpath("//span[@class='select2-results']//li[text()='"+option+"']");
+    public static By technologySelect = By.xpath("//span[@id='select2-ddlSkills-container']");
+
+    public static By technologyOption(String option) {
+        return By.xpath("//span[@class='select2-results']//li[text()='" + option + "']");
     }
-    public  static  By proficiencySelect= By.xpath("//div[@id='UpdateSkills']//label[text()='Proficiency Level']/../..//select");
-    public  static  By skillSelect= By.xpath("//div[@id='UpdateSkills']//label[text()='Skill Type']/../..//select");
+
+    public static By proficiencySelect = By.xpath("//div[@id='UpdateSkills']//label[text()='Proficiency Level']/../..//select");
+    public static By skillSelect = By.xpath("//div[@id='UpdateSkills']//label[text()='Skill Type']/../..//select");
     public static By techExperience = By.id("expinMonths");
 
     public static By totalExperience = By.id("TotalExp");
@@ -69,7 +71,19 @@ public class NavBarLocator {
     public static By DashboardPopup = By.id("DashBoardSettings");
     public static By DashboardCheckbox = By.xpath("//div[@id='DashBoardSettings']//input[@type='checkbox']");
 
-    public static By DashboardUpdatebtn= By.id("btnSaveSetting");
+    public static By DashboardUpdatebtn = By.id("btnSaveSetting");
     public static By Cardname = By.className("panel-title");
+
+    public static By ECDCHierarchyLink = By.xpath("//a[text()='EC DC Hierarchy']");
+    public static By ECDCHierarchyPopup = By.xpath("//body[contains(@class,'modal-open')]//div[@id='ECDCHierarchy']");
+
+    public static By ECDCHierarchyTab(String tab) {
+
+        return By.xpath("//body[contains(@class,'modal-open')]//ul[@class='nav']/li//span[text()='" + tab + "']");
+    }
+
+    public static By ECDCHierarchycolumns(String columns) {
+        return By.xpath("//body[contains(@class,'modal-open')]//tr/th/p[contains(text(),'" + columns + "')]");
+    }
 }
 

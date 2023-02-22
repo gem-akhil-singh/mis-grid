@@ -13,8 +13,7 @@ Feature: Organization Structure Module Scenarios
     Examples:
       | empname        | designation             |
       | Tushar Chauhan | Software Engineer L2    |
-      | Vishar Malik   | Chief Executive Officer |
-      | Hritik Roshan  | Software Engineer L2    |
+      | Vishal Malik   | Chief Executive Officer |
       | Tushar Chauhan | Software Engineer L1    |
 
   Scenario: Search for all the the employees visible first time
