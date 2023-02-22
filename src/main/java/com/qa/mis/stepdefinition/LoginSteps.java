@@ -19,14 +19,23 @@ import java.time.Duration;
 public class LoginSteps {
     @When("User enters {string} as {string}")
     public void userEntersAs(String field, String text) {
-        if(field.equals("username")){
-            DriverAction.typeText(LoginLocator.username, text);
+        try {
+            if (field.equals("username")) {
+                DriverAction.typeText(LoginLocator.username, text);
+            }
         }
-        if(field.equals("password"))
-        {
-            byte[] decodingString = Base64.decodeBase64(text);
-            String passwordDecoded = new String(decodingString);
-            DriverAction.typeText(LoginLocator.password, passwordDecoded);
+        catch (Exception exception) {
+            GemTestReporter.addTestStep("Username", "User not able to enter username", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+        try {
+            if (field.equals("password")) {
+                byte[] decodingString = Base64.decodeBase64(text);
+                String passwordDecoded = new String(decodingString);
+                DriverAction.typeText(LoginLocator.password, passwordDecoded);
+            }
+        }
+        catch (Exception exception) {
+            GemTestReporter.addTestStep("Password", "User not able to enter password", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -56,43 +65,46 @@ public class LoginSteps {
 
     @Then("Verify all the elements present on Login Page")
     public void verifyAllTheElementsPresentOnLoginPage() {
+        try {
+            WebElement uname = DriverAction.getElement(LoginLocator.username);
+            if (uname.isDisplayed())
+                GemTestReporter.addTestStep("Username", "Verify Username field visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("Username", "User not able to see Username field on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        WebElement uname = DriverAction.getElement(LoginLocator.username);
-        if (uname.isDisplayed())
-            GemTestReporter.addTestStep("Username", "Verify Username field visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("Username", "User not able to see Username field on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
+            WebElement password = DriverAction.getElement(LoginLocator.password);
+            if (password.isDisplayed())
+                GemTestReporter.addTestStep("Password", "Verify Password field visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("Password", "User not able to see Password field on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        WebElement password = DriverAction.getElement(LoginLocator.password);
-        if (password.isDisplayed())
-            GemTestReporter.addTestStep("Password", "Verify Password field visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("Password", "User not able to see Password field on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
+            WebElement signInButton = DriverAction.getElement(LoginLocator.signInButton);
+            if (signInButton.isDisplayed())
+                GemTestReporter.addTestStep("Sign in", "Verify Sign in button visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("Sign in", "User not able to see Sign in button on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        WebElement signInButton = DriverAction.getElement(LoginLocator.signInButton);
-        if (signInButton.isDisplayed())
-            GemTestReporter.addTestStep("Sign in", "Verify Sign in button visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("Sign in", "User not able to see Sign in button on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
+            WebElement forgotPasswordButton = DriverAction.getElement(LoginLocator.forgotPasswordButton);
+            if (forgotPasswordButton.isDisplayed())
+                GemTestReporter.addTestStep("ForgotPassword", "Verify ForgotPassword link visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("ForgotPassword", "User not able to see ForgotPassword link on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        WebElement forgotPasswordButton = DriverAction.getElement(LoginLocator.forgotPasswordButton);
-        if (forgotPasswordButton.isDisplayed())
-            GemTestReporter.addTestStep("ForgotPassword", "Verify ForgotPassword link visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("ForgotPassword", "User not able to see ForgotPassword link on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
+            WebElement loginWithSSOButton = DriverAction.getElement(LoginLocator.loginWithSSOButton);
+            if (loginWithSSOButton.isDisplayed())
+                GemTestReporter.addTestStep("Login with SS0", "Verify Login with SS0 button visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("Login with SS0", "User not able to see Login with SS0 button on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        WebElement loginWithSSOButton = DriverAction.getElement(LoginLocator.loginWithSSOButton);
-        if (loginWithSSOButton.isDisplayed())
-            GemTestReporter.addTestStep("Login with SS0", "Verify Login with SS0 button visible on Login Page", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("Login with SS0", "User not able to see Login with SS0 button on Login Page", STATUS.FAIL, DriverAction.takeSnapShot());
-
-        WebElement loginMsg = DriverAction.getElement(LoginLocator.loginMsg);
-        if (loginMsg.isDisplayed())
-            GemTestReporter.addTestStep("LoginPage message", "Verify LoginPage message visible to user", STATUS.PASS, DriverAction.takeSnapShot());
-        else
-            GemTestReporter.addTestStep("LoginPage message", "User not able to see LoginPage message", STATUS.FAIL, DriverAction.takeSnapShot());
-
+            WebElement loginMsg = DriverAction.getElement(LoginLocator.loginMsg);
+            if (loginMsg.isDisplayed())
+                GemTestReporter.addTestStep("LoginPage message", "Verify LoginPage message visible to user", STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("LoginPage message", "User not able to see LoginPage message", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+        catch (Exception exception) {
+            GemTestReporter.addTestStep("Verify elements", "User not able to verify elements before Login", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
     }
     @Then("Click on Login with SSO button")
     public void clickOnLoginWithSSOButton() {

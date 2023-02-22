@@ -15,8 +15,8 @@ Feature: Automation of MIS Portal functionality
       | Athena          | https://athena.geminisolutions.com/login        |
       | Contripoint     | https://contripoint.geminisolutions.com/#/login |
       | Gembook         | https://gembook.geminisolutions.com/#/          |
-      | Gem Wiki        | https://wiki.geminisolutions.com/login          |
-      | Github          | https://github.com/Gemini-Solutions             |
-      | Hiring Pipeline | https://hpipe.geminisolutions.com/#/login       |
+      | Gem Wiki        | https://wiki.geminisolutions.com/login         |
+      | Github          | https://github.com/Gemini-Solutions            |
+      | Hiring Pipeline | https://hpipe.geminisolutions.com/#/login      |
       | Jenkins         | https://jenkins.geminisolutions.com/            |
       | L&D Portal      | https://geminisolutions.talentlms.com/index     |
