@@ -329,13 +329,8 @@ public class FormsSteps {
         }
     }
 
-<<<<<<< Updated upstream
-    @Then("Verify the warning {string}")
-    public void verifyThe(String warningMsg) {
-=======
     @Then("Verify the message {string}")
     public void verifyTheMessage(String warningMsg) {
->>>>>>> Stashed changes
         try {
             DriverAction.waitUntilElementAppear(FormsLocator.warningMsg, 5);
 
