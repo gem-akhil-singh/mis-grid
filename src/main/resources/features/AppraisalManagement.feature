@@ -50,21 +50,28 @@ Feature: AppraisalManagement
     Then Click on Add Goals link
     Then Verify Add goal window
     Given Click on Add new KPI-KRA mapping button
-    Then Click on close button
+    Then Click on a close button
     Then Verify Add goal window
     And Click on Add new KPI-KRA mapping button
-    Then Click on submit button
+    Then Click on a submit button
     Then Check validation for KRA textbox
     Then Validate and click add KPI button
-    When Click on submit button
+    When Click on a submit button
     Then Check validation for KPA textbox
     And Enter KRA in textbox
     And Enter KPI description in text box
-    Then Click on submit button
+    Then Click on a submit button
     And Check validation for empty Goal type Dropdown
     Then Select any one option from Goal Type Dropdown
     Then Validate and click add KPI button
     Then Click on close button of newly added KPI
-    Then Click on submit button
+    Then Click on a submit button
     Then Verify Success Popup appeared on screen and click on Ok button
 
+  Scenario: Verify page navigation
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    Then Verify the Pagination list
+    And click on each page and check navigation
