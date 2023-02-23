@@ -18,7 +18,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.mySkill(mySkills), 3);
             DriverAction.click(MySkillsLocator.mySkill(mySkills));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("Skills are updated with valid data", "Skills not updated", STATUS.FAIL);
+            GemTestReporter.addTestStep("Skills are updated with valid data", "Skills not updated", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -29,7 +29,7 @@ public class MySkillsSteps {
             DriverAction.waitSec(7);
             DriverAction.scrollIntoView(MySkillsLocator.skillsUpdated);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User scrolls to skills view area", "Scrolling is unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User scrolls to skills view area", "Scrolling is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -39,7 +39,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.closeBtn, 3);
             DriverAction.click(MySkillsLocator.closeBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -51,7 +51,7 @@ public class MySkillsSteps {
             DriverAction.waitSec(7);
             DriverAction.click(MySkillsLocator.userImg);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on user image", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on user image", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -61,7 +61,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.skillsBtn, 3);
             DriverAction.click(MySkillsLocator.skillsBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on skills button", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on skills button", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -72,7 +72,7 @@ public class MySkillsSteps {
             DriverAction.waitSec(3);
             DriverAction.click(MySkillsLocator.technologyDropDown);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on technology dropdown", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on technology dropdown", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -83,7 +83,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.selectTechnology(technology), 6);
             DriverAction.click(MySkillsLocator.selectTechnology(technology));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User selects the technology", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User selects the technology", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -95,7 +95,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.professionalDropDown, 7);
             DriverAction.click(MySkillsLocator.professionalDropDown);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on professional dropdown", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on professional dropdown", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -106,7 +106,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.selectProfessional(professionalLevel), 4);
             DriverAction.click(MySkillsLocator.selectProfessional(professionalLevel));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User selects professional level", "Click is Unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User selects professional level", "Click is Unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -117,7 +117,7 @@ public class MySkillsSteps {
             DriverAction.waitUntilElementAppear(MySkillsLocator.techExperience, 4);
             DriverAction.typeText(MySkillsLocator.techExperience, techExperience);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User enters the tech experience", "Tech experience can not be entered", STATUS.FAIL);
+            GemTestReporter.addTestStep("User enters the tech experience", "Tech experience can not be entered", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -129,7 +129,7 @@ public class MySkillsSteps {
             DriverAction.typeText(MySkillsLocator.totalExperience, totalExperience);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User enters the total experience", "Total experience can not be entered", STATUS.FAIL);
+            GemTestReporter.addTestStep("User enters the total experience", "Total experience can not be entered", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -140,7 +140,7 @@ public class MySkillsSteps {
             DriverAction.isExist(MySkillsLocator.skillOkBtn);
             DriverAction.click(MySkillsLocator.skillOkBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on ok button", "Click is unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on ok button", "Click is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
 
@@ -153,7 +153,7 @@ public class MySkillsSteps {
             DriverAction.isExist(MySkillsLocator.skillSaveBtn);
             DriverAction.click(MySkillsLocator.skillSaveBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on save button", "Click is unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on save button", "Click is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }
@@ -164,7 +164,7 @@ public class MySkillsSteps {
             DriverAction.isExist(MySkillsLocator.skillCloseBtn);
             DriverAction.click(MySkillsLocator.skillCloseBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful", STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
 
         }
     }

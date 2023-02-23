@@ -33,7 +33,7 @@ public class OtherPortalsSteps {
             } else {
                 GemTestReporter.addTestStep("Username", "Username field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
-            if (DriverAction.isExist(OtherportalnTimesheetLocator.lgnpwd)) {   
+            if (DriverAction.isExist(OtherportalnTimesheetLocator.lgnpwd)) {
                 byte[] decodingString = Base64.decodeBase64(pass);
                 String passwordDecoded = new String(decodingString);
                 DriverAction.typeText(OtherportalnTimesheetLocator.lgnpwd, passwordDecoded);
@@ -49,21 +49,29 @@ public class OtherPortalsSteps {
 
     @When("Click on Signin button")
     public void click_on_signin_button() {
-        if (DriverAction.isExist(OtherportalnTimesheetLocator.sgnupbtn)) {
-            DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn, "sign in");
-        } else {
-            GemTestReporter.addTestStep("SignIn", "SignIn button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+        try {
+            if (DriverAction.isExist(OtherportalnTimesheetLocator.sgnupbtn)) {
+                DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn, "sign in");
+            } else {
+                GemTestReporter.addTestStep("SignIn", "SignIn button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
 
     @Then("Validate login successful")
     public void validate_login_successful() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-        wait.until(ExpectedConditions.presenceOfElementLocated(OtherportalnTimesheetLocator.Location));
-        if (DriverAction.isExist(OtherportalnTimesheetLocator.Location) && DriverAction.isExist(OtherportalnTimesheetLocator.Dashboardheading)) {
-            GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
-        } else {
-            GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
+            wait.until(ExpectedConditions.presenceOfElementLocated(OtherportalnTimesheetLocator.Location));
+            if (DriverAction.isExist(OtherportalnTimesheetLocator.Location) && DriverAction.isExist(OtherportalnTimesheetLocator.Dashboardheading)) {
+                GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
 
@@ -71,63 +79,71 @@ public class OtherPortalsSteps {
 
     @Given("Click on Other Portals")
     public void clickOnOtherPortals() {
-        DriverAction.click(OtherportalnTimesheetLocator.otherPortal);
+        try {
+            DriverAction.click(OtherportalnTimesheetLocator.otherPortal);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
     }
 
     @When("^Select portal (.+) from dropdown")
     public void selectPortalPortalFromDropdown(String portal) {
-        int flag = 0;
-       //DriverAction.scrollIntoView(By.xpath("//div[@class='jspPane']//child::span[text()='Service Desk']"));
-        List<WebElement> portalList = DriverAction.getElements(OtherportalnTimesheetLocator.otherPortalList);
-        DriverAction.waitSec(4);
+        try {
+            int flag = 0;
+            //DriverAction.scrollIntoView(By.xpath("//div[@class='jspPane']//child::span[text()='Service Desk']"));
+            List<WebElement> portalList = DriverAction.getElements(OtherportalnTimesheetLocator.otherPortalList);
+            DriverAction.waitSec(4);
 
-        for (int i = 0; i < portalList.size(); i++) {
+            for (int i = 0; i < portalList.size(); i++) {
 //            System.out.println(portalList.get(i).getText());
-            if (portalList.get(i).getText().equals(portal)) {
-                portalList.get(i).click();
-                DriverAction.waitSec(10);
-                flag = 1;
-                break;
+                if (portalList.get(i).getText().equals(portal)) {
+                    portalList.get(i).click();
+                    DriverAction.waitSec(10);
+                    flag = 1;
+                    break;
+                }
             }
-        }
             if (flag == 1) {
                 GemTestReporter.addTestStep("Portal found", "Portal value is " + portal + ".", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Portal not found", "Portal value is invalid. Kindly check", STATUS.FAIL, DriverAction.takeSnapShot());
             }
 
-        }
-
-        @Then("^Validate Navigation to portal URL (.+) (.+)")
-        public void validateNavigationToPortalURLUrl (String expectedURL, String portal){
-            try {
-                // To handle parent window
-                WebDriver driver = DriverManager.getWebDriver();
-                String MainWindow = driver.getWindowHandle();
-                // To handle child window
-                Set<String> s1 = driver.getWindowHandles();
-
-                Iterator<String> i1 = s1.iterator();
-                int flag=0;
-                while (i1.hasNext()) {
-                    i1.next();
-                    String ChildWindow = i1.next();
-                    driver.switchTo().window(ChildWindow);
-                    DriverAction.waitSec(4);
-                    String actualURL = driver.getCurrentUrl();
-                    if (actualURL.equals(expectedURL)) {
-                        flag = 1;
-                    }
-                }
-
-                if (flag==1) {
-                    GemTestReporter.addTestStep("Navigater to " + portal + " portal", "Successfully Navigated", STATUS.PASS);
-                } else
-                    GemTestReporter.addTestStep("Navigation Failed", "URL Mismatched", STATUS.FAIL);
-            } catch (Exception e) {
-                logger.info("An exception occurred!", e);
-                GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting Exception ", STATUS.FAIL, DriverAction.takeSnapShot());
-            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
+
+    @Then("^Validate Navigation to portal URL (.+) (.+)")
+    public void validateNavigationToPortalURLUrl(String expectedURL, String portal) {
+        try {
+            // To handle parent window
+            WebDriver driver = DriverManager.getWebDriver();
+            String MainWindow = driver.getWindowHandle();
+            // To handle child window
+            Set<String> s1 = driver.getWindowHandles();
+
+            Iterator<String> i1 = s1.iterator();
+            int flag = 0;
+            while (i1.hasNext()) {
+                i1.next();
+                String ChildWindow = i1.next();
+                driver.switchTo().window(ChildWindow);
+                DriverAction.waitSec(4);
+                String actualURL = driver.getCurrentUrl();
+                if (actualURL.equals(expectedURL)) {
+                    flag = 1;
+                }
+            }
+
+            if (flag == 1) {
+                GemTestReporter.addTestStep("Navigater to " + portal + " portal", "Successfully Navigated", STATUS.PASS);
+            } else
+                GemTestReporter.addTestStep("Navigation Failed", "URL Mismatched", STATUS.FAIL);
+        } catch (Exception e) {
+            logger.info("An exception occurred!", e);
+            GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting Exception ", STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+}
 

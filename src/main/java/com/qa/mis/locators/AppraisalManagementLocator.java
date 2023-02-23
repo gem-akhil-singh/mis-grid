@@ -44,6 +44,14 @@ public class AppraisalManagementLocator {
     public static By btnExport = By.xpath("//span[contains(text(),'Export')]");
     public static By lstExport = By.xpath("//div[@class='dt-button-collection']//a");
     public static By drpdownPages = By.xpath("//select[@name='tblSelfGoalList_length']");
-    public static By background = By.xpath(" //div[@class='dt-button-background']");
+    public static By background = By.xpath("//div[@class='dt-button-background']");
+
+    // Delete functionality
+    public static By btnDelete = By.xpath("//i[@class='fa fa-trash']");
+
+    //Page navigation
+    public static By pageList = By.xpath("//ul[@class='pagination']/li");
+
+
 }
 
