@@ -141,29 +141,29 @@ public class LeaveManagementSteps {
             List<String> expectedFields = null;
             String id = null;
             switch (tab) {
-                case "Leave" -> {
+                case "Leave":
                     id = "tabApplyLeave";
                     expectedFields = Arrays.asList("From*", "Till*", "Reason*", "Primary contact number*",
                             "Other contact number", "Availability on");
-                }
-                case "Work From Home" -> {
+                    break;
+                case "Work From Home":
                     id = "tabApplyWFH";
                     expectedFields = Arrays.asList("Date*", "Reason*", "Mobile No.*");
-                }
-                case "Comp Off" -> {
+                    break;
+                case "Comp Off":
                     id = "tabApplyCompOff";
                     expectedFields = Arrays.asList("Date*", "Reason*");
-                }
-                case "Out Duty/Tour" -> {
+                    break;
+                case "Out Duty/Tour":
                     id = "tabApplyOuting";
                     expectedFields = Arrays.asList("From*", "Till*", "Type *", "Reason*", "Primary contact " +
                             "number*", "Other contact number");
-                }
-                case "LWP Change Request" -> {
+                    break;
+                case "LWP Change Request":
                     id = "tabLWPChangeRequest";
                     expectedFields = Arrays.asList("In case of LWP marked by system", "Date:*", "Type of " +
                             "leave*", "Reason*");
-                }
+                    break;
             }
 
             List<String> actualFields =
@@ -186,14 +186,24 @@ public class LeaveManagementSteps {
     public void userClicksOnSubmitButtonFor(String tab) {
         try {
             DriverAction.waitSec(2);
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOuting";
-                case "LWP Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOuting";
+                    break;
+                case "LWP Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
             if (DriverAction.isExist(LeaveManagementLocator.button_leaveSubmit(id))) {
                 DriverAction.click(LeaveManagementLocator.button_leaveSubmit(id), "Submit");
             } else {
@@ -208,24 +218,30 @@ public class LeaveManagementSteps {
     @And("Verify mandatory {string} field for {string}")
     public void verifyMandatoryFieldFor(String fieldType, String field) {
         try {
-            String classValue = switch (fieldType) {
-                case "dropdown" ->
-                        DriverAction.getAttributeName(LeaveManagementLocator.field_leaveDropDown(field),
-                                "class");
-                case "textField" ->
-                        DriverAction.getAttributeName(LeaveManagementLocator.field_leaveTextFields(field),
-                                "class");
-                case "textArea" ->
-                        DriverAction.getAttributeName(LeaveManagementLocator.field_leaveTextArea(field),
-                                "class");
-                case "calendar" ->
-                        DriverAction.getAttributeName(LeaveManagementLocator.field_leaveCalendar(field),
-                                "class");
-                case "outingCalendar" ->
-                        DriverAction.getAttributeName(LeaveManagementLocator.field_outingCalendar(field),
-                                "class");
-                default -> null;
-            };
+            String classValue = null;
+            switch (fieldType) {
+                case "dropdown":
+                    classValue =
+                            DriverAction.getAttributeName(LeaveManagementLocator.field_leaveDropDown(field),
+                                    "class");
+                    break;
+                case "textField":
+                    classValue = DriverAction.getAttributeName(LeaveManagementLocator.field_leaveTextFields(field),
+                            "class");
+                    break;
+                case "textArea":
+                    classValue = DriverAction.getAttributeName(LeaveManagementLocator.field_leaveTextArea(field),
+                            "class");
+                    break;
+                case "calendar":
+                    classValue = DriverAction.getAttributeName(LeaveManagementLocator.field_leaveCalendar(field),
+                            "class");
+                    break;
+                case "outingCalendar":
+                    classValue = DriverAction.getAttributeName(LeaveManagementLocator.field_outingCalendar(field),
+                            "class");
+                    break;
+            }
             if (classValue.contains("error-validation")) {
                 GemTestReporter.addTestStep("Verifying Mandatory Fields",
                         "Fields matching passed for " + field, STATUS.PASS, DriverAction.takeSnapShot());
@@ -580,29 +596,29 @@ public class LeaveManagementSteps {
             List<String> expectedFields = null;
             String id = null;
             switch (tab) {
-                case "Leave" -> {
+                case "Leave":
                     id = "tabApplyLeave";
                     expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status", "Applied " +
                             "On", "Action");
-                }
-                case "Work From Home" -> {
+                    break;
+                case "Work From Home":
                     id = "tabApplyWFH";
                     expectedFields = Arrays.asList("Period", "Half Day", "Reason", "Remarks", "Status");
-                }
-                case "Comp Off" -> {
+                    break;
+                case "Comp Off":
                     id = "tabApplyCompOff";
                     expectedFields = Arrays.asList("Applied for", "Days", "Reason", "Remarks", "Status",
                             "Applied On", "Availability", "Lapse Date");
-                }
-                case "Out Duty/Tour" -> {
+                    break;
+                case "Out Duty/Tour":
                     id = "tabApplyOnDutyReq";
                     expectedFields = Arrays.asList("Period", "Duty Type", "Reason", "Remarks", "Status",
                             "Applied On", "Action");
-                }
-                case "Change Request" -> {
+                    break;
+                case "Change Request":
                     id = "tabLWPChangeRequest";
                     expectedFields = Arrays.asList("Period", "Type", "Reason", "Remarks", "Status", "Applied On");
-                }
+                    break;
             }
 
             List<String> actualFields =
@@ -706,14 +722,24 @@ public class LeaveManagementSteps {
     public void clickOnViewRequestStatusExportButtonFor(String tab) {
         try {
             DriverAction.waitSec(2);
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOnDutyReq";
-                case "Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOuting";
+                    break;
+                case "LWP Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
 
             DriverAction.click(LeaveManagementLocator.button_leaveExport(id), "export");
         } catch (Exception e) {
@@ -841,12 +867,18 @@ public class LeaveManagementSteps {
     @And("User enters {string} period in search box for {string}")
     public void userEntersPeriodInSearchBoxFor(String period, String tab) {
         try {
-            String id = switch (tab) {
-                case "Comp Off" -> "tblCompOffHistory_filter";
-                case "Leave" -> "tblLeaveHistory_filter";
-                case "Out Duty/Tour" -> "tblOnDutyReqHistory_filter";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Comp Off":
+                    id = "tblCompOffHistory_filter";
+                    break;
+                case "Leave":
+                    id = "tblLeaveHistory_filter";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tblOnDutyReqHistory_filter";
+                    break;
+            }
 
             if (DriverAction.isExist(LeaveManagementLocator.input_viewRequestFilter(id))) {
                 DriverAction.typeText(LeaveManagementLocator.input_viewRequestFilter(id), period, "period");
@@ -862,14 +894,24 @@ public class LeaveManagementSteps {
     @And("Verify {string} period as search result for {string}")
     public void verifyPeriodAsSearchResultFor(String period, String tab) {
         try {
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOnDutyReq";
-                case "Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOnDutyReq";
+                    break;
+                case "Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
 
             if (DriverAction.isExist(LeaveManagementLocator.tableRowData_viewRequestStatus(id))) {
                 List<WebElement> rows =
@@ -896,14 +938,25 @@ public class LeaveManagementSteps {
     @And("Sort column {string} for {string}")
     public void sortColumnFor(String column, String tab) {
         try {
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOnDutyReq";
-                case "Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOnDutyReq";
+                    break;
+                case "Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
+
 
             List<WebElement> headers =
                     DriverAction.getElements(LeaveManagementLocator.title_LeaveViewRequestHeaders(id));
@@ -922,14 +975,25 @@ public class LeaveManagementSteps {
     @And("Verify sorted column {string} result for {string}")
     public void verifySortedColumnResultFor(String column, String tab) {
         try {
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOnDutyReq";
-                case "Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOnDutyReq";
+                    break;
+                case "Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
+
 
             List<WebElement> headers =
                     DriverAction.getElements(LeaveManagementLocator.title_LeaveViewRequestHeaders(id));
@@ -956,14 +1020,25 @@ public class LeaveManagementSteps {
     @And("Verify number of rows displayed for {string} tab")
     public void verifyNumberOfRowsDisplayedForTab(String tab) {
         try {
-            String id = switch (tab) {
-                case "Leave" -> "tabApplyLeave";
-                case "Work From Home" -> "tabApplyWFH";
-                case "Comp Off" -> "tabApplyCompOff";
-                case "Out Duty/Tour" -> "tabApplyOnDutyReq";
-                case "Change Request" -> "tabLWPChangeRequest";
-                default -> null;
-            };
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tabApplyLeave";
+                    break;
+                case "Work From Home":
+                    id = "tabApplyWFH";
+                    break;
+                case "Comp Off":
+                    id = "tabApplyCompOff";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tabApplyOnDutyReq";
+                    break;
+                case "Change Request":
+                    id = "tabLWPChangeRequest";
+                    break;
+            }
+
             int rows = DriverAction.getElements(LeaveManagementLocator.tableRows_viewRequestStatus(id)).size();
             if (DriverAction.isExist(LeaveManagementLocator.label_leaveTableEntries)) {
                 String entries = DriverAction.getElementText(LeaveManagementLocator.label_leaveTableEntries);
