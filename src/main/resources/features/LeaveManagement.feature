@@ -8,6 +8,7 @@ Feature: MIS - Leave Management
     When User is on MIS Home Page
 
   # CompOff
+  @JenkinsJobs
   Scenario Outline: Navigate to Leave Management > Comp Off tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
@@ -18,6 +19,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
+  @JenkinsJobs
   Scenario Outline: Verify Date and Reason are mandatory fields for Comp Off
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
@@ -31,6 +33,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | date        | reason        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | CompOffDate | CompOffReason |
 
+  @JenkinsJobs
   Scenario Outline: Select Date from Comp Off Date dropdown
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab

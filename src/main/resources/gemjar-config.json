@@ -7,10 +7,11 @@
   "gemjarToken": "259351c4-1137-4377-b56f-5f2ac3e0db301675253783077",
   "jewelEntryUrl": "https://apis.gemecosystem.com/enter-point",
   "glueCode": "com.qa.mis.stepdefinition",
+  "tagName": "@JenkinsJobs",
   "remoteDriverUrl" : "http://20.219.41.21:4444/wd/hub",
   "emailReport": "N",
   "emailTO": "shruti.kukreja@geminisolutions.com",
-  "emailCC": "shubham.kumar@geminisolutions.com",
+  "emailCC": "shubham.kumar@geminisolutions.com,arpit.mishra@geminisolutions.com",
   "dev": {
     "browserName": "firefox",
     "launchUrl": "url",
