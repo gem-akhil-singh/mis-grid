@@ -3,7 +3,7 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
-import com.qa.mis.locators.OrgStructureLocator;
+import com.qa.mis.locators.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -81,6 +81,22 @@ public class OrganizationStructureSteps {
             } else
                 GemTestReporter.addTestStep("Employee card is not visible", "Unable to double click as employee card is not present", STATUS.FAIL);
 
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("^Validate unavailability of Employee (.+) and Designation (.+)")
+    public void validateUnavailabilityOfEmployeeEmpnameAndDesignationDesignation(String empname,String designation) {
+        try {
+            DriverAction.waitSec(5);
+            if (DriverAction.isExist(OrgStructureLocator.getemp(empname))) {
+                if (!designation.equals(DriverAction.getElementText(OrgStructureLocator.getemp(empname)))) {
+                    GemTestReporter.addTestStep("Employee designation does not match", "Designtion incorrect", STATUS.PASS);
+                } else
+                    GemTestReporter.addTestStep("Employee designation match", "Cahnge input Designation", STATUS.FAIL, DriverAction.takeSnapShot());
+            } else
+                GemTestReporter.addTestStep("Employee " + empname + " is present", "Employee is not present in Organization", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }

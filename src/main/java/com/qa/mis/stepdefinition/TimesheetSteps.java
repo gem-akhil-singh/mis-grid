@@ -3,7 +3,7 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
-import com.qa.mis.locators.OtherportalnTimesheetLocator;
+import com.qa.mis.locators.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class TimesheetSteps {
 
-    Logger logger = LoggerFactory.getLogger(OtherPortalsSteps.class);
+    //    Logger logger = LoggerFactory.getLogger(OtherPortalsSteps.class);
     String dashboardURL = "https://mymis.geminisolutions.com/Dashboard/Index";
     String configureTimesheetURL = "https://mymis.geminisolutions.com/Timesheet/ConfigureTimesheet";
     String createTimesheetURL = "https://mymis.geminisolutions.com/Timesheet/CreateTimesheet";
@@ -62,6 +62,19 @@ public class TimesheetSteps {
 
             } else
                 GemTestReporter.addTestStep("Invalid Input value for " + timesheet, "Kindly enter a valid dropdown value", STATUS.FAIL, DriverAction.takeSnapShot());
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @When("^Fail click on Timesheet option as (.+)")
+    public void failClickOnTimesheetOptionAsTimesheet(String timesheet ) {
+        try {
+            if (!timesheet.equals("Configure Timesheet") && !timesheet.equals("Create Timesheet") && !timesheet.equals("Manage Task Template")) {
+                GemTestReporter.addTestStep("Invalid Input value for timesheet as " +timesheet, "Validation successful", STATUS.PASS, DriverAction.takeSnapShot());
+
+            } else
+                GemTestReporter.addTestStep("Invalid check scenario failed", "Entered value should be invalid for timesheet", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
