@@ -22,7 +22,7 @@
     "browserTimeout": 100
   },
   "beta": {
-    "browserName": "grid",
+    "browserName": "chrome",
     "launchUrl": "https://mymis.geminisolutions.com",
     "browserTimeout": 100
   }
