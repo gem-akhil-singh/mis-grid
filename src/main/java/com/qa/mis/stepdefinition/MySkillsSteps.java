@@ -15,7 +15,7 @@ public class MySkillsSteps {
     @Then("Skills are updated with {string}")
     public void verifyTheSkillsAreUpdatedWith(String mySkills) {
         try {
-            DriverAction.waitUntilElementAppear(MySkillsLocator.mySkill(mySkills), 3);
+            DriverAction.waitSec(5);
             DriverAction.click(MySkillsLocator.mySkill(mySkills));
         } catch (Exception e) {
             GemTestReporter.addTestStep("Skills are updated with valid data", "Skills not updated", STATUS.FAIL,DriverAction.takeSnapShot());
@@ -36,7 +36,7 @@ public class MySkillsSteps {
     @Then("^User clicks on close button$")
     public void userClicksOnCloseButton() {
         try {
-            DriverAction.waitUntilElementAppear(MySkillsLocator.closeBtn, 3);
+            DriverAction.waitSec(5);
             DriverAction.click(MySkillsLocator.closeBtn);
         } catch (Exception e) {
             GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful", STATUS.FAIL,DriverAction.takeSnapShot());
