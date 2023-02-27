@@ -8,6 +8,7 @@ import com.qa.mis.locators.LNSA_FeedbackLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -42,10 +43,10 @@ public class FeedbackSteps {
                     elementClicked = LNSA_FeedbackLocator.successButton;
                     break;
                 case "feedbacknextbutton":
-                    elementClicked = LNSA_FeedbackLocator.feedbackNextButton;
+                    elementClicked = LNSA_FeedbackLocator.nextButton;
                     break;
                 case "feedbackpreviousbutton":
-                    elementClicked = LNSA_FeedbackLocator.feedbackPreviousButton;
+                    elementClicked = LNSA_FeedbackLocator.previousButton;
                     break;
                 case "searchtextbox":
                     elementClicked = LNSA_FeedbackLocator.searchTextbox;
@@ -56,11 +57,23 @@ public class FeedbackSteps {
                 case "viewicon":
                     elementClicked = LNSA_FeedbackLocator.viewIcon;
                     break;
+                case "viewicon1":
+                    elementClicked = LNSA_FeedbackLocator.viewIcon1;
+                    break;
                 case "closebuttonofviewfeedback":
                     elementClicked = LNSA_FeedbackLocator.closeButtonOfViewFeedback;
                     break;
                 case "lnsareasontextbox":
                     elementClicked = LNSA_FeedbackLocator.LNSA_REASON_TXTBOX;
+                    break;
+                case "nextbutton":
+                    elementClicked = LNSA_FeedbackLocator.nextButton;
+                    break;
+                case "previousbutton":
+                    elementClicked = LNSA_FeedbackLocator.previousButton;
+                    break;
+                case "closebuttonofviewlnsa":
+                    elementClicked = LNSA_FeedbackLocator.closeButtonOfViewLNSA;
                     break;
                 default:
                     Assert.fail("No such button in code");
@@ -151,8 +164,8 @@ public class FeedbackSteps {
 
     @And("^User checks if the Next button is active$")
     public void checkIfNextButtonIsActive() {
-        if (DriverAction.isExist(LNSA_FeedbackLocator.feedbackNextButton)) {
-            if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.feedbackNextButton).isEnabled())
+        if (DriverAction.isExist(LNSA_FeedbackLocator.nextButton)) {
+            if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.nextButton).isEnabled())
                 logger.info("Next Button is available and is ready to be clicked");
             else {
                 logger.info("Next button of the Feedback page is disabled");
@@ -171,7 +184,7 @@ public class FeedbackSteps {
         switch (stepName) {
 
             case "Next":
-                if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.feedbackNextButton).isEnabled()) {
+                if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.nextButton).isEnabled()) {
                     userClicks("feedbackNextButton");
                     DriverAction.waitSec(3);
                 } else {
@@ -182,7 +195,7 @@ public class FeedbackSteps {
                     Assert.fail("Unable to click on the Next button of the Feedback page");
                 }
             case "Previous":
-                if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.feedbackPreviousButton).isEnabled()) {
+                if (DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.previousButton).isEnabled()) {
                     userClicks("feedbackPreviousButton");
                 } else {
                     logger.info("Unable to click on the Next button of the Feedback page");
@@ -212,22 +225,22 @@ public class FeedbackSteps {
     @And("^User checks if \"(.*?)\" is in search result$")
     public void userChecksIfIsInSearchResult(String expectedText) {
         String numOfRows = DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.searchResultsTotal).getText().split(" ")[5];
+        List<WebElement> searchResults = DriverManager.getWebDriver().findElements(LNSA_FeedbackLocator.feedbackSearchResultsRow);
         try {
             int rowCount = Integer.parseInt(numOfRows);
             if (rowCount == 0) {
                 Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.searchResultsEmpty), "Row Count is 0 but some data was still found");
                 logger.info("No results were found, skipping the rest of the validations");
             } else {
-                List<WebElement> searchResults = DriverManager.getWebDriver().findElements(LNSA_FeedbackLocator.feedbackSearchResultsRow);
                 for (WebElement searchResult : searchResults) {
                     String results = searchResult.getText();
-                    if (results.contains(expectedText))
-                        logger.info(expectedText + "was found in the search results");
+                    if (results.toLowerCase().contains(expectedText))
+                        logger.info(expectedText + " was found in the search results");
 
                     else {
-                        logger.info(expectedText + "was invalid entry and was not found in the search results");
-                        Assert.fail(expectedText + "was invalid entry and was not found in the search results");
-                        GemTestReporter.addReasonOfFailure(expectedText + "was invalid entry and was not found in the search results " + STATUS.FAIL);
+                        logger.info(expectedText + " was invalid entry and was not found in the search results");
+                        Assert.fail(expectedText + " was invalid entry and was not found in the search results");
+                        GemTestReporter.addReasonOfFailure(expectedText + " was invalid entry and was not found in the search results " + STATUS.FAIL);
                     }
                 }
             }
@@ -263,22 +276,36 @@ public class FeedbackSteps {
         Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionPrint), "No print button was found");
     }
 
-    @Then("^User clicks on the View icon$")
-    public void userClicksOnTheViewIconOfTheFeedbackPage() {
-        if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon))
-            userClicks("viewIcon");
+    @Then("^User clicks on the \"(.*?)\" View icon$")
+    public void userClicksOnTheViewIcon(String pageName) {
+        DriverAction.waitSec(3);
+        if (pageName.equalsIgnoreCase("LNSA")) {
+            if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon))
+                userClicks("viewIcon");
+            else {
+                logger.info("View icon not found and unable to click on it");
+                Assert.fail("View icon not found and unable to click on it");
+            }
+        }
         else {
-            logger.info("View icon not found and unable to click on it");
-            Assert.fail("View icon not found and unable to click on it");
+            if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon1))
+                userClicks("viewIcon1");
+            else {
+                logger.info("View icon not found and unable to click on it");
+                Assert.fail("View icon not found and unable to click on it");
+            }
         }
     }
 
-    @And("^User verifies that the View Feedback pop-up appears$")
-    public void userVerifiesThatTheViewFeedbackPopUpAppears() {
+    @And("^User verifies that the \"(.*?)\" pop-up appears$")
+    public void userVerifiesThatTheViewPopUpAppears(String headerText) {
         DriverAction.waitSec(5);
-        if (DriverAction.isExist(LNSA_FeedbackLocator.headingOfViewFeedback)) {
+        if (DriverAction.isExist(LNSA_FeedbackLocator.popupHeader(headerText))) {
             logger.info("View Feedback pop-up verified successfully");
+            if(StringUtils.equals(headerText,"View Feedback"))
             userClicks("closeButtonOfViewFeedback");
+            else
+                userClicks("closebuttonofviewlnsa");
         } else {
             logger.info("View Feedback popup was not found");
             Assert.fail("View Feedback popup was not found");

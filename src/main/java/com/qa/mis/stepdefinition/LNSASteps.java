@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +18,11 @@ import org.testng.Assert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class LNSASteps {
     private static final Logger logger = LoggerFactory.getLogger(LNSASteps.class);
+    String numOfRows = "";
 
     @Given("^User is on the MIS Login Page$")
     public void userIsOnTheMISLoginPage() {
@@ -34,8 +34,8 @@ public class LNSASteps {
 
     @When("^User enters their login details \"(.*?)\" and \"(.*?)\" and logs in$")
     public void userEntersLoginDetails(String username, String password) {
+        DriverAction.setPageLoadTimeOut(10);
         DriverAction.typeText(LNSA_FeedbackLocator.txtUserName, username);
-
         byte[] decodedPassword = Base64.decodeBase64(password);
         DriverAction.typeText(LNSA_FeedbackLocator.txtPassword, new String(decodedPassword));
         DriverAction.click(LNSA_FeedbackLocator.buttonLogin, "User clicks on Sign-in button", "Click on Sign-in button was a success");
@@ -50,19 +50,6 @@ public class LNSASteps {
         } catch (Exception e) {
             Assert.fail("Unable to find LNSA Home and unable to click on it");
         }
-    }
-
-    @And("^User selects Apply LNSA from menu panel$")
-    public void userSelectsFromMenuPanel() {
-        try {
-            DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_APPLY_LNSA, 5);
-            DriverAction.click(LNSA_FeedbackLocator.LNSA_APPLY_LNSA);
-            DriverAction.waitSec(3);
-        } catch (Exception e) {
-            logger.info("Unable to find LNSA Home and unable to click on it");
-            Assert.fail("Unable to find LNSA Home and unable to click on it");
-        }
-
     }
 
     @Then("^User tries to move to the previous date$")
@@ -174,7 +161,7 @@ public class LNSASteps {
     public void userEntersTheReasonForLNSASubmission() {
         if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX)) {
             logger.info("Pop-up to enter reason for LNSA is available");
-            DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX,3);
+            DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX, 3);
             FeedbackSteps.userClicks("lnsareasontextbox");
             DriverAction.typeText(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX, "This is a reason entered by test-automation");
         } else {
@@ -205,7 +192,7 @@ public class LNSASteps {
     }
 
     @Then("^User verifies the success message and clicks on OK$")
-    public void userVerfiesTheSuccessMessgaeAndClicksOnOK() {
+    public void userVerifiesTheSuccessMessgaeAndClicksOnOK() {
         if (DriverAction.isExist(LNSA_FeedbackLocator.successMsg)) {
             logger.info("Submission of LNSA was a success");
             DriverAction.click(LNSA_FeedbackLocator.successButton,
@@ -253,7 +240,7 @@ public class LNSASteps {
 
     @And("^User checks if \"(.*?)\" is in search result of LNSA applied$")
     public void userChecksSearchResultOfLNSA(String expectedText) {
-        String numOfRows = DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.searchResultsTotal).getText().split(" ")[5];
+        numOfRows = DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.searchResultsTotal).getText().split(" ")[5];
         try {
             int rowCount = Integer.parseInt(numOfRows);
             if (rowCount == 0) {
@@ -279,4 +266,65 @@ public class LNSASteps {
         }
     }
 
+    @Then("^User selects \"(.*?)\" from the dropdown to retrieve maximum number of entries$")
+    public void userSelectsFromTheDropdown(String dropdownValue) {
+        if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_VIEW_STATUS_DROPDOWN))
+            DriverAction.dropDown(LNSA_FeedbackLocator.LNSA_VIEW_STATUS_DROPDOWN, dropdownValue);
+        else {
+            logger.info("Unable to find the LNSA Dropdown");
+            Assert.fail("Unable to find the LNSA Dropdown");
+        }
+    }
+
+    @And("^User checks the total number of entries present$")
+    public void userChecksTheTotalNumberOfEntries() {
+        if (DriverAction.isExist(LNSA_FeedbackLocator.searchResultsTotal)) {
+            numOfRows = DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.searchResultsTotal).getText().split(" ")[5];
+            GemTestReporter.addTestStep("User tries to get the total number of entries",
+                    "Total number entries found: " + numOfRows, STATUS.PASS);
+        } else {
+            logger.info("Unable to find the text where the total number of entries are present");
+            GemTestReporter.addTestStep("Trying to get the total number of entries",
+                    "Unable to find the text where the total number of entries are present", STATUS.FAIL);
+        }
+    }
+
+    @And("^the user sorts the data and verifies sorting of data for \"(.*?)\" column$")
+    public void theUserVerifiesSortingOfData(String columnName) {
+        DriverAction.click(LNSA_FeedbackLocator.LNSA_COLUMN_HEADER(columnName)); // sort the mentioned column
+
+        HashMap<String, String> columnIndexMapping = new HashMap<>();
+        columnIndexMapping.put("From Date", "1");
+        columnIndexMapping.put("Till Date", "2");
+        columnIndexMapping.put("No Of Days", "3");
+        columnIndexMapping.put("Reason", "4");
+        columnIndexMapping.put("Status/Remark", "5");
+        columnIndexMapping.put("Requested On", "6");
+        columnIndexMapping.put("Feedback", "1");  // Mapping for feedback
+        String idx = columnIndexMapping.get(columnName);
+
+        List<String> textFromLNSA = new ArrayList<>();
+        while (true) {
+            List<WebElement> tempListofLNSA = DriverManager.getWebDriver().findElements(LNSA_FeedbackLocator.COLUMN_DATA(columnName, idx));
+            for (WebElement ele : tempListofLNSA)
+                textFromLNSA.add(ele.getText());
+            if (!(DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.nextButton).getAttribute("class").contains("disabled"))) {
+                FeedbackSteps.userClicks("nextbutton");
+            } else break;
+        }
+
+        List<String> sortedListFromCode = textFromLNSA;
+        Collections.sort(sortedListFromCode);
+
+        if (!CollectionUtils.isEqualCollection(sortedListFromCode, textFromLNSA)) {
+            logger.info("Data is not properly sorted for column: " + columnName);
+            logger.info("Please refer to the following for comparison:\nExpected: " + sortedListFromCode + "\n\nActual: " + textFromLNSA);
+            Assert.fail("Data is not properly sorted for column: " + columnName);
+        }
+        logger.info("Successfully verified that data is sorted for column: " + columnName);
+
+        while(!(DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.previousButton).getAttribute("class").contains("disabled")))
+            if(DriverAction.isExist(LNSA_FeedbackLocator.previousButton))
+                FeedbackSteps.userClicks("previousbutton");
+    }
 }

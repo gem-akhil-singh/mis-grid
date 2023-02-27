@@ -29,6 +29,13 @@ public class LNSA_FeedbackLocator {
     public static By LNSA_REASON_CANCEL_BTN = By.xpath("//div[@class='modal-footer']//button[@data-dismiss='modal']");
     public static By LNSA_REQUEST_TAB = By.xpath("//li[@class='active']//span[contains(text(), 'View Request')]");
     public static By LNSA_SEARCH_RESULTS = By.xpath("//tr[@role='row']//td[4]");
+    public static By COLUMN_DATA(String columnName, String index){
+        return By.xpath("//th[text()='"+columnName+"']/ancestor::thead/following-sibling::tbody/tr/td["+index+"]");
+    }
+    public static By LNSA_COLUMN_HEADER(String columnName){
+        return By.xpath("//th[text()='"+columnName+"']");
+    }
+    public static By LNSA_VIEW_STATUS_DROPDOWN = By.name("tblLnsaStatusGrid_length");
 
     public static By  feedbackHome = By.xpath("//span[text()= 'Feedback']");
     public static By  feedbackSubmit = By.xpath("//span[text()= 'Submit Feedback']");
@@ -37,8 +44,8 @@ public class LNSA_FeedbackLocator {
     public static By  feedbackSubmitFeedbackButton = By.xpath("//div[@class='modal-footer']//button[contains(@onClick, 'Feed')]");
     public static By successMsg = By.xpath("//h2[text() ='Success']");
     public static By successButton = By.xpath("//div[@class ='sa-confirm-button-container']/button");
-    public static By feedbackNextButton = By.xpath("//a[text()='Next']/..");
-    public static By feedbackPreviousButton = By.xpath("//a[text() ='Previous']/..");
+    public static By nextButton = By.xpath("//a[text()='Next']/..");
+    public static By previousButton = By.xpath("//a[text() ='Previous']/..");
     public static By searchTextbox = By.xpath("//input[@type='search']");
     public static By feedbackSearchResultsRow = By.xpath("//td[@tabindex='0']");
     public static By searchResultsTotal = By.xpath("//div[contains(text(),'Showing')]");
@@ -48,9 +55,11 @@ public class LNSA_FeedbackLocator {
     public static By exportOptionExcel = By.xpath("//span[text()= 'Excel']/..");
     public static By exportOptionPDF = By.xpath("//span[text()= 'PDF']/..");
     public static By exportOptionPrint = By.xpath("//span[text()= 'Print']/..");
-    public static By viewIcon = By.xpath("//i[contains(@class,'fa-eye')]/..");
-    public static By headingOfViewFeedback = By.xpath("//h4[text() = 'View Feedback']");
+    public static By viewIcon = By.xpath("//tr//td/following::td//button[@title='View ']");
+    public static By viewIcon1 = By.xpath("//tr//td/following::td//button[@title='View']");
+    public static By popupHeader(String headerText){ return By.xpath("//h4[text() = '"+headerText+"']");}
     public static By closeButtonOfViewFeedback = By.xpath("//div[@id='modal-feedback']//button[contains(@class,'Close')]");
+    public static By closeButtonOfViewLNSA = By.xpath("//div[@id='dateLnsaModal']//button[contains(text(),'Close')]");
 
 
 }

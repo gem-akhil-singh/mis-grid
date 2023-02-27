@@ -6,12 +6,12 @@ Feature: LNSA Feature - MIS Automation GemJar
     Then User clicks on LNSA from left menu panel
 
   Scenario: User clicks on the Previous and Next Buttons from Apply LNSA page
-    And User selects Apply LNSA from menu panel
+    And User selects "Apply LNSA" from menu panel
     Then User tries to move to the previous date
     Then User tries to move to the next date
 
   Scenario: User selects any week using the checkboxes on Apply LNSA page
-    And User selects Apply LNSA from menu panel
+    And User selects "Apply LNSA" from menu panel
     Then User checks and unchecks a checkbox of any week present on the page
     And User tries to Submit the LNSA without selecting date
 
@@ -23,8 +23,8 @@ Feature: LNSA Feature - MIS Automation GemJar
     Then User clicks on the "Submit" of Reason pop-up
     Then User verifies the success message and clicks on OK
 
-  Scenario: User selects a day and clicks on the cacel button
-    And User selects Apply LNSA from menu panel
+  Scenario: User selects a day and clicks on the cancel button
+    And User selects "Apply LNSA" from menu panel
     Then User selects a day for which LNSA has not been applied
     Then User submits the LNSA with selected day
     And User enters the reason for LNSA submission
@@ -44,3 +44,18 @@ Feature: LNSA Feature - MIS Automation GemJar
       | search entry |
       | reason       |
       | help         |
+
+  Scenario: User get the total number of entries on LNSA View Request Status page and sorts the column
+    And User selects "View Request Status" from menu panel
+    And User checks the total number of entries present
+    Then the user sorts the data and verifies sorting of data for "From Date" column
+    And the user sorts the data and verifies sorting of data for "Till Date" column
+    And the user sorts the data and verifies sorting of data for "No Of Days" column
+    And the user sorts the data and verifies sorting of data for "Reason" column
+    And the user sorts the data and verifies sorting of data for "Status/Remark" column
+    And the user sorts the data and verifies sorting of data for "Requested On" column
+
+  Scenario: User tries to view LNSA Request Detail on LNSA Page
+    And User selects "View Request Status" from menu panel
+    Then User clicks on the "LNSA" View icon
+    And User verifies that the "LNSA Request Detail" pop-up appears
