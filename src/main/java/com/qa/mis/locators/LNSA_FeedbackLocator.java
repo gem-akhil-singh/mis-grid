@@ -55,8 +55,7 @@ public class LNSA_FeedbackLocator {
     public static By exportOptionExcel = By.xpath("//span[text()= 'Excel']/..");
     public static By exportOptionPDF = By.xpath("//span[text()= 'PDF']/..");
     public static By exportOptionPrint = By.xpath("//span[text()= 'Print']/..");
-    public static By viewIcon = By.xpath("//tr//td/following::td//button[@title='View ']");
-    public static By viewIcon1 = By.xpath("//tr//td/following::td//button[@title='View']");
+    public static By viewIcon = By.xpath("//tr//td/following::td//button[(contains(@title,'View') or contains(@data-original-title,'View')) and not(contains(@title,'Cancel') or contains(@data-original-title,'Cancel'))]");
     public static By popupHeader(String headerText){ return By.xpath("//h4[text() = '"+headerText+"']");}
     public static By closeButtonOfViewFeedback = By.xpath("//div[@id='modal-feedback']//button[contains(@class,'Close')]");
     public static By closeButtonOfViewLNSA = By.xpath("//div[@id='dateLnsaModal']//button[contains(text(),'Close')]");

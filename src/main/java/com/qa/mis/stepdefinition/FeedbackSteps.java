@@ -57,9 +57,6 @@ public class FeedbackSteps {
                 case "viewicon":
                     elementClicked = LNSA_FeedbackLocator.viewIcon;
                     break;
-                case "viewicon1":
-                    elementClicked = LNSA_FeedbackLocator.viewIcon1;
-                    break;
                 case "closebuttonofviewfeedback":
                     elementClicked = LNSA_FeedbackLocator.closeButtonOfViewFeedback;
                     break;
@@ -276,26 +273,18 @@ public class FeedbackSteps {
         Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.exportOptionPrint), "No print button was found");
     }
 
-    @Then("^User clicks on the \"(.*?)\" View icon$")
-    public void userClicksOnTheViewIcon(String pageName) {
+    @Then("^User clicks on the View icon$")
+    public void userClicksOnTheViewIcon() {
         DriverAction.waitSec(3);
-        if (pageName.equalsIgnoreCase("LNSA")) {
-            if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon))
-                userClicks("viewIcon");
-            else {
-                logger.info("View icon not found and unable to click on it");
-                Assert.fail("View icon not found and unable to click on it");
-            }
-        }
+        if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon))
+            userClicks("viewIcon");
         else {
-            if (DriverAction.isExist(LNSA_FeedbackLocator.viewIcon1))
-                userClicks("viewIcon1");
-            else {
-                logger.info("View icon not found and unable to click on it");
-                Assert.fail("View icon not found and unable to click on it");
-            }
+            logger.info("View icon not found and unable to click on it");
+            Assert.fail("View icon not found and unable to click on it");
         }
     }
+
+
 
     @And("^User verifies that the \"(.*?)\" pop-up appears$")
     public void userVerifiesThatTheViewPopUpAppears(String headerText) {

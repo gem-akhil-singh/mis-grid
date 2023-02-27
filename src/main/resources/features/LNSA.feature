@@ -57,5 +57,5 @@ Feature: LNSA Feature - MIS Automation GemJar
 
   Scenario: User tries to view LNSA Request Detail on LNSA Page
     And User selects "View Request Status" from menu panel
-    Then User clicks on the "LNSA" View icon
+    Then User clicks on the View icon
     And User verifies that the "LNSA Request Detail" pop-up appears
