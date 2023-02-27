@@ -329,8 +329,8 @@ public class FormsSteps {
         }
     }
 
-    @Then("Verify the warning {string}")
-    public void verifyThe(String warningMsg) {
+    @Then("Verify the message {string}")
+    public void verifyTheMessage(String warningMsg) {
         try {
             DriverAction.waitUntilElementAppear(FormsLocator.warningMsg, 5);
 

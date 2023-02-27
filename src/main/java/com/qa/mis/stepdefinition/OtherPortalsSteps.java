@@ -4,7 +4,7 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
-import com.qa.mis.locators.OtherportalnTimesheetLocator;
+import com.qa.mis.locators.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -114,15 +114,15 @@ public class OtherPortalsSteps {
         }
     }
 
-    @Then("^Validate Navigation to portal URL (.+) (.+)")
-    public void validateNavigationToPortalURLUrl(String expectedURL, String portal) {
+    @Then("^Validate Navigation to portal URL (.+) and (.+)")
+    public void validateNavigationToPortalURLUrl(String expectedURL, String port) {
         try {
             // To handle parent window
             WebDriver driver = DriverManager.getWebDriver();
             String MainWindow = driver.getWindowHandle();
             // To handle child window
             Set<String> s1 = driver.getWindowHandles();
-
+            String actualURL="";
             Iterator<String> i1 = s1.iterator();
             int flag = 0;
             while (i1.hasNext()) {
@@ -130,16 +130,16 @@ public class OtherPortalsSteps {
                 String ChildWindow = i1.next();
                 driver.switchTo().window(ChildWindow);
                 DriverAction.waitSec(4);
-                String actualURL = driver.getCurrentUrl();
+                actualURL = driver.getCurrentUrl();
                 if (actualURL.equals(expectedURL)) {
                     flag = 1;
                 }
             }
 
             if (flag == 1) {
-                GemTestReporter.addTestStep("Navigater to " + portal + " portal", "Successfully Navigated", STATUS.PASS);
+                GemTestReporter.addTestStep("Navigater to " + port + " portal", "Successfully Navigated", STATUS.PASS);
             } else
-                GemTestReporter.addTestStep("Navigation Failed", "URL Mismatched", STATUS.FAIL);
+                GemTestReporter.addTestStep("Navigation Failed as expected URL is "+expectedURL+ ".", "URL Mismatched as actual URL is "+actualURL+ "", STATUS.FAIL);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting Exception ", STATUS.FAIL, DriverAction.takeSnapShot());

@@ -8,7 +8,7 @@ import io.cucumber.java.Before;
 public class Hook {
     @Before    public void start() throws GemException {
         DriverManager.setUpBrowser();
-        DriverAction.setImplicitTimeOut(2000);
+        DriverAction.setImplicitTimeOut(20);
         DriverAction.maximizeBrowser();
     }
 }
