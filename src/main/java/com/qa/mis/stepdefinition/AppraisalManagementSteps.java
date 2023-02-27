@@ -12,9 +12,11 @@ import io.cucumber.java.en.When;
 import com.qa.mis.utility.*;
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +31,10 @@ import java.util.*;
 public class AppraisalManagementSteps {
     Logger logger = LoggerFactory.getLogger(AppraisalManagementSteps.class);
     public String mainWindowHandle = null;
-    Boolean output = false;
+    boolean output = false;
     STATUS status;
     String totalEntries = null;
+    boolean flagDelete = false;
 
     @Given("^Launch MIS Url (.+)$")
     public void launch_MIS_Url(String url) {
@@ -514,7 +517,9 @@ public class AppraisalManagementSteps {
                             DriverAction.switchToWindow((String) itr.next());
                             DriverAction.waitSec(2);
 
-//                        action.sendKeys(Keys.ESCAPE);
+//                            Actions action = new Actions(DriverManager.getWebDriver());
+//                            action.sendKeys(Keys.TAB);
+//                            action.sendKeys(Keys.ENTER);
                             DriverAction.closeCurrentTab();
 //                        DriverAction.switchToDefaultContent();
 //                       DriverAction.click(AppraisalManagementLocator.background);
@@ -560,7 +565,7 @@ public class AppraisalManagementSteps {
     }
 
     @And("click on each page and check navigation")
-    public void clickOnEachPageAndCheckNavigation() {
+    public void click_On_Each_Page_And_Check_Navigation() {
         try {
             Boolean flag = DriverAction.getElement(AppraisalManagementLocator.pageList).isDisplayed();
             if (flag = true) {
@@ -580,6 +585,265 @@ public class AppraisalManagementSteps {
             } else {
                 status = STATUS.FAIL;
                 GemTestReporter.addTestStep("click on each page and check navigation", "Verify the Pagination list is displayed", status, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Given("Check if delete button is present in Action tab and Click on Delete button")
+    public void check_If_Delete_Button_Is_Present_In_Action_Tab_and_Click_on_Delete_button() {
+        try {
+            status = STATUS.FAIL;
+            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDelete, 2);
+            if (DriverAction.getElement(AppraisalManagementLocator.btnDelete).isDisplayed()) {
+                status = STATUS.PASS;
+                DriverAction.click(AppraisalManagementLocator.btnDelete);
+                flagDelete = true;
+            } else
+                status = STATUS.FAIL;
+
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+
+    @And("Check remarks pop up is displayed and Click on submit button")
+    public void check_Remarks_PopUp_Is_Displayed() {
+        try {
+            if (flagDelete) {
+                if (DriverAction.getElement(AppraisalManagementLocator.windowRemarks).isDisplayed())
+                    DriverAction.click(AppraisalManagementLocator.btnSubmitRemark);
+            } else {
+                GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+
+    }
+
+    @Then("verify the validation")
+    public void verify_The_Validation() {
+        try {
+            if (flagDelete) {
+
+                String remarks = DriverAction.getElement(AppraisalManagementLocator.txtEnterRemarks).getText();
+                if (remarks.equals(""))
+                    GemTestReporter.addTestStep("Check remarks is written", "Please enter remark, it is empty", STATUS.PASS);
+                DriverAction.click(AppraisalManagementLocator.btnCloseRemark);
+
+            } else {
+                GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Type remark in textbox and click on submit button")
+    public void type_Remark_In_Textbox_And_Click_On_Submit_Button() {
+        try {
+            if (flagDelete) {
+                DriverAction.getElement(AppraisalManagementLocator.txtEnterRemarks)
+                        .sendKeys("testRemark");
+                DriverAction.click(AppraisalManagementLocator.btnSubmitRemark);
+            } else {
+                GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Validate confirm window and Click on confirm button")
+    public void validate_Confirm_Window_and_Click_on_confirm_button() {
+        try {
+            if (flagDelete) {
+                DriverAction.waitUntilElementAppear(AppraisalManagementLocator.windowConfirm, 2);
+                if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
+                    DriverAction.click(AppraisalManagementLocator.btnYesConfirm);
+                    if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
+                        DriverAction.click(AppraisalManagementLocator.btnOkaySuccess);
+                }
+            } else {
+                GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+
+    @When("Click Add or Update Goals")
+    public void click_Add_Or_Update_Goals() {
+        try {
+            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnAddUpdateGoal, 2);
+            status = DriverAction.click(AppraisalManagementLocator.btnAddUpdateGoal);
+            DriverAction.waitSec(2);
+            String tabTitle = DriverAction.getElementText(AppraisalManagementLocator.titleAddGoal);
+            if (tabTitle.equalsIgnoreCase("Add goal"))
+                status = STATUS.PASS;
+            else
+                status = STATUS.FAIL;
+
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Click on plus sign in Actions column")
+    public void click_On_Plus_Sign_In_Actions_Column() {
+        try {
+            if (DriverAction.getElement(AppraisalManagementLocator.btnPlus).isDisplayed())
+                DriverAction.click(AppraisalManagementLocator.btnPlus);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Select KPI from Dropdown")
+    public void select_KPI_From_Dropdown() {
+        try {
+            if (DriverAction.getElement(AppraisalManagementLocator.drpdownKPI).isDisplayed()) {
+                DriverAction.click(AppraisalManagementLocator.drpdownKPI);
+                DriverAction.waitUntilElementAppear(AppraisalManagementLocator.drpdownKPIValue, 2);
+                DriverAction.click(AppraisalManagementLocator.drpdownKPIValue);
+                DriverAction.click(AppraisalManagementLocator.bodyPath);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+
+    }
+
+    @Then("Click on Draft button and Verify empty fields")
+    public void click_On_Draft_Button_And_Verify_Empty_Fields() {
+        try {
+            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDraft, 2);
+            DriverAction.click(AppraisalManagementLocator.btnDraft);
+            String prjText = DriverAction.getElement(AppraisalManagementLocator.txtboxProject).getText();
+            if (prjText.equals("")) {
+                GemTestReporter.addTestStep("Check text box", "Please enter project name, it is empty", STATUS.PASS);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Add Project details in textbox {string}")
+    public void add_Project_Details_In_Textbox_Project_Name(String projectName) {
+        try {
+            DriverAction.getElement(AppraisalManagementLocator.txtboxProject).sendKeys(projectName);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Add Goal Description in textbox {string}")
+    public void add_Goal_Description_In_Textbox_Goal_Description(String goalDescription) {
+        try {
+            DriverAction.getElement(AppraisalManagementLocator.txtGoalDescription).sendKeys(goalDescription);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Click on Draft button")
+    public void click_On_Draft_Button() {
+        try {
+            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDraft, 2);
+            DriverAction.click(AppraisalManagementLocator.btnDraft);
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Validate success window and click on ok button")
+    public void validate_Success_Window_And_Click_On_Ok_Button() {
+        try {
+            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.windowConfirm, 2);
+            if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
+                if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
+                    DriverAction.click(AppraisalManagementLocator.btnOkaySuccess);
+                DriverAction.click(AppraisalManagementLocator.btnDraftClose);
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Verify and click on Submit Goal button")
+    public void verify_And_Click_On_Submit_Goal_Button() {
+        try {
+            if (DriverAction.getElement(AppraisalManagementLocator.btnSubmitGoal).isDisplayed()
+                    && DriverAction.getElement(AppraisalManagementLocator.btnSubmitGoal).isEnabled()) {
+                DriverAction.click(AppraisalManagementLocator.btnSubmitGoal);
+                if (DriverAction.getElement(AppraisalManagementLocator.popupConfirm).isDisplayed()) {
+                    DriverAction.click(AppraisalManagementLocator.btnYesConfirmGoal);
+                }
+            }
+
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @Then("Click on Each column of first row and check the column is sorted")
+    public void click_On_Each_Column_Of_First_Row_And_Check_The_Column_Is_Sorted() {
+        try {
+            status = STATUS.FAIL;
+            List<WebElement> lstRowNames = DriverAction.getElements(AppraisalManagementLocator.rowListSort);
+            for (int i = 0; i < lstRowNames.size(); i++) {
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("Goal Type")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("KRA")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("KPI")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("Project")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("Goal Description")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("Status")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("Action")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
+                if (lstRowNames.get(i).getText().equalsIgnoreCase("log")) {
+                    DriverAction.click(lstRowNames.get(i));
+                    String ascProp = lstRowNames.get(i).getAttribute("class");
+                    if (ascProp.equalsIgnoreCase("sorting_asc"))
+                        status = STATUS.PASS;
+                }
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
