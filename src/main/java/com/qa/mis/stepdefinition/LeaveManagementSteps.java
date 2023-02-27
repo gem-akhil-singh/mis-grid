@@ -603,7 +603,8 @@ public class LeaveManagementSteps {
                     break;
                 case "Work From Home":
                     id = "tabApplyWFH";
-                    expectedFields = Arrays.asList("Period", "Half Day", "Reason", "Remarks", "Status");
+                    expectedFields = Arrays.asList("Period", "Half Day", "Reason", "Remarks", "Status",
+                            "Applied On", "Action");
                     break;
                 case "Comp Off":
                     id = "tabApplyCompOff";
@@ -878,6 +879,9 @@ public class LeaveManagementSteps {
                 case "Out Duty/Tour":
                     id = "tblOnDutyReqHistory_filter";
                     break;
+                case "Work From Home":
+                    id = "tblWFHHistory_filter";
+                    break;
             }
 
             if (DriverAction.isExist(LeaveManagementLocator.input_viewRequestFilter(id))) {
@@ -1021,27 +1025,33 @@ public class LeaveManagementSteps {
     public void verifyNumberOfRowsDisplayedForTab(String tab) {
         try {
             String id = null;
+            String idInfo = null;
             switch (tab) {
                 case "Leave":
                     id = "tabApplyLeave";
+                    idInfo = "tblLeaveHistory_info";
                     break;
                 case "Work From Home":
                     id = "tabApplyWFH";
+                    idInfo = "tblWFHHistory_info";
                     break;
                 case "Comp Off":
                     id = "tabApplyCompOff";
+                    idInfo = "tblCompOffHistory_info";
                     break;
                 case "Out Duty/Tour":
                     id = "tabApplyOnDutyReq";
+                    idInfo = "tblOnDutyReqHistory_info";
                     break;
                 case "Change Request":
                     id = "tabLWPChangeRequest";
+                    idInfo = "tblLegitimateHistory_info";
                     break;
             }
 
             int rows = DriverAction.getElements(LeaveManagementLocator.tableRows_viewRequestStatus(id)).size();
-            if (DriverAction.isExist(LeaveManagementLocator.label_leaveTableEntries)) {
-                String entries = DriverAction.getElementText(LeaveManagementLocator.label_leaveTableEntries);
+            if (DriverAction.isExist(LeaveManagementLocator.label_leaveTableEntries(idInfo))) {
+                String entries = DriverAction.getElementText(LeaveManagementLocator.label_leaveTableEntries(idInfo));
                 if (entries.contains(rows + "")) {
                     GemTestReporter.addTestStep("Verifying Entries", "Entries matching passed",
                             STATUS.PASS, DriverAction.takeSnapShot());
@@ -1114,6 +1124,131 @@ public class LeaveManagementSteps {
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Click on {string} button for {string}")
+    public void clickOnButtonFor(String button, String tab) {
+        try {
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = button.equals("Next") ? "tblLeaveHistory_next" : "tblLeaveHistory_previous";
+                    break;
+                case "Work From Home":
+                    id = button.equals("Next") ? "tblWFHHistory_next" : "tblWFHHistory_previous";
+                    break;
+                case "Comp Off":
+                    id = button.equals("Next") ? "tblCompOffHistory_next" : "tblCompOffHistory_previous";
+                    break;
+                case "Out Duty/Tour":
+                    id = button.equals("Next") ? "tblOnDutyReqHistory_next" : "tblOnDutyReqHistory_previous";
+                    break;
+                case "Change Request":
+                    id = button.equals("Next") ? "tblLegitimateHistory_next" : "tblLegitimateHistory_previous";
+                    break;
+            }
+            if (DriverAction.isExist(LeaveManagementLocator.button_nextOrPreviousButton(id))) {
+                DriverAction.click(LeaveManagementLocator.button_nextOrPreviousButton(id), button);
+            } else {
+                GemTestReporter.addTestStep("Error Occur", "Fail to click " + button + " button",
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Verify table navigate to {string} page for {string}")
+    public void verifyTableNavigateToPageForTab(String button, String tab) {
+        try {
+            String id = null;
+            switch (tab) {
+                case "Leave":
+                    id = "tblLeaveHistory_previous";
+                    break;
+                case "Work From Home":
+                    id = "tblWFHHistory_previous";
+                    break;
+                case "Comp Off":
+                    id = "tblCompOffHistory_previous";
+                    break;
+                case "Out Duty/Tour":
+                    id = "tblOnDutyReqHistory_previous";
+                    break;
+                case "Change Request":
+                    id = "tblLegitimateHistory_previous";
+                    break;
+            }
+            if (button.equals("Next")) {
+                String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
+                        button_nextOrPreviousButton(id), "class");
+                if (!expectedValue.contains("disabled")) {
+                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
+                            STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+
+            } else {
+                String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
+                        button_nextOrPreviousButton(id), "class");
+                if (expectedValue.contains("disabled")) {
+                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
+                            STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("Verify Outing Date {string} for Out Duty Tour Details Popup")
+    public void verifyOutingDateForOutDutyTourDetailsPopup(String period) {
+        try {
+            if (DriverAction.isExist(LeaveManagementLocator.table_rowOutDutyDeatils)) {
+                GemTestReporter.addTestStep("Verifying Details Page Date", "Date matching passed",
+                        STATUS.PASS, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("Verifying Details Page Date", "Date matching failed",
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
+
+    @And("User enters {string} period in search box for out duty details")
+    public void userEntersPeriodInSearchBoxForOutDutyDetails(String outingDate) {
+        if (DriverAction.isExist(LeaveManagementLocator.input_rowOutDutyFilter)) {
+            DriverAction.typeText(LeaveManagementLocator.input_rowOutDutyFilter, outingDate, "outing date");
+        } else {
+            GemTestReporter.addTestStep("Error Occur", "Fail to type text in search",
+                    STATUS.FAIL, DriverAction.takeSnapShot());
+        }
+    }
+
+    @And("Verify {string} period as search result for out duty details")
+    public void verifyPeriodAsSearchResultForOutDutyDetails(String outingDate) {
+        if (DriverAction.isExist(LeaveManagementLocator.input_rowOutDutyFilter)) {
+            List<WebElement> rows =
+                    DriverAction.getElements(LeaveManagementLocator.table_allRowsOutDutyDeatils);
+            for (WebElement row : rows) {
+                String rowData = DriverAction.getElementText(row);
+                if (rowData.contains(outingDate)) {
+                    GemTestReporter.addTestStep("Verifying Result", "Result matching passed." +
+                                    "\nExpected Result - " + outingDate + "\nActual Result - " + rowData,
+                            STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Verifying Result", "Result matching failed." +
+                                    "\nExpected Result - " + outingDate + "\nActual Result - " + rowData,
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+            }
         }
     }
 }

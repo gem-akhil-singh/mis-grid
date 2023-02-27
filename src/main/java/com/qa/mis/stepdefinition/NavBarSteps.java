@@ -640,32 +640,33 @@ public class NavBarSteps {
 
     @And("^Verify tab (.+) with columns (.+)")
     public void verifyECDCColumns(String tab, String columns) {
-        try {
-            int Flag = 0;
-            String Column = "";
-            String[] tabColumns = columns.split(",");
-
+        int Flag = 0;
+        String Column = "";
+        By locator = null;
+        String[] tabColumns = columns.split(",");
+        if (tab.equals("Delivery Council")) {
+            DriverAction.click(NavBarLocator.ECDCHierarchyTab(tab), tab);
+        }
+        DriverAction.waitSec(5);
+        for (int j = 0; j < tabColumns.length; j++) {
+            Column = tabColumns[j];
             if (tab.equals("Delivery Council")) {
-                DriverAction.click(NavBarLocator.ECDCHierarchyTab(tab), tab);
-            }
-            DriverAction.waitSec(5);
-            for (int j = 0; j < tabColumns.length; j++) {
-                Column = tabColumns[j];
-                WebElement TabColumns = DriverAction.getElement(NavBarLocator.ECDCHierarchycolumns(Column));
-                if (TabColumns.isDisplayed()) {
-                    Flag = 1;
-                } else {
-                    Flag = 0;
-                    break;
-                }
-            }
-            if (Flag == 1) {
-                GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", "All columns are present", STATUS.PASS, DriverAction.takeSnapShot());
+                locator = NavBarLocator.DCHierarchycolumns(Column);
             } else {
-                GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", Column + " Column " + "is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+                locator = NavBarLocator.ECHierarchycolumns(Column);
             }
-        } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            WebElement TabColumns = DriverAction.getElement(locator);
+            if (TabColumns.isDisplayed()) {
+                Flag = 1;
+            } else {
+                Flag = 0;
+                break;
+            }
+        }
+        if (Flag == 1) {
+            GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", "All columns are present", STATUS.PASS, DriverAction.takeSnapShot());
+        } else {
+            GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", Column + " Column " + "is not present", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 }

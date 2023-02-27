@@ -85,5 +85,13 @@ public class NavBarLocator {
     public static By ECDCHierarchycolumns(String columns) {
         return By.xpath("//body[contains(@class,'modal-open')]//tr/th/p[contains(text(),'" + columns + "')]");
     }
+
+    public static By ECHierarchycolumns(String columns) {
+        return By.xpath("//body[contains(@class,'modal-open')]//div[@id='ecTableDiv']//tr/th/p[text()='" + columns + "']");
+    }
+
+    public static By DCHierarchycolumns(String columns) {
+        return By.xpath("//body[contains(@class,'modal-open')]//div[@id='dcTableDiv']//tr/th/p[text()='" + columns + "']");
+    }
 }
 

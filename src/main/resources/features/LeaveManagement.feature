@@ -8,7 +8,6 @@ Feature: MIS - Leave Management
     When User is on MIS Home Page
 
   # CompOff
-  @JenkinsJobs
   Scenario Outline: Navigate to Leave Management > Comp Off tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
@@ -19,7 +18,6 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  @JenkinsJobs
   Scenario Outline: Verify Date and Reason are mandatory fields for Comp Off
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
@@ -33,7 +31,6 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | date        | reason        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | CompOffDate | CompOffReason |
 
-  @JenkinsJobs
   Scenario Outline: Select Date from Comp Off Date dropdown
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
@@ -753,8 +750,34 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | columnName |
       | Leave Management | View Request Status | Leave | Period     |
 
-#    Next Button
-#  Previous Button
+  Scenario Outline: Page Next for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on "Next" button for "<tab>"
+    And Verify table navigate to "Next" page for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab   |
+      | Leave Management | View Request Status | Leave |
+
+
+  Scenario Outline: Page Previous for Leave Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on "Next" button for "<tab>"
+    And Verify table navigate to "Next" page for "<tab>"
+    And Click on "Previous" button for "<tab>"
+    And Verify table navigate to "Previous" page for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab   |
+      | Leave Management | View Request Status | Leave |
+
+
   Scenario Outline: Cancel Leave for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
@@ -926,3 +949,202 @@ Feature: MIS - Leave Management
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                | header                       |
       | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 | Out Duty/Tour Request Detail |
+
+  Scenario Outline: Verify Date in View Window for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+    And Click on view button for Out Duty Tour searched result
+    And Verify the detailed popup "<header>" for Out Duty Tour
+    And Verify Outing Date "<leavePeriod>" for Out Duty Tour Details Popup
+
+    Examples:
+      | parentTab        | childTab            | tab           | leavePeriod                | header                       |
+      | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 | Out Duty/Tour Request Detail |
+
+  Scenario Outline: Search in View Window for Out Duty/Tour
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+    And Click on view button for Out Duty Tour searched result
+    And Verify the detailed popup "<header>" for Out Duty Tour
+    And User enters "<outingDate>" period in search box for out duty details
+    And Verify "<outingDate>" period as search result for out duty details
+
+    Examples:
+      | parentTab        | childTab            | tab           | leavePeriod                | header                       | outingDate  |
+      | Leave Management | View Request Status | Out Duty/Tour | 10 Mar 2023 To 10 Apr 2023 | Out Duty/Tour Request Detail | 10-Mar-2023 |
+
+
+  Scenario Outline: Navigate to Leave Management > View Request Status tab > Work From Home
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Work From Home |
+
+  Scenario Outline: Verify Date Range field is present for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Work From Home |
+
+  Scenario Outline: Enter Invalid Date Range for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Invalid" date "<date>" in Date range field
+    And Verify "Invalid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab            | date         | message          |
+      | Leave Management | View Request Status | Work From Home | 01 Apr 20000 | No results found |
+
+  Scenario Outline: Enter Valid Date Range for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status "Date Range" dropdown
+    And Enter "Valid" date "<date>" in Date range field
+    And Verify "Valid" message "<message>" displays
+    Examples:
+      | parentTab        | childTab            | tab            | date                      | message                   |
+      | Leave Management | View Request Status | Work From Home | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
+
+  Scenario Outline: Click on Export Options Option for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              |
+      | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print |
+
+  Scenario Outline: Click on Print Option for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Print page appears
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton |
+      | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Print        |
+
+  Scenario Outline: Click on Excel Option for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | fileName              |
+      | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Excel        | WFH History List.xlsx |
+
+  Scenario Outline: Click on Copy Option for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify Copy to clipboard message "<message>"
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | message           |
+      | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
+
+  Scenario Outline: Verify PDF option for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on View Request Status export button for "<tab>"
+    And Verify available export options "<exportList>"
+    And Click on View Request Status "<exportButton>" button
+    And Verify file "<fileName>" is downloaded in MIS
+    Examples:
+      | parentTab        | childTab            | tab            | exportList              | exportButton | fileName             |
+      | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | PDF          | WFH History List.pdf |
+
+  Scenario Outline: Verify Number of Entries displayed for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Verify number of rows displayed for "<tab>" tab
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Work From Home |
+
+  Scenario Outline: Enter WFH Period Name in Search Box for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<period>" period in search box for "<tab>"
+    And Verify "<period>" period as search result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab            | period      |
+      | Leave Management | View Request Status | Work From Home | 15-Feb-2023 |
+
+  Scenario Outline: Sort columns for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Sort column "<columnName>" for "<tab>"
+    And Verify sorted column "<columnName>" result for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab            | columnName |
+      | Leave Management | View Request Status | Work From Home | Reason     |
+
+  Scenario Outline: Page Next for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on "Next" button for "<tab>"
+    And Verify table navigate to "Next" page for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Work From Home |
+
+
+  Scenario Outline: Page Previous for WFH Tab
+    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And Click on "Next" button for "<tab>"
+    And Verify table navigate to "Next" page for "<tab>"
+    And Click on "Previous" button for "<tab>"
+    And Verify table navigate to "Previous" page for "<tab>"
+
+    Examples:
+      | parentTab        | childTab            | tab            |
+      | Leave Management | View Request Status | Work From Home |

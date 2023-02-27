@@ -108,7 +108,9 @@ public class LeaveManagementLocator {
         return By.xpath("//div[@id='" + id + "']/section/div/div/div//tbody//tr/td");
     }
 
-    public static By label_leaveTableEntries = By.xpath("//div[@id='tblLeaveHistory_info']");
+    public static By label_leaveTableEntries(String id) {
+        return By.xpath("//div[@id='" + id + "']");
+    }
 
     public static By button_leaveCancel(String id) {
         return By.xpath("//div[@id='" + id + "']/section/div/div/div//tbody//tr/td/button");
@@ -118,4 +120,19 @@ public class LeaveManagementLocator {
     public static By button_outDutyView = By.xpath("//table[@id='tblOnDutyReqHistory']//tbody/tr[1]/td" +
             "//button[contains(@class,'info')]");
     public static By header_outDutyViewDetails = By.xpath("//div[@id='dateModal']//h4[@class='modal-title']");
+
+    public static By button_nextButton(String id) {
+        return By.xpath("//li[@id='" + id + "']");
+    }
+
+    public static By button_nextOrPreviousButton(String id) {
+        return By.xpath("//li[@id='" + id + "']");
+    }
+
+    public static By table_rowOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr/td");
+    public static By table_allRowsOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr");
+    public static By input_rowOutDutyFilter = By.xpath("//div[@id='tblOutingData_filter']//input");
+
+
+
 }
