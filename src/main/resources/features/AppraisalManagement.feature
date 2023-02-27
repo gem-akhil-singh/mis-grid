@@ -75,3 +75,63 @@ Feature: AppraisalManagement
     And Verify My Goal tab
     Then Verify the Pagination list
     And click on each page and check navigation
+
+  Scenario: Check delete with remark and without remark
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    Given Check if delete button is present in Action tab and Click on Delete button
+    And Check remarks pop up is displayed and Click on submit button
+    Then verify the validation
+    Given Check if delete button is present in Action tab and Click on Delete button
+    Then Type remark in textbox and click on submit button
+    And Validate confirm window and Click on confirm button
+
+  Scenario Outline: Click on draft without filling any fields
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    When Click Add or Update Goals
+    Then Click on plus sign in Actions column
+    And Select KPI from Dropdown
+    Then Click on Draft button and Verify empty fields
+    Then Add Project details in textbox 'ProjectName'
+    And Add Goal Description in textbox 'GoalDescription'
+    Then Click on Draft button
+    Then Validate success window and click on ok button
+    Examples:
+      | ProjectName | GoalDescription |
+      | TestProject | TestGoal        |
+
+  Scenario Outline: Verify adding data in each field
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    When Click Add or Update Goals
+    Then Click on plus sign in Actions column
+    And Select KPI from Dropdown
+    Then Click on Draft button
+    Then Add Project details in textbox "ProjectName"
+    And Add Goal Description in textbox 'GoalDescription'
+    Then Click on Draft button
+    Then Validate success window and click on ok button
+    Examples:
+      | ProjectName | GoalDescription |
+      | TestProject | TestGoal        |
+
+  Scenario: Submit Goals
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    Then Verify and click on Submit Goal button
+
+  Scenario:Verify column sorting working or not
+    When Click on Appraisal Management link
+    Then Click on Add Goals link
+    Then Verify Add goal window
+    And Verify My Goal tab
+    Then Click on Each column of first row and check the column is sorted

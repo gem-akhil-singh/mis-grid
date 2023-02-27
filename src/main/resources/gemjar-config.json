@@ -7,10 +7,10 @@
   "gemjarToken": "259351c4-1137-4377-b56f-5f2ac3e0db301675253783077",
   "jewelEntryUrl": "https://apis.gemecosystem.com/enter-point",
   "glueCode": "com.qa.mis.stepdefinition",
-  "remoteDriverUrl" : "http://20.219.41.21:4444/wd/hub",
+  "remoteDriverUrl": "http://20.219.41.21:4444/wd/hub",
   "emailReport": "N",
-  "emailTO": "shruti.kukreja@geminisolutions.com",
-  "emailCC": "shubham.kumar@geminisolutions.com",
+  "emailTO": "shruti.kukreja@geminisolutions.com,sajith.j@geminisolutions.com",
+  "emailCC": "shubham.kumar@geminisolutions.com,tushar.chauhan@geminisolutions.com,shruti.singh@geminisolutions.com,divya.madan@geminisolutions.com,charu.garg@geminisolutions.com,laxmi.sisode@geminisolutions.com,touqeer.subhani@geminisolutions.com",
   "dev": {
     "browserName": "firefox",
     "launchUrl": "url",
@@ -22,7 +22,7 @@
     "browserTimeout": 100
   },
   "beta": {
-    "browserName": "grid",
+    "browserName": "chrome",
     "launchUrl": "https://mymis.geminisolutions.com",
     "browserTimeout": 100
   }

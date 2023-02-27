@@ -14,4 +14,10 @@ Feature: Automating Timesheet Scenarios MIS
       | Configure Timesheet  |
       | Create Timesheet     |
       | Manage Task Template |
-      | Tushar               |
+
+  Scenario Outline: MIS: Validate incorrect value Timesheet Table Headers
+    Given Click on Timesheet
+    When Fail click on Timesheet option as <timesheet>
+    Examples:
+      | timesheet |
+      | Time      |
