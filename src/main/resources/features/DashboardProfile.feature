@@ -1,10 +1,5 @@
-Feature: MIS_Automation
 
-  #Background: These steps are common for every scenario
-    #When User click on mislink
-   # And User enter Username
-   # And User enter password
-    #Then User click on Sign In button
+Feature: MIS_Automation
 
 
   Background: Launch MIS url

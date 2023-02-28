@@ -50,8 +50,9 @@ public class DashboardProfileLocator {
 
     public static By fromDate=By.xpath("(//input[@name='fromDate'])[1]");
 
-    public static By selectFromDate=By.xpath("(//td[@class='day'])[1]");
-
+  public static By selectNextArrow=By.xpath("//body[1]/div[16]/div[1]/table[1]/thead[1]/tr[2]/th[3]");
+    public static By selectFromDate=By.xpath("(//td[@class='day'])[27]");
+    //td[@class='day'])[27]"
     public static By tillDate=By.xpath("//input[@id='tillDateEmp']");
 
     public static By selectTillDate=By.xpath("(//td[@class='day'])[3]");
