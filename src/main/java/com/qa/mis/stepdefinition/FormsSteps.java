@@ -3,15 +3,20 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.FormsLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.nio.channels.ScatteringByteChannel;
+import java.time.Duration;
 
 public class FormsSteps {
     public static String dirPath = System.getProperty("user.dir");
@@ -270,7 +275,7 @@ public class FormsSteps {
                 GemTestReporter.addTestStep("User clicks on search field", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Unable to land on the landing page" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -329,8 +334,8 @@ public class FormsSteps {
         }
     }
 
-    @Then("Verify the message {string}")
-    public void verifyTheMessage(String warningMsg) {
+    @Then("Verify the warning {string}")
+    public void verifyThe(String warningMsg) {
         try {
             DriverAction.waitUntilElementAppear(FormsLocator.warningMsg, 5);
 
@@ -338,7 +343,6 @@ public class FormsSteps {
             GemTestReporter.addTestStep("User verifies the warning message", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
-
     @Then("User clicks on ok button")
     public void userClicksOnOkbtn() {
         try {
@@ -402,16 +406,17 @@ public class FormsSteps {
                 GemTestReporter.addTestStep("User Clicks on Yes Button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "User is unable to click on yes button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-
     }
 
     @And("User hovers and clicks on download button")
     public void userHoversAndClicksOnDownloadBtn() {
         try {
-            DriverAction.waitSec(7);
+            DriverAction.waitSec(3);
             DriverAction.click(FormsLocator.downloadBtn);
+            DriverAction.waitSec(3);
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("User Clicks on Download Button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -426,6 +431,4 @@ public class FormsSteps {
             GemTestReporter.addTestStep("User validates the error message", "Validation is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
-
-
 }

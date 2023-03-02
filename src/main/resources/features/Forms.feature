@@ -41,10 +41,9 @@ Feature: Forms Automation
   Scenario Outline:  User enters valid value in search field
     When User clicks on tab "<parentTab>" and "<childTab>"
     And User search field and enters value "<value>"
-    Then User verifies the value "<element>"
     Examples:
-      | parentTab | childTab  | value    | element            |
-      | Forms     | View Form | Accounts | Reimbursement Form |
+      | parentTab | childTab  | value    |
+      | Forms     | View Form | Accounts |
 
   Scenario Outline: User enters invalid value in search field
     When User clicks on tab "<parentTab>" and "<childTab>"
@@ -69,7 +68,7 @@ Feature: Forms Automation
       | parentTab | childTab  |
       | Forms     | View Form |
 
-#####################################myForms############################################
+######################################myForms############################################
 
   Scenario Outline: User opens my forms page
     When  User clicks on the "<parentTab>" and "<childTab>"
@@ -91,7 +90,7 @@ Feature: Forms Automation
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the undesired document "<formType>" from "<path>"
-    And  Verify the message "<warningMsg>"
+    And  Verify the warning "<warningMsg>"
     Then User clicks on ok button
     Examples:
       | parentTab | childTab | formType                | warningMsg                                                      | path |

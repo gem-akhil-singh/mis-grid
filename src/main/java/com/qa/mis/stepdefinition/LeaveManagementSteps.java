@@ -735,9 +735,9 @@ public class LeaveManagementSteps {
                     id = "tabApplyCompOff";
                     break;
                 case "Out Duty/Tour":
-                    id = "tabApplyOuting";
+                    id = "tabApplyOnDutyReq";
                     break;
-                case "LWP Change Request":
+                case "Change Request":
                     id = "tabLWPChangeRequest";
                     break;
             }

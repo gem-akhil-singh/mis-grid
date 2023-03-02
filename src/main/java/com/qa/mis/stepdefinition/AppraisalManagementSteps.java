@@ -11,19 +11,19 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import com.qa.mis.utility.*;
 import org.apache.commons.codec.binary.Base64;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.Year;
 import java.util.*;
 
@@ -121,7 +121,9 @@ public class AppraisalManagementSteps {
     @When("Click on Appraisal Management link")
     public void click_on_appraisal_management_link() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkApraisalMgmnt, 3);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(3));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lnkApraisalMgmnt));
+            //   DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkApraisalMgmnt, 3);
             status = DriverAction.click(AppraisalManagementLocator.lnkApraisalMgmnt);
             //    GemTestReporter.addTestStep("Click on Appraisal Management link", "Appraisal Management link is clicked", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
@@ -426,7 +428,9 @@ public class AppraisalManagementSteps {
     @Given("Verify button is enabled and clickable")
     public void verify_button_is_enabled_and_clickable() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnExport, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnExport));
+
             if (DriverAction.getElement(AppraisalManagementLocator.btnExport).isEnabled() && DriverAction.getElement(AppraisalManagementLocator.btnExport).isEnabled()) {
                 status = STATUS.PASS;
             } else
@@ -575,7 +579,11 @@ public class AppraisalManagementSteps {
 
                 if (pages.get(pages.size() - 1).getText().equalsIgnoreCase("Next")) {
                     for (int i = 1; i < pages.size() - 2; i++) {
-                        DriverAction.click(pages.get(i));
+                        WebElement ele=DriverManager.getWebDriver().findElement(By.xpath("//ul[@class='pagination']/li//a[text()='"+i+"']"));
+                        WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
+                         wait.until(ExpectedConditions.elementToBeClickable(ele));
+                        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getWebDriver();
+                        js.executeScript("arguments[0].click();", ele);
                         DriverAction.waitSec(2);
                         count = count + 1;
                     }

@@ -3,12 +3,16 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +20,10 @@ public class OrganizationStructureSteps {
     @Given("Navigate to Organization Structure")
     public void Navigate_to_Organization_Structure() {
         try {
-            if (DriverAction.isExist(OrgStructureLocator.orbbtn)) {
-                DriverAction.click(OrgStructureLocator.orbbtn);
-            } else
-                GemTestReporter.addTestStep("Element not found", "Organization Module not clicked", STATUS.FAIL, DriverAction.takeSnapShot());
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(OrgStructureLocator.orbbtn));
+
+            DriverAction.click(OrgStructureLocator.orbbtn);
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -32,7 +36,7 @@ public class OrganizationStructureSteps {
             if (DriverAction.isExist(OrgStructureLocator.searchtab)) {
                 DriverAction.typeText(OrgStructureLocator.searchtab, empname);
             } else
-                GemTestReporter.addTestStep("Element not found", "Search filed not found", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("Element not found", "Search field not found", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -87,7 +91,7 @@ public class OrganizationStructureSteps {
     }
 
     @Then("^Validate unavailability of Employee (.+) and Designation (.+)")
-    public void validateUnavailabilityOfEmployeeEmpnameAndDesignationDesignation(String empname,String designation) {
+    public void validateUnavailabilityOfEmployeeEmpnameAndDesignationDesignation(String empname, String designation) {
         try {
             DriverAction.waitSec(5);
             if (DriverAction.isExist(OrgStructureLocator.getemp(empname))) {
