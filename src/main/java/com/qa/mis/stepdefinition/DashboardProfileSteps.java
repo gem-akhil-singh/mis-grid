@@ -7,6 +7,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.sql.Driver;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.qa.mis.locators.DashboardProfileLocator.*;
 
 public class DashboardProfileSteps {
@@ -243,16 +248,26 @@ public class DashboardProfileSteps {
     @And("^user click on from date and click on select from date$")
     public void userClickOnFromDate() {
         try {
-            //DriverAction.waitUntilElementAppear(fromDate, 7);
-            DriverAction.waitSec(5);
-            DriverAction.click(fromDate, "from date");
+            DriverAction.waitUntilElementAppear(fromDate, 7);
+
+            DriverAction.click(fromDate,"click on from date");
+            DriverAction.waitSec(7);
+            DriverAction.click(selectNextArrow,"click on next arrow");
+            DriverAction.waitSec(7);
+//            DriverAction.waitSec(5);
+//            Calendar cal = Calendar.getInstance();
+//            Date d = new Date();
+//            Date fromDate1 = cal.getTime();
+//            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+//            String frmDt=format1.toString();
+//            DriverAction.getElement(selectFromDate).sendKeys(frmDt);
         } catch (Exception e) {
             // e.printStackTrace();
             GemTestReporter.addTestStep("ERROR", "error in selecting from & select date" + e, STATUS.FAIL);
         }
         try {
             // DriverAction.waitUntilElementAppear(selectFromDate, 3);
-            DriverAction.waitSec(5);
+            DriverAction.waitSec(7);
             DriverAction.click(selectFromDate, "select from date");
         } catch (Exception e) {
             //e.printStackTrace();
@@ -264,18 +279,20 @@ public class DashboardProfileSteps {
     public void userClickOnTillDate() {
         try {
             // DriverAction.waitUntilElementAppear(tillDate, 3);
-            DriverAction.waitSec(5);
+            DriverAction.waitSec(7);
             DriverAction.click(tillDate, "till date");
+            DriverAction.click(selectNextArrow,"click on next arrow");
+            DriverAction.waitSec(7);
         } catch (Exception e) {
             //  e.printStackTrace();
-            GemTestReporter.addTestStep("ERROR", "error in till date" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "error in till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         try {
             DriverAction.waitUntilElementAppear(selectTillDate, 3);
             DriverAction.click(selectTillDate, "select till date");
         } catch (Exception e) {
             //  e.printStackTrace();
-            GemTestReporter.addTestStep("ERROR", "error found while clicking on till date" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "error found while clicking on till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 

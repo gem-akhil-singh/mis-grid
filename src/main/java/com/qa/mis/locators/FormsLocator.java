@@ -55,8 +55,9 @@ public class FormsLocator {
 public static By deactivateBtn = By.xpath("//button[@class=\"btn btn-sm btn-success\"]");
     public static By activeForm = By.xpath("(//td[contains(text(),'Loyalty Redemption Form.pdf')])[1]");
     public static By yesBtn = By.xpath("//button[@class=\"confirm btn btn-lg btn-danger\"]");
-//    public static By downloadBtn = By.xpath("//button[@data-original-title=\"Download\"]");
-    public static By downloadBtn=By.xpath("//button[@class=\"btn btn-sm teal\" and @data-original-title=\"Download\"]");
+
+   public static By downloadBtn=By.xpath("//table//td[@class=' text-center']//i[contains(@class,'fa fa-download')]");
+
     public static By errorMsg = By.xpath("//p[contains(text(),'File with same name already exists')]");
 
 }
