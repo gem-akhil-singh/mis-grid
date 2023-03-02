@@ -9,7 +9,7 @@ public class ReferalLocator {
 
     // public static By dsbrdVisible=By.xpath("//a[@href='https://mymis.geminisolutions.com/Dashboard/Index']");
 
-    public static By verifyJdWindow = By.xpath("//section[@id='Referrals']");
+    public static By verifyJdWindow = By.xpath("//h3[text()='Referral']");
 
     public static By referralAction = By.xpath("//button[@title='Refer']");
 
@@ -27,9 +27,15 @@ public class ReferalLocator {
 
     public static By pdfVisible = By.xpath("//div[@id='viewDocumentModal']");
 
-    public static By manualVisible = By.xpath("//a[text()='Manual']");
+    //public static By manual=By.xpath("//a[text()='Manual']");
+
+    public static By manualVisible = By.xpath("//div[@class='col-md-9']/a[2]");
+            //"//a[@onclick='showStepsPopup()']");
+        //    By.xpath("//a[text()='Manual']");
 
     public static By resumeUpload = By.xpath("//input[@id='resume']");
+
+    public static By selectHimOrHer=By.xpath("//select[@id='relationName']");
 
     public static By resumeWarning = By.xpath("//div[@class='sa-icon sa-warning pulseWarning']");
 

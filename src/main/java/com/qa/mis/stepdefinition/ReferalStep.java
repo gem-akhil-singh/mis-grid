@@ -3,11 +3,20 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import io.cucumber.java.an.E;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.Driver;
+import java.time.Duration;
 
 import static com.qa.mis.locators.DashboardProfileLocator.*;
 import static com.qa.mis.locators.ReferalLocator.*;
@@ -15,10 +24,10 @@ import static com.qa.mis.locators.ReferalLocator.*;
 public class ReferalStep {
 
 
-    @When("^user click on url referal$")
-    public void userClickOnUrl() {
-        DriverAction.launchUrl("https://mymis.geminisolutions.com/");
-    }
+//    @When("^user click on url referal$")
+//    public void userClickOnUrl() {
+//        DriverAction.launchUrl("https://mymis.geminisolutions.com/");
+//    }
 
     @When("^Enter username referal$")
     public void userName() {
@@ -42,64 +51,63 @@ public class ReferalStep {
         }
     }
 
-        @Then("^click on close button referal$")
-        public void clickOnCloseButton () {
+    @Then("^click on close button referal$")
+    public void clickOnCloseButton() {
 
-            try {
-                //  DriverAction.waitUntilElementAppear(popUpCloseButton, 7);
-                DriverAction.waitSec(5);
-                DriverAction.click(popUpCloseButton, "close button");
-                // DriverAction.click(clickOnChangeDetails,"change details button");
-            } catch (Exception e) {
-                // e.printStackTrace();
-                GemTestReporter.addTestStep("ERROR", "erroe is close button" + e, STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-
+        try {
+            DriverAction.waitSec(7);
+            DriverAction.click(popUpCloseButton, "close button");
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "erroe is close button" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
+
+    }
 
     @When("^verify dashboard page is loaded properly$")
     public void dashboardPageIsLoadedProperly() {
         try {
-            DriverAction.waitUntilElementAppear(dashboardVisible, 5);
-            DriverAction.getElementText(dashboardVisible);
+//            DriverAction.getElementText(dashboardVisible);
+            DriverAction.waitSec(5);
             String dashbrdPage = DriverAction.getElementText(dashboardVisible);
             if (dashbrdPage.equals("dashboardVisible")) {
                 GemTestReporter.addTestStep("Dashboard Visible", "Dashboard page is loaded properly", STATUS.PASS, DriverAction.takeSnapShot());
                 DriverAction.waitSec(10);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "error in Dashboard page" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "error in Dashboard page" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
     @Then("^verify JD window is visible$")
     public void VerifyJdWindow() {
         try {
-            DriverAction.waitUntilElementAppear(verifyJdWindow, 3);
-            DriverAction.getElementText(verifyJdWindow);
-            String Vw = DriverAction.getElementText(verifyJdWindow);
-            if (Vw.equals(verifyJdWindow)) {
+           // DriverAction.waitUntilElementAppear(verifyJdWindow, 3);
+            DriverAction.waitSec(5);
+          //  DriverAction.getElementText(verifyJdWindow);
+            String VerfyWndw = DriverAction.getElementText(verifyJdWindow);
+            //  if (Vw.equals(verifyJdWindow)) {
+            if (VerfyWndw.contains("Referrals")) {
                 GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.PASS, DriverAction.takeSnapShot());
                 DriverAction.waitUntilElementAppear(verifyJdWindow, 2);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "error in verifying JD window" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "error in verifying JD window" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
-        @And("^user click on referral action$")
-        public void userClickOnReferralAction () {
-            try {
-                DriverAction.waitSec(5);
-                //  DriverAction.scrollIntoView(referralAction);
-                DriverAction.waitUntilElementAppear(referralAction, 7);
-                DriverAction.click(referralAction, "referral action button");
-                DriverAction.waitUntilElementAppear(referralAction, 7);
-            } catch (Exception e) {
-                // e.printStackTrace();
-                GemTestReporter.addTestStep("ERROR", "error occured in referral action" + e, STATUS.FAIL);
-            }
+    @And("^user click on referral action$")
+    public void userClickOnReferralAction() {
+        try {
+            DriverAction.waitSec(5);
+            //  DriverAction.scrollIntoView(referralAction);
+            DriverAction.waitUntilElementAppear(referralAction, 7);
+            DriverAction.click(referralAction, "referral action button");
+            DriverAction.waitUntilElementAppear(referralAction, 7);
+        } catch (Exception e) {
+            // e.printStackTrace();
+            GemTestReporter.addTestStep("ERROR", "error occured in referral action" + e, STATUS.FAIL);
         }
+    }
 
 
     @And("^validate referral creation$")
@@ -115,16 +123,17 @@ public class ReferalStep {
             GemTestReporter.addTestStep("ERROR", " ref action validation failed" + e, STATUS.FAIL);
         }
     }
+
     @And("^click on name under referral$")
     public void clickOnNameUnderReferral() {
         try {
             //DriverAction.waitUntilElementAppear(refName, 5);
             DriverAction.waitSec(5);
-            DriverAction.click(refName,"click on referal name");
+            DriverAction.click(refName, "click on referal name");
             DriverAction.waitSec(3);
             DriverAction.typeText(refName, "Sahra");
         } catch (Exception e) {
-          //  e.printStackTrace();
+            //  e.printStackTrace();
             GemTestReporter.addTestStep("ERROR", "name under ref error " + e, STATUS.FAIL);
         }
     }
@@ -142,17 +151,25 @@ public class ReferalStep {
     @When("^user checks referral section$")
     public void userChecksReferralSection() {
         DriverAction.getElementText(refSection);
+        DriverAction.waitSec(5);
         String refferalSection = DriverAction.getElementText(refSection);
-        if (refferalSection.equals(refSection)) {
+        if (refferalSection.contains("Referral"))
             GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.PASS, DriverAction.takeSnapShot());
-        }
+
+        else
+            GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.FAIL, DriverAction.takeSnapShot());
 
 
         String verWindow = DriverAction.getElementText(verifyJdWindow);
-        if (verWindow.equals(verifyJdWindow)) {
+        if (verWindow.contains("Referral")) {
             GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.PASS, DriverAction.takeSnapShot());
-            DriverAction.waitUntilElementAppear(verifyJdWindow, 2);
+            DriverAction.waitSec(7);
+            // DriverAction.waitUntilElementAppear(verifyJdWindow, 2);
         }
+        else
+
+            GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
+
     }
 
     @And("^click on email under referral$")
@@ -164,14 +181,14 @@ public class ReferalStep {
 
     @And("^enter the email address$")
     public void enterTheEmailAddress() {
-      //  DriverAction.waitUntilElementAppear(refEmail, 2);
+        //  DriverAction.waitUntilElementAppear(refEmail, 2);
         DriverAction.waitSec(5);
         DriverAction.typeText(refEmail, "abcde");
     }
 
     @And("^click on save$")
     public void clickOnSave() {
-       // DriverAction.waitUntilElementAppear(refSaveButton, 2);
+        // DriverAction.waitUntilElementAppear(refSaveButton, 2);
         DriverAction.waitSec(5);
         DriverAction.click(refSaveButton, "click on save button under referral");
     }
@@ -183,7 +200,7 @@ public class ReferalStep {
             DriverAction.waitSec(5);
             DriverAction.getElementText(refWarning);
             String referralWarning = DriverAction.getElementText(refWarning);
-            if (referralWarning.equals(refWarning)) {
+            if (referralWarning.contains("Warning")) {
                 GemTestReporter.addTestStep("refWarning", "You have entered an invalid email address!", STATUS.PASS, DriverAction.takeSnapShot());
 
             }
@@ -196,7 +213,7 @@ public class ReferalStep {
     @And("click on FAQ")
     public void clickOnFAQ() {
         try {
-           // DriverAction.waitUntilElementAppear(clickFAQ, 3);
+            // DriverAction.waitUntilElementAppear(clickFAQ, 3);
             DriverAction.waitSec(5);
             DriverAction.click(clickFAQ, "click on FAQ");
 
@@ -216,14 +233,17 @@ public class ReferalStep {
     @And("click on Manual")
     public void clickOnManual() {
         try {
-            DriverAction.waitUntilElementAppear(manualVisible, 7);
-            //DriverAction.waitSec(10);
+
+         //   DriverAction.scrollIntoView(manualVisible);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),
+                    Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.elementToBeClickable(manualVisible));
             DriverAction.click(manualVisible, "click on manual");
         } catch (Exception e) {
-            e.printStackTrace();
-            //GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
+
     @Then("verify the manual is visible")
     public void verifyTheManualIsVisible() {
         try {
@@ -234,10 +254,27 @@ public class ReferalStep {
             GemTestReporter.addTestStep("ERROR", "verification of manual visible error" + e, STATUS.FAIL);
         }
     }
-    @And("click on upload file")
+
+    @And("user enter details and upload file")
     public void clickOnUploadFile() {
-        DriverAction.waitUntilElementAppear(resumeUpload, 2);
-        DriverAction.fileUpload(resumeUpload, "C:\\Users\\divya.madan");
+        //DriverAction.waitUntilElementAppear(resumeUpload, 2);
+        DriverAction.waitSec(10);
+
+
+         String dirPath = System.getProperty("user.dir");
+         DriverAction.click(refName);
+         DriverAction.typeText(refName,"Sarah");
+         DriverAction.click(refEmail);
+        DriverAction.typeText(refEmail, "abcde@gmail.com");
+        DriverAction.click(enterRefContNo);
+        DriverAction.typeText(enterRefContNo, "1234567890");
+        WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
+        Select dropDown = new Select(relationDropDown);
+        dropDown.selectByIndex(2);
+
+        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\17 may.docx");
+        DriverAction.click(refSaveButton);
+        DriverAction.waitSec(5);
     }
 
     @Then("^verify wrong format is uploaded$")
@@ -245,7 +282,7 @@ public class ReferalStep {
         try {
             DriverAction.waitUntilElementAppear(resumeWarning, 2);
             DriverAction.isExist(resumeWarning);
-            GemTestReporter.addTestStep("resume warning", "wrong format uploaded", STATUS.PASS, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", " upload error" + e, STATUS.FAIL);
         }

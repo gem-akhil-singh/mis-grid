@@ -3,12 +3,16 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.sql.Driver;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -248,19 +252,16 @@ public class DashboardProfileSteps {
     @And("^user click on from date and click on select from date$")
     public void userClickOnFromDate() {
         try {
-            DriverAction.waitUntilElementAppear(fromDate, 7);
+
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),
+                    Duration.ofSeconds(3));
+            wait.until(ExpectedConditions.elementToBeClickable(fromDate));
 
             DriverAction.click(fromDate,"click on from date");
             DriverAction.waitSec(7);
             DriverAction.click(selectNextArrow,"click on next arrow");
             DriverAction.waitSec(7);
-//            DriverAction.waitSec(5);
-//            Calendar cal = Calendar.getInstance();
-//            Date d = new Date();
-//            Date fromDate1 = cal.getTime();
-//            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-//            String frmDt=format1.toString();
-//            DriverAction.getElement(selectFromDate).sendKeys(frmDt);
+
         } catch (Exception e) {
             // e.printStackTrace();
             GemTestReporter.addTestStep("ERROR", "error in selecting from & select date" + e, STATUS.FAIL);
@@ -278,13 +279,13 @@ public class DashboardProfileSteps {
     @And("^user click on till date and select till date$")
     public void userClickOnTillDate() {
         try {
-            // DriverAction.waitUntilElementAppear(tillDate, 3);
+
             DriverAction.waitSec(7);
             DriverAction.click(tillDate, "till date");
             DriverAction.click(selectNextArrow,"click on next arrow");
             DriverAction.waitSec(7);
         } catch (Exception e) {
-            //  e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error in till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         try {
@@ -298,7 +299,7 @@ public class DashboardProfileSteps {
 
     @And("^click on location container$")
     public void clickOnLocationContainer() {
-        // DriverAction.waitUntilElementAppear(locationContainer,3);
+
         try {
             DriverAction.waitSec(5);
             DriverAction.click(locationContainer, "location container");
@@ -309,11 +310,11 @@ public class DashboardProfileSteps {
 
     @And("^select the location from the list$")
     public void selectTheLocationFromTheList() {
-        //DriverAction.waitUntilElementAppear(selectLocation, 2);
+
         try {
             DriverAction.waitSec(5);
             DriverAction.click(selectLocation, "select location");
-            //DriverAction.waitSec(5);
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "select location error " + e, STATUS.FAIL);
         }
@@ -327,7 +328,7 @@ public class DashboardProfileSteps {
 
     @Then("^verify the warning message$")
     public void verifyTheWarningMessage() {
-        //DriverAction.click(warning,"warning alert message");
+
         try {
             DriverAction.getElementText(warning);
             String s = DriverAction.getElementText(warning);
@@ -366,7 +367,7 @@ public class DashboardProfileSteps {
         try {
             DriverAction.click(clickOnChangeDetails, "change details button");
             DriverAction.click(clickOnUpdateAdd, "update add button");
-            //DriverAction.waitSec(3);
+            DriverAction.waitSec(3);
             DriverAction.typeText(enterPincode, "121");
             DriverAction.click(updateButtonAdd);
 
@@ -449,14 +450,14 @@ public class DashboardProfileSteps {
 
     @And("enter extension number")
     public void enterExtensionNumber() {
-        //DriverAction.waitUntilElementAppear(enterExtNo,2);
+
         DriverAction.waitSec(5);
         DriverAction.typeText(enterExtNo, "11");
     }
 
     @Then("verify invalid ext number")
     public void verifyInvalidExtNumber() {
-        //DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+
         DriverAction.waitSec(5);
         try {
             DriverAction.getElementText(invalidPhNumber);

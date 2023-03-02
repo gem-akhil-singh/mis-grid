@@ -1,4 +1,4 @@
-@tag1
+
 Feature: MIS
 
   Background: Launch MIS url
@@ -30,7 +30,7 @@ Feature: MIS
           Scenario: Validation of wrong format upload pop up
             When user checks referral section
             And user click on referral action
-            And click on upload file
+            And user enter details and upload file
             Then verify wrong format is uploaded
 
           Scenario: Validation of FAQ pdf visibility
@@ -39,8 +39,7 @@ Feature: MIS
             Then verify the pdf is visible
 
           Scenario: Validation of manual pdf visibility
-            When user click on url referal
-            And click on Manual
+            When click on Manual
             Then verify the manual is visible
 
 
