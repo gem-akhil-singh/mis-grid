@@ -263,15 +263,15 @@ public class DashboardProfileSteps {
             DriverAction.waitSec(7);
 
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error in selecting from & select date" + e, STATUS.FAIL);
         }
         try {
-            // DriverAction.waitUntilElementAppear(selectFromDate, 3);
+
             DriverAction.waitSec(7);
             DriverAction.click(selectFromDate, "select from date");
         } catch (Exception e) {
-            //e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "from date and select date error" + e, STATUS.FAIL);
         }
     }
@@ -292,7 +292,7 @@ public class DashboardProfileSteps {
             DriverAction.waitUntilElementAppear(selectTillDate, 3);
             DriverAction.click(selectTillDate, "select till date");
         } catch (Exception e) {
-            //  e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error found while clicking on till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
@@ -406,28 +406,28 @@ public class DashboardProfileSteps {
 
     @When("click on edit details button")
     public void clickOnEditDetailsButton() {
-        //DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
     }
 
     @When("click on change details button")
     public void clickOnChangeDetailsButton() {
-        //DriverAction.waitUntilElementAppear(clickOnChangeDetails,2);
+
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
     }
 
     @And("enter mobile number")
     public void enterMobileNumber() {
-        //DriverAction.waitUntilElementAppear(enterMobileNo,2);
+
         DriverAction.waitSec(5);
         DriverAction.typeText(enterMobileNo, "123456789");
     }
 
     @And("click on update mobile number")
     public void clickOnUpdateMobileNumber() {
-        //DriverAction.waitUntilElementAppear(updateMobileNo,2);
+
         DriverAction.waitSec(5);
         DriverAction.click(updateMobileNo, "click on update mobile no. button");
     }
@@ -435,7 +435,7 @@ public class DashboardProfileSteps {
 
     @Then("verify invalid phone number")
     public void verifyInvalidPhoneNumber() {
-        //DriverAction.waitUntilElementAppear(invalidPhNumber,2);
+
         DriverAction.waitSec(5);
         try {
             DriverAction.getElementText(invalidPhNumber);
