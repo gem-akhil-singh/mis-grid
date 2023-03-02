@@ -3,11 +3,16 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
 
 public class TimesheetSteps {
 
@@ -21,6 +26,9 @@ public class TimesheetSteps {
     public void Click_on_Timesheet() {
 
         try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(OtherportalnTimesheetLocator.timesheetbtn));
+
             DriverAction.click(OtherportalnTimesheetLocator.timesheetbtn);
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -47,7 +55,7 @@ public class TimesheetSteps {
                 if (url.equals(createTimesheetURL)) {
                     GemTestReporter.addTestStep("Navigation Successful", "Clicked on Create Timesheet", STATUS.PASS, DriverAction.takeSnapShot());
                 } else
-                    GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Create Timesheet tab failed", STATUS.PASS, DriverAction.takeSnapShot());
+                    GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Create Timesheet tab failed", STATUS.FAIL, DriverAction.takeSnapShot());
 
 
             } else if (timesheet.equals("Manage Task Template")) {
@@ -57,7 +65,7 @@ public class TimesheetSteps {
                 if (url.equals(manageTemplateURL)) {
                     GemTestReporter.addTestStep("Navigation Successful", "Clicked on Manage Task Template", STATUS.PASS, DriverAction.takeSnapShot());
                 } else
-                    GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Manage Task Template tab failed", STATUS.PASS, DriverAction.takeSnapShot());
+                    GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Manage Task Template tab failed", STATUS.FAIL, DriverAction.takeSnapShot());
 
 
             } else

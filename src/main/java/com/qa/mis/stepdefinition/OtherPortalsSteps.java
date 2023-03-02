@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -80,6 +81,9 @@ public class OtherPortalsSteps {
     @Given("Click on Other Portals")
     public void clickOnOtherPortals() {
         try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(OtherportalnTimesheetLocator.otherPortal));
+
             DriverAction.click(OtherportalnTimesheetLocator.otherPortal);
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -122,7 +126,7 @@ public class OtherPortalsSteps {
             String MainWindow = driver.getWindowHandle();
             // To handle child window
             Set<String> s1 = driver.getWindowHandles();
-            String actualURL="";
+            String actualURL = "";
             Iterator<String> i1 = s1.iterator();
             int flag = 0;
             while (i1.hasNext()) {
@@ -139,7 +143,7 @@ public class OtherPortalsSteps {
             if (flag == 1) {
                 GemTestReporter.addTestStep("Navigater to " + port + " portal", "Successfully Navigated", STATUS.PASS);
             } else
-                GemTestReporter.addTestStep("Navigation Failed as expected URL is "+expectedURL+ ".", "URL Mismatched as actual URL is "+actualURL+ "", STATUS.FAIL);
+                GemTestReporter.addTestStep("Navigation Failed as expected URL is " + expectedURL + ".", "URL Mismatched as actual URL is " + actualURL + "", STATUS.FAIL);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting Exception ", STATUS.FAIL, DriverAction.takeSnapShot());
