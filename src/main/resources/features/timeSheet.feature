@@ -1,4 +1,3 @@
-@tushar
 Feature: Automating Timesheet Scenarios MIS
 
   Background: Login to MIS
