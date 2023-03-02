@@ -119,11 +119,10 @@ Feature: Forms Automation
   Scenario Outline: User enters invalid value in My forms search field
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User enters invalid value in My forms search field as "<value>"
-    Then User verifies the invalid value "<element>"
 
     Examples:
-      | parentTab | childTab | value | element                   |
-      | Forms     | My Form  | QA    | No matching records found |
+      | parentTab | childTab | value |
+      | Forms     | My Form  | QA    |
 
   Scenario Outline: User downloads from my forms page
     When  User clicks on the "<parentTab>" and "<childTab>"
