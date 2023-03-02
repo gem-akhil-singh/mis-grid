@@ -1,12 +1,16 @@
 
 Feature: MIS
 
-  Background: Launch MIS url
-    When user click on url
-    And Enter username referal
-    And Enter Password referal
-    And click on SignIn button referal
-    Then click on close button referal
+#  Background: Launch MIS url
+#    When user click on url
+#    And Enter username referal
+#    And Enter Password referal
+#    And click on SignIn button referal
+#    Then click on close button referal
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
 
     Scenario: Verify if dashboard page is loaded properly and JD window is visible
       When verify dashboard page is loaded properly

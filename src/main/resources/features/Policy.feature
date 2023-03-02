@@ -1,10 +1,14 @@
 Feature: Policy
 
-  Background: Login
-    When User enters "username" as "charu.garg"
-    Then User enters "password" as "R2VtaW5pQDEyMw=="
-    Then Click on Sign In Button
-    Then Verify User is on "MIS Home" Page
+#  Background: Login
+#    When User enters "username" as "charu.garg"
+#    Then User enters "password" as "R2VtaW5pQDEyMw=="
+#    Then Click on Sign In Button
+#    Then Verify User is on "MIS Home" Page
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
 
   Scenario: Navigate to Policy > View Policies
     When User clicks on Policy

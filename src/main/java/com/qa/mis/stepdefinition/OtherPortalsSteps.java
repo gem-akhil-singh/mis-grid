@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.codec.binary.Base64;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +25,14 @@ import java.util.Set;
 public class OtherPortalsSteps {
     Logger logger = LoggerFactory.getLogger(OtherPortalsSteps.class);
     String dashboardURL = "https://mymis.geminisolutions.com/Dashboard/Index";
+    public void presenceOfElement(By elementXpath, int time) {
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), time);
+            wait.until(ExpectedConditions.presenceOfElementLocated(elementXpath));
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+        }
+    }
 
     @Given("^Login to MIS with Username (.+) and password (.+)")
     public void login_to_mis_with_username_and_password(String user, String pass) {
@@ -61,20 +70,45 @@ public class OtherPortalsSteps {
         }
     }
 
-    @Then("Validate login successful")
-    public void validate_login_successful() {
+    @Then("User should be navigated to MIS homepage")
+    public void navigateMisHomepage() {
         try {
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-            wait.until(ExpectedConditions.presenceOfElementLocated(OtherportalnTimesheetLocator.Location));
-            if (DriverAction.isExist(OtherportalnTimesheetLocator.Location) && DriverAction.isExist(OtherportalnTimesheetLocator.Dashboardheading)) {
+            DriverAction.waitSec(8);
+            String hidden = DriverAction.getAttributeName(NavBarLocator.SkillPopup, "class");
+            if (hidden.equalsIgnoreCase("modal fade in")) {
+                if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {
+                    DriverAction.click(NavBarLocator.skillClosebtn, "Close button");
+                } else {
+                    GemTestReporter.addTestStep("Skill Close button", "Skill Close button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+
+            }
+            presenceOfElement(NavBarLocator.Location, 20);
+
+            if (DriverAction.isExist(NavBarLocator.Location) && DriverAction.isExist(NavBarLocator.Dashboardheading)) {
                 GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
+
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
+//    @Then("Validate login successful")
+//    public void validate_login_successful() {
+//        try {
+//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),Duration.ofSeconds(20));
+//            wait.until(ExpectedConditions.presenceOfElementLocated(OtherportalnTimesheetLocator.Location));
+//            if (DriverAction.isExist(OtherportalnTimesheetLocator.Location) && DriverAction.isExist(OtherportalnTimesheetLocator.Dashboardheading)) {
+//                GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
+//            } else {
+//                GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
+//            }
+//        } catch (Exception e) {
+//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+//        }
+//    }
 
 //-----------------------------------------------------------------------------------------------------
 

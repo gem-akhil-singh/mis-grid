@@ -1,12 +1,16 @@
 Feature: AppraisalManagement
 
 
-  Background: These steps are common for every scenario
-    Given Launch MIS Url https://mymis.geminisolutions.com/
-    Then Enter Username laxmi.sisode and password R2VtaW5pQDEyMw==
-  #R2VtaW5pIzEyMw==
-    Then User clicks on Sign-in button
-    Then Login will be successful and homepage will be displayed.
+#  Background: These steps are common for every scenario
+#    Given Launch MIS Url https://mymis.geminisolutions.com/
+#    Then Enter Username laxmi.sisode and password R2VtaW5pQDEyMw==
+#  #R2VtaW5pIzEyMw==
+#    Then User clicks on Sign-in button
+#    Then Login will be successful and homepage will be displayed.
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
 
 #following steps will be implemented later
 #  Scenario: Login failed pop-up test

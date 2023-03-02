@@ -3,8 +3,8 @@ Feature: Automation of MIS Portal functionality
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
-    Then Validate login successful
-
+    Then User should be navigated to MIS homepage
+#    Then Validate login successful
 
   Scenario Outline: MIS: Other Portals Automation
     Given Click on Other Portals
