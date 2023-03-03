@@ -1,8 +1,12 @@
 Feature: LNSA Feature - MIS Automation GemJar
 
-  Background: : : The user is on MIS Homepage and logs in
-    Given User is on the MIS Login Page
-    When User enters their login details "touqeer.subhani" and "R2VtaW5pQDEyMw==" and logs in
+#  Background: : : The user is on MIS Homepage and logs in
+#    Given User is on the MIS Login Page
+#    When User enters their login details "touqeer.subhani" and "R2VtaW5pQDEyMw==" and logs in
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
     Then User clicks on LNSA from left menu panel
 
   Scenario: User clicks on the Previous and Next Buttons from Apply LNSA page

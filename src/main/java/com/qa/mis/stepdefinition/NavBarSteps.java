@@ -70,31 +70,31 @@ public class NavBarSteps {
 
     }
 
-    @Then("User should be navigated to MIS homepage")
-    public void navigateMisHomepage() {
-        try {
-            DriverAction.waitSec(8);
-            String hidden = DriverAction.getAttributeName(NavBarLocator.SkillPopup, "class");
-            if (hidden.equalsIgnoreCase("modal fade in")) {
-                if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {
-                    DriverAction.click(NavBarLocator.skillClosebtn, "Close button");
-                } else {
-                    GemTestReporter.addTestStep("Skill Close button", "Skill Close button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
-                }
-
-            }
-            presenceOfElement(NavBarLocator.Location, 20);
-            presenceOfElement(NavBarLocator.Location, 20);
-            if (DriverAction.isExist(NavBarLocator.Location) && DriverAction.isExist(NavBarLocator.Dashboardheading)) {
-                GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
-
-            }
-        } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
-        }
-    }
+//    @Then("User should be navigated to MIS homepage")
+//    public void navigateMisHomepage() {
+//        try {
+//            DriverAction.waitSec(8);
+//            String hidden = DriverAction.getAttributeName(NavBarLocator.SkillPopup, "class");
+//            if (hidden.equalsIgnoreCase("modal fade in")) {
+//                if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {
+//                    DriverAction.click(NavBarLocator.skillClosebtn, "Close button");
+//                } else {
+//                    GemTestReporter.addTestStep("Skill Close button", "Skill Close button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+//                }
+//
+//            }
+//            presenceOfElement(NavBarLocator.Location, 20);
+//            presenceOfElement(NavBarLocator.Location, 20);
+//            if (DriverAction.isExist(NavBarLocator.Location) && DriverAction.isExist(NavBarLocator.Dashboardheading)) {
+//                GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
+//            } else {
+//                GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
+//
+//            }
+//        } catch (Exception e) {
+//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+//        }
+//    }
 
 
     @Then("Verify a toggle button is present on Dashboard and clickable")

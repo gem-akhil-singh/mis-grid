@@ -1,10 +1,14 @@
 Feature: MySkills Automation
 
-  Background: User is on  Login Page
-    When User enters username as "shruti.singh"
-    And User enters password as "Gemini@123"
-    Then User clicks on sign in
-    And User verifies landing page
+#  Background: User is on  Login Page
+#    When User enters username as "shruti.singh"
+#    And User enters password as "Gemini@123"
+#    Then User clicks on sign in
+#    And User verifies landing page
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
 
 
   Scenario Outline: Verify my skills are updating with valid data

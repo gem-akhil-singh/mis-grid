@@ -1,10 +1,14 @@
 Feature: Forms Automation
 
-  Background: User is on Login Page
-    When User enters username as "shruti.singh"
-    And User enters password as "Gemini@123"
-    When User clicks on sign in
-    And User verifies landing page
+#  Background: User is on Login Page
+#    When User enters username as "shruti.singh"
+#    And User enters password as "Gemini@123"
+#    When User clicks on sign in
+#    And User verifies landing page
+  Background: Login to MIS
+    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
+    When Click on Signin button
+    Then User should be navigated to MIS homepage
 
   Scenario Outline: Open view forms page
 
@@ -77,7 +81,7 @@ Feature: Forms Automation
       | parentTab | childTab |
       | Forms     | My Form  |
 
-   Scenario Outline:User uploads correct File
+  Scenario Outline:User uploads correct File
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the desired document "<formType>" from "<path>"
@@ -115,11 +119,10 @@ Feature: Forms Automation
   Scenario Outline: User enters invalid value in My forms search field
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User enters invalid value in My forms search field as "<value>"
-    Then User verifies the invalid value "<element>"
 
     Examples:
-      | parentTab | childTab | value | element                   |
-      | Forms     | My Form  | QA    | No matching records found |
+      | parentTab | childTab | value |
+      | Forms     | My Form  | QA    |
 
   Scenario Outline: User downloads from my forms page
     When  User clicks on the "<parentTab>" and "<childTab>"

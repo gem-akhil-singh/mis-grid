@@ -413,9 +413,8 @@ public class FormsSteps {
     @And("User hovers and clicks on download button")
     public void userHoversAndClicksOnDownloadBtn() {
         try {
-            DriverAction.waitSec(3);
+            DriverAction.waitSec(7);
             DriverAction.click(FormsLocator.downloadBtn);
-            DriverAction.waitSec(3);
 
         } catch (Exception e) {
             GemTestReporter.addTestStep("User Clicks on Download Button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
