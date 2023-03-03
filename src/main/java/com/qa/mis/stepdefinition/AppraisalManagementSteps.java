@@ -136,7 +136,10 @@ public class AppraisalManagementSteps {
     @Then("Click on Add Goals link")
     public void click_on_add_goals_link() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkAddGoals, 2);
+            // DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkAddGoals, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lnkAddGoals));
+
             status = DriverAction.click(AppraisalManagementLocator.lnkAddGoals);
             DriverAction.waitSec(3);
             // GemTestReporter.addTestStep("Click on Add Goals link", "Add Goals link is clicked", status, DriverAction.takeSnapShot());
@@ -148,6 +151,8 @@ public class AppraisalManagementSteps {
     @Then("Verify Add goal window")
     public void verify_add_goal_window() {
         try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(3));
+            wait.until(ExpectedConditions.presenceOfElementLocated(AppraisalManagementLocator.addGoalsWindow));
             output = false;
             output = DriverAction.getElement(AppraisalManagementLocator.addGoalsWindow).isDisplayed();
             if (output)
@@ -173,6 +178,8 @@ public class AppraisalManagementSteps {
             String date1 = format1.format(firstAprilOfYear);
             System.out.println(date1);
 
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownFinancialYear));
             status = DriverAction.click(AppraisalManagementLocator.drpdownFinancialYear);
             DriverAction.waitSec(1);
             List<WebElement> lstFinacialYr = DriverAction.getElements(AppraisalManagementLocator.elementsdrpFinancialYear);
@@ -291,7 +298,8 @@ public class AppraisalManagementSteps {
     @Then("Validate and click add KPI button")
     public void validate_And_Click_Add_KPI_Button() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnAddKPI, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnAddKPI));
             DriverAction.click(AppraisalManagementLocator.btnAddKPI);
             if (DriverAction.getElement(AppraisalManagementLocator.txtKPIDescription).isDisplayed()) {
                 DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "TestKPI");
@@ -338,7 +346,8 @@ public class AppraisalManagementSteps {
     @Then("Verify Success Popup appeared on screen and click on Ok button")
     public void verify_Success_Popup_Appeared_On_Screen_And_Click_On_OkButton() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.KPISuccessOK, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.KPISuccessOK));
             DriverAction.click(AppraisalManagementLocator.KPISuccessOK);
             //  GemTestReporter.addTestStep("Add new KPI-KRA mapping in add goal window", "New KPI-KRA mapping in add goal window added", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
@@ -349,7 +358,9 @@ public class AppraisalManagementSteps {
     @And("Check validation for empty Goal type Dropdown")
     public void check_Validation_For_Empty_Goal_Type_Dropdown() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.popupWarning, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.popupWarning));
+
             if (DriverAction.getElementText(AppraisalManagementLocator.popupWarning).equalsIgnoreCase("Warning")) {
                 DriverAction.click(AppraisalManagementLocator.btnOKWarning);
                 status = STATUS.PASS;
@@ -398,7 +409,9 @@ public class AppraisalManagementSteps {
     @Given("Type text in searchbox and verify search results")
     public void type_Text_In_Searchbox_And_Verify_Search_Results() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnSearch, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSearch));
+
             Boolean bool = DriverAction.getElement(AppraisalManagementLocator.btnSearch).isEnabled();
             DriverAction.typeText(AppraisalManagementLocator.btnSearch, "Behavioural");
             String searchEntries = DriverAction.getElementText(AppraisalManagementLocator.searchEntriesCount);
@@ -415,7 +428,9 @@ public class AppraisalManagementSteps {
     @Then("Clear text and verify original count at the bottom of the table")
     public void clear_Text_And_Verify_Original_Count_At_The_Bottom_Of_The_Table() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnSearch, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSearch));
+
             DriverAction.clearText(AppraisalManagementLocator.btnSearch);
             String entriesClearSearch = DriverAction.getElementText(AppraisalManagementLocator.searchEntriesCount);
             if (entriesClearSearch.equalsIgnoreCase(totalEntries))
@@ -445,7 +460,10 @@ public class AppraisalManagementSteps {
     @Then("Click on Copy option and  and paste it in notepad")
     public void click_on_copy_option_and_and_paste_it_in_notepad() throws IOException {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lstExport, 2);
+
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lstExport));
+
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("Copy")) {
@@ -466,8 +484,12 @@ public class AppraisalManagementSteps {
     @Then("Click on Excel option and check excel file is downloaded")
     public void click_on_excel_option_and_check_excel_file_is_downloaded() throws IOException {
         try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnExport));
+
             DriverAction.click(AppraisalManagementLocator.btnExport);
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lstExport, 2);
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lstExport));
+
             Boolean a = DriverAction.getElement(AppraisalManagementLocator.lstExport).isDisplayed();
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
@@ -490,7 +512,9 @@ public class AppraisalManagementSteps {
     @Then("Click on PDF option and check pdf file is downloaded")
     public void click_on_pdf_option_and_check_pdf_file_is_downloaded() throws IOException {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lstExport, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lstExport));
+
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("PDF")) {
@@ -511,7 +535,9 @@ public class AppraisalManagementSteps {
     @Then("Click on Print option and check print window open in new tab and close window")
     public void click_on_print_option_and_check_print_window_open_in_new_tab() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lstExport, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lstExport));
+
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             String parentwindow = DriverAction.getWindowHandle();
             for (int i = 0; i < lstExport.size(); i++) {
@@ -544,7 +570,9 @@ public class AppraisalManagementSteps {
     @Then("Check number of pages in dropdown")
     public void check_number_of_pages_in_dropdown() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.drpdownPages, 2000);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownPages));
+
             DriverAction.click(AppraisalManagementLocator.drpdownPages);
             WebElement ele = DriverAction.getElement(AppraisalManagementLocator.drpdownPages);
             Select select = new Select(ele);
@@ -606,7 +634,8 @@ public class AppraisalManagementSteps {
     public void check_If_Delete_Button_Is_Present_In_Action_Tab_and_Click_on_Delete_button() {
         try {
             status = STATUS.FAIL;
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDelete, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDelete));
             if (DriverAction.getElement(AppraisalManagementLocator.btnDelete).isDisplayed()) {
                 status = STATUS.PASS;
                 DriverAction.click(AppraisalManagementLocator.btnDelete);
@@ -623,6 +652,9 @@ public class AppraisalManagementSteps {
     @And("Check remarks pop up is displayed and Click on submit button")
     public void check_Remarks_PopUp_Is_Displayed() {
         try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSubmitRemark));
+
             if (flagDelete) {
                 if (DriverAction.getElement(AppraisalManagementLocator.windowRemarks).isDisplayed())
                     DriverAction.click(AppraisalManagementLocator.btnSubmitRemark);
@@ -672,7 +704,9 @@ public class AppraisalManagementSteps {
     public void validate_Confirm_Window_and_Click_on_confirm_button() {
         try {
             if (flagDelete) {
-                DriverAction.waitUntilElementAppear(AppraisalManagementLocator.windowConfirm, 2);
+                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+                wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.windowConfirm));
+
                 if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
                     DriverAction.click(AppraisalManagementLocator.btnYesConfirm);
                     if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
@@ -690,7 +724,9 @@ public class AppraisalManagementSteps {
     @When("Click Add or Update Goals")
     public void click_Add_Or_Update_Goals() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnAddUpdateGoal, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnAddUpdateGoal));
+
             status = DriverAction.click(AppraisalManagementLocator.btnAddUpdateGoal);
             DriverAction.waitSec(2);
             String tabTitle = DriverAction.getElementText(AppraisalManagementLocator.titleAddGoal);
@@ -718,8 +754,11 @@ public class AppraisalManagementSteps {
     public void select_KPI_From_Dropdown() {
         try {
             if (DriverAction.getElement(AppraisalManagementLocator.drpdownKPI).isDisplayed()) {
+                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+                wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownKPI));
                 DriverAction.click(AppraisalManagementLocator.drpdownKPI);
-                DriverAction.waitUntilElementAppear(AppraisalManagementLocator.drpdownKPIValue, 2);
+
+                wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownKPIValue));
                 DriverAction.click(AppraisalManagementLocator.drpdownKPIValue);
                 DriverAction.click(AppraisalManagementLocator.bodyPath);
             }
@@ -732,7 +771,9 @@ public class AppraisalManagementSteps {
     @Then("Click on Draft button and Verify empty fields")
     public void click_On_Draft_Button_And_Verify_Empty_Fields() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDraft, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDraft));
+
             DriverAction.click(AppraisalManagementLocator.btnDraft);
             String prjText = DriverAction.getElement(AppraisalManagementLocator.txtboxProject).getText();
             if (prjText.equals("")) {
@@ -764,7 +805,9 @@ public class AppraisalManagementSteps {
     @Then("Click on Draft button")
     public void click_On_Draft_Button() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnDraft, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDraft));
+
             DriverAction.click(AppraisalManagementLocator.btnDraft);
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -774,7 +817,9 @@ public class AppraisalManagementSteps {
     @And("Validate success window and click on ok button")
     public void validate_Success_Window_And_Click_On_Ok_Button() {
         try {
-            DriverAction.waitUntilElementAppear(AppraisalManagementLocator.windowConfirm, 2);
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.windowConfirm));
+
             if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
                 if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
                     DriverAction.click(AppraisalManagementLocator.btnOkaySuccess);
