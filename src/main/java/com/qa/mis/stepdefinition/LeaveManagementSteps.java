@@ -1148,11 +1148,17 @@ public class LeaveManagementSteps {
                     id = button.equals("Next") ? "tblLegitimateHistory_next" : "tblLegitimateHistory_previous";
                     break;
             }
-            if (DriverAction.isExist(LeaveManagementLocator.button_nextOrPreviousButton(id))) {
-                DriverAction.click(LeaveManagementLocator.button_nextOrPreviousButton(id), button);
+            int pages = DriverAction.getElements(LeaveManagementLocator.pagination_pages(id)).size();
+            if (pages > 3) {
+                if (DriverAction.isExist(LeaveManagementLocator.button_nextOrPreviousButton(id))) {
+                    DriverAction.click(LeaveManagementLocator.button_nextOrPreviousButton(id), button);
+                } else {
+                    GemTestReporter.addTestStep("Error Occur", "Fail to click " + button + " button",
+                            STATUS.FAIL, DriverAction.takeSnapShot());
+                }
             } else {
-                GemTestReporter.addTestStep("Error Occur", "Fail to click " + button + " button",
-                        STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("Pagination", "Multiple pages not available",
+                        STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -1180,27 +1186,33 @@ public class LeaveManagementSteps {
                     id = "tblLegitimateHistory_previous";
                     break;
             }
-            if (button.equals("Next")) {
-                String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
-                        button_nextOrPreviousButton(id), "class");
-                if (!expectedValue.contains("disabled")) {
-                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
-                            STATUS.PASS, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
-                            STATUS.FAIL, DriverAction.takeSnapShot());
-                }
+            int pages = DriverAction.getElements(LeaveManagementLocator.pagination_pages(id)).size();
+            if (pages > 3) {
+                if (button.equals("Next")) {
+                    String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
+                            button_nextOrPreviousButton(id), "class");
+                    if (!expectedValue.contains("disabled")) {
+                        GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
+                                STATUS.PASS, DriverAction.takeSnapShot());
+                    } else {
+                        GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
+                                STATUS.FAIL, DriverAction.takeSnapShot());
+                    }
 
-            } else {
-                String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
-                        button_nextOrPreviousButton(id), "class");
-                if (expectedValue.contains("disabled")) {
-                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
-                            STATUS.PASS, DriverAction.takeSnapShot());
                 } else {
-                    GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
-                            STATUS.FAIL, DriverAction.takeSnapShot());
+                    String expectedValue = DriverAction.getAttributeName(LeaveManagementLocator.
+                            button_nextOrPreviousButton(id), "class");
+                    if (expectedValue.contains("disabled")) {
+                        GemTestReporter.addTestStep("Verifying Pagination", "Pagination passed",
+                                STATUS.PASS, DriverAction.takeSnapShot());
+                    } else {
+                        GemTestReporter.addTestStep("Verifying Pagination", "Pagination failed",
+                                STATUS.FAIL, DriverAction.takeSnapShot());
+                    }
                 }
+            } else {
+                GemTestReporter.addTestStep("Pagination", "Multiple pages not available",
+                        STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);

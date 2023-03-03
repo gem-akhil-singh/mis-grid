@@ -1,3 +1,6 @@
+#Author: shruti.singh@geminisolutions.com
+#Keyword: My Skills
+
 Feature: MySkills Automation
 
 #  Background: User is on  Login Page

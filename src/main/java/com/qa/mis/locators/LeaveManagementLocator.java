@@ -129,6 +129,10 @@ public class LeaveManagementLocator {
         return By.xpath("//li[@id='" + id + "']");
     }
 
+    public static By pagination_pages(String id) {
+        return By.xpath("//li[@id='" + id + "']/../li");
+    }
+
     public static By table_rowOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr/td");
     public static By table_allRowsOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr");
     public static By input_rowOutDutyFilter = By.xpath("//div[@id='tblOutingData_filter']//input");

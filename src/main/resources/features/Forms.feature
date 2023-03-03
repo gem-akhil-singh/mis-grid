@@ -1,3 +1,6 @@
+#Author: shruti.singh@geminisolutions.com
+#Keyword: Forms
+
 Feature: Forms Automation
 
 #  Background: User is on Login Page
@@ -87,8 +90,8 @@ Feature: Forms Automation
     And User uploads the desired document "<formType>" from "<path>"
     Then User clicks on save button
     Examples:
-      | parentTab | childTab | formType                | path |
-      | Forms     | My Form  | Loyalty Redemption Form | \\src\\main\\resources\\Loyalty Redemption Form.pdf   |
+      | parentTab | childTab | formType                | path                                                |
+      | Forms     | My Form  | Loyalty Redemption Form | \\src\\main\\resources\\Loyalty Redemption Form.pdf |
 
   Scenario Outline: User uploads incorrect File
     When  User clicks on the "<parentTab>" and "<childTab>"
@@ -97,8 +100,8 @@ Feature: Forms Automation
     And  Verify the warning "<warningMsg>"
     Then User clicks on ok button
     Examples:
-      | parentTab | childTab | formType                | warningMsg                                                      | path |
-      | Forms     | My Form  | Loyalty Redemption Form | Invalid file selected. Supported extensions are .xlsx,.xls,.pdf | \\src\\main\\resources\\17 may.docx   |
+      | parentTab | childTab | formType                | warningMsg                                                      | path                                |
+      | Forms     | My Form  | Loyalty Redemption Form | Invalid file selected. Supported extensions are .xlsx,.xls,.pdf | \\src\\main\\resources\\17 may.docx |
 
   Scenario Outline:User selects number of entries
     When  User clicks on the "<parentTab>" and "<childTab>"
@@ -106,7 +109,7 @@ Feature: Forms Automation
 
     Examples:
       | parentTab | childTab | element |
-      | Forms     | My Form  |   25      |
+      | Forms     | My Form  | 25      |
 
   Scenario Outline: User enters valid value in my forms search field
     When  User clicks on the "<parentTab>" and "<childTab>"
@@ -150,7 +153,7 @@ Feature: Forms Automation
     Then User clicks on ok button
 
     Examples:
-      | parentTab | childTab | formType                | element | path |
-      | Forms     | My Form  | Loyalty Redemption Form |  File with same name already exists       |  \\src\\main\\resources\\Loyalty Redemption Form.pdf|
+      | parentTab | childTab | formType                | element                            | path                                                |
+      | Forms     | My Form  | Loyalty Redemption Form | File with same name already exists | \\src\\main\\resources\\Loyalty Redemption Form.pdf |
 
 
