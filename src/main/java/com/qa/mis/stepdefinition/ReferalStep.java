@@ -147,6 +147,7 @@ public class ReferalStep {
 
     @When("^user checks referral section$")
     public void userChecksReferralSection() {
+        try{
         DriverAction.getElementText(refSection);
         DriverAction.waitSec(5);
         String refferalSection = DriverAction.getElementText(refSection);
@@ -167,28 +168,43 @@ public class ReferalStep {
 
             GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
 
+    }catch(Exception e){
+            GemTestReporter.addTestStep("ERROR", "not found verify JD window" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+        }
     }
 
     @And("^click on email under referral$")
     public void clickOnEmailUnderReferral() {
-        //DriverAction.waitUntilElementAppear(refEmail, 3);
+        try{
         DriverAction.waitSec(5);
+        DriverAction.waitUntilElementAppear(refEmail,5);
         DriverAction.click(refEmail, "referral email text");
-    }
+    }catch(Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @And("^enter the email address$")
     public void enterTheEmailAddress() {
-
+        try {
         DriverAction.waitSec(5);
+        DriverAction.waitUntilElementAppear(refEmail,5);
         DriverAction.typeText(refEmail, "abcde");
-    }
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @And("^click on save$")
     public void clickOnSave() {
-
+        try{
         DriverAction.waitSec(5);
+        DriverAction.waitUntilElementAppear(refSaveButton,3);
         DriverAction.click(refSaveButton, "click on save button under referral");
-    }
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @Then("^verify the warning message in ref section$")
     public void verifyTheWarningMessageInRefSection() {
@@ -221,11 +237,14 @@ public class ReferalStep {
 
     @Then("verify the pdf is visible")
     public void verifyThePdfIsVisible() {
-
+        try{
         DriverAction.waitSec(5);
         DriverAction.isExist(pdfVisible);
         GemTestReporter.addTestStep("pdf visible", "pdf opens and visible", STATUS.PASS, DriverAction.takeSnapShot());
-    }
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @And("click on Manual")
     public void clickOnManual() {
@@ -254,10 +273,8 @@ public class ReferalStep {
 
     @And("user enter details and upload file")
     public void clickOnUploadFile() {
-
+        try{
         DriverAction.waitSec(10);
-
-
         String dirPath = System.getProperty("user.dir");
         DriverAction.click(refName);
         DriverAction.typeText(refName,"Sarah");
@@ -268,11 +285,15 @@ public class ReferalStep {
         WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
         Select dropDown = new Select(relationDropDown);
         dropDown.selectByIndex(2);
-
-        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument1.xlsx");
+        DriverAction.waitUntilElementAppear(resumeUpload,5);
+       // DriverAction.click(resumeUpload);
+        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument.xlsx");
         DriverAction.waitSec(5);
 
-    }
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @Then("^verify wrong format is uploaded$")
     public void verifyWrongFormatIsUploaded() {

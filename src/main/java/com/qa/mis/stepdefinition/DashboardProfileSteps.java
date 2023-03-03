@@ -7,6 +7,7 @@ import com.gemini.generic.ui.utils.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.bytebuddy.utility.visitor.ExceptionTableSensitiveMethodVisitor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,54 +39,59 @@ public class DashboardProfileSteps {
 
     @And("^click on SignIn button$")
     public void signIn() {
-        // DriverAction.waitUntilElementAppear(signIn, 2);
+       try{
         DriverAction.waitSec(5);
         DriverAction.click(signIn);
-        //DriverAction.waitSec(10);
-    }
+
+    }catch (Exception e){
+           GemTestReporter.addTestStep("ERROR", "not found SignIn" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+       }
+       }
 
     @When("^user update mobile and extension number$")
     public void clickOnMobile() {
-        // DriverAction.click(popUpCloseButton);
-        // DriverAction.waitSec(7);
-        //DriverAction.waitUntilElementAppear(clickOnChangeDetails, 2);
+        try{
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "change details button");
-        // DriverAction.waitSec(7);
-    }
+
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph and ext number" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @When("^Enter mobile number and ext number$")
     public void enterMobileNoAndExtNo() {
-        //DriverAction.waitUntilElementAppear(contactNo, 2);
+  try{
         DriverAction.waitSec(5);
         DriverAction.typeText(contactNo, "1234567890");
         DriverAction.waitUntilElementAppear(enterExtNo, 2);
         DriverAction.typeText(enterExtNo, "111");
-    }
+    }catch (Exception e){
+      GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+  }
+  }
 
     @When("^click on update$")
     public void clickOnUpdate() {
-        // DriverAction.waitUntilElementAppear(clickOnUpdate, 1);
+     try{
         DriverAction.waitSec(5);
         DriverAction.click(clickOnUpdate);
-        //   DriverAction.waitSec(5);
-    }
+
+    }catch (Exception e){
+         GemTestReporter.addTestStep("ERROR", "update verification failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+     }
+     }
 
     @And("^click on update address$")
     public void clickOnUpdateAdd() {
-//       try {
-//           DriverAction.waitSec(5);
-//           DriverAction.click(clickOnChangeDetails, "change details");
-//       }catch (Exception e) {
-//           e.printStackTrace();
-//       }
+
         try {
-            //DriverAction.waitUntilElementAppear(clickOnUpdateAdd, 5);
+
             DriverAction.waitSec(5);
             DriverAction.click(clickOnUpdateAdd, "update address button");
-            //DriverAction.waitSec(10);
+
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", " error occured in update" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
@@ -95,10 +101,10 @@ public class DashboardProfileSteps {
         try {
             DriverAction.waitUntilElementAppear(enterPincode, 2);
             DriverAction.typeText(enterPincode, "121");
-            // DriverAction.waitSec(10);
+
             DriverAction.waitUntilElementAppear(updateButtonAdd, 3);
             DriverAction.click(updateButtonAdd, "update button in add tab");
-            //DriverAction.waitSec(7);
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", " error occured in pincode" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
@@ -124,11 +130,11 @@ public class DashboardProfileSteps {
 
         try {
             DriverAction.waitSec(3);
-            //DriverAction.waitUntilElementAppear(changePassword, 7);
+
             DriverAction.click(changePassword, "change password");
 
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error occured in password change " + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
@@ -141,11 +147,10 @@ public class DashboardProfileSteps {
             DriverAction.typeText(enterOldPassword, "12345");
             DriverAction.waitUntilElementAppear(newPassword, 3);
             DriverAction.typeText(newPassword, "Gemini123");
-            //DriverAction.waitSec(5);
             DriverAction.typeText(confirmPassword, "Gemini123");
             DriverAction.waitUntilElementAppear(updatePassword, 3);
             DriverAction.click(updatePassword, "update password");
-            //DriverAction.waitSec(10);
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "error in old password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
@@ -171,26 +176,26 @@ public class DashboardProfileSteps {
     public void enterNewPasswordAndConfirmPassword() {
 
         try {
-            //DriverAction.waitUntilElementAppear(clickOnChangeDetails, 7);
+
             DriverAction.waitSec(5);
             DriverAction.click(clickOnChangeDetails, "change details button");
 
-            DriverAction.waitSec(5); //(using this wait is mandatory step gets failled without this wait)
-            //   DriverAction.waitUntilElementAppear(changePassword, 5);
+            DriverAction.waitSec(5); //(using this wait is mandatory step gets failed without this wait)
+
             DriverAction.click(changePassword, "chg passwrd button");
 
-            // DriverAction.waitUntilElementAppear(newPassword, 2);
+
             DriverAction.waitSec(5);
             DriverAction.typeText(newPassword, "Gemini");
-            //DriverAction.waitUntilElementAppear(confirmPassword, 2);
+
             DriverAction.waitSec(5);
             DriverAction.typeText(confirmPassword, "Gemini123");
-            // DriverAction.waitUntilElementAppear(updatePassword, 2);
+
             DriverAction.waitSec(5);
             DriverAction.click(updatePassword, "update button");
 
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", " error in new and confirm password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
@@ -198,11 +203,11 @@ public class DashboardProfileSteps {
     @And("^click on update password$")
     public void clickOnUpdatePassword() {
         try {
-            //DriverAction.waitUntilElementAppear(updatePassword,5);
+
             DriverAction.waitSec(5);
             DriverAction.click(updatePassword, "update password button");
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error in update password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
@@ -225,11 +230,11 @@ public class DashboardProfileSteps {
 
         try {
             DriverAction.waitSec(10);
-            //DriverAction.waitUntilElementAppear(popUpCloseButton, 5);
+
             DriverAction.click(popUpCloseButton, "close button");
-            // DriverAction.click(clickOnChangeDetails,"change details button");
+
         } catch (Exception e) {
-            // e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error in close button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
@@ -239,11 +244,11 @@ public class DashboardProfileSteps {
     public void userClickOnApplyLunch() {
 
         try {
-            // DriverAction.waitUntilElementAppear(applyLunch, 7);
+
             DriverAction.waitSec(5);
             DriverAction.click(applyLunch, "apply lunch");
         } catch (Exception e) {
-            //  e.printStackTrace();
+
             GemTestReporter.addTestStep("ERROR", "error in apply lunch" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
@@ -322,9 +327,13 @@ public class DashboardProfileSteps {
 
     @Then("^click on add lunch button$")
     public void clickOnAddLunchButton() {
+        try{
         DriverAction.waitSec(5);
         DriverAction.click(addLunchButton, "add lunch button");
-    }
+    }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @Then("^verify the warning message$")
     public void verifyTheWarningMessage() {
@@ -371,7 +380,6 @@ public class DashboardProfileSteps {
             DriverAction.typeText(enterPincode, "121");
             DriverAction.click(updateButtonAdd);
 
-
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "address update error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
@@ -406,30 +414,43 @@ public class DashboardProfileSteps {
 
     @When("click on edit details button")
     public void clickOnEditDetailsButton() {
-
+      try{
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
-    }
+    }catch (Exception e){
+          GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+      }
+      }
 
     @When("click on change details button")
     public void clickOnChangeDetailsButton() {
-
+try{
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
+    }catch (Exception e){
+    GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+}
     }
 
     @And("enter mobile number")
     public void enterMobileNumber() {
-
+        try{
         DriverAction.waitSec(5);
         DriverAction.typeText(enterMobileNo, "123456789");
-    }
+    }catch(Exception e){
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+        }
 
     @And("click on update mobile number")
     public void clickOnUpdateMobileNumber() {
 
-        DriverAction.waitSec(5);
-        DriverAction.click(updateMobileNo, "click on update mobile no. button");
+        try {
+            DriverAction.waitSec(5);
+            DriverAction.click(updateMobileNo, "click on update mobile no. button");
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+        }
     }
 
 
@@ -452,6 +473,7 @@ public class DashboardProfileSteps {
     public void enterExtensionNumber() {
 
         DriverAction.waitSec(5);
+        DriverAction.waitUntilElementAppear(enterExtNo,3);
         DriverAction.typeText(enterExtNo, "11");
     }
 
