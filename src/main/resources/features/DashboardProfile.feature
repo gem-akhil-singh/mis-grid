@@ -1,5 +1,7 @@
+#Author: divya.madan@geminisolutions.com
+#Keyword: DashboardProfile
 
-Feature: MIS_Automation
+Feature: MIS_Automation - DashboardProfile
 
 
 #  Background: Launch MIS url
