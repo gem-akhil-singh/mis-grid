@@ -102,7 +102,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(referralAction, 7);
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error occured in referral action" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "error occured in referral action" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -117,7 +117,7 @@ public class ReferalStep {
             else
                 GemTestReporter.addTestStep("referral not clicked", "referral table not found", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " ref action validation failed" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", " ref action validation failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -131,7 +131,7 @@ public class ReferalStep {
             DriverAction.typeText(refName, "Sahra");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "name under ref error " + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "name under ref error " + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -203,7 +203,7 @@ public class ReferalStep {
             }
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " verification warning msg error" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", " verification warning msg error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -215,7 +215,7 @@ public class ReferalStep {
             DriverAction.click(clickFAQ, "click on FAQ");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "FAQ error occured" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "FAQ error occured" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -258,10 +258,10 @@ public class ReferalStep {
         DriverAction.waitSec(10);
 
 
-         String dirPath = System.getProperty("user.dir");
-         DriverAction.click(refName);
-         DriverAction.typeText(refName,"Sarah");
-         DriverAction.click(refEmail);
+        String dirPath = System.getProperty("user.dir");
+        DriverAction.click(refName);
+        DriverAction.typeText(refName,"Sarah");
+        DriverAction.click(refEmail);
         DriverAction.typeText(refEmail, "abcde@gmail.com");
         DriverAction.click(enterRefContNo);
         DriverAction.typeText(enterRefContNo, "1234567890");
@@ -269,19 +269,19 @@ public class ReferalStep {
         Select dropDown = new Select(relationDropDown);
         dropDown.selectByIndex(2);
 
-        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\17 may.docx");
-        DriverAction.click(refSaveButton);
+        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument1.xlsx");
         DriverAction.waitSec(5);
+
     }
 
     @Then("^verify wrong format is uploaded$")
     public void verifyWrongFormatIsUploaded() {
         try {
-            DriverAction.waitUntilElementAppear(resumeWarning, 2);
+            DriverAction.waitUntilElementAppear(resumeWarning, 5);
             DriverAction.isExist(resumeWarning);
             GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " upload error" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", " upload error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -295,7 +295,7 @@ public class ReferalStep {
             DriverAction.typeText(enterCorrEmail, "sarah.robert@gmail.com");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "error in entering email" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "error in entering email" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -307,12 +307,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(enterRefContNo, 2);
             DriverAction.typeText(enterRefContNo, "1234567890");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " correct contact no. error" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", " correct contact no. error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 }
-
-
-
-
-
