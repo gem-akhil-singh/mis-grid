@@ -1,14 +1,16 @@
 package com.qa.mis.utility;
 
+import com.gemini.generic.ui.utils.DriverManager;
+import org.openqa.selenium.By;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 
 public class FileDownloaded {
     public static boolean isFileDownloaded(String expectedFileName, String fileExtension, int timeOut) throws IOException {
-        // Download Folder Path
-        String folderName = "C:/Users/laxmi.sisode/Downloads";
-
+        String username = System.getProperty("user.name");
+        String folderName = "C:/Users/" + username + "/Downloads";
         // Array to Store List of Files in Directory
         File[] listOfFiles;
 
@@ -56,7 +58,9 @@ public class FileDownloaded {
     }
 
     public static void fileDeleted(String expectedFileName, String fileExtension, int timeOut) {
-        String folderName = "C:/Users/laxmi.sisode/Downloads";
+        String username = System.getProperty("user.name");
+        String folderName = "C:/Users/" + username + "/Downloads";
+
         File[] listOfFiles;
         String fileName;
         boolean fileDownloaded = false;

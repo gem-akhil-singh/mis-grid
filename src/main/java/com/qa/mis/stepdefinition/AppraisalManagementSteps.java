@@ -12,6 +12,8 @@ import io.cucumber.java.en.When;
 import com.qa.mis.utility.*;
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -436,7 +438,7 @@ public class AppraisalManagementSteps {
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -457,7 +459,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -470,7 +472,8 @@ public class AppraisalManagementSteps {
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("Excel")) {
-                    lstExport.get(i).click();
+                    DriverAction.click(lstExport.get(i));
+                    Thread.sleep(2000);
                     Boolean result = FileDownloaded.isFileDownloaded("All Self Goals", "xlsx", 5000);
                     if (result = true)
                         status = STATUS.PASS;
@@ -480,7 +483,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -491,7 +494,7 @@ public class AppraisalManagementSteps {
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("PDF")) {
-                    lstExport.get(i).click();
+                    DriverAction.click(lstExport.get(i));
                     Boolean result = FileDownloaded.isFileDownloaded("All Self Goals", "pdf", 5000);
                     if (result = true)
                         status = STATUS.PASS;
@@ -579,9 +582,9 @@ public class AppraisalManagementSteps {
 
                 if (pages.get(pages.size() - 1).getText().equalsIgnoreCase("Next")) {
                     for (int i = 1; i < pages.size() - 2; i++) {
-                        WebElement ele=DriverManager.getWebDriver().findElement(By.xpath("//ul[@class='pagination']/li//a[text()='"+i+"']"));
+                        WebElement ele = DriverManager.getWebDriver().findElement(By.xpath("//ul[@class='pagination']/li//a[text()='" + i + "']"));
                         WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-                         wait.until(ExpectedConditions.elementToBeClickable(ele));
+                        wait.until(ExpectedConditions.elementToBeClickable(ele));
                         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getWebDriver();
                         js.executeScript("arguments[0].click();", ele);
                         DriverAction.waitSec(2);
