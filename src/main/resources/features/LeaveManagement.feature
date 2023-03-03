@@ -1,15 +1,14 @@
+#Author: shubham.kumar@geminisolutions.com
+#Keyword: Leave Management
+
 @leaveManagement
 Feature: MIS - Leave Management
 
-#  Background: Login into MIS
-#    Given User is logged into MIS using username and password
-#      | username      | password         |
-#      | shubham.kumar | R2VtaW5pQDEyMw== |
-#    When User is on MIS Home Page
-  Background: Login to MIS
-    Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
-    When Click on Signin button
-    Then User should be navigated to MIS homepage
+  Background: Login into MIS
+    Given User is logged into MIS using username and password
+      | username      | password         |
+      | shubham.kumar | R2VtaW5pQDEyMw== |
+    When User is on MIS Home Page
 
   # CompOff
   Scenario Outline: Navigate to Leave Management > Comp Off tab
