@@ -575,8 +575,8 @@ public class LeaveManagementSteps {
         }
     }
 
-    @And("Select WFH date {string} for {string} field")
-    public void selectWFHDateForField(String date, String field) {
+    @And("Select WFH date {int} for {string} field")
+    public void selectWFHDateForField(Integer date, String field) {
         try {
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveDropDown(field))) {
                 DriverAction.dropDown(LeaveManagementLocator.field_leaveDropDown(field), date);
