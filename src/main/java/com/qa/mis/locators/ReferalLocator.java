@@ -33,7 +33,8 @@ public class ReferalLocator {
             //"//a[@onclick='showStepsPopup()']");
         //    By.xpath("//a[text()='Manual']");
 
-    public static By resumeUpload = By.xpath("//input[@id='resume']");
+    public static By resumeUpload =By.xpath("/html[1]/body[1]/div[2]/div[12]/div[1]/div[1]/div[2]/div[5]/div[2]/input[1]");
+            //By.xpath("//input[@id='resume']");
 
     public static By selectHimOrHer=By.xpath("//select[@id='relationName']");
 

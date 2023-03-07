@@ -44,7 +44,7 @@ public class DashboardProfileSteps {
         DriverAction.click(signIn);
 
     }catch (Exception e){
-           GemTestReporter.addTestStep("ERROR", "not found SignIn" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+           GemTestReporter.addTestStep("ERROR", "SignIn Button Not Found" + e, STATUS.FAIL,DriverAction.takeSnapShot());
        }
        }
 
@@ -55,7 +55,7 @@ public class DashboardProfileSteps {
         DriverAction.click(clickOnChangeDetails, "change details button");
 
     }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "invalid ph and ext number" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Phone number and extension number is invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         }
 
@@ -67,7 +67,7 @@ public class DashboardProfileSteps {
         DriverAction.waitUntilElementAppear(enterExtNo, 2);
         DriverAction.typeText(enterExtNo, "111");
     }catch (Exception e){
-      GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+      GemTestReporter.addTestStep("ERROR", "Phone number verification is invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
   }
   }
 
@@ -78,7 +78,7 @@ public class DashboardProfileSteps {
         DriverAction.click(clickOnUpdate);
 
     }catch (Exception e){
-         GemTestReporter.addTestStep("ERROR", "update verification failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+         GemTestReporter.addTestStep("ERROR", "Update Verification is Failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
      }
      }
 
@@ -92,7 +92,7 @@ public class DashboardProfileSteps {
 
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", " error occured in update" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Update consist of error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -106,7 +106,7 @@ public class DashboardProfileSteps {
             DriverAction.click(updateButtonAdd, "update button in add tab");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " error occured in pincode" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error occured in Pincode" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -120,7 +120,7 @@ public class DashboardProfileSteps {
                 GemTestReporter.addTestStep("warning", "warningText", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " pincode validation error occured" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occured in Pincode Validation" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -135,7 +135,7 @@ public class DashboardProfileSteps {
 
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error occured in password change " + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Change Password " + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
     }
@@ -152,7 +152,7 @@ public class DashboardProfileSteps {
             DriverAction.click(updatePassword, "update password");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "error in old password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred in Old Password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -167,7 +167,7 @@ public class DashboardProfileSteps {
             }
             DriverAction.click(okButton);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "password incorrect error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Password Is Incorrect Error Occured" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -196,7 +196,7 @@ public class DashboardProfileSteps {
 
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", " error in new and confirm password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Error Occured In New And Confirm Password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -208,7 +208,7 @@ public class DashboardProfileSteps {
             DriverAction.click(updatePassword, "update password button");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error in update password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Update Password" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
     }
@@ -221,7 +221,7 @@ public class DashboardProfileSteps {
             if (pswrdNotmatch.equals("Password and confirm password does not match")) ;
             GemTestReporter.addTestStep("Password and confirm password does not match", "Password and confirm password does not match", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "password verification error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Password Verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -235,7 +235,7 @@ public class DashboardProfileSteps {
 
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error in close button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Error In Close Button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
     }
@@ -249,7 +249,7 @@ public class DashboardProfileSteps {
             DriverAction.click(applyLunch, "apply lunch");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error in apply lunch" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error In Apply Lunch" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
 
     }
@@ -269,7 +269,7 @@ public class DashboardProfileSteps {
 
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error in selecting from & select date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Selecting From And Select Date Tab" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         try {
 
@@ -277,7 +277,7 @@ public class DashboardProfileSteps {
             DriverAction.click(selectFromDate, "select from date");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "from date and select date error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error In From Date And Select Date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -291,14 +291,14 @@ public class DashboardProfileSteps {
             DriverAction.waitSec(7);
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error in till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occured In Till Date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         try {
             DriverAction.waitUntilElementAppear(selectTillDate, 3);
             DriverAction.click(selectTillDate, "select till date");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "error found while clicking on till date" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Found While Clicking On Till Date Tab" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -309,7 +309,7 @@ public class DashboardProfileSteps {
             DriverAction.waitSec(5);
             DriverAction.click(locationContainer, "location container");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "location error occured" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Error Occurred In Location Tab" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -321,7 +321,7 @@ public class DashboardProfileSteps {
             DriverAction.click(selectLocation, "select location");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "select location error " + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Select Location" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -331,7 +331,7 @@ public class DashboardProfileSteps {
         DriverAction.waitSec(5);
         DriverAction.click(addLunchButton, "add lunch button");
     }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Phone Number Verification Is Invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         }
 
@@ -345,7 +345,7 @@ public class DashboardProfileSteps {
                 GemTestReporter.addTestStep("warning", "You have already applied for these dates.", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "verify warning error " + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error In Verify Warning Message " + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -355,7 +355,7 @@ public class DashboardProfileSteps {
         DriverAction.getElementText(locationContainer);
         String s = DriverAction.getElementText(locationContainer);
         if (s.equals("Select")) {
-            GemTestReporter.addTestStep("Select is blank", "error in Select blank", STATUS.PASS, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Select is blank", "Error Occurred In Select Blank", STATUS.PASS, DriverAction.takeSnapShot());
         }
 
     }
@@ -365,7 +365,7 @@ public class DashboardProfileSteps {
         DriverAction.getElementText(enterOldPassword);
         String sb = DriverAction.getElementText(enterOldPassword);
         if (sb.equals("old password")) {
-            GemTestReporter.addTestStep("old password is blank", "error in old password blank", STATUS.PASS, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("old password is blank", "Error occurred in old password blank", STATUS.PASS, DriverAction.takeSnapShot());
         }
 
     }
@@ -381,7 +381,7 @@ public class DashboardProfileSteps {
             DriverAction.click(updateButtonAdd);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "address update error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurres In Address Update" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -394,7 +394,7 @@ public class DashboardProfileSteps {
     public void verifyPinCode() {
         String sb = DriverAction.getElementText(enterPincode);
         if (sb.equals("Pincode")) {
-            GemTestReporter.addTestStep("Pincode", "pincode verification failed", STATUS.PASS, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Pincode", "Pincode Verification is Failed", STATUS.PASS, DriverAction.takeSnapShot());
         }
     }
 
@@ -408,7 +408,7 @@ public class DashboardProfileSteps {
                 GemTestReporter.addTestStep("Old Password", "Old Password", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "password verification error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred in Password Verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -418,7 +418,7 @@ public class DashboardProfileSteps {
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
     }catch (Exception e){
-          GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+          GemTestReporter.addTestStep("ERROR", "Error Ocurred while Editing Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
       }
       }
 
@@ -428,7 +428,7 @@ try{
         DriverAction.waitSec(5);
         DriverAction.click(clickOnChangeDetails, "click on edit details button");
     }catch (Exception e){
-    GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+    GemTestReporter.addTestStep("ERROR", "Error Ocurred While Change Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
 }
     }
 
@@ -438,7 +438,7 @@ try{
         DriverAction.waitSec(5);
         DriverAction.typeText(enterMobileNo, "123456789");
     }catch(Exception e){
-            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Ocurred in Enter Phone Number" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
         }
 
@@ -449,7 +449,7 @@ try{
             DriverAction.waitSec(5);
             DriverAction.click(updateMobileNo, "click on update mobile no. button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Phone Number Update" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -465,7 +465,7 @@ try{
                 GemTestReporter.addTestStep("warning", "Please put 10 digit mobile number.", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "invalid ph no verification" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Verify Invalid Phone Number Error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -488,7 +488,7 @@ try{
                 GemTestReporter.addTestStep("warning", "Extension number should only be 3 digits.", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "invalid ext no error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Verify Invalid Extension Number Error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 }
