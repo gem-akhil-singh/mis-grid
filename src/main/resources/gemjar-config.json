@@ -10,7 +10,7 @@
   "remoteDriverUrl": "http://20.219.41.21:4444/wd/hub",
   "emailReport": "N",
   "emailTO": "shruti.kukreja@geminisolutions.com,sajith.j@geminisolutions.com",
-  "emailCC": "shubham.kumar@geminisolutions.com,tushar.chauhan@geminisolutions.com,shruti.singh@geminisolutions.com,divya.madan@geminisolutions.com,charu.garg@geminisolutions.com,laxmi.sisode@geminisolutions.com,touqeer.subhani@geminisolutions.com",
+  "emailCC": "shubham.kumar@geminisolutions.com,tushar.chauhan@geminisolutions.com,shruti.singh@geminisolutions.com,divya.madan@geminisolutions.com,charu.garg@geminisolutions.com,laxmi.sisode@geminisolutions.com,touqeer.subhani@geminisolutions.com,smita.mishra@geminisolutions.com,prajjwal.negi@geminisolutions.com",
   "dev": {
     "browserName": "firefox",
     "launchUrl": "url",
