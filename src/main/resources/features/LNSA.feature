@@ -25,7 +25,6 @@ Feature: LNSA Feature - MIS Automation GemJar
   Scenario: User selects a day and Submits the LNSA
     And User selects "Apply LNSA" from menu panel
     Then User selects a day for which LNSA has not been applied
-    Then User submits the LNSA with selected day
     And User enters the reason for LNSA submission
     Then User clicks on the "Submit" of Reason pop-up
     Then User verifies the success message and clicks on OK
@@ -33,7 +32,6 @@ Feature: LNSA Feature - MIS Automation GemJar
   Scenario: User selects a day and clicks on the cancel button
     And User selects "Apply LNSA" from menu panel
     Then User selects a day for which LNSA has not been applied
-    Then User submits the LNSA with selected day
     And User enters the reason for LNSA submission
     Then User clicks on the "Cancel" of Reason pop-up
 
