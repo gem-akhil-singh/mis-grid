@@ -276,16 +276,22 @@ public class ReferalStep {
         try{
         DriverAction.waitSec(10);
         String dirPath = System.getProperty("user.dir");
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),
+                    Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.elementToBeClickable(refName));
         DriverAction.click(refName);
         DriverAction.typeText(refName,"Sarah");
+            wait.until(ExpectedConditions.elementToBeClickable(refEmail));
         DriverAction.click(refEmail);
         DriverAction.typeText(refEmail, "abcde@gmail.com");
+            wait.until(ExpectedConditions.elementToBeClickable(enterRefContNo));
         DriverAction.click(enterRefContNo);
         DriverAction.typeText(enterRefContNo, "1234567890");
         WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
         Select dropDown = new Select(relationDropDown);
         dropDown.selectByIndex(2);
         DriverAction.waitSec(5);
+            wait.until(ExpectedConditions.elementToBeClickable(resumeUpload));
         DriverAction.waitUntilElementAppear(resumeUpload,7);
        // DriverAction.click(resumeUpload);
         DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument.xlsx");

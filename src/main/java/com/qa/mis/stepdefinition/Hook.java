@@ -7,8 +7,6 @@ import io.cucumber.java.Before;
 
 public class Hook {
     @Before    public void start() throws GemException {
-        DriverManager.setUpBrowser();
-        DriverAction.setImplicitTimeOut(20);
-        DriverAction.maximizeBrowser();
+       DriverManager.initializeChrome("--remote-allow-origins=*");
     }
 }

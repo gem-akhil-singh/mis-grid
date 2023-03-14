@@ -116,8 +116,10 @@ public class DashboardProfileSteps {
             DriverAction.waitUntilElementAppear(invalidPincode, 1);
             DriverAction.getElementText(invalidPincode);
             String wrng1 = DriverAction.getElementText(warning);
+
+
             if (wrng1.equals("Warning")) {
-                GemTestReporter.addTestStep("warning", "warningText", STATUS.PASS, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("warning", "Pin code should only be 6 digits", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "Error Occured in Pincode Validation" + e, STATUS.FAIL,DriverAction.takeSnapShot());
