@@ -145,18 +145,6 @@ public class LNSASteps {
                 "Click on Submit button was a success");
     }
 
-    @Then("^User submits the LNSA with selected day")
-    public void userSubmitsTheLNSAWeek() {
-        if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_SUBMIT_BUTTON))
-            DriverAction.click(LNSA_FeedbackLocator.LNSA_SUBMIT_BUTTON,
-                    "User clicks on Submit button",
-                    "Click on Submit button was a success");
-        else {
-            logger.info("Unable to find the Submit button and unable to click on it");
-            Assert.fail("Unable to find the Submit button and unable to click on it");
-        }
-    }
-
     @And("^User enters the reason for LNSA submission$")
     public void userEntersTheReasonForLNSASubmission() {
         if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX)) {

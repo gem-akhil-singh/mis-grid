@@ -139,6 +139,7 @@ public class FormsSteps {
     @When("User clicks on department")
     public void userClicksOnDepartment() {
         try {
+            DriverAction.waitSec(3);
             DriverAction.click(FormsLocator.department);
         } catch (Exception e) {
             GemTestReporter.addTestStep("User clicks on department", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
