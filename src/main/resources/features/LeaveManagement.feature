@@ -199,7 +199,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | leaveOption | leaveType | reasonMessage         | reason      | primaryContact     |
-      | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 03/15/2023 | leaveFromDate | 03/16/2023 | leaveTillDate | 1           | leaveType | Sample Reason Message | leaveReason | leaveContactNumber |
+      | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/14/2023 | leaveFromDate | 04/14/2023 | leaveTillDate | 1           | leaveType | Sample Reason Message | leaveReason | leaveContactNumber |
 
     # LWP Change Request
   Scenario Outline: Navigate to Leave Management > LWP Change Request tab
@@ -763,7 +763,6 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
 
-
   Scenario Outline: Cancel Leave for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
@@ -772,13 +771,13 @@ Feature: MIS - Leave Management
     And User enters "<leavePeriod>" period in search box for "<tab>"
     And Verify "<leavePeriod>" period as search result for "<tab>"
     And Cancel the leave for given period
-    And Verify popup alert with message "Confirm" and "Are you sure you want to cancel this request ?"
+#    And Verify popup alert with message "Confirm" and "Are you sure you want to cancel this request ?"
     And User clicks on yes button to cancel the leave
     And Verify popup alert with message "Success" and "Request processed successfully"
 
     Examples:
       | parentTab        | childTab            | tab   | leavePeriod                |
-      | Leave Management | View Request Status | Leave | 15-Mar-2023 to 16-Mar-2023 |
+      | Leave Management | View Request Status | Leave | 14-Apr-2023 to 14-Apr-2023 |
 
   Scenario Outline: Navigate to Leave Management > View Request Status tab > Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS

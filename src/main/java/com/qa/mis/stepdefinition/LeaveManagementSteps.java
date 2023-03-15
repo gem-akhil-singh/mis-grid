@@ -285,6 +285,7 @@ public class LeaveManagementSteps {
     @And("Verify popup alert with message {string} and {string}")
     public void verifyPopupWithMessageAnd(String alertType, String alertMessage) {
         try {
+            DriverAction.waitSec(2);
             String expectedAlertType = DriverAction.getElementText(LeaveManagementLocator.heading_alertType);
             String expectedAlertMessage = DriverAction.getElementText(LeaveManagementLocator.text_alertMessage);
 
@@ -371,14 +372,9 @@ public class LeaveManagementSteps {
     @And("Click total working days tool tip")
     public void clickTotalWorkingDaysToolTip() {
         try {
-            DriverAction.waitSec(5);
-//        new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20))
-//                .until(ExpectedConditions.elementToBeClickable(LeaveManagementLocators.button_tooltip));
             if (DriverAction.isExist(LeaveManagementLocator.button_tooltip)) {
-//            DriverAction.click(LeaveManagementLocators.button_tooltip, "tooltip");
-                JavascriptExecutor js = (JavascriptExecutor) DriverManager.getWebDriver();
-                js.executeScript("arguments[0].click();",
-                        DriverAction.getElement(LeaveManagementLocator.button_tooltip));
+                DriverAction.waitSec(2);
+                DriverAction.click(LeaveManagementLocator.button_tooltip, "tooltip");
                 GemTestReporter.addTestStep("clicked on tool tip", "Pass", STATUS.PASS);
             } else {
                 GemTestReporter.addTestStep("Fail to click on tool tip", "Fail", STATUS.FAIL);
@@ -390,11 +386,9 @@ public class LeaveManagementSteps {
 
     @And("Verify tooltip message {string}")
     public void verifyTooltipMessage(String message) {
-//        String expectedMessage = DriverAction.getAttributeName(LeaveManagementLocators.button_tooltip,
-//                "data-content");
         try {
-            DriverAction.waitSec(5);
             String expectedMessage = DriverAction.getElementText(LeaveManagementLocator.message_tooltip);
+            DriverAction.waitSec(2);
             if (expectedMessage.equals(message)) {
                 GemTestReporter.addTestStep("Verifying ToolTip Message",
                         "ToolTip Message matching passed.\nExpected ToolTip Message - " + expectedMessage +
@@ -462,6 +456,7 @@ public class LeaveManagementSteps {
         try {
             DriverAction.waitUntilElementAppear(LeaveManagementLocator.field_leaveDropDown(field), 20);
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveDropDown(field))) {
+                DriverAction.waitSec(1);
                 DriverAction.dropDown(LeaveManagementLocator.field_leaveDropDown(field), options);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to click on dropdown", STATUS.FAIL,
@@ -1087,6 +1082,7 @@ public class LeaveManagementSteps {
         try {
             DriverAction.waitUntilElementAppear(LeaveManagementLocator.button_leaveCancelYes, 10);
             if (DriverAction.isExist(LeaveManagementLocator.button_leaveCancelYes)) {
+                DriverAction.waitSec(2);
                 DriverAction.click(LeaveManagementLocator.button_leaveCancelYes, "yes");
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to click yes button",
