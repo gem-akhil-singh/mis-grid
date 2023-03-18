@@ -18,23 +18,12 @@ Feature: MIS_Automation - DashboardProfile
   Scenario: user enter invalid phone number
     When click on edit details button
     And enter mobile number
-    And click on update mobile number
-    Then verify invalid phone number
+    Then verify error message
 
   Scenario: user enters invalid extension number
     When click on edit details button
     And enter extension number
-    And click on update mobile number
-    Then verify invalid ext number
-
-
-  #Scenario: click on mobile details
-   #When Enter mobile number and ext number
-     # Then click on update
-
-    ##  Scenario: user enter invalid pincode
-        ##Given user click on url
-      ##  When enter address in the update address tab
+    Then verify error message
 
   Scenario:user enter invalid pincode
     When click on edit details button

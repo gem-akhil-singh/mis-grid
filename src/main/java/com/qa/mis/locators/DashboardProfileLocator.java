@@ -20,6 +20,8 @@ public class DashboardProfileLocator {
 
     // public static By clickOnUpdate = By.xpath("//button[@id='btnUpdate']");
 
+    public static By verifyError=By.xpath("//label[@id='txtMsg']");
+
     public static By clickOnChangeDetails = By.xpath("//i[@class='fa fa-edit']");
 
     public static By clickOnUpdateAdd = By.xpath("//span[text()='Update Address']");
@@ -32,6 +34,7 @@ public class DashboardProfileLocator {
 
     public static By warning = By.xpath("//h2[text()='Warning']");
 
+    public static By invalidNo=By.xpath("//label[text()='Your profile update request is pending for approval.']");
     public static By changePassword= By.xpath("//span[text()='Change Password']");
 
     public static By enterOldPassword=By.id("txtOldPassword");

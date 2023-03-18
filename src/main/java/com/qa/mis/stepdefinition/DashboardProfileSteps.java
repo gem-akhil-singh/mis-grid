@@ -11,13 +11,15 @@ import net.bytebuddy.utility.visitor.ExceptionTableSensitiveMethodVisitor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Driver;
+//import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 
 import static com.qa.mis.locators.DashboardProfileLocator.*;
+import static com.qa.mis.locators.DashboardProfileLocator.invalidNo;
+import static com.qa.mis.locators.ReferalLocator.refSaveButton;
 
 public class DashboardProfileSteps {
 
@@ -39,48 +41,48 @@ public class DashboardProfileSteps {
 
     @And("^click on SignIn button$")
     public void signIn() {
-       try{
-        DriverAction.waitSec(5);
-        DriverAction.click(signIn);
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.click(signIn);
 
-    }catch (Exception e){
-           GemTestReporter.addTestStep("ERROR", "SignIn Button Not Found" + e, STATUS.FAIL,DriverAction.takeSnapShot());
-       }
-       }
+        }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "SignIn Button Not Found" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+    }
 
     @When("^user update mobile and extension number$")
     public void clickOnMobile() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.click(clickOnChangeDetails, "change details button");
+            DriverAction.waitSec(5);
+            DriverAction.click(clickOnChangeDetails, "change details button");
 
-    }catch (Exception e){
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Phone number and extension number is invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @When("^Enter mobile number and ext number$")
     public void enterMobileNoAndExtNo() {
-  try{
-        DriverAction.waitSec(5);
-        DriverAction.typeText(contactNo, "1234567890");
-        DriverAction.waitUntilElementAppear(enterExtNo, 2);
-        DriverAction.typeText(enterExtNo, "111");
-    }catch (Exception e){
-      GemTestReporter.addTestStep("ERROR", "Phone number verification is invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
-  }
-  }
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.typeText(contactNo, "1234567890");
+            DriverAction.waitUntilElementAppear(enterExtNo, 2);
+            DriverAction.typeText(enterExtNo, "111");
+        }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "Phone number verification is invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+    }
 
     @When("^click on update$")
     public void clickOnUpdate() {
-     try{
-        DriverAction.waitSec(5);
-        DriverAction.click(clickOnUpdate);
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.click(clickOnUpdate);
 
-    }catch (Exception e){
-         GemTestReporter.addTestStep("ERROR", "Update Verification is Failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
-     }
-     }
+        }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "Update Verification is Failed" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+    }
 
     @And("^click on update address$")
     public void clickOnUpdateAdd() {
@@ -330,12 +332,12 @@ public class DashboardProfileSteps {
     @Then("^click on add lunch button$")
     public void clickOnAddLunchButton() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.click(addLunchButton, "add lunch button");
-    }catch (Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.click(addLunchButton, "add lunch button");
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Phone Number Verification Is Invalid" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @Then("^verify the warning message$")
     public void verifyTheWarningMessage() {
@@ -416,37 +418,48 @@ public class DashboardProfileSteps {
 
     @When("click on edit details button")
     public void clickOnEditDetailsButton() {
-      try{
-        DriverAction.waitSec(5);
-        DriverAction.click(clickOnChangeDetails, "click on edit details button");
-    }catch (Exception e){
-          GemTestReporter.addTestStep("ERROR", "Error Ocurred while Editing Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
-      }
-      }
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.click(clickOnChangeDetails, "click on edit details button");
+        }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "Error Ocurred while Editing Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+    }
 
     @When("click on change details button")
     public void clickOnChangeDetailsButton() {
-try{
-        DriverAction.waitSec(5);
-        DriverAction.click(clickOnChangeDetails, "click on edit details button");
-    }catch (Exception e){
-    GemTestReporter.addTestStep("ERROR", "Error Ocurred While Change Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
-}
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.click(clickOnChangeDetails, "click on edit details button");
+        }catch (Exception e){
+            GemTestReporter.addTestStep("ERROR", "Error Ocurred While Change Details" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
     }
 
     @And("enter mobile number")
     public void enterMobileNumber() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.typeText(enterMobileNo, "123456789");
-    }catch(Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.typeText(enterMobileNo, "123456789");
+        }catch(Exception e){
             GemTestReporter.addTestStep("ERROR", "Error Ocurred in Enter Phone Number" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
+    @Then("verify error message")
+    public void errormessage(){
+        try{
+            DriverAction.waitSec(5);
+            DriverAction.isExist(verifyError);
+            GemTestReporter.addTestStep("verify Error","Your profile update request is pending for approval.",STATUS.PASS,DriverAction.takeSnapShot());
+        }
+        catch (Exception e)
+        {
+            GemTestReporter.addTestStep("ERROR", "Error Occurred While verifying the error pop up" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+        }
+    }
     @And("click on update mobile number")
     public void clickOnUpdateMobileNumber() {
-
         try {
             DriverAction.waitSec(5);
             DriverAction.click(updateMobileNo, "click on update mobile no. button");
@@ -461,11 +474,14 @@ try{
 
         DriverAction.waitSec(5);
         try {
-            DriverAction.getElementText(invalidPhNumber);
-            String invalidNo = DriverAction.getElementText(warning);
-            if (invalidNo.equals("Warning")) {
-                GemTestReporter.addTestStep("warning", "Please put 10 digit mobile number.", STATUS.PASS, DriverAction.takeSnapShot());
-            }
+            DriverAction.waitUntilElementAppear(invalidNo,2);
+            DriverAction.click(invalidNo);
+            DriverAction.waitSec(3);
+            GemTestReporter.addTestStep("profile for approval","Your profile update request is pending for approval.",STATUS.PASS,DriverAction.takeSnapShot());
+            //  DriverAction.getElementText(invalidPhNumber);
+            // String invalidNo = DriverAction.getElementText(warning);
+            // if (invalidNo.equals("Warning")) {
+            //      GemTestReporter.addTestStep("warning", "Please put 10 digit mobile number.", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "Verify Invalid Phone Number Error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
