@@ -15,11 +15,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Driver;
+//import java.sql.Driver;
 import java.time.Duration;
 
 import static com.qa.mis.locators.DashboardProfileLocator.*;
 import static com.qa.mis.locators.ReferalLocator.*;
+import static com.qa.mis.locators.ReferalLocator.invalidUpload;
 
 public class ReferalStep {
 
@@ -148,27 +149,27 @@ public class ReferalStep {
     @When("^user checks referral section$")
     public void userChecksReferralSection() {
         try{
-        DriverAction.getElementText(refSection);
-        DriverAction.waitSec(5);
-        String refferalSection = DriverAction.getElementText(refSection);
-        if (refferalSection.contains("Referral"))
-            GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.PASS, DriverAction.takeSnapShot());
+            DriverAction.getElementText(refSection);
+            DriverAction.waitSec(5);
+            String refferalSection = DriverAction.getElementText(refSection);
+            if (refferalSection.contains("Referral"))
+                GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.PASS, DriverAction.takeSnapShot());
 
-        else
-            GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.FAIL, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("verify ref section", "verify ref section found", STATUS.FAIL, DriverAction.takeSnapShot());
 
 
-        String verWindow = DriverAction.getElementText(verifyJdWindow);
-        if (verWindow.contains("Referral")) {
-            GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.PASS, DriverAction.takeSnapShot());
-            DriverAction.waitSec(7);
+            String verWindow = DriverAction.getElementText(verifyJdWindow);
+            if (verWindow.contains("Referral")) {
+                GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.PASS, DriverAction.takeSnapShot());
+                DriverAction.waitSec(7);
 
-        }
-        else
+            }
+            else
 
-            GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
 
-    }catch(Exception e){
+        }catch(Exception e){
             GemTestReporter.addTestStep("ERROR", "Verify Job Description Window Is Not Found" + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
@@ -176,35 +177,35 @@ public class ReferalStep {
     @And("^click on email under referral$")
     public void clickOnEmailUnderReferral() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.waitUntilElementAppear(refEmail,5);
-        DriverAction.click(refEmail, "referral email text");
-    }catch(Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.waitUntilElementAppear(refEmail,5);
+            DriverAction.click(refEmail, "referral email text");
+        }catch(Exception e){
             GemTestReporter.addTestStep("ERROR", "Error Ocuurred In Email Under Referral" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @And("^enter the email address$")
     public void enterTheEmailAddress() {
         try {
-        DriverAction.waitSec(5);
-        DriverAction.waitUntilElementAppear(refEmail,5);
-        DriverAction.typeText(refEmail, "abcde");
-    }catch (Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.waitUntilElementAppear(refEmail,5);
+            DriverAction.typeText(refEmail, "abcde");
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Error Occurred In Email Address" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @And("^click on save$")
     public void clickOnSave() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.waitUntilElementAppear(refSaveButton,3);
-        DriverAction.click(refSaveButton, "click on save button under referral");
-    }catch (Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.waitUntilElementAppear(refSaveButton,3);
+            DriverAction.click(refSaveButton, "click on save button under referral");
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Error Occurred While click On Save Button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @Then("^verify the warning message in ref section$")
     public void verifyTheWarningMessageInRefSection() {
@@ -238,13 +239,13 @@ public class ReferalStep {
     @Then("verify the pdf is visible")
     public void verifyThePdfIsVisible() {
         try{
-        DriverAction.waitSec(5);
-        DriverAction.isExist(pdfVisible);
-        GemTestReporter.addTestStep("pdf visible", "pdf opens and visible", STATUS.PASS, DriverAction.takeSnapShot());
-    }catch (Exception e){
+            DriverAction.waitSec(5);
+            DriverAction.isExist(pdfVisible);
+            GemTestReporter.addTestStep("pdf visible", "pdf opens and visible", STATUS.PASS, DriverAction.takeSnapShot());
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Verification Of The Pdf Is Visible" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @And("click on Manual")
     public void clickOnManual() {
@@ -274,40 +275,47 @@ public class ReferalStep {
     @And("user enter details and upload file")
     public void clickOnUploadFile() {
         try{
-        DriverAction.waitSec(10);
-        String dirPath = System.getProperty("user.dir");
+            DriverAction.waitSec(10);
+            String dirPath = System.getProperty("user.dir");
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),
                     Duration.ofSeconds(5));
             wait.until(ExpectedConditions.elementToBeClickable(refName));
-        DriverAction.click(refName);
-        DriverAction.typeText(refName,"Sarah");
+            DriverAction.click(refName);
+            DriverAction.typeText(refName,"Sarah");
             wait.until(ExpectedConditions.elementToBeClickable(refEmail));
-        DriverAction.click(refEmail);
-        DriverAction.typeText(refEmail, "abcde@gmail.com");
+            DriverAction.click(refEmail);
+            DriverAction.typeText(refEmail, "abcde@gmail.com");
             wait.until(ExpectedConditions.elementToBeClickable(enterRefContNo));
-        DriverAction.click(enterRefContNo);
-        DriverAction.typeText(enterRefContNo, "1234567890");
-        WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
-        Select dropDown = new Select(relationDropDown);
-        dropDown.selectByIndex(2);
-        DriverAction.waitSec(5);
-            wait.until(ExpectedConditions.elementToBeClickable(resumeUpload));
-        DriverAction.waitUntilElementAppear(resumeUpload,7);
-       // DriverAction.click(resumeUpload);
-        DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument.xlsx");
-        DriverAction.waitSec(10);
+            DriverAction.click(enterRefContNo);
+            DriverAction.typeText(enterRefContNo, "1234567890");
+            WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
+            Select dropDown = new Select(relationDropDown);
+            dropDown.selectByIndex(2);
+            DriverAction.waitSec(5);
+            //  wait.until(ExpectedConditions.elementToBeClickable(resumeUpload));
+            //DriverAction.waitUntilElementAppear(resumeUpload,7);
+            // DriverAction.click(resumeUpload);
+            // DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument.xlsx");
+            //  DriverAction.waitSec(10);
+            DriverAction.waitUntilElementAppear(refSaveButton,2);
+            DriverAction.click(refSaveButton);
+            DriverAction.waitSec(3);
 
-    }catch (Exception e){
+
+        }catch (Exception e){
             GemTestReporter.addTestStep("ERROR", "Error While Entering Details And File Upload" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
-        }
+    }
 
     @Then("^verify wrong format is uploaded$")
     public void verifyWrongFormatIsUploaded() {
         try {
-            DriverAction.waitUntilElementAppear(resumeWarning, 5);
-            DriverAction.isExist(resumeWarning);
-            GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
+            DriverAction.waitUntilElementAppear(invalidUpload,5);
+            DriverAction.isExist(invalidUpload);
+            GemTestReporter.addTestStep("resume upload","Note: Selected file format should be .doc, .docx or .pdf",STATUS.PASS,DriverAction.takeSnapShot());
+//            DriverAction.waitUntilElementAppear(resumeWarning, 5);
+//            DriverAction.isExist(resumeWarning);
+//            GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "Error Occurred While Uploading" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }

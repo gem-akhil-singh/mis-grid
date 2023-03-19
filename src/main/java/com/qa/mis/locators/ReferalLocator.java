@@ -23,6 +23,8 @@ public class ReferalLocator {
 
     public static By refWarning = By.xpath("//h2[text()='Warning']");
 
+    public static By invalidUpload=By.xpath("//span[text()='Note: Selected file format should be .doc, .docx or .pdf']");
+
     public static By clickFAQ = By.xpath("//a[text()='FAQ']");
 
     public static By pdfVisible = By.xpath("//div[@id='viewDocumentModal']");
@@ -30,11 +32,11 @@ public class ReferalLocator {
     //public static By manual=By.xpath("//a[text()='Manual']");
 
     public static By manualVisible = By.xpath("//div[@class='col-md-9']/a[2]");
-            //"//a[@onclick='showStepsPopup()']");
-        //    By.xpath("//a[text()='Manual']");
+    //"//a[@onclick='showStepsPopup()']");
+    //    By.xpath("//a[text()='Manual']");
 
     public static By resumeUpload =By.xpath("/html[1]/body[1]/div[2]/div[12]/div[1]/div[1]/div[2]/div[5]/div[2]/input[1]");
-            //By.xpath("//input[@id='resume']");
+    //By.xpath("//input[@id='resume']");
 
     public static By selectHimOrHer=By.xpath("//select[@id='relationName']");
 
