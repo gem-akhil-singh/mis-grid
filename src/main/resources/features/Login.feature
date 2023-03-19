@@ -89,7 +89,7 @@ Feature: Login
     When User enters "username" as "<uname>"
     Then User enters "password" as "<password>"
     And Click on Sign In Button
-    Then Verify User is on "MIS Home" Page
+    Then User should be navigated to MIS homepage
     And Click on Logout button
     Then Verify User is on "Login" Page
     Examples:

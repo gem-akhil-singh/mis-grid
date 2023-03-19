@@ -6,7 +6,8 @@ import com.gemini.generic.ui.utils.DriverManager;
 import io.cucumber.java.Before;
 
 public class Hook {
-    @Before    public void start() throws GemException {
-       DriverManager.initializeChrome("--remote-allow-origins=*");
+    @Before
+    public void start() throws GemException {
+        DriverManager.setUpBrowser();
     }
 }
