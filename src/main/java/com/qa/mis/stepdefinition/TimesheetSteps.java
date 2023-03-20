@@ -44,7 +44,7 @@ public class TimesheetSteps {
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(configureTimesheetURL)) {
-                    GemTestReporter.addTestStep("Navigation Successful", "Clicked on Configure Timesheet", STATUS.PASS, DriverAction.takeSnapShot());
+                    GemTestReporter.addTestStep("Navigation Successful on Configure timesheet", "Clicked on Configure Timesheet", STATUS.PASS, DriverAction.takeSnapShot());
                 } else
                     GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Configure Timesheet tab failed", STATUS.PASS, DriverAction.takeSnapShot());
 
@@ -53,7 +53,7 @@ public class TimesheetSteps {
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(createTimesheetURL)) {
-                    GemTestReporter.addTestStep("Navigation Successful", "Clicked on Create Timesheet", STATUS.PASS, DriverAction.takeSnapShot());
+                    GemTestReporter.addTestStep("Navigation Successful on Create Timesheet", "Clicked on Create Timesheet", STATUS.PASS, DriverAction.takeSnapShot());
                 } else
                     GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Create Timesheet tab failed", STATUS.FAIL, DriverAction.takeSnapShot());
 
@@ -63,7 +63,7 @@ public class TimesheetSteps {
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(manageTemplateURL)) {
-                    GemTestReporter.addTestStep("Navigation Successful", "Clicked on Manage Task Template", STATUS.PASS, DriverAction.takeSnapShot());
+                    GemTestReporter.addTestStep("Navigation Successful on Manage Task Template", "Clicked on Manage Task Template", STATUS.PASS, DriverAction.takeSnapShot());
                 } else
                     GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Manage Task Template tab failed", STATUS.FAIL, DriverAction.takeSnapShot());
 

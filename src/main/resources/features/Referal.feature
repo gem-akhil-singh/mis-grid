@@ -3,12 +3,6 @@
 
 Feature: MIS - Referalfeature
 
-#  Background: Launch MIS url
-#    When user click on url
-#    And Enter username referal
-#    And Enter Password referal
-#    And click on SignIn button referal
-#    Then click on close button referal
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button

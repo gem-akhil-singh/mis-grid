@@ -22,12 +22,14 @@ public class KnowledgeBaseSteps {
 
     @Given("logged in successfully")
     public void logged_in_successfully() throws InterruptedException {
-
+        //DriverAction.typeText(KnowledgeBaseLocator.usernameByXpath,"prajjwal.negi");
+        //DriverAction.typeText(KnowledgeBaseLocator.passwordByXpath,"Gemini@123");
+        //Thread.sleep(5000);
         DriverAction.waitSec(5);
         if (DriverAction.isExist(KnowledgeBaseLocator.usernameByXpath)) {
             DriverAction.typeText(KnowledgeBaseLocator.usernameByXpath, "prajjwal.negi");
         } else {
-             GemTestReporter.addTestStep("Username", "Username field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Username", "Username field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
         }
         if (DriverAction.isExist(KnowledgeBaseLocator.passwordByXpath)) {
             DriverAction.typeText(KnowledgeBaseLocator.passwordByXpath, "Gemini@123");
@@ -36,7 +38,7 @@ public class KnowledgeBaseSteps {
         }
         DriverAction.click(KnowledgeBaseLocator.signInByXpath);
         Thread.sleep(10000);
-       // DriverAction.waitUntilElementAppear(KnowledgeBaseLocator.closeSkills,100);
+        // DriverAction.waitUntilElementAppear(KnowledgeBaseLocator.closeSkills,100);
 
         DriverAction.click(KnowledgeBaseLocator.closeSkills,"Close skill");
     }
@@ -50,8 +52,8 @@ public class KnowledgeBaseSteps {
     }
     @Then("add new document tags icon is present and functional")
     public void add_new_document_tags_icon_is_present_and_functional() {
-         DriverAction.click(KnowledgeBaseLocator.addDocumentTag,"Add document Tag");
-        DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag,"Test32");
+        DriverAction.click(KnowledgeBaseLocator.addDocumentTag,"Add document Tag");
+        DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag,"Test82");
         DriverAction.click(KnowledgeBaseLocator.saveDocumentTag,"Document Tag saved");
         String successMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagSuccessfullyAdded);
 
@@ -80,12 +82,14 @@ public class KnowledgeBaseSteps {
     public void throws_warning_message() {
         String warningMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagWarningMessage);
         System.out.println(warningMessage);
-        if(!warningMessage.equalsIgnoreCase("Please fill required field")){
-            Assert.fail();
+        if(warningMessage.equalsIgnoreCase("Please fill required field")){
+
 
 
         }
-
+        else{
+            Assert.fail();
+        }
 //        if(!warningMessage.equalsIgnoreCase("Please fill required field")){
 //            Assert.fail();
 //        }
@@ -120,7 +124,8 @@ public class KnowledgeBaseSteps {
 
     @When("navigating to view documents page and adding an invalid document type")
     public void navigating_to_view_documents_page_and_adding_an_invalid_document_type() throws InterruptedException {
-         DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
+        System.out.println(System.getProperty("user.dir"));
+        DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
         DriverAction.click(KnowledgeBaseLocator.viewDocuments,"View Documents");
         DriverAction.waitUntilElementAppear(KnowledgeBaseLocator.folder,5);
         Thread.sleep(5000);
@@ -128,7 +133,7 @@ public class KnowledgeBaseSteps {
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.addDocument,"Add Document");
         Thread.sleep(5000);
-        DriverAction.fileUpload(KnowledgeBaseLocator.upload,"C:\\Users\\Prajjwal\\Automation2\\MIS_Automation\\src\\main\\resources\\testdocument2.txt");
+        DriverAction.fileUpload(KnowledgeBaseLocator.upload,System.getProperty("user.dir")+"\\src\\main\\resources\\testdocument2.txt");
         //DriverAction.typeText(Locators.upload,"src\\main\\resources\\testdocument2.txt");
         Thread.sleep(5000);
 
@@ -140,10 +145,12 @@ public class KnowledgeBaseSteps {
     }
     @Then("invalid document type warning should be displayed")
     public void invalid_document_type_warning_should_be_displayed() {
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.invalidDoc).equalsIgnoreCase("Invalid file selected. supported extensions are .xlsx,.xls,.pdf")){
+        if(DriverAction.getElementText(KnowledgeBaseLocator.invalidDoc).equalsIgnoreCase("Invalid file selected. supported extensions are .xlsx,.xls,.pdf")){
+
+        }
+        else{
             Assert.fail();
         }
-
 
 
     }
@@ -178,10 +185,12 @@ public class KnowledgeBaseSteps {
         // Write code here that turns the phrase above into concrete actions
         DriverAction.typeText(KnowledgeBaseLocator.search,"xyz");
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.searchDocument);
-        if(!documentName.equalsIgnoreCase("xyz")){
+        if(documentName.equalsIgnoreCase("xyz")){
+
+        }
+        else{
             Assert.fail();
         }
-
 
 
 
@@ -202,10 +211,12 @@ public class KnowledgeBaseSteps {
         // Write code here that turns the phrase above into concrete actions
         DriverAction.typeText(KnowledgeBaseLocator.search,"xyz2");
         String mismatch = DriverAction.getElementText(KnowledgeBaseLocator.documentSearch);
-        if(!mismatch.equalsIgnoreCase("No matching records found")){
+        if(mismatch.equalsIgnoreCase("No matching records found")){
+
+        }
+        else{
             Assert.fail();
         }
-
 
 
     }
@@ -221,8 +232,8 @@ public class KnowledgeBaseSteps {
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.rename);
         Thread.sleep(5000);
-        DriverAction.typeText(By.xpath("//*[@id=\"DocumentGrouptree\"]/ul/li[3]/span"),"1");
-        Thread.sleep(5000);
+//        DriverAction.typeText(By.xpath("//*[@id=\"DocumentGrouptree\"]/ul/li[3]/span"),"1");
+//        Thread.sleep(5000);
 
 
 
@@ -267,7 +278,7 @@ public class KnowledgeBaseSteps {
         Thread.sleep(5000);
         DriverAction.rightClick(By.xpath("//a[text()='"+string+"']"));
         Thread.sleep(5000);
-        DriverAction.click(KnowledgeBaseLocator.delete);
+        //DriverAction.click(KnowledgeBaseLocator.delete);
 
 
     }
@@ -305,7 +316,9 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.titleSort);
         DriverAction.click(KnowledgeBaseLocator.titleSort);
         Thread.sleep(5000);
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("zyx")){
+        if(DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("zyx")){
+
+        }else{
             Assert.fail();
         }
 
@@ -421,7 +434,7 @@ public class KnowledgeBaseSteps {
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.addDocument,"Add Document");
         Thread.sleep(5000);
-        DriverAction.fileUpload(KnowledgeBaseLocator.upload,"C:\\Users\\Prajjwal\\Automation2\\MIS_Automation\\src\\main\\resources\\testdocument1.xlsx");
+        DriverAction.fileUpload(KnowledgeBaseLocator.upload,System.getProperty("user.dir")+"\\src\\main\\resources\\testdocument1.xlsx");
         //DriverAction.typeText(Locators.upload,"src\\main\\resources\\testdocument2.txt");
         Thread.sleep(5000);
 
@@ -454,11 +467,13 @@ public class KnowledgeBaseSteps {
         Select list = new Select(el1);
         list.selectByValue(string);
         Thread.sleep(5000);
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains(string)){
-            Assert.fail();
+        if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains(string)){
+
 
         }
-
+        else{
+            Assert.fail();
+        }
     }
     @Then("dropdown is functional in view shared")
     public void dropdown_is_functional_in_view_shared() {
@@ -473,7 +488,10 @@ public class KnowledgeBaseSteps {
         DriverAction.typeText(KnowledgeBaseLocator.search,string);
         Thread.sleep(2000);
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.searchDocumentShared);
-        if(!documentName.equalsIgnoreCase(string)){
+        if(documentName.equalsIgnoreCase(string)){
+
+        }
+        else{
             Assert.fail();
         }
 
@@ -492,10 +510,12 @@ public class KnowledgeBaseSteps {
         DriverAction.typeText(KnowledgeBaseLocator.search,string);
         Thread.sleep(2000);
         String documentName = DriverAction.getElementText(KnowledgeBaseLocator.noMatchFound);
-        if(!documentName.equalsIgnoreCase("No matching records found")){
+        if(documentName.equalsIgnoreCase("No matching records found")){
+
+        }
+        else{
             Assert.fail();
         }
-
 
     }
     @Then("search functionlity is working by displaying no document")
@@ -509,11 +529,13 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("An introduction to Python for absolute beginners")){
-            Assert.fail();
+        if(DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("An introduction to Python for absolute beginners")){
+
 
         }
-
+        else{
+            Assert.fail();
+        }
 
     }
     @Then("list is sorted ascendingly")
@@ -529,11 +551,13 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
         Thread.sleep(2000);
         DriverAction.click(KnowledgeBaseLocator.titleAsc);
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("Unix Tutorials")){
-            Assert.fail();
+        if(DriverAction.getElementText(KnowledgeBaseLocator.titleAscEl).equalsIgnoreCase("Unix Tutorials")){
+
 
         }
-
+        else{
+            Assert.fail();
+        }
 
     }
     @Then("list is sorted descendingly")
@@ -547,11 +571,13 @@ public class KnowledgeBaseSteps {
         DriverAction.click(KnowledgeBaseLocator.viewSharedDocument,"View Documents");
         Thread.sleep(5000);
         DriverAction.click(KnowledgeBaseLocator.nextList);
-        if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
-                Assert.fail();
+        if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
+
 
         }
-
+        else{
+            Assert.fail();
+        }
 
 
     }
@@ -570,11 +596,16 @@ public class KnowledgeBaseSteps {
         if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("11")){
             Thread.sleep(2000);
             DriverAction.click(KnowledgeBaseLocator.previousList);
-            if(!DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("1")){
-                    Assert.fail();
+            if(DriverAction.getElementText(KnowledgeBaseLocator.listInfo).contains("1")){
+
+            }
+            else{
+                Assert.fail();
             }
 
 
+        }else{
+            Assert.fail();
         }
 
     }
@@ -597,13 +628,14 @@ public class KnowledgeBaseSteps {
     public void document_is_opened() throws InterruptedException {
         DriverAction.click(KnowledgeBaseLocator.viewDocument);
         Thread.sleep(5000);
-        if(!DriverAction.isExist(KnowledgeBaseLocator.verifyDocument)){
+        if(DriverAction.isExist(KnowledgeBaseLocator.verifyDocument)){}
+        else{
             Assert.fail();
         }
 
-
     }
 
+    ///////////////////////////////////////////////////////////////
     @When("navigating to view shared documents page and applying ascending shared by sort")
     public void navigating_to_view_shared_documents_page_and_applying_ascending_shared_by_sort() throws InterruptedException {
         DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
@@ -717,23 +749,4 @@ public class KnowledgeBaseSteps {
     public void list_is_sorted_by_date_descendingly() {
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

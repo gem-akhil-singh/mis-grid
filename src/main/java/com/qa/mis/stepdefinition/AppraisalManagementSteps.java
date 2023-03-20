@@ -1,5 +1,4 @@
 package com.qa.mis.stepdefinition;
-
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
@@ -12,10 +11,6 @@ import io.cucumber.java.en.When;
 import com.qa.mis.utility.*;
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,8 +40,6 @@ public class AppraisalManagementSteps {
             String currenturl = DriverAction.getCurrentURL();
             if (currenturl.equals(url))
                 GemTestReporter.addTestStep("Url Validation", "Successful<br>Expected URL: " + url + "<br>Actual URL: " + currenturl, STATUS.PASS, DriverAction.takeSnapShot());
-            // else
-            //   GemTestReporter.addTestStep("Url Validation", "Unsuccessful<br>Expected URL: " + url + "<br>Actual URL: " + currenturl, STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -55,12 +48,10 @@ public class AppraisalManagementSteps {
     @Then("^Enter Username (.+) and password (.+)$")
     public void enter_username_and_password(String userName, String password) {
         try {
-            status = DriverAction.typeText(AppraisalManagementLocator.txtUserName, userName);
-            //   GemTestReporter.addTestStep("Enter User Name", "User name is entered", status, DriverAction.takeSnapShot());
+            status = DriverAction.typeText(AppraisalManagementLocator.txtUserName, "Enter User Name", "Username" + userName, userName);
             byte[] decodingString = Base64.decodeBase64(password);
             String passwordDecoded = new String(decodingString);
-            status = DriverAction.typeText(AppraisalManagementLocator.txtPassword, passwordDecoded);
-            //    GemTestReporter.addTestStep("Enter Password", "Password is entered", status, DriverAction.takeSnapShot());
+            status = DriverAction.typeText(AppraisalManagementLocator.txtPassword, "Enter Password", "Password", passwordDecoded);
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -70,7 +61,6 @@ public class AppraisalManagementSteps {
     public void user_clicks_on_signIn_button() {
         try {
             status = DriverAction.click(AppraisalManagementLocator.btnSignIn);
-            //  GemTestReporter.addTestStep("User clicks on Sign-in button", "Successfully clicked on Sign in button", status, DriverAction.takeSnapShot());
             mainWindowHandle = DriverAction.getWindowHandle();
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -80,8 +70,6 @@ public class AppraisalManagementSteps {
     @Then("Login will be successful and homepage will be displayed.")
     public void login_will_be_successful_and_homepage_will_be_displayed() {
         try {
-//            DriverAction.switchToWindow(mainWindowHandle);
-//            String string = DriverAction.getWindowHandle();
             DriverAction.waitSec(7);
             Boolean bool = DriverAction.getElement(AppraisalManagementLocator.homePageLogo).isDisplayed();
             STATUS status;
@@ -89,7 +77,6 @@ public class AppraisalManagementSteps {
                 status = STATUS.PASS;
             else
                 status = STATUS.FAIL;
-            //   GemTestReporter.addTestStep("Login will be successful and homepage will be displayed ", "Successfully logged in", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -114,7 +101,6 @@ public class AppraisalManagementSteps {
                 status = STATUS.PASS;
             else
                 status = STATUS.FAIL;
-            //  GemTestReporter.addTestStep("Failure Pop Up", "Expected : should be displayed", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -125,9 +111,7 @@ public class AppraisalManagementSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(3));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lnkApraisalMgmnt));
-            //   DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkApraisalMgmnt, 3);
             status = DriverAction.click(AppraisalManagementLocator.lnkApraisalMgmnt);
-            //    GemTestReporter.addTestStep("Click on Appraisal Management link", "Appraisal Management link is clicked", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -136,13 +120,10 @@ public class AppraisalManagementSteps {
     @Then("Click on Add Goals link")
     public void click_on_add_goals_link() {
         try {
-            // DriverAction.waitUntilElementAppear(AppraisalManagementLocator.lnkAddGoals, 2);
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lnkAddGoals));
-
             status = DriverAction.click(AppraisalManagementLocator.lnkAddGoals);
             DriverAction.waitSec(3);
-            // GemTestReporter.addTestStep("Click on Add Goals link", "Add Goals link is clicked", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -159,7 +140,6 @@ public class AppraisalManagementSteps {
                 status = STATUS.PASS;
             else
                 status = STATUS.FAIL;
-            // GemTestReporter.addTestStep("Verify Add goal window", "Add goal window should be displayed", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -190,7 +170,6 @@ public class AppraisalManagementSteps {
                 if (status == STATUS.FAIL)
                     break;
             }
-            // GemTestReporter.addTestStep("Verify financial year dropdown", "Dropdown should have Current Finacial Year", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -201,7 +180,6 @@ public class AppraisalManagementSteps {
         try {
             DriverAction.waitSec(1);
             status = DriverAction.click(AppraisalManagementLocator.lnkKRA_KPI);
-            //  GemTestReporter.addTestStep("Verify link for list of KRAs and KPIs", "List of KRAs and KPIs link is clicked", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -247,8 +225,6 @@ public class AppraisalManagementSteps {
 
     @Then("Verify Add goal window is open")
     public void verify_Add_Goal_Window_Is_Open() {
-        // DriverAction.waitUntilElementAppear(AppraisalManagementLocator.addGoalsWindow, 2);
-        //DriverAction.click(AppraisalManagementLocator.addGoalsWindow);
         try {
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
@@ -289,7 +265,6 @@ public class AppraisalManagementSteps {
         try {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKRA, 2);
             DriverAction.getElement(AppraisalManagementLocator.txtKRA).isEnabled();
-            //cssvalue code to be written
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -302,11 +277,10 @@ public class AppraisalManagementSteps {
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnAddKPI));
             DriverAction.click(AppraisalManagementLocator.btnAddKPI);
             if (DriverAction.getElement(AppraisalManagementLocator.txtKPIDescription).isDisplayed()) {
-                DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "TestKPI");
+                DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "Enter KPI Description", "KPI Description", "TestKPI");
                 status = STATUS.PASS;
             } else
                 status = STATUS.FAIL;
-            //    GemTestReporter.addTestStep("Validate add KPI button", "KPA button is present and clickable", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -317,7 +291,6 @@ public class AppraisalManagementSteps {
         try {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKPIDescription, 2);
             DriverAction.getElement(AppraisalManagementLocator.txtKPIDescription).isEnabled();
-            //css value code to be write
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -327,7 +300,7 @@ public class AppraisalManagementSteps {
     public void enter_KRA_In_Textbox() {
         try {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKRA, 2);
-            DriverAction.typeText(AppraisalManagementLocator.txtKRA, "TestKRA");
+            DriverAction.typeText(AppraisalManagementLocator.txtKRA, "Enter Text in KRA ", "KRA Description", "TestKRA");
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -337,7 +310,7 @@ public class AppraisalManagementSteps {
     public void enter_KPI_Description_In_TextBox() {
         try {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKPIDescription, 2);
-            DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "TestKPIDescription");
+            DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "Enter KPIDescription in text box ", "KPI Description", "TestKPIDescription");
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -349,7 +322,6 @@ public class AppraisalManagementSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.KPISuccessOK));
             DriverAction.click(AppraisalManagementLocator.KPISuccessOK);
-            //  GemTestReporter.addTestStep("Add new KPI-KRA mapping in add goal window", "New KPI-KRA mapping in add goal window added", status, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -364,7 +336,6 @@ public class AppraisalManagementSteps {
             if (DriverAction.getElementText(AppraisalManagementLocator.popupWarning).equalsIgnoreCase("Warning")) {
                 DriverAction.click(AppraisalManagementLocator.btnOKWarning);
                 status = STATUS.PASS;
-                //DriverAction.click(AppraisalManagementLocator.KPISuccessOK);
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
@@ -413,7 +384,7 @@ public class AppraisalManagementSteps {
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSearch));
 
             Boolean bool = DriverAction.getElement(AppraisalManagementLocator.btnSearch).isEnabled();
-            DriverAction.typeText(AppraisalManagementLocator.btnSearch, "Behavioural");
+            DriverAction.typeText(AppraisalManagementLocator.btnSearch, "Enter search key in Search text box ", "Search Element", "Behavioural");
             String searchEntries = DriverAction.getElementText(AppraisalManagementLocator.searchEntriesCount);
             if (!searchEntries.equalsIgnoreCase(totalEntries))
                 status = STATUS.PASS;
@@ -549,13 +520,7 @@ public class AppraisalManagementSteps {
                         if (!parentwindow.equals(itr.next())) {
                             DriverAction.switchToWindow((String) itr.next());
                             DriverAction.waitSec(2);
-
-//                            Actions action = new Actions(DriverManager.getWebDriver());
-//                            action.sendKeys(Keys.TAB);
-//                            action.sendKeys(Keys.ENTER);
                             DriverAction.closeCurrentTab();
-//                        DriverAction.switchToDefaultContent();
-//                       DriverAction.click(AppraisalManagementLocator.background);
                         }
                     }
 
@@ -726,7 +691,6 @@ public class AppraisalManagementSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnAddUpdateGoal));
-
             status = DriverAction.click(AppraisalManagementLocator.btnAddUpdateGoal);
             DriverAction.waitSec(2);
             String tabTitle = DriverAction.getElementText(AppraisalManagementLocator.titleAddGoal);
@@ -773,7 +737,6 @@ public class AppraisalManagementSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDraft));
-
             DriverAction.click(AppraisalManagementLocator.btnDraft);
             String prjText = DriverAction.getElement(AppraisalManagementLocator.txtboxProject).getText();
             if (prjText.equals("")) {

@@ -3,10 +3,6 @@
 
 Feature: Dashboard_Leave_balance
 
-#  Background: Login
-#    Given User should be on MIS login page and enter smita.mishra and R2VtaW5pQDEyMw==
-#    When Click on submit button
-#    Then User should be navigated to MIS homepage
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button

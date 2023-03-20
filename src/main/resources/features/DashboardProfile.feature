@@ -3,17 +3,10 @@
 
 Feature: MIS_Automation - DashboardProfile
 
-
-#  Background: Launch MIS url
-#    When user click on url
-#    And Enter username
-#    And Enter Password
-#    And click on SignIn button
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
     Then User should be navigated to MIS homepage
-#    Then click on close button
 
   Scenario: user enter invalid phone number
     When click on edit details button

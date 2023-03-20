@@ -34,7 +34,7 @@ public class OrganizationStructureSteps {
         try {
             DriverAction.waitSec(5);
             if (DriverAction.isExist(OrgStructureLocator.searchtab)) {
-                DriverAction.typeText(OrgStructureLocator.searchtab, empname);
+                DriverAction.typeText(OrgStructureLocator.searchtab,"Search tab is displayed","Entering employee name as "+empname+ " in search field", empname);
             } else
                 GemTestReporter.addTestStep("Element not found", "Search field not found", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {

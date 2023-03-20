@@ -2,17 +2,11 @@
 #Keyword: AccountPortal
 
 Feature: AccountsPortal
-#  Background: Login
+
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
     Then User should be navigated to MIS homepage
-#    Then Validate login successful
-#    Given User should be on MIS login page and enter smita.mishra and R2VtaW5pQDEyMw==
-#    When Click on submit button
-#    Then User should be navigated to MIS homepage
-#    Then Click "My Account" sub-tab inside "Accounts Portal" tab
-#    And Verify new tab is open "greytHR IDP"
 
 
   Scenario Outline: Verify elements loaded on My Account page

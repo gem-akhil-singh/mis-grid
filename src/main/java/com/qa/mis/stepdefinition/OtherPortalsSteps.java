@@ -25,6 +25,7 @@ import java.util.Set;
 public class OtherPortalsSteps {
     Logger logger = LoggerFactory.getLogger(OtherPortalsSteps.class);
     String dashboardURL = "https://mymis.geminisolutions.com/Dashboard/Index";
+
     public void presenceOfElement(By elementXpath, int time) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), time);
@@ -39,14 +40,14 @@ public class OtherPortalsSteps {
         try {
             DriverAction.waitSec(5);
             if (DriverAction.isExist(OtherportalnTimesheetLocator.lgnusernm)) {
-                DriverAction.typeText(OtherportalnTimesheetLocator.lgnusernm, user, "username");
+                DriverAction.typeText(OtherportalnTimesheetLocator.lgnusernm, "Enter Username", "Username : " + user, user);
             } else {
                 GemTestReporter.addTestStep("Username", "Username field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
             if (DriverAction.isExist(OtherportalnTimesheetLocator.lgnpwd)) {
                 byte[] decodingString = Base64.decodeBase64(pass);
                 String passwordDecoded = new String(decodingString);
-                DriverAction.typeText(OtherportalnTimesheetLocator.lgnpwd, passwordDecoded);
+                DriverAction.typeText(OtherportalnTimesheetLocator.lgnpwd, "Enter Password", "Password Entered successfully", passwordDecoded);
             } else {
                 GemTestReporter.addTestStep("Password", "Password field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
@@ -61,7 +62,7 @@ public class OtherPortalsSteps {
     public void click_on_signin_button() {
         try {
             if (DriverAction.isExist(OtherportalnTimesheetLocator.sgnupbtn)) {
-                DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn, "sign in");
+                DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn, "Sign in");
             } else {
                 GemTestReporter.addTestStep("SignIn", "SignIn button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
@@ -77,7 +78,7 @@ public class OtherPortalsSteps {
             String hidden = DriverAction.getAttributeName(NavBarLocator.SkillPopup, "class");
             if (hidden.equalsIgnoreCase("modal fade in")) {
                 if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {
-                    DriverAction.click(NavBarLocator.skillClosebtn, "Close button");
+                    DriverAction.click(NavBarLocator.skillClosebtn, "Skills close button clicked");
                 } else {
                     GemTestReporter.addTestStep("Skill Close button", "Skill Close button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
                 }
@@ -95,22 +96,6 @@ public class OtherPortalsSteps {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
     }
-//    @Then("Validate login successful")
-//    public void validate_login_successful() {
-//        try {
-//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),Duration.ofSeconds(20));
-//            wait.until(ExpectedConditions.presenceOfElementLocated(OtherportalnTimesheetLocator.Location));
-//            if (DriverAction.isExist(OtherportalnTimesheetLocator.Location) && DriverAction.isExist(OtherportalnTimesheetLocator.Dashboardheading)) {
-//                GemTestReporter.addTestStep("MIS Homepage", "User is on homepage of MIS", STATUS.PASS, DriverAction.takeSnapShot());
-//            } else {
-//                GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL, DriverAction.takeSnapShot());
-//            }
-//        } catch (Exception e) {
-//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
-//        }
-//    }
-
-//-----------------------------------------------------------------------------------------------------
 
     @Given("Click on Other Portals")
     public void clickOnOtherPortals() {
@@ -128,12 +113,10 @@ public class OtherPortalsSteps {
     public void selectPortalPortalFromDropdown(String portal) {
         try {
             int flag = 0;
-            //DriverAction.scrollIntoView(By.xpath("//div[@class='jspPane']//child::span[text()='Service Desk']"));
             List<WebElement> portalList = DriverAction.getElements(OtherportalnTimesheetLocator.otherPortalList);
             DriverAction.waitSec(4);
 
             for (int i = 0; i < portalList.size(); i++) {
-//            System.out.println(portalList.get(i).getText());
                 if (portalList.get(i).getText().equals(portal)) {
                     portalList.get(i).click();
                     DriverAction.waitSec(10);

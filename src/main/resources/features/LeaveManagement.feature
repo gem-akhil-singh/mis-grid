@@ -44,7 +44,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | dateIndex | date        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1         | CompOffDate |
 
-  Scenario Outline: Enter Reason for Comp off
+  Scenario Outline: Enter Reason for Comp off Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -55,7 +55,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | reasonMessage         | reason        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Sample Reason Message | CompOffReason |
 
-  Scenario Outline: Enter Data and submit Comp off
+  Scenario Outline: Enter Data and apply for Comp off
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -149,7 +149,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | isLeaveFirstHalfDay                     |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | isLeaveFirstHalfDay, isLeaveLastHalfDay |
 
-  Scenario Outline: Choose leave type
+  Scenario Outline: Choose leave type for Leave tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -162,7 +162,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | leaveOption | leaveType |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | 1           | leaveType |
 
-  Scenario Outline: Enter reason for leave
+  Scenario Outline: Enter reason for leave for Leave tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -173,7 +173,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | reasonMessage         | reason      |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Sample Reason Message | leaveReason |
 
-  Scenario Outline: Choose Availability for Leave
+  Scenario Outline: Choose Availability for Leave for Leave tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -185,7 +185,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail                   |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail, avilableOnMobile |
 
-  Scenario Outline: Enter required data and click on Submit leave
+  Scenario Outline: Enter required data and apply for the leave
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -264,7 +264,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | fromDate   | toDate     | fromDateField  | toDateField    |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 03/10/2023 | 04/10/2023 | outingFromDate | outingTillDate |
 
-  Scenario Outline: Select type for Out Duty
+  Scenario Outline: Select type for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -275,7 +275,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | outingOption          | outingType |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Tour (Overseas Visit) | outingType |
 
-  Scenario Outline: Select Reason for Out Duty
+  Scenario Outline: Select Reason for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -286,7 +286,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | reasonMessage | reason       |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Outing Reason | outingReason |
 
-  Scenario Outline: Enter Primary Contact Number for Out Duty
+  Scenario Outline: Enter Primary Contact Number for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -313,7 +313,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab | tab           | heading                                                  | fromDate   | fromDateField  | toDate     | toDateField    | outingOption          | outingType | reasonMessage | reason       | primaryContactNo | primaryContact      | otherContactNo | otherContact           | alertType | successMessage                                       |
-      | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 03/13/2023 | outingFromDate | 03/14/2023 | outingTillDate | Tour (Overseas Visit) | outingType | Outing Reason | outingReason | 9878787678       | outingContactNumber | 9878787678     | outingAltContactNumber | Success   | Out Duty/Tour request has been applied successfully. |
+      | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | outingFromDate | 04/26/2023 | outingTillDate | Tour (Overseas Visit) | outingType | Outing Reason | outingReason | 9878787678       | outingContactNumber | 9878787678     | outingAltContactNumber | Success   | Out Duty/Tour request has been applied successfully. |
 
   Scenario Outline: Navigate to Leave Management > WFH tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -360,7 +360,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | dateOption | date             |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1          | WorkFromHomeDate |
 
-  Scenario Outline: Enter reason for WFH
+  Scenario Outline: Enter reason for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -371,7 +371,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | reasonMessage      | reason    |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | WFH Reason Message | WFHReason |
 
-  Scenario Outline: Enter required data and click on Submit WFH
+  Scenario Outline: Enter required data and apply for WFH
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -771,7 +771,6 @@ Feature: MIS - Leave Management
     And User enters "<leavePeriod>" period in search box for "<tab>"
     And Verify "<leavePeriod>" period as search result for "<tab>"
     And Cancel the leave for given period
-#    And Verify popup alert with message "Confirm" and "Are you sure you want to cancel this request ?"
     And User clicks on yes button to cancel the leave
     And Verify popup alert with message "Success" and "Request processed successfully"
 

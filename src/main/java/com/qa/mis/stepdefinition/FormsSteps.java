@@ -27,10 +27,10 @@ public class FormsSteps {
             if (DriverAction.isExist(FormsLocator.userName)) {
                 DriverAction.typeText(FormsLocator.userName, userName);
             } else {
-                GemTestReporter.addTestStep("User Enters the Wrong Username", "Username is not Verified", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User enters the  username", "Username is entered successfully", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User enters the  username", "Username is not entered successfully" + e, STATUS.FAIL);
         }
     }
 
@@ -40,10 +40,10 @@ public class FormsSteps {
             if (DriverAction.isExist(FormsLocator.password)) {
                 DriverAction.typeText(FormsLocator.password, password);
             } else {
-                GemTestReporter.addTestStep("User Enters the Wrong Password", "Password is not Verified", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User enters the password", "Password is entered successfully", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User enters the password", "Password is not entered successfully" + e, STATUS.FAIL);
         }
     }
 
@@ -53,7 +53,7 @@ public class FormsSteps {
             DriverAction.click(FormsLocator.bttnSignUp);
             DriverAction.setImplicitTimeOut(4);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User Clicks on SignIn", "sign in Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User Clicks on Sign in", "sign in unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -70,7 +70,7 @@ public class FormsSteps {
 
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User Verifies Landing Page", "Logo is not verified" + e, STATUS.FAIL);
         }
     }
 
@@ -80,7 +80,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.skillTypeBtn, 7);
             DriverAction.click(FormsLocator.closeBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on close button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on close button", "Click is unsuccessful on close button", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -94,11 +94,11 @@ public class FormsSteps {
                 DriverAction.isExist(FormsLocator.viewForm);
                 DriverAction.click(FormsLocator.viewForm);
             } else {
-                GemTestReporter.addTestStep("User Clicks on Form", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User Clicks on Form", "Click is unsuccessful on Forms", STATUS.FAIL, DriverAction.takeSnapShot());
 
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User Clicks on Form", "Click is unsuccessful on Forms" + e, STATUS.FAIL);
         }
     }
 
@@ -109,10 +109,10 @@ public class FormsSteps {
                 DriverAction.isExist(FormsLocator.viewForm);
                 GemTestReporter.addTestStep("User Verifies View Forms Page ", "Form Page is verified", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
-                GemTestReporter.addTestStep("User Clicks on View Form", "Click is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User Clicks on View Form", "Click is unsuccessful on View Form", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User Clicks on View Form", "Click is unsuccessful on View Form" + e, STATUS.FAIL);
         }
     }
 
@@ -131,7 +131,7 @@ public class FormsSteps {
                 GemTestReporter.addTestStep("User Verifies Next Button", "Next Button is not verified", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User verifies the Next and Previous button", "User cannot verify the Next and Previous Button" + e, STATUS.FAIL);
         }
     }
 
@@ -142,7 +142,7 @@ public class FormsSteps {
             DriverAction.waitSec(3);
             DriverAction.click(FormsLocator.department);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on department", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on department", "Click on department is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -152,7 +152,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.accounts, 6);
             DriverAction.click(FormsLocator.accounts);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on accounts", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on accounts", "Click is unsuccessful on Accounts", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -163,7 +163,7 @@ public class FormsSteps {
             DriverAction.scrollIntoView(FormsLocator.selectEntriesValue(element));
             DriverAction.click(FormsLocator.selectEntriesValue(element));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on the entries ", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on the entries ", "Click is unsuccessful on Entries", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -173,7 +173,7 @@ public class FormsSteps {
         try {
             DriverAction.typeText(FormsLocator.searchBtn, value);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on search field", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on search field", "Click is unsuccessful on search field", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -185,10 +185,10 @@ public class FormsSteps {
                 DriverAction.waitUntilElementAppear(FormsLocator.accountsType(element), 5);
 
             } else {
-                GemTestReporter.addTestStep("User verifies the value ", "Verification is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User verifies the account type value ", "Verification is unsuccessful for account value", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User verifies the account type value", "Verification is unsuccessful for account value" + e, STATUS.FAIL);
         }
     }
 
@@ -198,10 +198,10 @@ public class FormsSteps {
             if (DriverAction.isExist(FormsLocator.searchBtn)) {
                 DriverAction.typeText(FormsLocator.searchBtn, value + Keys.ENTER);
             } else {
-                GemTestReporter.addTestStep("User enters the text", "Value is not Entered", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User enters the invalid value in search", "Invalid value is not entered", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User enters the invalid value in search", "Invalid value is not entered" + e, STATUS.FAIL);
         }
     }
 
@@ -210,7 +210,7 @@ public class FormsSteps {
         try {
             DriverAction.waitUntilElementAppear(FormsLocator.noDataAvailable, 7);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User verifies the invalid value", "Verification is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User verifies the invalid value ", "Verification is unsuccessful for invalid value", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -220,7 +220,7 @@ public class FormsSteps {
         try {
             DriverAction.click(FormsLocator.eyeBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on eye button ", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on eye button ", "Click on eye button is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -232,7 +232,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.policyCloseBtn, 7);
             DriverAction.click(FormsLocator.policyCloseBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on close button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot(), DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on close button", "Click on policy close button is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot(), DriverAction.takeSnapShot());
         }
     }
 
@@ -243,10 +243,10 @@ public class FormsSteps {
             if (DriverAction.isExist(FormsLocator.documentDownload)) {
                 DriverAction.click(FormsLocator.documentDownload);
             } else {
-                GemTestReporter.addTestStep("User clicks on download image", "Download is not Entered", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User clicks on download image", "Document download is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on download image", "Document download is unsuccessful" + e, STATUS.FAIL);
         }
     }
 
@@ -259,10 +259,10 @@ public class FormsSteps {
                 DriverAction.isExist(FormsLocator.myForms);
                 DriverAction.click(FormsLocator.myForms);
             } else {
-                GemTestReporter.addTestStep("User clicks on forms button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User clicks on forms button", "Click is unsuccessful on Forms Button", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("User clicks on forms button", "Click is unsuccessful on Forms Button" + e, STATUS.FAIL);
         }
     }
 
@@ -270,13 +270,13 @@ public class FormsSteps {
     public void verifyTheHeadingOnTheLandingPage() {
         try {
             if (DriverAction.isExist(FormsLocator.myFormsHeading)) {
-                GemTestReporter.addTestStep("User clicks on search field", "Click is Successful", STATUS.PASS, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User clicks on search field", "Click is Successful for search field", STATUS.PASS, DriverAction.takeSnapShot());
 
             } else {
-                GemTestReporter.addTestStep("User clicks on search field", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User clicks on search field", "Click is unsuccessful for search field", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Unable to land on the landing page" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on search field", "Unable to land on the landing page" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -288,7 +288,7 @@ public class FormsSteps {
             DriverAction.click(FormsLocator.uploadBtn);
             DriverAction.setImplicitTimeOut(7);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on upload button", "Upload is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on upload button", "Click on upload button is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -303,7 +303,7 @@ public class FormsSteps {
             DriverAction.fileUpload(FormsLocator.chooseFile, dirPath + path);
             DriverAction.setImplicitTimeOut(7);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User uploads the document", "Upload is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User uploads the document", "Upload is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -314,7 +314,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.saveBtn, 6);
             DriverAction.click(FormsLocator.saveBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on save button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on save button", "Click is unsuccessful on save button", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -330,7 +330,7 @@ public class FormsSteps {
             DriverAction.fileUpload(FormsLocator.chooseFile, dirPath + path);
             DriverAction.setImplicitTimeOut(7);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User uploads invalid document", "Upload is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User uploads invalid document", "Upload is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -341,7 +341,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.warningMsg, 5);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User verifies the warning message", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User verifies the warning message", "Click is unsuccessful on warning message", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
     @Then("User clicks on ok button")
@@ -350,7 +350,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.okBtn, 4);
             DriverAction.click(FormsLocator.okBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User clicks on ok button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User clicks on ok button", "Click is unsuccessful on ok button", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -360,7 +360,7 @@ public class FormsSteps {
         try {
             DriverAction.typeText(FormsLocator.searchBtn, Loyalty + Keys.ENTER);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User enter text in search field", "Text is not Entered", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User enter text in search field", "Text is not entered in search field", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -371,7 +371,7 @@ public class FormsSteps {
             DriverAction.typeText(FormsLocator.searchBtn, QA + Keys.ENTER);
             DriverAction.setImplicitTimeOut(6);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User enter text in search field", "Text is not Entered", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User enter text in search field", "Text is not entered in search field", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -383,7 +383,7 @@ public class FormsSteps {
             DriverAction.waitUntilElementAppear(FormsLocator.activeForm, 5);
             DriverAction.click(FormsLocator.activeForm);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User  clicks on active form", "Click is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User  clicks on active form", "Click is unsuccessful for active forms", STATUS.FAIL, DriverAction.takeSnapShot());
 
         }
     }
@@ -394,7 +394,7 @@ public class FormsSteps {
             DriverAction.waitSec(7);
             DriverAction.click(FormsLocator.deactivateBtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User  clicks on deactivate button", "Click is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User  clicks on deactivate button", "Click is unsuccessful for deactivate button", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -404,7 +404,7 @@ public class FormsSteps {
             if (DriverAction.isExist(FormsLocator.yesBtn)) {
                 DriverAction.click(FormsLocator.yesBtn);
             } else {
-                GemTestReporter.addTestStep("User Clicks on Yes Button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("User Clicks on Yes Button", "Click is unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "User is unable to click on yes button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
@@ -418,7 +418,7 @@ public class FormsSteps {
             DriverAction.click(FormsLocator.downloadBtn);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User Clicks on Download Button", "Click is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User Clicks on Download Button", "Click is unsuccessful for download button", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -428,7 +428,7 @@ public class FormsSteps {
         try {
             DriverAction.click(FormsLocator.errorMsg);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("User validates the error message", "Validation is Unsuccessful", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("User validates the error message", "Validation is unsuccessful for error message", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 }

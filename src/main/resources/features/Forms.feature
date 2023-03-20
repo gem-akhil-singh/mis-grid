@@ -3,11 +3,6 @@
 
 Feature: Forms Automation
 
-#  Background: User is on Login Page
-#    When User enters username as "shruti.singh"
-#    And User enters password as "Gemini@123"
-#    When User clicks on sign in
-#    And User verifies landing page
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button

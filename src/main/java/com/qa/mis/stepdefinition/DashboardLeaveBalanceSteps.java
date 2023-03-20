@@ -23,7 +23,7 @@ public class DashboardLeaveBalanceSteps {
 
             wait.until(ExpectedConditions.presenceOfElementLocated(elementXpath));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Presence of Element ", "Element is not present", STATUS.FAIL);
         }
     }
 
@@ -35,13 +35,13 @@ public class DashboardLeaveBalanceSteps {
 
             presenceOfElement(DashboardLeaveBalanceLocator.leaveheading, 20);
             if (DriverAction.isExist(DashboardLeaveBalanceLocator.leaveheading)) {
-                GemTestReporter.addTestStep("Verify Leave Section", "Leave Section is present on the current page", STATUS.PASS, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep(" Verify leave Section", "Leave Section is present on the current page", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
-                GemTestReporter.addTestStep("Verify Leave Section", "Leave Section is not present on the current page", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("Verify leave Section", "Leave Section is not present on the current page", STATUS.FAIL, DriverAction.takeSnapShot());
 
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Verify leave Section", "Leave Section is not present on the current page", STATUS.FAIL);
         }
 
     }
@@ -55,10 +55,10 @@ public class DashboardLeaveBalanceSteps {
                 leaveCount = DriverAction.getElementText(DashboardLeaveBalanceLocator.linkleaveBalanceType);
                 DriverAction.click(DashboardLeaveBalanceLocator.linkleaveBalanceType, "Leave Balance link");
             } else {
-                GemTestReporter.addTestStep("Leave Balance link", "Leave Balance link is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep(" Verify leave Balance link", "Leave Balance link is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Verify leave Balance link", "Leave Balance link is not present", STATUS.FAIL);
         }
     }
 
@@ -68,12 +68,12 @@ public class DashboardLeaveBalanceSteps {
             By locator = DashboardLeaveBalanceLocator.linkleavePopup;
             presenceOfElement(DashboardLeaveBalanceLocator.linkleavePopup, 20);
             if (DriverAction.isExist(DashboardLeaveBalanceLocator.linkleavePopup)) {
-                DriverAction.click(DashboardLeaveBalanceLocator.linkleavePopup, "Leave history Popup is present");
+                DriverAction.click(DashboardLeaveBalanceLocator.linkleavePopup, "Leave history Popup  ");
             } else {
-                GemTestReporter.addTestStep("Leave history", "Leave history popup is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("Verify leave history popup", "Leave history popup is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Verify leave history popup", "Leave history popup is not present", STATUS.FAIL);
         }
     }
 }

@@ -3,22 +3,11 @@
 
 Feature: AppraisalManagement
 
-
-#  Background: These steps are common for every scenario
-#    Given Launch MIS Url https://mymis.geminisolutions.com/
-#    Then Enter Username laxmi.sisode and password R2VtaW5pQDEyMw==
-#  #R2VtaW5pIzEyMw==
-#    Then User clicks on Sign-in button
-#    Then Login will be successful and homepage will be displayed.
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-#following steps will be implemented later
-#  Scenario: Login failed pop-up test
-#    When User click on Sign-in button
-#    Then Login failed pop up will be displayed
 
   Scenario:  Navigate to Add goal page
     When Click on Appraisal Management link
@@ -26,8 +15,6 @@ Feature: AppraisalManagement
     Then Verify Add goal window
     And Verify My Goal tab
     And Verify financial year dropdown
-    #test step is commented because it is showing 404 error on click
-    #Then Verify link for list of KRAs and KPIs
     Then Verify Add new KPI-KRA mapping button
 
 
@@ -37,11 +24,8 @@ Feature: AppraisalManagement
     Then Verify Add goal window
     And Verify My Goal tab
     Given Verify button is enabled and clickable
-   # Then Click on Copy option and  and paste it in notepad
     Then Click on Excel option and check excel file is downloaded
     Then Click on PDF option and check pdf file is downloaded
-   # Then Click on Print option and check print window open in new tab and close window
-   # Then Check number of pages in dropdown
 
   Scenario: Verify searches
     When Click on Appraisal Management link
@@ -104,8 +88,8 @@ Feature: AppraisalManagement
     Then Click on plus sign in Actions column
     And Select KPI from Dropdown
     Then Click on Draft button and Verify empty fields
-    Then Add Project details in textbox 'ProjectName'
-    And Add Goal Description in textbox 'GoalDescription'
+    Then Add Project details in textbox '<ProjectName>'
+    And Add Goal Description in textbox '<GoalDescription>'
     Then Click on Draft button
     Then Validate success window and click on ok button
     Examples:
@@ -121,8 +105,8 @@ Feature: AppraisalManagement
     Then Click on plus sign in Actions column
     And Select KPI from Dropdown
     Then Click on Draft button
-    Then Add Project details in textbox "ProjectName"
-    And Add Goal Description in textbox 'GoalDescription'
+    Then Add Project details in textbox "<ProjectName>"
+    And Add Goal Description in textbox '<GoalDescription>'
     Then Click on Draft button
     Then Validate success window and click on ok button
     Examples:

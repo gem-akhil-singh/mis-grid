@@ -21,7 +21,7 @@ public class LoginSteps {
     public void userEntersAs(String field, String text) {
         try {
             if (field.equals("username")) {
-                DriverAction.typeText(LoginLocator.username, text);
+                DriverAction.typeText(LoginLocator.username,"Username entered","Username: "+text ,text);
             }
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Username", "User not able to enter username", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -30,7 +30,7 @@ public class LoginSteps {
             if (field.equals("password")) {
                 byte[] decodingString = Base64.decodeBase64(text);
                 String passwordDecoded = new String(decodingString);
-                DriverAction.typeText(LoginLocator.password, passwordDecoded);
+                DriverAction.typeText(LoginLocator.password,"User enters the password","Password Entered Successfully", passwordDecoded);
             }
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Password", "User not able to enter password", STATUS.FAIL, DriverAction.takeSnapShot());

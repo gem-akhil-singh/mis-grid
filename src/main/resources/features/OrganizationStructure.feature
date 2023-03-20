@@ -8,7 +8,6 @@ Feature: Organization Structure Module Scenarios
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
     Then User should be navigated to MIS homepage
-#    Then Validate login successful
 
   Scenario Outline: Search for Employee with Designation
     Given Navigate to Organization Structure

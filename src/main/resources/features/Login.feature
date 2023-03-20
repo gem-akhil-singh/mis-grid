@@ -36,7 +36,7 @@ Feature: Login
       | uname | password         | errormessage          |
       |       | R2VtaW5pQDEyMw== | Username is required. |
 
-  Scenario Outline: User Enters Invalid Credentials
+  Scenario Outline: User Enters Invalid Credentials during Login
     When User enters "username" as "<uname>"
     When User enters "password" as "<password>"
     And Click on Sign In Button
@@ -45,20 +45,16 @@ Feature: Login
       | uname | password | errormessage                                                         |
       | abc   | Gemini   | The username or password you entered is not valid. Please try again. |
 
-  Scenario: User Login to the Application via SSO
-    When Click on Login with SSO button
-    Then Verify User is on "MIS Home" Page
-
   Scenario Outline: User Login to the Application
     When User enters "username" as "<uname>"
     When User enters "password" as "<password>"
     And Click on Sign In Button
-    Then Verify User is on "MIS Home" Page
+    Then User should be navigated to MIS homepage
     Examples:
       | uname      | password         |
       | charu.garg | R2VtaW5pQDEyMw== |
 
-  Scenario Outline: User clicks on Forget Password
+  Scenario Outline: User clicks on Forget Password link
     Given User Click on Forget Password link
     When User enters "username" as "<uname>"
     And Click on Reset Password button
@@ -67,7 +63,7 @@ Feature: Login
       | uname      | message                                                                  |
       | charu.garg | Password reset link sent to your official email. Kindly visit to change. |
 
-  Scenario Outline: User Clicks on Reset linking without giving username
+  Scenario Outline: User Clicks on Reset link without giving username during Login
     Given User Click on Forget Password link
     When User enters "username" as "<uname>"
     And Click on Reset Password button
@@ -76,7 +72,7 @@ Feature: Login
       | uname | message              |
       |       | Enter your username. |
 
-  Scenario Outline: User clicks on forgot password and enters invalid username.
+  Scenario Outline: User clicks on forgot password and enters invalid username during Login
     Given User Click on Forget Password link
     When User enters "username" as "<uname>"
     And Click on Reset Password button
@@ -85,7 +81,7 @@ Feature: Login
       | uname | message                                      |
       | abc   | You are not authorised to perform the action |
 
-  Scenario Outline: User navigate back to sign In Page
+  Scenario Outline: User navigate back to sign In Page after Login
     When User enters "username" as "<uname>"
     Then User enters "password" as "<password>"
     And Click on Sign In Button

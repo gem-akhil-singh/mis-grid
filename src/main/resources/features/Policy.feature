@@ -3,11 +3,6 @@
 
 Feature: Policy
 
-#  Background: Login
-#    When User enters "username" as "charu.garg"
-#    Then User enters "password" as "R2VtaW5pQDEyMw=="
-#    Then Click on Sign In Button
-#    Then Verify User is on "MIS Home" Page
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
@@ -30,7 +25,7 @@ Feature: Policy
     And Click on View Policies
     Then Verify Data is present in Policies tab
 
-  Scenario Outline: Verify Number of Entries displayed
+  Scenario Outline: Verify Number of Entries displayed in Policy
     When User clicks on Policy
     And Click on View Policies
     Then Verify number of records displayed by default
@@ -67,12 +62,12 @@ Feature: Policy
       | policyName |
       | E-Policy   |
 
-  Scenario: Verify Next button is clickable
+  Scenario: Verify Next button is clickable in Policy Tab
     When User clicks on Policy
     And Click on View Policies
     Then Click on "Next" Button
 
-  Scenario: Verify Previous button is clickable
+  Scenario: Verify Previous button is clickable in Policy Tab
     When User clicks on Policy
     And Click on View Policies
     Then Click on "Previous" Button

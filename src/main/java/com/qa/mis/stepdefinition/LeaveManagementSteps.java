@@ -11,7 +11,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.codec.binary.Base64;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,44 +20,12 @@ import java.time.Duration;
 import java.util.*;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
 public class LeaveManagementSteps {
 
     static int halfDayLeaveCount = 0;
     static String totalWorkingDaysBeforeApplyingHalfDay = null;
     static String leaveHistoryDateRange = null;
-
-    @Given("User is logged into MIS using username and password")
-    public void userIsLoggedIntoMISUsingUsernameAndPassword(DataTable credTable) {
-        try {
-            List<Map<String, String>> credentials = credTable.asMaps(String.class, String.class);
-            String username = credentials.get(0).get("username");
-            String password = credentials.get(0).get("password");
-            byte[] decodingString = Base64.decodeBase64(password);
-            password = new String(decodingString);
-            if (DriverAction.isExist(LeaveManagementLocator.input_loginUsername)) {
-                DriverAction.typeText(LeaveManagementLocator.input_loginUsername, username, "username");
-            } else {
-                GemTestReporter.addTestStep("Error Occur", "Fail to enter text in username", STATUS.FAIL,
-                        DriverAction.takeSnapShot());
-            }
-            if (DriverAction.isExist(LeaveManagementLocator.input_loginPassword)) {
-                DriverAction.typeText(LeaveManagementLocator.input_loginPassword, password, "password");
-            } else {
-                GemTestReporter.addTestStep("Error Occur", "Fail to enter text in password", STATUS.FAIL,
-                        DriverAction.takeSnapShot());
-            }
-            if (DriverAction.isExist(LeaveManagementLocator.button_SignIn)) {
-                DriverAction.click(LeaveManagementLocator.button_SignIn, "sign in");
-            } else {
-                GemTestReporter.addTestStep("Error Occur", "Fail to click on Login", STATUS.FAIL,
-                        DriverAction.takeSnapShot());
-            }
-        } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
-        }
-    }
 
     @When("User is on MIS Home Page")
     public void userIsOnMISHomePage() {
@@ -76,7 +43,7 @@ public class LeaveManagementSteps {
                                 "\nActual URL - " + DriverAction.getCurrentURL(), STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify MIS home page", STATUS.FAIL);
         }
     }
 
@@ -100,7 +67,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on menu tabs", STATUS.FAIL);
         }
     }
 
@@ -120,7 +87,7 @@ public class LeaveManagementSteps {
                                 "\nActual Heading - " + actualHeading, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify tabs", STATUS.FAIL);
         }
     }
 
@@ -130,7 +97,7 @@ public class LeaveManagementSteps {
             DriverAction.waitSec(2);
             DriverAction.click(LeaveManagementLocator.navigation_tabs(tabs), tabs);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on tab", STATUS.FAIL);
         }
     }
 
@@ -178,7 +145,7 @@ public class LeaveManagementSteps {
                                 "\nActual Fields - " + actualFields, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify visible tabs", STATUS.FAIL);
         }
     }
 
@@ -211,7 +178,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on submit button", STATUS.FAIL);
         }
     }
 
@@ -250,7 +217,7 @@ public class LeaveManagementSteps {
                         "Fields matching passed for " + field, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify mandatory fields", STATUS.FAIL);
         }
     }
 
@@ -264,7 +231,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select compoff date", STATUS.FAIL);
         }
     }
 
@@ -272,13 +239,14 @@ public class LeaveManagementSteps {
     public void enterCompOffReasonForField(String message, String field) {
         try {
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveTextArea(field))) {
-                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), message, "reason");
+                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), "Enter Reason " +
+                        "Message", "Reason : " + message, message);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to click on dropdown", STATUS.FAIL,
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter compoff reason", STATUS.FAIL);
         }
     }
 
@@ -309,7 +277,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify alert messages", STATUS.FAIL);
         }
     }
 
@@ -329,7 +297,7 @@ public class LeaveManagementSteps {
                         field + "Fields not having default values", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify mandatory fields", STATUS.FAIL);
         }
     }
 
@@ -364,7 +332,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter leave date", STATUS.FAIL);
         }
 
     }
@@ -380,7 +348,7 @@ public class LeaveManagementSteps {
                 GemTestReporter.addTestStep("Fail to click on tool tip", "Fail", STATUS.FAIL);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click total working days tool tip", STATUS.FAIL);
         }
     }
 
@@ -399,7 +367,7 @@ public class LeaveManagementSteps {
                                 "\nActual ToolTip Message - " + message, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify tooltip message", STATUS.FAIL);
         }
     }
 
@@ -415,7 +383,7 @@ public class LeaveManagementSteps {
                 DriverAction.click(LeaveManagementLocator.checkbox_halfDayLeaveOption(opt.trim()), elementLabel);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select half day leave", STATUS.FAIL);
         }
 
     }
@@ -447,7 +415,7 @@ public class LeaveManagementSteps {
                                 actualWorkingDays, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify effective working days", STATUS.FAIL);
         }
     }
 
@@ -463,7 +431,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select leave type", STATUS.FAIL);
         }
     }
 
@@ -472,13 +440,14 @@ public class LeaveManagementSteps {
         try {
             DriverAction.waitSec(1);
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveTextArea(field))) {
-                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), message, "reason");
+                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), "Enter Reason " +
+                        "Message", "Reason : " + message, message);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to type text in reason", STATUS.FAIL,
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter leave reason", STATUS.FAIL);
         }
     }
 
@@ -495,7 +464,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select outing availability", STATUS.FAIL);
         }
     }
 
@@ -522,7 +491,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select outing date", STATUS.FAIL);
         }
     }
 
@@ -536,7 +505,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select outing type", STATUS.FAIL);
         }
     }
 
@@ -544,14 +513,14 @@ public class LeaveManagementSteps {
     public void enterOutingReasonForField(String message, String field) {
         try {
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveTextArea(field))) {
-                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), message, "outing " +
-                        "reason");
+                DriverAction.typeText(LeaveManagementLocator.field_leaveTextArea(field), "Enter " +
+                        "Outing Reason Message", "Reason : " + message, message);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to type text in reason", STATUS.FAIL,
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter outing reason", STATUS.FAIL);
         }
     }
 
@@ -559,14 +528,14 @@ public class LeaveManagementSteps {
     public void enterOutingContactNoForField(String number, String field) {
         try {
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveTextFields(field))) {
-                DriverAction.typeText(LeaveManagementLocator.field_leaveTextFields(field), number, "primary " +
-                        "contact number");
+                DriverAction.typeText(LeaveManagementLocator.field_leaveTextFields(field), "Enter Primary " +
+                        "Contact Number", "Number : " + number, number);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to type text in contact number", STATUS.FAIL,
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter outing contact number", STATUS.FAIL);
         }
     }
 
@@ -580,7 +549,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to select WFH date", STATUS.FAIL);
         }
     }
 
@@ -629,7 +598,7 @@ public class LeaveManagementSteps {
                                 "\nActual Fields - " + actualFields, STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify headers", STATUS.FAIL);
         }
     }
 
@@ -644,7 +613,7 @@ public class LeaveManagementSteps {
                         DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify date range", STATUS.FAIL);
         }
     }
 
@@ -660,7 +629,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on dropdown", STATUS.FAIL);
         }
     }
 
@@ -668,14 +637,15 @@ public class LeaveManagementSteps {
     public void enterDateInDateRangeField(String dateType, String date) {
         try {
             if (DriverAction.isExist(LeaveManagementLocator.input_dateRangeFY)) {
-                DriverAction.typeText(LeaveManagementLocator.input_dateRangeFY, date, "date range");
+                DriverAction.typeText(LeaveManagementLocator.input_dateRangeFY, "Enter Date Range",
+                        "Date : " + date, date);
                 leaveHistoryDateRange = date;
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to type in Date Range",
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter date in range field", STATUS.FAIL);
         }
     }
 
@@ -709,7 +679,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify message", STATUS.FAIL);
         }
 
     }
@@ -739,7 +709,7 @@ public class LeaveManagementSteps {
 
             DriverAction.click(LeaveManagementLocator.button_leaveExport(id), "export");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on export button", STATUS.FAIL);
         }
     }
 
@@ -759,7 +729,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verity export option", STATUS.FAIL);
         }
     }
 
@@ -773,7 +743,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on export button", STATUS.FAIL);
         }
     }
 
@@ -789,7 +759,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify print page", STATUS.FAIL);
         }
     }
 
@@ -807,7 +777,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify copy message", STATUS.FAIL);
         }
     }
 
@@ -828,7 +798,7 @@ public class LeaveManagementSteps {
             deleteDownloadedFile(downloadPath, fileName);
             DriverAction.waitSec(2);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to check downloaded file", STATUS.FAIL);
         }
     }
 
@@ -845,7 +815,7 @@ public class LeaveManagementSteps {
             }
             return flag;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to check downloaded file", STATUS.FAIL);
         }
         return false;
     }
@@ -856,7 +826,7 @@ public class LeaveManagementSteps {
             File tempFile = new File(folder + "/" + fileName);
             tempFile.delete();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to delete files", STATUS.FAIL);
         }
     }
 
@@ -880,13 +850,14 @@ public class LeaveManagementSteps {
             }
 
             if (DriverAction.isExist(LeaveManagementLocator.input_viewRequestFilter(id))) {
-                DriverAction.typeText(LeaveManagementLocator.input_viewRequestFilter(id), period, "period");
+                DriverAction.typeText(LeaveManagementLocator.input_viewRequestFilter(id), "Enter Period",
+                        "Period : " + period, period);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to type text in search",
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to enter date in search box", STATUS.FAIL);
         }
     }
 
@@ -929,7 +900,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify search result", STATUS.FAIL);
         }
     }
 
@@ -967,7 +938,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to sort column", STATUS.FAIL);
         }
     }
 
@@ -1011,7 +982,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify sorted column", STATUS.FAIL);
         }
 
     }
@@ -1056,7 +1027,7 @@ public class LeaveManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify rows count", STATUS.FAIL);
         }
     }
 
@@ -1072,7 +1043,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click cancel button", STATUS.FAIL);
         }
 
     }
@@ -1089,7 +1060,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click yes button", STATUS.FAIL);
         }
     }
 
@@ -1103,7 +1074,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on view button", STATUS.FAIL);
         }
     }
 
@@ -1119,7 +1090,7 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify detailed popup", STATUS.FAIL);
         }
     }
 
@@ -1157,7 +1128,7 @@ public class LeaveManagementSteps {
                         STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to click on tab " + tab, STATUS.FAIL);
         }
     }
 
@@ -1211,7 +1182,7 @@ public class LeaveManagementSteps {
                         STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to navigate on " + tab, STATUS.FAIL);
         }
     }
 
@@ -1226,14 +1197,15 @@ public class LeaveManagementSteps {
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "Fail to verify outing details popup", STATUS.FAIL);
         }
     }
 
     @And("User enters {string} period in search box for out duty details")
     public void userEntersPeriodInSearchBoxForOutDutyDetails(String outingDate) {
         if (DriverAction.isExist(LeaveManagementLocator.input_rowOutDutyFilter)) {
-            DriverAction.typeText(LeaveManagementLocator.input_rowOutDutyFilter, outingDate, "outing date");
+            DriverAction.typeText(LeaveManagementLocator.input_rowOutDutyFilter, "Enter Outing Date",
+                    "Outing Date : " + outingDate, outingDate);
         } else {
             GemTestReporter.addTestStep("Error Occur", "Fail to type text in search",
                     STATUS.FAIL, DriverAction.takeSnapShot());
