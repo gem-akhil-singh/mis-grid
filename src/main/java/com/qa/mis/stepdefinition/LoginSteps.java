@@ -127,17 +127,22 @@ public class LoginSteps {
                 expectedURL = "https://mymis.geminisolutions.com/";
                 break;
             case "Login":
-                expectedURL = "https://mymis.geminisolutions.com/Account/Login";
+                expectedURL = "https://mymis.geminisolutions.com/Account/Logi";
         }
-        new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20))
-                .until(ExpectedConditions.urlToBe(expectedURL));
+
         try {
+            new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20))
+                    .until(ExpectedConditions.urlToBe(expectedURL));
             if (DriverAction.getCurrentURL().equals(expectedURL))
                 GemTestReporter.addTestStep("Verify page URL", "URL Matched.\n Expected URL-"
                         + expectedURL + "\nActual URL -" + DriverAction.getCurrentURL(), STATUS.PASS, DriverAction.takeSnapShot());
+            else {
+                GemTestReporter.addTestStep("Verify page URL", "URL doesn't Matched.\n Expected URL-"
+                        + expectedURL + "\nActual URL -" + DriverAction.getCurrentURL(), STATUS.FAIL, DriverAction.takeSnapShot());
+            }
         } catch (Exception exception) {
-            GemTestReporter.addTestStep("Verify page URL", "URL doesn't Matched.\n Expected URL-"
-                    + expectedURL + "\nActual URL -" + DriverAction.getCurrentURL(), STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Verify page URL", "URL doesn't Matched."
+                    , STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -156,7 +161,6 @@ public class LoginSteps {
         try {
             DriverAction.click(LoginLocator.signInButton);
             GemTestReporter.addTestStep("Reset Password", "User clicks on Reset Password Successfully", STATUS.PASS, DriverAction.takeSnapShot());
-            DriverAction.waitSec(2);
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Reset Password", "User not able to click on Reset Password", STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -176,14 +180,15 @@ public class LoginSteps {
 
     @Then("Verify the Success {string}")
     public void verifyTheSuccess(String expectedMsg) {
+        DriverAction.waitSec(5);
         String actualMsg = DriverAction.getElement(LoginLocator.successMessage).getText();
         try {
             if (actualMsg.equals(expectedMsg))
                 GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.PASS, DriverAction.takeSnapShot());
             else
-                GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.FAIL, DriverAction.takeSnapShot());
+                GemTestReporter.addTestStep("Success message", "Actual message is not match to expected message ", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception exception) {
-            GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Success message","Actual message is not match to expected message ", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
