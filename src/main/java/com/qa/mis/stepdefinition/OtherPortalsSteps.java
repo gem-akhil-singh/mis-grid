@@ -29,9 +29,10 @@ public class OtherPortalsSteps {
     public void presenceOfElement(By elementXpath, int time) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), time);
+
             wait.until(ExpectedConditions.presenceOfElementLocated(elementXpath));
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Presence of Element ", "Element is not present", STATUS.FAIL);
         }
     }
 
@@ -54,7 +55,7 @@ public class OtherPortalsSteps {
 
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting exception while entering credentials", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Password", "Password field is not present", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -67,7 +68,7 @@ public class OtherPortalsSteps {
                 GemTestReporter.addTestStep("SignIn", "SignIn button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("SignIn", "SighIn button is not clicked", STATUS.FAIL);
         }
     }
 
@@ -93,7 +94,7 @@ public class OtherPortalsSteps {
 
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("MIS Homepage", "User is not on homepage of MIS", STATUS.FAIL);
         }
     }
 
@@ -105,7 +106,7 @@ public class OtherPortalsSteps {
 
             DriverAction.click(OtherportalnTimesheetLocator.otherPortal);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Other Portals", "Other Portal is not clicked ", STATUS.FAIL);
         }
     }
 
@@ -131,7 +132,7 @@ public class OtherPortalsSteps {
             }
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Portal not found", "Portal value is invalid. Kindly check", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -162,8 +163,8 @@ public class OtherPortalsSteps {
             } else
                 GemTestReporter.addTestStep("Navigation Failed as expected URL is " + expectedURL + ".", "URL Mismatched as actual URL is " + actualURL + "", STATUS.FAIL);
         } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("EXCEPTION ERROR", "Getting Exception ", STATUS.FAIL, DriverAction.takeSnapShot());
+
+            GemTestReporter.addTestStep("Navigation Failed as expected URL is " + expectedURL + ".", "URL is not matched", STATUS.FAIL);
         }
     }
 }

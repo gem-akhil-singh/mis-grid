@@ -180,6 +180,8 @@ public class LoginSteps {
         try {
             if (actualMsg.equals(expectedMsg))
                 GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.PASS, DriverAction.takeSnapShot());
+            else
+                GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Success message", "Success message: " + actualMsg, STATUS.FAIL, DriverAction.takeSnapShot());
         }

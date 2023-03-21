@@ -25,7 +25,7 @@ public class OrganizationStructureSteps {
 
             DriverAction.click(OrgStructureLocator.orbbtn);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Organization Structure", "User not able to navigate to Organization Structure", STATUS.FAIL);
         }
     }
 
@@ -38,7 +38,7 @@ public class OrganizationStructureSteps {
             } else
                 GemTestReporter.addTestStep("Element not found", "Search field not found", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Element not found", "Search field not found", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -54,7 +54,7 @@ public class OrganizationStructureSteps {
             } else
                 GemTestReporter.addTestStep("Employee " + empname + " is present", "Employee is not present in Organization", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Employee " + empname + " is present", "Employee is not present in Organization", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -72,7 +72,7 @@ public class OrganizationStructureSteps {
             } else
                 GemTestReporter.addTestStep("Page not loaded ", "Error Occured", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Page not loaded ", "Error Occured", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -86,7 +86,7 @@ public class OrganizationStructureSteps {
                 GemTestReporter.addTestStep("Employee card is not visible", "Unable to double click as employee card is not present", STATUS.FAIL);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Employee card is not visible", "Unable to double click as employee card is not present", STATUS.FAIL);
         }
     }
 
@@ -102,7 +102,7 @@ public class OrganizationStructureSteps {
             } else
                 GemTestReporter.addTestStep("Employee " + empname + " is present", "Employee is not present in Organization", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("Employee " + empname + " is present", "Employee is not present in Organization", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 }

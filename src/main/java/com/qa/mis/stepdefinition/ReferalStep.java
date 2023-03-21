@@ -45,7 +45,7 @@ public class ReferalStep {
             DriverAction.click(signIn);
             DriverAction.waitSec(10);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SignIn error" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "SignIn error", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -56,7 +56,7 @@ public class ReferalStep {
             DriverAction.waitSec(7);
             DriverAction.click(popUpCloseButton, "close button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error Occurred In Close Button" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Close button", "User not able to click on Close Button", STATUS.FAIL, DriverAction.takeSnapShot());
         }
 
     }
@@ -72,7 +72,7 @@ public class ReferalStep {
                 DriverAction.waitSec(10);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error Occurred In Dashboard Page" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Dashboard Visible", "Dashboard page is not loaded properly", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -89,7 +89,7 @@ public class ReferalStep {
                 DriverAction.waitUntilElementAppear(verifyJdWindow, 2);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error Occurred In Verifying Job Description  Window" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("VerifyJdWindow", "Job Description Window is not visible", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -103,7 +103,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(referralAction, 7);
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "Error Occured In Referral Action Button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Referral action button", "Referral Action Button is not clickable", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -118,7 +118,7 @@ public class ReferalStep {
             else
                 GemTestReporter.addTestStep("referral not clicked", "referral table not found", STATUS.FAIL, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " Error Occurred in Referal Action Validation" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("referral not clicked", "referral table not found", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -132,7 +132,7 @@ public class ReferalStep {
             DriverAction.typeText(refName, "Sahra");
         } catch (Exception e) {
 
-            GemTestReporter.addTestStep("ERROR", "Error Occurred In Name Under Referal Tab " + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Referal name", "User not able to click on referal name ", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -169,10 +169,10 @@ public class ReferalStep {
 
                 GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
 
-        }catch(Exception e){
-            GemTestReporter.addTestStep("ERROR", "Verify Job Description Window Is Not Found" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+        }catch(Exception e) {
+            GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
         }
-    }
+        }
 
     @And("^click on email under referral$")
     public void clickOnEmailUnderReferral() {
@@ -181,7 +181,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(refEmail,5);
             DriverAction.click(refEmail, "referral email text");
         }catch(Exception e){
-            GemTestReporter.addTestStep("ERROR", "Error Ocuurred In Email Under Referral" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Ocuurred In Email Under Referral", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -192,7 +192,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(refEmail,5);
             DriverAction.typeText(refEmail, "abcde");
         }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "Error Occurred In Email Address" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred In Email Address", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -203,7 +203,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(refSaveButton,3);
             DriverAction.click(refSaveButton, "click on save button under referral");
         }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "Error Occurred While click On Save Button" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred While click On Save Button", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -220,7 +220,7 @@ public class ReferalStep {
             }
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " Verification Of Warning message error" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Verification Of Warning message error", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -232,7 +232,7 @@ public class ReferalStep {
             DriverAction.click(clickFAQ, "click on FAQ");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error Occured In FAQ" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occured In FAQ", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -243,7 +243,7 @@ public class ReferalStep {
             DriverAction.isExist(pdfVisible);
             GemTestReporter.addTestStep("pdf visible", "pdf opens and visible", STATUS.PASS, DriverAction.takeSnapShot());
         }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "Verification Of The Pdf Is Visible" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Verification Of The Pdf Is Visible", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -257,7 +257,7 @@ public class ReferalStep {
             wait.until(ExpectedConditions.elementToBeClickable(manualVisible));
             DriverAction.click(manualVisible, "click on manual");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error While Clicking On Manuel" + e, STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error While Clicking On Manuel", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -268,7 +268,7 @@ public class ReferalStep {
             DriverAction.isExist(manualVisible);
             GemTestReporter.addTestStep("manual visible", "manual opens and visible", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "verification of manual visible error" + e, STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "verification of manual visible error", STATUS.FAIL);
         }
     }
 
@@ -303,7 +303,7 @@ public class ReferalStep {
 
 
         }catch (Exception e){
-            GemTestReporter.addTestStep("ERROR", "Error While Entering Details And File Upload" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error While Entering Details And File Upload", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -317,7 +317,7 @@ public class ReferalStep {
 //            DriverAction.isExist(resumeWarning);
 //            GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error Occurred While Uploading" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error Occurred While Uploading", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -331,7 +331,7 @@ public class ReferalStep {
             DriverAction.typeText(enterCorrEmail, "sarah.robert@gmail.com");
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "Error While Entering Email" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "Error While Entering Email", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
@@ -343,7 +343,7 @@ public class ReferalStep {
             DriverAction.waitUntilElementAppear(enterRefContNo, 2);
             DriverAction.typeText(enterRefContNo, "1234567890");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", " Error Occurred While Entering Correct contact Number" + e, STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", " Error Occurred While Entering Correct contact Number" , STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 }
