@@ -8,7 +8,7 @@
   "enter_point": "https://apis.gemecosystem.com/enter-point",
   "glueCode": "com.qa.mis.stepdefinition",
   "email_report": null,
-  "email_to": "shruti.kukreja@geminisolutions.com,sajith.j@geminisolutions.com",
+  "email_to": "lovish.sanghvi@geminisolutions.us,sajith.j@geminisolutions.com,richa.khatri@geminisolutions.com,akshi.khattar@geminisolutions.com,shruti.kukreja@geminisolutions.com",
   "email_cc": "shubham.kumar@geminisolutions.com,tushar.chauhan@geminisolutions.com,shruti.singh@geminisolutions.com,divya.madan@geminisolutions.com,charu.garg@geminisolutions.com,laxmi.sisode@geminisolutions.com,touqeer.subhani@geminisolutions.com,smita.mishra@geminisolutions.com,prajjwal.negi@geminisolutions.com",
   "dev": {
     "browserName": "firefox",

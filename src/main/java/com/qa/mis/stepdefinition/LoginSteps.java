@@ -149,6 +149,7 @@ public class LoginSteps {
     @Given("User Click on Forget Password link")
     public void userClickOnForgetPasswordLink() {
         try {
+            DriverAction.waitSec(5);
             DriverAction.click(LoginLocator.forgotPasswordButton);
             GemTestReporter.addTestStep("Forgot Password", "User clicks on Forgot Password Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
