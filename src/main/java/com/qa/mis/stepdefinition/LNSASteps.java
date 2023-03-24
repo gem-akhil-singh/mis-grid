@@ -46,14 +46,14 @@ public class LNSASteps {
     public void userClicksOnLNSA() {
         try {
             DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_HOME, 10);
-            DriverAction.click(LNSA_FeedbackLocator.LNSA_HOME);
+            DriverAction.click(LNSA_FeedbackLocator.LNSA_HOME, "User clicks on LNSA", "LNSA was clicked successfully");
         } catch (Exception e) {
             Assert.fail("Unable to find LNSA Home and unable to click on it");
         }
     }
 
     @Then("^User tries to move to the previous date$")
-    public void userTriesToMoveToThePreviousDate() throws ParseException, InterruptedException {
+    public void userTriesToMoveToThePreviousDate() throws InterruptedException {
         try {
             DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_START_DATE, 5);
         } catch (Exception e) {
@@ -128,7 +128,7 @@ public class LNSASteps {
             logger.info("Unable to click on Submit button");
             Assert.fail("Unable to click on Submit button");
         }
-        DriverAction.click(LNSA_FeedbackLocator.LNSA_OK_BUTTON, "Click on the OK Button to disappear the pop-up", "Click on OK Button was a success");
+        DriverAction.click(LNSA_FeedbackLocator.LNSA_OK_BUTTON, "Click on the OK Button of Warning Message to disappear the pop-up", "Click on OK Button of Warning Message was a success");
     }
 
     @Then("^User selects a day for which LNSA has not been applied$")
@@ -150,11 +150,12 @@ public class LNSASteps {
         if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX)) {
             logger.info("Pop-up to enter reason for LNSA is available");
             DriverAction.waitUntilElementAppear(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX, 3);
-            FeedbackSteps.userClicks("lnsareasontextbox");
-            DriverAction.typeText(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX, "This is a reason entered by test-automation");
+            FeedbackSteps.userClicks("LNSA Reason Textbox");
+            DriverAction.typeText(LNSA_FeedbackLocator.LNSA_REASON_TXTBOX, "User types in the Reason text-box",
+                    "Text was typed in successfully","This is a reason entered by test-automation");
         } else {
-            logger.info("Unable to find Reson pop up.");
-            Assert.fail("Unable to find Reson pop up.");
+            logger.info("Unable to find Reason pop up.");
+            Assert.fail("Unable to find Reason pop up.");
         }
     }
 
@@ -199,7 +200,7 @@ public class LNSASteps {
                 if (DriverAction.isExist(LNSA_FeedbackLocator.LNSA_VIEW_REQUEST_STATUS)) {
                     DriverAction.click(LNSA_FeedbackLocator.LNSA_VIEW_REQUEST_STATUS,
                             "User clicks on the View Request Status from LNSA sub-menu",
-                            "Click on the sub-menu label was successful");
+                            "Click on the sub-menu "+subMenuOptions+" label was successful");
                     Assert.assertTrue(DriverAction.isExist(LNSA_FeedbackLocator.LNSA_REQUEST_TAB), "Unable to locate the LNSA Resquets Tab");
                 } else {
                     logger.info("View Request Status sub-menu option not found");
@@ -213,8 +214,8 @@ public class LNSASteps {
                             "User clicks on the View Request Status from LNSA sub-menu",
                             "Click on the sub-menu label was successful");
                 else {
-                    logger.info("Apply LNSA sub-menu option not found");
-                    Assert.fail("Apply LNSA sub-menu option not found");
+                    logger.info("View Request Status sub-menu option not found");
+                    Assert.fail("View Request Status sub-menu option not found");
                 }
                 break;
 
@@ -297,7 +298,7 @@ public class LNSASteps {
             for (WebElement ele : tempListofLNSA)
                 textFromLNSA.add(ele.getText());
             if (!(DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.nextButton).getAttribute("class").contains("disabled"))) {
-                FeedbackSteps.userClicks("nextbutton");
+                FeedbackSteps.userClicks("Next Button");
             } else break;
         }
 
@@ -313,6 +314,6 @@ public class LNSASteps {
 
         while(!(DriverManager.getWebDriver().findElement(LNSA_FeedbackLocator.previousButton).getAttribute("class").contains("disabled")))
             if(DriverAction.isExist(LNSA_FeedbackLocator.previousButton))
-                FeedbackSteps.userClicks("previousbutton");
+                FeedbackSteps.userClicks("Previous Button");
     }
 }
