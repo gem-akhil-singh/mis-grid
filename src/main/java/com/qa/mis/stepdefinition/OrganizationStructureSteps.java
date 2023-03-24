@@ -4,17 +4,14 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
-import com.qa.mis.locators.*;
+import com.qa.mis.locators.OrgStructureLocator;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrganizationStructureSteps {
     @Given("Navigate to Organization Structure")
@@ -23,7 +20,7 @@ public class OrganizationStructureSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(OrgStructureLocator.orbbtn));
 
-            DriverAction.click(OrgStructureLocator.orbbtn);
+            DriverAction.click(OrgStructureLocator.orbbtn,"Organization Structure");
         } catch (Exception e) {
             GemTestReporter.addTestStep("Organization Structure", "User not able to navigate to Organization Structure", STATUS.FAIL);
         }
@@ -81,7 +78,7 @@ public class OrganizationStructureSteps {
         try {
             DriverAction.waitSec(3);
             if (DriverAction.isExist(OrgStructureLocator.getemp(empname))) {
-                DriverAction.doubleClick(OrgStructureLocator.getemp(empname));
+                DriverAction.doubleClick(OrgStructureLocator.getemp(empname),"Employee Card.");
             } else
                 GemTestReporter.addTestStep("Employee card is not visible", "Unable to double click as employee card is not present", STATUS.FAIL);
 

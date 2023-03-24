@@ -1,14 +1,14 @@
 #Author: tushar.chauhan@geminisolutions.com
 #Keyword: Other Portals
 
-Feature: Automation of MIS Portal functionality
+Feature: Others Portal functionality 
 
   Background: Login to MIS
     Given Login to MIS with Username tushar.chauhan and password R2VtaW5pQDEyMw==
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario Outline: MIS: Other Portals Automation
+  Scenario Outline: Others Portal: Link navigation check for all portals
     Given Click on Other Portals
     When Select portal <portal> from dropdown
     Then Validate Navigation to portal URL <url> and <portal>

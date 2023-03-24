@@ -4,13 +4,11 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
-import com.qa.mis.locators.*;
+import com.qa.mis.locators.OtherportalnTimesheetLocator;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
@@ -29,7 +27,7 @@ public class TimesheetSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(OtherportalnTimesheetLocator.timesheetbtn));
 
-            DriverAction.click(OtherportalnTimesheetLocator.timesheetbtn);
+            DriverAction.click(OtherportalnTimesheetLocator.timesheetbtn,"Timesheet button");
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" + e, STATUS.FAIL);
         }
@@ -40,7 +38,7 @@ public class TimesheetSteps {
         String url = "";
         try {
             if (timesheet.equals("Configure Timesheet")) {
-                DriverAction.click(OtherportalnTimesheetLocator.configutetimesheet);
+                DriverAction.click(OtherportalnTimesheetLocator.configutetimesheet,"Configure Timesheet");
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(configureTimesheetURL)) {
@@ -49,7 +47,7 @@ public class TimesheetSteps {
                     GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Configure Timesheet tab failed", STATUS.PASS, DriverAction.takeSnapShot());
 
             } else if (timesheet.equals("Create Timesheet")) {
-                DriverAction.click(OtherportalnTimesheetLocator.createtimesheet);
+                DriverAction.click(OtherportalnTimesheetLocator.createtimesheet,"Create Timesheet");
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(createTimesheetURL)) {
@@ -57,9 +55,8 @@ public class TimesheetSteps {
                 } else
                     GemTestReporter.addTestStep("Navigation Unsuccessful", "Navigation to Create Timesheet tab failed", STATUS.FAIL, DriverAction.takeSnapShot());
 
-
             } else if (timesheet.equals("Manage Task Template")) {
-                DriverAction.click(OtherportalnTimesheetLocator.managetaskTemplate);
+                DriverAction.click(OtherportalnTimesheetLocator.managetaskTemplate,"Manage Task Template");
                 DriverAction.waitSec(2);
                 url = DriverAction.getCurrentURL();
                 if (url.equals(manageTemplateURL)) {

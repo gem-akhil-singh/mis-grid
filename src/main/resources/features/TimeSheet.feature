@@ -8,7 +8,7 @@ Feature: Automating Timesheet Scenarios MIS
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario Outline: MIS: Validate Timesheet Table Headers
+  Scenario Outline: Timesheet: Validate Timesheet Table Headers
     Given Click on Timesheet
     When Click on Timesheet option as <timesheet>
     Examples:

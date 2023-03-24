@@ -10,7 +10,7 @@ Feature: MIS - Leave Management
     Then User should be navigated to MIS homepage
 
   # CompOff
-  Scenario Outline: Navigate to Leave Management > Comp Off tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > Comp Off tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -20,7 +20,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  Scenario Outline: Verify Date and Reason are mandatory fields for Comp Off
+  Scenario Outline: Leave Management : Verify Date and Reason are mandatory fields for Comp Off
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -33,7 +33,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | date        | reason        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | CompOffDate | CompOffReason |
 
-  Scenario Outline: Select Date from Comp Off Date dropdown
+  Scenario Outline: Leave Management : Select Date from Comp Off Date dropdown
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -44,7 +44,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | dateIndex | date        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1         | CompOffDate |
 
-  Scenario Outline: Enter Reason for Comp off Tab
+  Scenario Outline: Leave Management : Enter Reason for Comp off Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -55,7 +55,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab      | heading                                                  | reasonMessage         | reason        |
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Sample Reason Message | CompOffReason |
 
-  Scenario Outline: Enter Data and apply for Comp off
+  Scenario Outline: Leave Management : Enter Data and apply for Comp off
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -70,7 +70,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Comp Off | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1         | CompOffDate | Sample Reason Message | CompOffReason | Success   | Request processed successfully |
 
   # Leave
-  Scenario Outline: Navigate to Leave Management > Apply tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > Apply tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -80,7 +80,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  Scenario Outline: Verify fields are Auto Populated by default on Leave tab
+  Scenario Outline: Leave Management : Verify fields are Auto Populated by default on Leave tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -92,7 +92,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | primaryContact     | otherContact          |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | leaveContactNumber | leaveAltContactNumber |
 
-  Scenario Outline: Verify From,Till and Reason fields are mandatory fields for Leave Tab
+  Scenario Outline: Leave Management : Verify From,Till and Reason fields are mandatory fields for Leave Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -108,7 +108,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | fromDate      | tillDate      | reason      | primaryContact     | otherContact          |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | leaveFromDate | leaveTillDate | leaveReason | leaveContactNumber | leaveAltContactNumber |
 
-  Scenario Outline: Select From and Till Leave date from Leave Calendar
+  Scenario Outline: Leave Management : Select From and Till Leave date from Leave Calendar
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -120,7 +120,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate |
 
-  Scenario Outline: Verify Total Working Days tooltip from Leave Tab
+  Scenario Outline: Leave Management : Verify Total Working Days tooltip from Leave Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -134,7 +134,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | tooltipMessage                                             |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | For ML total days will be considered as total working days |
 
-  Scenario Outline: Choose leave for half day option from Leave tab
+  Scenario Outline: Leave Management : Choose leave for half day option from Leave tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -149,7 +149,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | isLeaveFirstHalfDay                     |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | isLeaveFirstHalfDay, isLeaveLastHalfDay |
 
-  Scenario Outline: Choose leave type for Leave tab
+  Scenario Outline: Leave Management : Choose leave type for Leave tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -162,7 +162,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | leaveOption | leaveType |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | leaveFromDate | 04/27/2023 | leaveTillDate | 1           | leaveType |
 
-  Scenario Outline: Enter reason for leave for Leave tab
+  Scenario Outline: Leave Management : Enter reason for leave for Leave tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -173,7 +173,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab   | heading                                                  | reasonMessage         | reason      |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Sample Reason Message | leaveReason |
 
-  Scenario Outline: Choose Availability for Leave for Leave tab
+  Scenario Outline: Leave Management : Choose Availability for Leave for Leave tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -185,7 +185,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail                   |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail, avilableOnMobile |
 
-  Scenario Outline: Enter required data and apply for the leave
+  Scenario Outline: Leave Management : Enter required data and apply for the leave
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -202,7 +202,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/14/2023 | leaveFromDate | 04/14/2023 | leaveTillDate | 1           | leaveType | Sample Reason Message | leaveReason | leaveContactNumber |
 
     # LWP Change Request
-  Scenario Outline: Navigate to Leave Management > LWP Change Request tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > LWP Change Request tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -212,7 +212,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab                | heading                                                  |
       | Leave Management | Apply    | LWP Change Request | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  Scenario Outline: Verify LWP Date, Type of leave and Reason fields are mandatory
+  Scenario Outline: Leave Management : Verify LWP Date, Type of leave and Reason fields are mandatory
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -227,7 +227,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | LWP Change Request | Apply Leave / WFH / Comp Off / Out Duty / Change Request | fromDt | legitimateType | legitimateReason | leaveContactNumber | leaveAltContactNumber |
 
 #     Out Duty/Tour
-  Scenario Outline: Navigate to Leave Management > Out of Duty/Tour tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > Out of Duty/Tour tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -237,7 +237,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  Scenario Outline: Verify Out Duty Date, Type of leave and Reason fields are mandatory
+  Scenario Outline: Leave Management : Verify Out Duty Date, Type of leave and Reason fields are mandatory
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -252,7 +252,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | fromDate       | toDate         | type       | reason       |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | outingFromDate | outingTillDate | outingType | outingReason |
 
-  Scenario Outline: Select Out Duty From and Till Leave date from Calendar
+  Scenario Outline: Leave Management : Select Out Duty From and Till Leave date from Calendar
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -264,7 +264,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | fromDate   | toDate     | fromDateField  | toDateField    |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 03/10/2023 | 04/10/2023 | outingFromDate | outingTillDate |
 
-  Scenario Outline: Select type for Out Duty Tab
+  Scenario Outline: Leave Management : Select type for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -275,7 +275,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | outingOption          | outingType |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Tour (Overseas Visit) | outingType |
 
-  Scenario Outline: Select Reason for Out Duty Tab
+  Scenario Outline: Leave Management : Select Reason for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -286,7 +286,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | reasonMessage | reason       |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | Outing Reason | outingReason |
 
-  Scenario Outline: Enter Primary Contact Number for Out Duty Tab
+  Scenario Outline: Leave Management : Enter Primary Contact Number for Out Duty Tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -297,7 +297,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | primaryContactNo | primaryContact      |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 9878787678       | outingContactNumber |
 
-  Scenario Outline: Enter Data and Click on Submit for Out of Duty tab
+  Scenario Outline: Leave Management : Enter Data and Click on Submit for Out of Duty tab
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -315,7 +315,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab           | heading                                                  | fromDate   | fromDateField  | toDate     | toDateField    | outingOption          | outingType | reasonMessage | reason       | primaryContactNo | primaryContact      | otherContactNo | otherContact           | alertType | successMessage                                       |
       | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | outingFromDate | 04/26/2023 | outingTillDate | Tour (Overseas Visit) | outingType | Outing Reason | outingReason | 9878787678       | outingContactNumber | 9878787678     | outingAltContactNumber | Success   | Out Duty/Tour request has been applied successfully. |
 
-  Scenario Outline: Navigate to Leave Management > WFH tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > WFH tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -325,7 +325,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request |
 
-  Scenario Outline: Verify field is Auto Populated by default in WFH tab
+  Scenario Outline: Leave Management : Verify field is Auto Populated by default in WFH tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -336,7 +336,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | mobileNo |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | mobileNo |
 
-  Scenario Outline: Verify WFH Date and WFH Reason are mandatory fields
+  Scenario Outline: Leave Management : Verify WFH Date and WFH Reason are mandatory fields
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -349,7 +349,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | date             | reason    |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | WorkFromHomeDate | WFHReason |
 
-  Scenario Outline: Select Date from WFH Date dropdown
+  Scenario Outline: Leave Management : Select Date from WFH Date dropdown
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -360,7 +360,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | dateOption | date             |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1          | WorkFromHomeDate |
 
-  Scenario Outline: Enter reason for WFH Tab
+  Scenario Outline: Leave Management : Enter reason for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -371,7 +371,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | reasonMessage      | reason    |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | WFH Reason Message | WFHReason |
 
-  Scenario Outline: Enter required data and apply for WFH
+  Scenario Outline: Leave Management : Enter required data and apply for WFH
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -385,7 +385,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab | tab            | heading                                                  | dateOption | date             | reasonMessage      | reason    | alertType | successMessage                 |
       | Leave Management | Apply    | Work From Home | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 1          | WorkFromHomeDate | WFH Reason Message | WFHReason | Success   | Request processed successfully |
 
-  Scenario Outline: Navigate to Leave Management > View Request Status tab > Change Request
+  Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -394,7 +394,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            |
       | Leave Management | View Request Status | Change Request |
 
-  Scenario Outline: Verify Date Range field is present for Change Request
+  Scenario Outline: Leave Management : Verify Date Range field is present for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -404,7 +404,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            |
       | Leave Management | View Request Status | Change Request |
 
-  Scenario Outline: Enter Invalid Date Range for Change Request
+  Scenario Outline: Leave Management : Enter Invalid Date Range for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -416,7 +416,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | date         | message          |
       | Leave Management | View Request Status | Change Request | 01 Apr 20000 | No results found |
 
-  Scenario Outline: Enter Valid Date Range for Change Request
+  Scenario Outline: Leave Management : Enter Valid Date Range for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -428,7 +428,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | date                      | message                   |
       | Leave Management | View Request Status | Change Request | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
 
-  Scenario Outline: Click on Export Options Option for Change Request
+  Scenario Outline: Leave Management : Click on Export Options Option for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -439,7 +439,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              |
       | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print |
 
-  Scenario Outline: Click on Print Option for Change Request
+  Scenario Outline: Leave Management : Click on Print Option for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -452,7 +452,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton |
       | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Print        |
 
-  Scenario Outline: Click on Copy Option for Change Request
+  Scenario Outline: Leave Management : Click on Copy Option for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -465,7 +465,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | message           |
       | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
 
-  Scenario Outline: Click on Excel Option for Change Request
+  Scenario Outline: Leave Management : Click on Excel Option for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -478,7 +478,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | fileName                |
       | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | Excel        | Leave History List.xlsx |
 
-  Scenario Outline: Verify PDF option for Change Request
+  Scenario Outline: Leave Management : Verify PDF option for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -491,7 +491,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | fileName               |
       | Leave Management | View Request Status | Change Request | Copy, Excel, PDF, Print | PDF          | Leave History List.pdf |
 
-  Scenario Outline: Navigate to Leave Management > View Request Status tab > Comp Off
+  Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Comp Off
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -500,7 +500,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      |
       | Leave Management | View Request Status | Comp Off |
 
-  Scenario Outline: Verify Date Range field is present for Change Request
+  Scenario Outline: Leave Management : Verify Date Range field is present for Change Request
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -510,7 +510,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      |
       | Leave Management | View Request Status | Comp Off |
 
-  Scenario Outline: Enter Invalid Date Range for Comp Off Tab
+  Scenario Outline: Leave Management : Enter Invalid Date Range for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -522,7 +522,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | date         | message          |
       | Leave Management | View Request Status | Comp Off | 01 Apr 20000 | No results found |
 
-  Scenario Outline: Enter Valid Date Range for Comp Off Tab
+  Scenario Outline: Leave Management : Enter Valid Date Range for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -534,7 +534,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | date                      | message                   |
       | Leave Management | View Request Status | Comp Off | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
 
-  Scenario Outline: Click on Export Options Option for Comp Off Tab
+  Scenario Outline: Leave Management : Click on Export Options Option for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -545,7 +545,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | exportList              |
       | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print |
 
-  Scenario Outline: Click on Print Option for Comp Off Tab
+  Scenario Outline: Leave Management : Click on Print Option for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -558,7 +558,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | exportList              | exportButton |
       | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | Print        |
 
-  Scenario Outline: Click on Excel Option for Comp Off Tab
+  Scenario Outline: Leave Management : Click on Excel Option for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -571,7 +571,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | exportList              | exportButton | fileName                  |
       | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | Excel        | CompOff History List.xlsx |
 
-  Scenario Outline: Verify PDF option for Comp Off Tab
+  Scenario Outline: Leave Management : Verify PDF option for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -584,7 +584,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | exportList              | exportButton | fileName                 |
       | Leave Management | View Request Status | Comp Off | Copy, Excel, PDF, Print | PDF          | CompOff History List.pdf |
 
-  Scenario Outline: Enter Comp Off Period Name in Search Box for Comp Off Tab
+  Scenario Outline: Leave Management : Enter Comp Off Period Name in Search Box for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -596,7 +596,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | compOffPeriod |
       | Leave Management | View Request Status | Comp Off | 26-Feb-2023   |
 
-  Scenario Outline: Sort columns for Comp Off Tab
+  Scenario Outline: Leave Management : Sort columns for Comp Off Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -608,7 +608,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab      | columnName |
       | Leave Management | View Request Status | Comp Off | Applied On |
 
-  Scenario Outline: Navigate to Leave Management > View Request Status tab > Leave Tab
+  Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -617,7 +617,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
 
-  Scenario Outline: Verify Date Range field is present for Leave Tab
+  Scenario Outline: Leave Management : Verify Date Range field is present for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -627,7 +627,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
 
-  Scenario Outline: Enter Invalid Date Range for Leave Tab
+  Scenario Outline: Leave Management : Enter Invalid Date Range for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -639,7 +639,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | date         | message          |
       | Leave Management | View Request Status | Leave | 01 Apr 20000 | No results found |
 
-  Scenario Outline: Verify Export Options for Leave Tab
+  Scenario Outline: Leave Management : Verify Export Options for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -650,7 +650,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | exportList              |
       | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print |
 
-  Scenario Outline: Click on Print Option for Leave Tab
+  Scenario Outline: Leave Management : Click on Print Option for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -663,7 +663,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | exportList              | exportButton |
       | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Print        |
 
-  Scenario Outline: Click on Excel Option for Leave Tab
+  Scenario Outline: Leave Management : Click on Excel Option for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -676,7 +676,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | exportList              | exportButton | fileName                |
       | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Excel        | Leave History List.xlsx |
 
-  Scenario Outline: Click on Copy Option for Leave Tab
+  Scenario Outline: Leave Management : Click on Copy Option for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -689,7 +689,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | exportList              | exportButton | message           |
       | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
 
-  Scenario Outline: Verify PDF option for Leave Tab
+  Scenario Outline: Leave Management : Verify PDF option for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -702,7 +702,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | exportList              | exportButton | fileName               |
       | Leave Management | View Request Status | Leave | Copy, Excel, PDF, Print | PDF          | Leave History List.pdf |
 
-  Scenario Outline: Verify Number of Entries displayed for Leave Tab
+  Scenario Outline: Leave Management : Verify Number of Entries displayed for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -712,7 +712,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
 
-  Scenario Outline: Enter Leave Period Name in Search Box for Leave Tab
+  Scenario Outline: Leave Management : Enter Leave Period Name in Search Box for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -724,7 +724,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | leavePeriod                |
       | Leave Management | View Request Status | Leave | 28-Dec-2022 to 02-Jan-2023 |
 
-  Scenario Outline: Sort columns for Leave Tab
+  Scenario Outline: Leave Management : Sort columns for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -736,7 +736,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | columnName |
       | Leave Management | View Request Status | Leave | Period     |
 
-  Scenario Outline: Page Next for Leave Tab
+  Scenario Outline: Leave Management : Page Next for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -749,7 +749,7 @@ Feature: MIS - Leave Management
       | Leave Management | View Request Status | Leave |
 
 
-  Scenario Outline: Page Previous for Leave Tab
+  Scenario Outline: Leave Management : Page Previous for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -763,7 +763,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
 
-  Scenario Outline: Cancel Leave for Leave Tab
+  Scenario Outline: Leave Management : Cancel Leave for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -778,7 +778,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab   | leavePeriod                |
       | Leave Management | View Request Status | Leave | 14-Apr-2023 to 14-Apr-2023 |
 
-  Scenario Outline: Navigate to Leave Management > View Request Status tab > Out Duty/Tour
+  Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -787,7 +787,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           |
       | Leave Management | View Request Status | Out Duty/Tour |
 
-  Scenario Outline: Verify Date Range field is present for Out Duty/Tour
+  Scenario Outline: Leave Management : Verify Date Range field is present for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -797,7 +797,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           |
       | Leave Management | View Request Status | Out Duty/Tour |
 
-  Scenario Outline: Enter Invalid Date Range for Out Duty/Tour
+  Scenario Outline: Leave Management : Enter Invalid Date Range for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -809,7 +809,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | date         | message          |
       | Leave Management | View Request Status | Out Duty/Tour | 01 Apr 20000 | No results found |
 
-  Scenario Outline: Enter Valid Date Range for Out Duty/Tour
+  Scenario Outline: Leave Management : Enter Valid Date Range for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -821,7 +821,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | date                      | message                   |
       | Leave Management | View Request Status | Out Duty/Tour | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
 
-  Scenario Outline: Click on Export Options Option for Out Duty/Tour
+  Scenario Outline: Leave Management : Click on Export Options Option for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -832,7 +832,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | exportList              |
       | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print |
 
-  Scenario Outline: Click on Print Option for Out Duty/Tour
+  Scenario Outline: Leave Management : Click on Print Option for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -845,7 +845,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | exportList              | exportButton |
       | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Print        |
 
-  Scenario Outline: Click on Excel Option for Out Duty/Tour
+  Scenario Outline: Leave Management : Click on Excel Option for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -858,7 +858,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | exportList              | exportButton | fileName          |
       | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Excel        | Gemini - MIS.xlsx |
 
-  Scenario Outline: Click on Copy Option for Out Duty/Tour
+  Scenario Outline: Leave Management : Click on Copy Option for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -871,7 +871,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | exportList              | exportButton | message           |
       | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
 
-  Scenario Outline: Verify PDF option for Out Duty/Tour
+  Scenario Outline: Leave Management : Verify PDF option for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -884,7 +884,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | exportList              | exportButton | fileName         |
       | Leave Management | View Request Status | Out Duty/Tour | Copy, Excel, PDF, Print | PDF          | Gemini - MIS.pdf |
 
-  Scenario Outline: Sort columns for Out Duty/Tour
+  Scenario Outline: Leave Management : Sort columns for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -896,7 +896,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | columnName |
       | Leave Management | View Request Status | Out Duty/Tour | Duty Type  |
 
-  Scenario Outline: Enter Out Duty/Tour Period in Search Box for Out Duty/Tour
+  Scenario Outline: Leave Management : Enter Out Duty/Tour Period in Search Box for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -908,7 +908,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | leavePeriod                |
       | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 |
 
-  Scenario Outline: Verify Data is present for Out Duty/Tour
+  Scenario Outline: Leave Management : Verify Data is present for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -920,7 +920,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | leavePeriod                |
       | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 |
 
-  Scenario Outline: Click on View button for Out Duty/Tour
+  Scenario Outline: Leave Management : Click on View button for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -934,7 +934,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | leavePeriod                | header                       |
       | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail |
 
-  Scenario Outline: Verify Date in View Window for Out Duty/Tour
+  Scenario Outline: Leave Management : Verify Date in View Window for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -949,7 +949,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab           | leavePeriod                | header                       |
       | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail |
 
-  Scenario Outline: Search in View Window for Out Duty/Tour
+  Scenario Outline: Leave Management : Search in View Window for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -966,7 +966,7 @@ Feature: MIS - Leave Management
       | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail | 14-Mar-2023 |
 
 
-  Scenario Outline: Navigate to Leave Management > View Request Status tab > Work From Home
+  Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Work From Home
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -975,7 +975,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            |
       | Leave Management | View Request Status | Work From Home |
 
-  Scenario Outline: Verify Date Range field is present for WFH Tab
+  Scenario Outline: Leave Management : Verify Date Range field is present for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -985,7 +985,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            |
       | Leave Management | View Request Status | Work From Home |
 
-  Scenario Outline: Enter Invalid Date Range for WFH Tab
+  Scenario Outline: Leave Management : Enter Invalid Date Range for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -997,7 +997,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | date         | message          |
       | Leave Management | View Request Status | Work From Home | 01 Apr 20000 | No results found |
 
-  Scenario Outline: Enter Valid Date Range for WFH Tab
+  Scenario Outline: Leave Management : Enter Valid Date Range for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1009,7 +1009,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | date                      | message                   |
       | Leave Management | View Request Status | Work From Home | 01 Apr 2022 - 31 Mar 2023 | 01 Apr 2022 - 31 Mar 2023 |
 
-  Scenario Outline: Click on Export Options Option for WFH Tab
+  Scenario Outline: Leave Management : Click on Export Options Option for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1020,7 +1020,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              |
       | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print |
 
-  Scenario Outline: Click on Print Option for WFH Tab
+  Scenario Outline: Leave Management : Click on Print Option for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1033,7 +1033,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton |
       | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Print        |
 
-  Scenario Outline: Click on Excel Option for WFH Tab
+  Scenario Outline: Leave Management : Click on Excel Option for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1046,7 +1046,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | fileName              |
       | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Excel        | WFH History List.xlsx |
 
-  Scenario Outline: Click on Copy Option for WFH Tab
+  Scenario Outline: Leave Management : Click on Copy Option for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1059,7 +1059,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | message           |
       | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | Copy         | Copy to clipboard |
 
-  Scenario Outline: Verify PDF option for WFH Tab
+  Scenario Outline: Leave Management : Verify PDF option for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1072,7 +1072,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | exportList              | exportButton | fileName             |
       | Leave Management | View Request Status | Work From Home | Copy, Excel, PDF, Print | PDF          | WFH History List.pdf |
 
-  Scenario Outline: Verify Number of Entries displayed for WFH Tab
+  Scenario Outline: Leave Management : Verify Number of Entries displayed for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1082,7 +1082,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            |
       | Leave Management | View Request Status | Work From Home |
 
-  Scenario Outline: Enter WFH Period Name in Search Box for WFH Tab
+  Scenario Outline: Leave Management : Enter WFH Period Name in Search Box for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1094,7 +1094,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | period      |
       | Leave Management | View Request Status | Work From Home | 01-Feb-2023 |
 
-  Scenario Outline: Sort columns for WFH Tab
+  Scenario Outline: Leave Management : Sort columns for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1106,7 +1106,7 @@ Feature: MIS - Leave Management
       | parentTab        | childTab            | tab            | columnName |
       | Leave Management | View Request Status | Work From Home | Reason     |
 
-  Scenario Outline: Page Next for WFH Tab
+  Scenario Outline: Leave Management : Page Next for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed
@@ -1119,7 +1119,7 @@ Feature: MIS - Leave Management
       | Leave Management | View Request Status | Work From Home |
 
 
-  Scenario Outline: Page Previous for WFH Tab
+  Scenario Outline: Leave Management : Page Previous for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And User clicks on "<tab>" Tab
     And Verify "<tab>" headers are displayed

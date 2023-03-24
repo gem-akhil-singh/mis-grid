@@ -9,7 +9,7 @@ Feature: Organization Structure Module Scenarios
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario Outline: Search for Employee with Designation
+  Scenario Outline: Organization Structure: Search for Employee with Designation
     Given Navigate to Organization Structure
     When Entered employee name <empname> in search field
     Then Validate availability of Employee <empname> and Designation <designation>
@@ -19,7 +19,7 @@ Feature: Organization Structure Module Scenarios
       | Vishal Malik   | Chief Executive Officer |
 
 
-  Scenario Outline: Search for Employee with Incorrect Designation
+  Scenario Outline: Organization Structure: Search for Employee with Incorrect Designation
     Given Navigate to Organization Structure
     When Entered employee name <empname> in search field
     Then Validate unavailability of Employee <empname> and Designation <designation>
@@ -27,11 +27,11 @@ Feature: Organization Structure Module Scenarios
       | empname        | designation             |
       | Tushar Chauhan | Software Engineer L1    |
 
-  Scenario: Search for all the the employees visible first time
+  Scenario: Organization Structure: Search for all the the employees visible first time
     Given Navigate to Organization Structure
     Then Count number of senior visible
 
-  Scenario Outline: Zoom-in to employee card through double click
+  Scenario Outline: Organization Structure: Zoom-in to employee card through double click
     Given Navigate to Organization Structure
     When Entered employee name <empname> in search field
     Then Double click on employeecard <empname>

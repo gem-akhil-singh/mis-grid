@@ -41,7 +41,7 @@ public class LoginSteps {
     public void clickOnSignInButton() {
         try {
             DriverAction.click(LoginLocator.signInButton,"SignIn Button");
-            //DriverAction.waitUntilElementAppear(LoginLocator.closeButton,5);
+            DriverAction.waitSec(5);
             GemTestReporter.addTestStep("Sign In", "User click on Sign In button", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Sign In", "User not able to click on Sign In button", STATUS.FAIL, DriverAction.takeSnapShot());

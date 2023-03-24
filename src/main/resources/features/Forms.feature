@@ -8,7 +8,7 @@ Feature: Forms Automation
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario Outline: Open view forms page
+  Scenario Outline: View Forms: Open view forms page
 
     When User clicks on tab "<parentTab>" and "<childTab>"
     And User verifies element "<firstElement>"
@@ -17,7 +17,7 @@ Feature: Forms Automation
       | parentTab | childTab  | firstElement | secondElement |
       | Forms     | View Form | View Forms   | Form Name     |
 
-  Scenario Outline: User checks the  presence of previous and next Button
+  Scenario Outline: View Forms: User checks the  presence of previous and next Button
     When User clicks on tab "<parent Tab>" and "<child Tab>"
     And User verifies the presence of "<buttonOne>" Button
     Then User verifies the presence of "<buttonTwo>" Button
@@ -25,7 +25,7 @@ Feature: Forms Automation
       | parent Tab | child Tab | buttonOne | buttonTwo |
       | Forms      | View Form | Previous  | Next      |
 
-  Scenario Outline: User selects a department
+  Scenario Outline: View Forms: User selects a department
     When User clicks on tab "<parentTab>" and "<childTab>"
     And User clicks on department
     Then User clicks on "<desiredDepartment>"
@@ -33,21 +33,21 @@ Feature: Forms Automation
       | parentTab | childTab  | desiredDepartment |
       | Forms     | View Form | Accounts          |
 
-  Scenario Outline: User selects the entries
+  Scenario Outline: View Forms: User selects the entries
     When User clicks on tab "<parentTab>" and "<childTab>"
     Then User selects the entries as "<element>"
     Examples:
       | parentTab | childTab  | element |
       | Forms     | View Form | 25      |
 
-  Scenario Outline:  User enters valid value in search field
+  Scenario Outline: View Forms: User enters valid value in search field
     When User clicks on tab "<parentTab>" and "<childTab>"
     And User search field and enters value "<value>"
     Examples:
       | parentTab | childTab  | value    |
       | Forms     | View Form | Accounts |
 
-  Scenario Outline: User enters invalid value in search field
+  Scenario Outline: View Forms: User enters invalid value in search field
     When User clicks on tab "<parentTab>" and "<childTab>"
     And User search field and enters invalid value "<value>"
     Then User verifies the invalid value "<element>"
@@ -55,7 +55,7 @@ Feature: Forms Automation
       | parentTab | childTab  | value | element                   |
       | Forms     | View Form | QA    | No matching records found |
 
-  Scenario Outline:User clicks on eye button to view policy
+  Scenario Outline: View Forms: User clicks on eye button to view policy
     When  User clicks on tab "<parentTab>" and "<childTab>"
     And  User clicks on eye button
     Then User views policy
@@ -63,23 +63,22 @@ Feature: Forms Automation
       | parentTab | childTab  |
       | Forms     | View Form |
 
-  Scenario Outline: User downloads document
+  Scenario Outline: View Forms: User downloads document
     When  User clicks on tab "<parentTab>" and "<childTab>"
     Then User click on download image
     Examples:
       | parentTab | childTab  |
       | Forms     | View Form |
 
-######################################myForms############################################
 
-  Scenario Outline: User opens my forms page
+  Scenario Outline: My Forms: User opens my forms page
     When  User clicks on the "<parentTab>" and "<childTab>"
     Then Verify the heading on the landing page
     Examples:
       | parentTab | childTab |
       | Forms     | My Form  |
 
-  Scenario Outline:User uploads correct File
+  Scenario Outline: My Forms: User uploads correct File
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the desired document "<formType>" from "<path>"
@@ -88,7 +87,7 @@ Feature: Forms Automation
       | parentTab | childTab | formType                | path                                                |
       | Forms     | My Form  | Loyalty Redemption Form | \\src\\main\\resources\\Loyalty Redemption Form.pdf |
 
-  Scenario Outline: User uploads incorrect File
+  Scenario Outline: My Forms: User uploads incorrect File
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the undesired document "<formType>" from "<path>"
@@ -98,7 +97,7 @@ Feature: Forms Automation
       | parentTab | childTab | formType                | warningMsg                                                      | path                                |
       | Forms     | My Form  | Loyalty Redemption Form | Invalid file selected. Supported extensions are .xlsx,.xls,.pdf | \\src\\main\\resources\\17 may.docx |
 
-  Scenario Outline:User selects number of entries
+  Scenario Outline: My Forms: User selects number of entries
     When  User clicks on the "<parentTab>" and "<childTab>"
     Then User selects the entries as "<element>"
 
@@ -106,7 +105,7 @@ Feature: Forms Automation
       | parentTab | childTab | element |
       | Forms     | My Form  | 25      |
 
-  Scenario Outline: User enters valid value in my forms search field
+  Scenario Outline: My Forms: User enters valid value in my forms search field
     When  User clicks on the "<parentTab>" and "<childTab>"
     Then User enters valid value in my forms search field as "<element>"
 
@@ -114,7 +113,7 @@ Feature: Forms Automation
       | parentTab | childTab | element                       |
       | Forms     | My Form  | Loyal Loyalty Redemption Form |
 
-  Scenario Outline: User enters invalid value in My forms search field
+  Scenario Outline: My Forms: User enters invalid value in My forms search field
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User enters invalid value in My forms search field as "<value>"
 
@@ -122,7 +121,7 @@ Feature: Forms Automation
       | parentTab | childTab | value |
       | Forms     | My Form  | QA    |
 
-  Scenario Outline: User downloads from my forms page
+  Scenario Outline: My Forms: User downloads from my forms page
     When  User clicks on the "<parentTab>" and "<childTab>"
     Then User hovers and clicks on download button
 
@@ -130,7 +129,7 @@ Feature: Forms Automation
       | parentTab | childTab |
       | Forms     | My Form  |
 
-  Scenario Outline: User hover over and clicks on deactivate button
+  Scenario Outline: My Forms: User hover over and clicks on deactivate button
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User hovers and clicks on deactivate button
     Then User clicks on yes button
@@ -139,7 +138,7 @@ Feature: Forms Automation
       | parentTab | childTab |
       | Forms     | My Form  |
 
-  Scenario Outline: User uploads the file with same name
+  Scenario Outline: My Forms: User uploads the file with same name
     When  User clicks on the "<parentTab>" and "<childTab>"
     And User clicks on upload button
     And User uploads the desired document "<formType>" from "<path>"

@@ -7,19 +7,12 @@ import com.gemini.generic.ui.utils.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.bytebuddy.utility.visitor.ExceptionTableSensitiveMethodVisitor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-//import java.sql.Driver;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Calendar;
-import java.util.Date;
 
 import static com.qa.mis.locators.DashboardProfileLocator.*;
-import static com.qa.mis.locators.DashboardProfileLocator.invalidNo;
-import static com.qa.mis.locators.ReferalLocator.refSaveButton;
 
 public class DashboardProfileSteps {
 
@@ -73,7 +66,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @When("^click on update$")
+    @When("^Click on update$")
     public void clickOnUpdate() {
         try{
             DriverAction.waitSec(5);
@@ -84,7 +77,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^click on update address$")
+    @And("^Click on update address$")
     public void clickOnUpdateAdd() {
 
         try {
@@ -98,7 +91,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @When("^enter pinCode$")
+    @When("^Enter pinCode$")
     public void clickOnPinCode() {
         try {
             DriverAction.waitUntilElementAppear(enterPincode, 2);
@@ -112,7 +105,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^verify invalid pincode$")
+    @And("^Verify invalid pincode$")
     public void enterInvalidPincode() {
         try {
             DriverAction.waitUntilElementAppear(invalidPincode, 1);
@@ -128,7 +121,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^click on change password$")
+    @And("^Click on change password$")
     public void clickOnChangePassword() {
 
 
@@ -144,7 +137,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @And("^enter old password$")
+    @And("^Enter old password$")
     public void enterOldPassword() {
 
         try {
@@ -160,7 +153,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("^verify the the password is incorrect$")
+    @Then("^Verify the the password is incorrect$")
     public void verifyPasswordIncorrect() {
         try {
             DriverAction.waitSec(5);
@@ -176,7 +169,7 @@ public class DashboardProfileSteps {
     }
 
 
-    @When("^enter new password and confirm password$")
+    @When("^Enter new password and confirm password$")
     public void enterNewPasswordAndConfirmPassword() {
 
         try {
@@ -204,7 +197,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^click on update password$")
+    @And("^Click on update password$")
     public void clickOnUpdatePassword() {
         try {
 
@@ -217,7 +210,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @Then("^verify password not match$")
+    @Then("^Verify password not match$")
     public void verifyPasswordNotMatch() {
 
         try {
@@ -229,7 +222,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("^click on close button$")
+    @Then("^Click on close button$")
     public void clickOnCloseButton() {
 
         try {
@@ -244,7 +237,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @When("^user click on apply lunch$")
+    @When("^User click on apply lunch$")
     public void userClickOnApplyLunch() {
 
         try {
@@ -258,7 +251,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @And("^user click on from date and click on select from date$")
+    @And("^User click on from date and click on select from date$")
     public void userClickOnFromDate() {
         try {
             DriverAction.waitSec(5);
@@ -285,7 +278,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^user click on till date and select till date$")
+    @And("^User click on till date and select till date$")
     public void userClickOnTillDate() {
         try {
 
@@ -306,7 +299,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^click on location container$")
+    @And("^Click on location container$")
     public void clickOnLocationContainer() {
 
         try {
@@ -317,7 +310,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^select the location from the list$")
+    @And("^Select the location from the list$")
     public void selectTheLocationFromTheList() {
 
         try {
@@ -329,7 +322,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("^click on add lunch button$")
+    @Then("^Click on add lunch button$")
     public void clickOnAddLunchButton() {
         try{
             DriverAction.waitSec(5);
@@ -339,7 +332,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("^verify the warning message$")
+    @Then("^Verify the warning message$")
     public void verifyTheWarningMessage() {
 
         try {
@@ -354,7 +347,7 @@ public class DashboardProfileSteps {
     }
 
 
-    @Then("^verify select is blank$")
+    @Then("^Verify select is blank$")
     public void verifySelectIsBlank() {
         DriverAction.getElementText(locationContainer);
         String s = DriverAction.getElementText(locationContainer);
@@ -364,7 +357,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @Then("^verify the old password is blank$")
+    @Then("^Verify the old password is blank$")
     public void verifyTheOldPasswordIsBlank() {
         DriverAction.getElementText(enterOldPassword);
         String sb = DriverAction.getElementText(enterOldPassword);
@@ -374,7 +367,7 @@ public class DashboardProfileSteps {
 
     }
 
-    @When("^enter address in the update address tab$")
+    @When("^Enter address in the update address tab$")
     public void enterAddressInTheUpdateAddressTab() {
         DriverAction.waitSec(5);
         try {
@@ -389,12 +382,12 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("^click on pincode$")
+    @And("^Click on pincode$")
     public void clickOnPincode() {
         DriverAction.getElementText(enterPincode);
     }
 
-    @Then("^verify pincode is blank$")
+    @Then("^Verify pincode is blank$")
     public void verifyPinCode() {
         String sb = DriverAction.getElementText(enterPincode);
         if (sb.equals("Pincode")) {
@@ -402,7 +395,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("^verify password is blank$")
+    @Then("^Verify password is blank$")
     public void verifyPasswordIsBlank() {
         DriverAction.waitSec(5);
         try {
@@ -416,7 +409,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @When("click on edit details button")
+    @When("Click on edit details button")
     public void clickOnEditDetailsButton() {
         try{
             DriverAction.waitSec(5);
@@ -426,7 +419,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @When("click on change details button")
+    @When("Click on change details button")
     public void clickOnChangeDetailsButton() {
         try{
             DriverAction.waitSec(5);
@@ -436,7 +429,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("enter mobile number")
+    @And("Enter mobile number")
     public void enterMobileNumber() {
         try{
             DriverAction.waitSec(5);
@@ -446,7 +439,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @Then("verify error message")
+    @Then("Verify error message")
     public void errormessage(){
         try{
             DriverAction.waitSec(5);
@@ -458,7 +451,7 @@ public class DashboardProfileSteps {
             GemTestReporter.addTestStep("ERROR", "Error Occurred While verifying the error pop up" + e, STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
-    @And("click on update mobile number")
+    @And("Click on update mobile number")
     public void clickOnUpdateMobileNumber() {
         try {
             DriverAction.waitSec(5);
@@ -469,7 +462,7 @@ public class DashboardProfileSteps {
     }
 
 
-    @Then("verify invalid phone number")
+    @Then("Verify invalid phone number")
     public void verifyInvalidPhoneNumber() {
 
         DriverAction.waitSec(5);
@@ -487,7 +480,7 @@ public class DashboardProfileSteps {
         }
     }
 
-    @And("enter extension number")
+    @And("Enter extension number")
     public void enterExtensionNumber() {
 
         DriverAction.waitSec(5);
@@ -495,7 +488,7 @@ public class DashboardProfileSteps {
         DriverAction.typeText(enterExtNo, "11");
     }
 
-    @Then("verify invalid ext number")
+    @Then("Verify invalid ext number")
     public void verifyInvalidExtNumber() {
 
         DriverAction.waitSec(5);

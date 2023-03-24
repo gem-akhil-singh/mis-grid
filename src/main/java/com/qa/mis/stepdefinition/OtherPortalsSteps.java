@@ -4,7 +4,8 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
-import com.qa.mis.locators.*;
+import com.qa.mis.locators.NavBarLocator;
+import com.qa.mis.locators.OtherportalnTimesheetLocator;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -63,7 +64,7 @@ public class OtherPortalsSteps {
     public void click_on_signin_button() {
         try {
             if (DriverAction.isExist(OtherportalnTimesheetLocator.sgnupbtn)) {
-                DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn, "Sign in");
+                DriverAction.click(OtherportalnTimesheetLocator.sgnupbtn,"Clicking on Sign-in button","Clicked on Sign-in button successfully");
             } else {
                 GemTestReporter.addTestStep("SignIn", "SignIn button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
             }
@@ -79,7 +80,7 @@ public class OtherPortalsSteps {
             String hidden = DriverAction.getAttributeName(NavBarLocator.SkillPopup, "class");
             if (hidden.equalsIgnoreCase("modal fade in")) {
                 if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {
-                    DriverAction.click(NavBarLocator.skillClosebtn, "Skills close button clicked");
+                    DriverAction.click(NavBarLocator.skillClosebtn, "Skills close button");
                 } else {
                     GemTestReporter.addTestStep("Skill Close button", "Skill Close button is not present", STATUS.FAIL, DriverAction.takeSnapShot());
                 }
@@ -104,7 +105,7 @@ public class OtherPortalsSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(OtherportalnTimesheetLocator.otherPortal));
 
-            DriverAction.click(OtherportalnTimesheetLocator.otherPortal);
+            DriverAction.click(OtherportalnTimesheetLocator.otherPortal,"Other Portal Option");
         } catch (Exception e) {
             GemTestReporter.addTestStep("Other Portals", "Other Portal is not clicked ", STATUS.FAIL);
         }

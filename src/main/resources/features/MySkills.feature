@@ -9,7 +9,7 @@ Feature: MySkills Automation
     Then User should be navigated to MIS homepage
 
 
-  Scenario Outline: Verify my skills are updating with valid data
+  Scenario Outline: My-Skills : Verify my skills are updating with valid data
     When User scrolls to skills view
     And Skills are updated with "<mySkills>"
     Then User clicks on close button
@@ -18,8 +18,7 @@ Feature: MySkills Automation
       | mySkills   |
       | Accounting |
 
-    ###########Failed Scenario as skills will not be updated with invalid data ###############
-  Scenario Outline: Verify my skills are updating with in invalid data
+  Scenario Outline: My-Skills : Verify my skills are updating with in invalid data
     When User clicks on user image button
     Then User clicks on skills button
     Then User clicks on technology dropdown

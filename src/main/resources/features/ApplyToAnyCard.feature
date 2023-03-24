@@ -8,12 +8,12 @@ Feature: Dashboard-Apply To Any Card
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario: Dashboard-Apply To Any Card: Verify minimize functionality is working on any card in Beta Mis
+  Scenario: Dashboard-Apply To Any Card: Verify minimize functionality
     When Check "Referral" card is present in dashboard
     And User clicks on "minimize" button on "Referral" card on dashboard
     Then Verify that "Referral" card is minimized on dashboard
 
-  Scenario: Dashboard-Apply To Any Card: Verify fullscreen functionality is working on any card in Beta Mis
+  Scenario: Dashboard-Apply To Any Card: Verify fullscreen functionality
     When Check "Referral" card is present in dashboard
     And User clicks on "maximize" button on "Referral" card on dashboard
     Then Verify that "Referral" card is maximized on dashboard

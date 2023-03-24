@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-//import java.sql.Driver;
 import java.time.Duration;
 
 import static com.qa.mis.locators.DashboardProfileLocator.*;
@@ -23,9 +22,6 @@ import static com.qa.mis.locators.ReferalLocator.*;
 import static com.qa.mis.locators.ReferalLocator.invalidUpload;
 
 public class ReferalStep {
-
-
-
 
     @When("^Enter username referal$")
     public void userName() {
@@ -61,7 +57,7 @@ public class ReferalStep {
 
     }
 
-    @When("^verify dashboard page is loaded properly$")
+    @When("^Verify dashboard page is loaded properly$")
     public void dashboardPageIsLoadedProperly() {
         try {
 
@@ -76,7 +72,7 @@ public class ReferalStep {
         }
     }
 
-    @Then("^verify JD window is visible$")
+    @Then("^Verify JD window is visible$")
     public void VerifyJdWindow() {
         try {
 
@@ -93,7 +89,7 @@ public class ReferalStep {
         }
     }
 
-    @And("^user click on referral action$")
+    @And("^User click on referral action$")
     public void userClickOnReferralAction() {
         try {
             DriverAction.waitSec(5);
@@ -108,7 +104,7 @@ public class ReferalStep {
     }
 
 
-    @And("^validate referral creation$")
+    @And("^Validate referral creation$")
     public void validateReferralCreation() {
         try {
             DriverAction.waitUntilElementAppear(referralAction, 3);
@@ -122,12 +118,12 @@ public class ReferalStep {
         }
     }
 
-    @And("^click on name under referral$")
+    @And("^Click on name under referral$")
     public void clickOnNameUnderReferral() {
         try {
 
             DriverAction.waitSec(5);
-            DriverAction.click(refName, "click on referal name");
+            DriverAction.click(refName, "click on referral name");
             DriverAction.waitSec(3);
             DriverAction.typeText(refName, "Sahra");
         } catch (Exception e) {
@@ -136,7 +132,7 @@ public class ReferalStep {
         }
     }
 
-    @Then("^referral window is visible$")
+    @Then("^Referral window is visible$")
     public void referralWindowIsVisible() {
         DriverAction.getElementText(refName);
         String referanceName = DriverAction.getElementText(refName);
@@ -146,7 +142,7 @@ public class ReferalStep {
 
     }
 
-    @When("^user checks referral section$")
+    @When("^User checks referral section$")
     public void userChecksReferralSection() {
         try{
             DriverAction.getElementText(refSection);
@@ -172,9 +168,9 @@ public class ReferalStep {
         }catch(Exception e) {
             GemTestReporter.addTestStep("verifyJdWindow", "verify window is visible", STATUS.FAIL, DriverAction.takeSnapShot());
         }
-        }
+    }
 
-    @And("^click on email under referral$")
+    @And("^Click on email under referral$")
     public void clickOnEmailUnderReferral() {
         try{
             DriverAction.waitSec(5);
@@ -185,7 +181,7 @@ public class ReferalStep {
         }
     }
 
-    @And("^enter the email address$")
+    @And("^Enter the email address$")
     public void enterTheEmailAddress() {
         try {
             DriverAction.waitSec(5);
@@ -196,7 +192,7 @@ public class ReferalStep {
         }
     }
 
-    @And("^click on save$")
+    @And("^Click on save$")
     public void clickOnSave() {
         try{
             DriverAction.waitSec(5);
@@ -207,7 +203,7 @@ public class ReferalStep {
         }
     }
 
-    @Then("^verify the warning message in ref section$")
+    @Then("^Verify the warning message in ref section$")
     public void verifyTheWarningMessageInRefSection() {
         try {
 
@@ -224,7 +220,7 @@ public class ReferalStep {
         }
     }
 
-    @And("click on FAQ")
+    @And("Click on FAQ")
     public void clickOnFAQ() {
         try {
 
@@ -236,7 +232,7 @@ public class ReferalStep {
         }
     }
 
-    @Then("verify the pdf is visible")
+    @Then("Verify the pdf is visible")
     public void verifyThePdfIsVisible() {
         try{
             DriverAction.waitSec(5);
@@ -247,7 +243,7 @@ public class ReferalStep {
         }
     }
 
-    @And("click on Manual")
+    @And("Click on Manual")
     public void clickOnManual() {
         try {
 
@@ -261,7 +257,7 @@ public class ReferalStep {
         }
     }
 
-    @Then("verify the manual is visible")
+    @Then("Verify the manual is visible")
     public void verifyTheManualIsVisible() {
         try {
             DriverAction.waitUntilElementAppear(manualVisible, 2);
@@ -272,7 +268,7 @@ public class ReferalStep {
         }
     }
 
-    @And("user enter details and upload file")
+    @And("User enter details and upload file")
     public void clickOnUploadFile() {
         try{
             DriverAction.waitSec(10);
@@ -280,13 +276,13 @@ public class ReferalStep {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),
                     Duration.ofSeconds(5));
             wait.until(ExpectedConditions.elementToBeClickable(refName));
-            DriverAction.click(refName);
+            DriverAction.click(refName, "Name");
             DriverAction.typeText(refName,"Sarah");
             wait.until(ExpectedConditions.elementToBeClickable(refEmail));
-            DriverAction.click(refEmail);
+            DriverAction.click(refEmail, "Email");
             DriverAction.typeText(refEmail, "abcde@gmail.com");
             wait.until(ExpectedConditions.elementToBeClickable(enterRefContNo));
-            DriverAction.click(enterRefContNo);
+            DriverAction.click(enterRefContNo," Contact number");
             DriverAction.typeText(enterRefContNo, "1234567890");
             WebElement relationDropDown = DriverAction.getElement(selectHimOrHer);
             Select dropDown = new Select(relationDropDown);
@@ -298,7 +294,7 @@ public class ReferalStep {
             // DriverAction.fileUpload(resumeUpload, dirPath+"\\src\\main\\resources\\testdocument.xlsx");
             //  DriverAction.waitSec(10);
             DriverAction.waitUntilElementAppear(refSaveButton,2);
-            DriverAction.click(refSaveButton);
+            DriverAction.click(refSaveButton,"Save button");
             DriverAction.waitSec(3);
 
 
@@ -307,21 +303,18 @@ public class ReferalStep {
         }
     }
 
-    @Then("^verify wrong format is uploaded$")
+    @Then("^Verify wrong format is uploaded$")
     public void verifyWrongFormatIsUploaded() {
         try {
             DriverAction.waitUntilElementAppear(invalidUpload,5);
             DriverAction.isExist(invalidUpload);
             GemTestReporter.addTestStep("resume upload","Note: Selected file format should be .doc, .docx or .pdf",STATUS.PASS,DriverAction.takeSnapShot());
-//            DriverAction.waitUntilElementAppear(resumeWarning, 5);
-//            DriverAction.isExist(resumeWarning);
-//            GemTestReporter.addTestStep("resume warning", "Invalid file selected. Supported extensions are .doc,.docx,.pdf,.PDF", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("ERROR", "Error Occurred While Uploading", STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 
-    @And("^enter the correct email$")
+    @And("^Enter the correct email$")
     public void enterTheCorrectEmail() {
 
         try {
@@ -335,11 +328,11 @@ public class ReferalStep {
         }
     }
 
-    @And("enter the correct contact number")
+    @And("Enter the correct contact number")
     public void enterTheCorrectContactNumber() {
         try {
             DriverAction.waitUntilElementAppear(enterRefContNo, 2);
-            DriverAction.click(enterRefContNo, "click on ref contct no");
+            DriverAction.click(enterRefContNo, "click on ref contact no");
             DriverAction.waitUntilElementAppear(enterRefContNo, 2);
             DriverAction.typeText(enterRefContNo, "1234567890");
         } catch (Exception e) {
