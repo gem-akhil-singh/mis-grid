@@ -16,7 +16,7 @@ public class PolicySteps {
     @When("User clicks on Policy")
     public void userClicksOnPolicy() {
         try {
-            DriverAction.click(PolicyLocator.policyButton);
+            DriverAction.click(PolicyLocator.policyButton,"Policy button");
             GemTestReporter.addTestStep("Policy", "User clicks on Policy Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Policy", "User not able to click on Policy", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -26,7 +26,7 @@ public class PolicySteps {
     @Then("Click on View Policies")
     public void clickOnViewPolicies() {
         try {
-            DriverAction.click(PolicyLocator.viewPolicyButton);
+            DriverAction.click(PolicyLocator.viewPolicyButton,"View Policy button");
             GemTestReporter.addTestStep("View Policies", "User clicks on ViewPolicies Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("View Policies", "User not able to click on ViewPolicies", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -68,7 +68,7 @@ public class PolicySteps {
 
     @And("Select {string} as number of entries")
     public void selectAsNumberOfEntries(String expectedRecords) {
-        DriverAction.click(PolicyLocator.NoOfPolicyRecords);
+        DriverAction.click(PolicyLocator.NoOfPolicyRecords,"No. Of Policy Records");
         String actualNoOfRecords = DriverAction.getElement(PolicyLocator.NoOfPolicyRecords).getText();
         try {
             if (actualNoOfRecords.equals(expectedRecords))
@@ -79,7 +79,7 @@ public class PolicySteps {
     }
     @Then("Verify number of records displayed changes")
     public void verifyNumberOfRecordsDisplayedChanges() {
-        DriverAction.click(PolicyLocator.NoOfPolicyRecords);
+        DriverAction.click(PolicyLocator.NoOfPolicyRecords,"No. Of Policy Records");
         String actualNoOfRecords = DriverAction.getElement(PolicyLocator.NoOfPolicyRecords).getText();
         try {
             if (actualNoOfRecords.equals("25"))
@@ -122,7 +122,7 @@ public class PolicySteps {
     @And("Click on view policy")
     public void clickOnViewPolicy() {
         try {
-            DriverAction.click(PolicyLocator.viewPolicy);
+            DriverAction.click(PolicyLocator.viewPolicy,"View Policy");
             GemTestReporter.addTestStep("Policy", "Verify user clicks on view policy", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Policy", "User not able to click on view policy", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -133,7 +133,7 @@ public class PolicySteps {
     public void clickOnButton(String btn) {
         try {
             if (btn.contains("Next")) {
-                DriverAction.click(PolicyLocator.navigateButton(btn));
+                DriverAction.click(PolicyLocator.navigateButton(btn),btn +" button");
                 GemTestReporter.addTestStep("Next", "Verify user clicks on Next button", STATUS.PASS, DriverAction.takeSnapShot());
             }
         } catch (Exception exception) {
@@ -141,7 +141,7 @@ public class PolicySteps {
         }
         try {
             if (btn.contains("Previous")) {
-                DriverAction.click(PolicyLocator.navigateButton(btn));
+                DriverAction.click(PolicyLocator.navigateButton(btn),btn +" button");
                 GemTestReporter.addTestStep("Previous", "Verify user clicks on Previous button", STATUS.PASS, DriverAction.takeSnapShot());
             }
         }

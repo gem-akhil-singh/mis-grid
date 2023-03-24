@@ -40,7 +40,7 @@ public class LoginSteps {
     @And("Click on Sign In Button")
     public void clickOnSignInButton() {
         try {
-            DriverAction.click(LoginLocator.signInButton);
+            DriverAction.click(LoginLocator.signInButton,"SignIn Button");
             //DriverAction.waitUntilElementAppear(LoginLocator.closeButton,5);
             GemTestReporter.addTestStep("Sign In", "User click on Sign In button", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
@@ -106,7 +106,7 @@ public class LoginSteps {
     @Then("Click on Login with SSO button")
     public void clickOnLoginWithSSOButton() {
         try {
-            DriverAction.click(LoginLocator.loginWithSSOButton);
+            DriverAction.click(LoginLocator.loginWithSSOButton, "Login With SSo Button");
             GemTestReporter.addTestStep("Login with SSO", "User clicks on Login with SSO Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Login with SSO", "User not able to click on Login with SSO", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -121,7 +121,7 @@ public class LoginSteps {
                 expectedURL = "https://mymis.geminisolutions.com/Dashboard/Index";
                 WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
                 wait.until(ExpectedConditions.elementToBeClickable(LoginLocator.closeButton));
-                DriverAction.click(LoginLocator.closeButton);
+                DriverAction.click(LoginLocator.closeButton, "Close Button");
                 break;
             case "Sign IN":
                 expectedURL = "https://mymis.geminisolutions.com/";
@@ -150,7 +150,7 @@ public class LoginSteps {
     public void userClickOnForgetPasswordLink() {
         try {
             DriverAction.waitSec(5);
-            DriverAction.click(LoginLocator.forgotPasswordButton);
+            DriverAction.click(LoginLocator.forgotPasswordButton,"Forgot Password Button ");
             GemTestReporter.addTestStep("Forgot Password", "User clicks on Forgot Password Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Forgot Password", "User not able to click on ForgotPassword Password", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -160,7 +160,7 @@ public class LoginSteps {
     @Then("Click on Reset Password button")
     public void clickOnResetPasswordButton() {
         try {
-            DriverAction.click(LoginLocator.signInButton);
+            DriverAction.click(LoginLocator.signInButton,"SignIn Button");
             GemTestReporter.addTestStep("Reset Password", "User clicks on Reset Password Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Reset Password", "User not able to click on Reset Password", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -196,8 +196,8 @@ public class LoginSteps {
     @Then("Click on Logout button")
     public void clickOnLogoutButton() {
         try {
-            DriverAction.click(LoginLocator.profileOption);
-            DriverAction.click(LoginLocator.logOutButton);
+            DriverAction.click(LoginLocator.profileOption,"Profile Option");
+            DriverAction.click(LoginLocator.logOutButton,"Logout Button");
             GemTestReporter.addTestStep("Logout", "User Logout Successfully", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Logout", "User not able to Logout", STATUS.FAIL, DriverAction.takeSnapShot());

@@ -27,7 +27,7 @@ public class ApplyToAnyCardSteps {
     @Then("User clicks on {string} button on {string} card on dashboard")
     public void userClicksOnButtonOnCardOnDashboard(String btn, String cardName) {
         try {
-            DriverAction.click(ApplyToAnyCardLocator.minimiseMaximizeButton(btn, cardName));
+            DriverAction.click(ApplyToAnyCardLocator.minimiseMaximizeButton(btn, cardName),btn + "button");
             //DriverAction.waitUntilElementAppear(ApplyToAnyCardLocator.closeButton,5);
             GemTestReporter.addTestStep("Sign In", "User click on Sign In button", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception exception) {

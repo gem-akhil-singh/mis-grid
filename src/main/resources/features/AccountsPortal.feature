@@ -9,7 +9,7 @@ Feature: AccountsPortal
     Then User should be navigated to MIS homepage
 
 
-  Scenario Outline: Verify elements loaded on My Account page
+  Scenario Outline: Accounts Portal: Verify elements loaded on My Account page
     Then Click "My Account" sub-tab inside "Accounts Portal" tab
     And Verify new tab is open "greytHR IDP"
     Then Verify greytHR logo is present on the current page
@@ -23,7 +23,7 @@ Feature: AccountsPortal
       | greytHR username text | gerytHR password text |
       | Login ID              | Password              |
 
-  Scenario Outline: Verify log in failed when no credentials are enter
+  Scenario Outline: Accounts Portal: Verify log in failed when no credentials are enter
     Then Click "My Account" sub-tab inside "Accounts Portal" tab
     And Verify new tab is open "greytHR IDP"
     Then Click on login button without entering username and password

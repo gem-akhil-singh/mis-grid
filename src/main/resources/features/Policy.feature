@@ -8,11 +8,11 @@ Feature: Policy
     When Click on Signin button
     Then User should be navigated to MIS homepage
 
-  Scenario: Navigate to Policy > View Policies
+  Scenario: Policy: Navigate to Policy > View Policies
     When User clicks on Policy
     And Click on View Policies
 
-  Scenario Outline:Verify Title of Policy Tab
+  Scenario Outline: Policy: Verify Title of Policy Tab
     When User clicks on Policy
     And Click on View Policies
     Then Check the "<title>" of policy tab
@@ -20,12 +20,12 @@ Feature: Policy
       | title         |
       | View Policies |
 
-  Scenario: Verify Data is present in Policies tab
+  Scenario: Policy:  Verify Data is present in Policies tab
     When User clicks on Policy
     And Click on View Policies
     Then Verify Data is present in Policies tab
 
-  Scenario Outline: Verify Number of Entries displayed in Policy
+  Scenario Outline: Policy: Verify Number of Entries displayed in Policy
     When User clicks on Policy
     And Click on View Policies
     Then Verify number of records displayed by default
@@ -35,7 +35,7 @@ Feature: Policy
       | noOfRecords |
       | 25          |
 
-  Scenario Outline: Enter Policy Name in Search Box
+  Scenario Outline: Policy: Enter Policy Name in Search Box
     When User clicks on Policy
     And Click on View Policies
     Then Enter "<policyName>" in Search Box
@@ -43,7 +43,7 @@ Feature: Policy
       | policyName |
       | E-Policy   |
 
-  Scenario Outline: Enter Invalid Policy Name in Search Box
+  Scenario Outline: Policy: Enter Invalid Policy Name in Search Box
     When User clicks on Policy
     And Click on View Policies
     And Enter "<policyName>" in Search Box
@@ -52,7 +52,7 @@ Feature: Policy
       | policyName | message                   |
       | ABC Policy | No matching records found |
 
-  Scenario Outline: View Policy
+  Scenario Outline: Policy: View Policy
     When User clicks on Policy
     And Click on View Policies
     And Enter "<policyName>" in Search Box
@@ -62,12 +62,12 @@ Feature: Policy
       | policyName |
       | E-Policy   |
 
-  Scenario: Verify Next button is clickable in Policy Tab
+  Scenario: Policy: Verify Next button is clickable in Policy Tab
     When User clicks on Policy
     And Click on View Policies
     Then Click on "Next" Button
 
-  Scenario: Verify Previous button is clickable in Policy Tab
+  Scenario: Policy: Verify Previous button is clickable in Policy Tab
     When User clicks on Policy
     And Click on View Policies
     Then Click on "Previous" Button
