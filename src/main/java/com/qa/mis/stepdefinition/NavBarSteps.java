@@ -259,7 +259,7 @@ public class NavBarSteps {
 
     }
 
-    @And("Click on close button")
+    @And("Click on the close button")
     public void clickClose() {
         try {
             if (DriverAction.isExist(NavBarLocator.skillClosebtn)) {

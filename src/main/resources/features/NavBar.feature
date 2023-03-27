@@ -25,7 +25,7 @@ Feature: NavBar
   Scenario Outline: NavBar: Verify Add skill close button after entering all values
     Then Click on Skills menu
     And Enter all the details "<Technology>","<Proficiency Level>","<Skill Type>","<Tech Experience>","<Total Work Exp>"
-    And Click on close button
+    And Click on the close button
 
     Examples:
       | Technology | Proficiency Level | Skill Type | Tech Experience | Total Work Exp |
