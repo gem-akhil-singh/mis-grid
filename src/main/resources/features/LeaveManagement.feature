@@ -776,7 +776,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab   | leavePeriod                |
-      | Leave Management | View Request Status | Leave | 14-Apr-2023 to 14-Apr-2023 |
+      | Leave Management | View Request Status | Leave | 1-Apr-2023 to 14-Apr-2023 |
 
   Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS

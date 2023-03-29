@@ -40,9 +40,9 @@ public class LoginSteps {
     @And("Click on Sign In Button")
     public void clickOnSignInButton() {
         try {
-            DriverAction.click(LoginLocator.signInButton,"SignIn Button");
             DriverAction.waitSec(5);
-            GemTestReporter.addTestStep("Sign In", "User click on Sign In button", STATUS.PASS, DriverAction.takeSnapShot());
+            DriverAction.click(LoginLocator.signInButton,"SignIn Button");
+
         } catch (Exception exception) {
             GemTestReporter.addTestStep("Sign In", "User not able to click on Sign In button", STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -127,7 +127,7 @@ public class LoginSteps {
                 expectedURL = "https://mymis.geminisolutions.com/";
                 break;
             case "Login":
-                expectedURL = "https://mymis.geminisolutions.com/Account/Logi";
+                expectedURL = "https://mymis.geminisolutions.com/Account/Login";
         }
 
         try {

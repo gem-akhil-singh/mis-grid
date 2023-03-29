@@ -3,18 +3,36 @@ package com.qa.mis.stepdefinition;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
+import com.gemini.generic.ui.utils.DriverManager;
 import com.qa.mis.locators.KnowledgeBaseLocator;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import java.util.Random;
 
 
 public class KnowledgeBaseSteps {
 
+    public void presenceOfElement(By elementXpath, int time) {
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), time);
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(elementXpath));
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("Presence of Element ", "Element is not present", STATUS.FAIL);
+        }
+    }
+    public int randomNumber(){
+        Random random = new Random();
+        int num = random.nextInt();
+        return num;
+    }
 
     @When("Navigating to view documents page")
     public void navigatingToViewDocumentsPage() throws InterruptedException {
@@ -32,8 +50,9 @@ public class KnowledgeBaseSteps {
         try {
             DriverAction.click(KnowledgeBaseLocator.addDocumentTag, "Add document Tag");
             DriverAction.waitSec(3);
-            DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag, "Test120");
+            DriverAction.typeText(KnowledgeBaseLocator.inputDocumentTag, "Test"+ randomNumber());
             DriverAction.click(KnowledgeBaseLocator.saveDocumentTag, "Document Tag saved");
+            presenceOfElement(KnowledgeBaseLocator.documentTagSuccessfullyAdded,20);
             String successMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagSuccessfullyAdded);
 
             if (!successMessage.equalsIgnoreCase("Document tag Added Sucessfully")) {
@@ -56,7 +75,7 @@ public class KnowledgeBaseSteps {
     @When("Navigating to view documents page adding empty document tag")
     public void navigatingToViewDocumentsPageAddingEmptyDocumentTag() throws InterruptedException {
         try {
-            DriverAction.click(KnowledgeBaseLocator.closeSkills, "Close skill");
+
             DriverAction.click(KnowledgeBaseLocator.knowledgeBase, "Knowledge Base");
             DriverAction.click(KnowledgeBaseLocator.viewDocuments, "View Documents");
             DriverAction.waitSec(5);
@@ -74,6 +93,7 @@ public class KnowledgeBaseSteps {
     @Then("Verifying it throws warning message")
     public void throwsWarningMessage() {
         try {
+            presenceOfElement(KnowledgeBaseLocator.documentTagWarningMessage,20);
             String warningMessage = DriverAction.getElementText(KnowledgeBaseLocator.documentTagWarningMessage);
             System.out.println(warningMessage);
             if (!warningMessage.equalsIgnoreCase("Please fill required field")) {
@@ -309,8 +329,7 @@ public class KnowledgeBaseSteps {
         try{
             DriverAction.click(KnowledgeBaseLocator.knowledgeBase,"Knowledge Base");
             DriverAction.click(KnowledgeBaseLocator.viewDocuments,"View Documents");
-            DriverAction.waitSec(5);
-            DriverAction.waitUntilElementAppear(KnowledgeBaseLocator.folder,5);
+            presenceOfElement(KnowledgeBaseLocator.folder,20);
             DriverAction.waitSec(5);
             DriverAction.rightClick(By.xpath("//a[text()='"+string+"']"));
             DriverAction.waitSec(5);
@@ -323,6 +342,7 @@ public class KnowledgeBaseSteps {
     @Then("Verify folder is deleted")
     public void folderIsDeleted() {
         try{
+            presenceOfElement(KnowledgeBaseLocator.delete,10);
             DriverAction.click(KnowledgeBaseLocator.delete,"Clicked on delete folder");
 
         }catch(Exception e){
@@ -350,6 +370,7 @@ public class KnowledgeBaseSteps {
     @Then("Verify sub folder is deleted")
     public void subFolderIsDeleted() {
         try{
+            DriverAction.waitSec(5);
             DriverAction.click(KnowledgeBaseLocator.delete,"Successfully clicked on delete");
 
         }catch(Exception e){
@@ -367,10 +388,9 @@ public class KnowledgeBaseSteps {
             DriverAction.waitSec(5);
             DriverAction.waitUntilElementAppear(KnowledgeBaseLocator.folder,5);
             DriverAction.waitSec(5);
-            DriverAction.click(KnowledgeBaseLocator.titleSort,"Clicked on title sort");
+            DriverAction.click(KnowledgeBaseLocator.titleSort,"title sort");
             DriverAction.waitSec(2);
-            DriverAction.click(KnowledgeBaseLocator.titleSort,"Clicked on title sort");
-            DriverAction.waitSec(5);
+
 
 
         }catch(Exception e){
@@ -379,8 +399,8 @@ public class KnowledgeBaseSteps {
     @Then("Verify list is sorted according to title")
     public void listIsSortedAccordingToTitle() {
         try{
-            if(!DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("zyx")){
-                GemTestReporter.addTestStep("User clicks on title sort", "Title sort notclicked successfully", STATUS.FAIL);
+            if(!DriverAction.getElementText(KnowledgeBaseLocator.sortValue).equalsIgnoreCase("abxy")){
+                GemTestReporter.addTestStep("User clicks on title sort", "Title sort not clicked successfully", STATUS.FAIL);
 
                 Assert.fail();
             }

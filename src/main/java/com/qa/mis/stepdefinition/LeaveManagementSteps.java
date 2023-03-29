@@ -223,8 +223,9 @@ public class LeaveManagementSteps {
 
     @Then("Select compOff date {int} for {string} field")
     public void selectCompOffDateDateIndexFromDateField(Integer index, String field) {
-        try {
+        try {DriverAction.waitSec(5);
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveDropDown(field))) {
+
                 DriverAction.dropDown(LeaveManagementLocator.field_leaveDropDown(field), index);
             } else {
                 GemTestReporter.addTestStep("Error Occur", "Fail to click on dropdown", STATUS.FAIL,
@@ -475,18 +476,19 @@ public class LeaveManagementSteps {
             // date format == mm/dd/yyyy
             String[] dateArray = date.split("/");
             DriverAction.click(LeaveManagementLocator.field_outingCalendar(field), elementLabel);
-
+            DriverAction.waitSec(2);
             DriverAction.click(LeaveManagementLocator.datePicker_switchMonth);
-
+            DriverAction.waitSec(2);
             List<WebElement> monthElements = DriverAction.getElements(LeaveManagementLocator.datePicker_month);
             int monthNumber = Integer.parseInt(dateArray[0]);
 
-            DriverAction.click(monthElements.get(monthNumber - 1), "month");
+            DriverAction.click(monthElements.get(monthNumber + 1), "month");
             List<WebElement> dayElements = DriverAction.getElements(LeaveManagementLocator.datePicker_day);
 
             for (WebElement day : dayElements) {
                 if (DriverAction.getElementText(day).equals(dateArray[1])) {
                     DriverAction.click(day, "day");
+                    DriverAction.waitSec(5);
                     break;
                 }
             }
@@ -1035,7 +1037,7 @@ public class LeaveManagementSteps {
     public void cancelTheLeaveForGivenPeriod() {
         try {
             String id = "tabApplyLeave";
-
+                DriverAction.waitSec(5);
             if (DriverAction.isExist(LeaveManagementLocator.button_leaveCancel(id))) {
                 DriverAction.click(LeaveManagementLocator.button_leaveCancel(id), "cancel");
             } else {

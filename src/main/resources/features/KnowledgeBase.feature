@@ -65,14 +65,14 @@ Feature:   Knowledge Base Functionality Automation
     Then Verify folder is deleted
     Examples:
       | folderToBeDeleted |
-      | New folder 1      |
+      | New Folder 1      |
 
   Scenario Outline: Knowledge Base: Delete subfolder within a folder in view document
     When Navigating to view document and "<folderToClick>" is selected and "<subFolderToBeDeleted>" is selected
     Then Verify sub folder is deleted
     Examples:
       | folderToClick | subFolderToBeDeleted |
-      | abcd          | abcd1                |
+      | abcd          | New Folder               |
 
   Scenario: Knowledge Base: Sorting title functionality within folder in view document
     When Navigating to view document and title sort applied

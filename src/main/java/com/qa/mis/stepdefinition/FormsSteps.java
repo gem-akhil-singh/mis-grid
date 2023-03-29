@@ -339,6 +339,7 @@ public class FormsSteps {
         try {
             DriverAction.waitUntilElementAppear(FormsLocator.saveBtn, 6);
             DriverAction.click(FormsLocator.saveBtn);
+            DriverAction.waitSec(5);
             GemTestReporter.addTestStep("User clicks on save button", "Click is successful on save button", STATUS.PASS, DriverAction.takeSnapShot());
 
         } catch (Exception e) {
