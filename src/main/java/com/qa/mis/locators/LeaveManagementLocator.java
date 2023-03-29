@@ -136,7 +136,5 @@ public class LeaveManagementLocator {
     public static By table_rowOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr/td");
     public static By table_allRowsOutDutyDeatils = By.xpath("//table[@id='tblOutingData']/tbody/tr");
     public static By input_rowOutDutyFilter = By.xpath("//div[@id='tblOutingData_filter']//input");
-
-
-
+    public static By button_alertOK = By.xpath("//button[contains(@class,'confirm')]");
 }

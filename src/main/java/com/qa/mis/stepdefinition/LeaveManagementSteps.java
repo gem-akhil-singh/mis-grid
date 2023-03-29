@@ -223,7 +223,8 @@ public class LeaveManagementSteps {
 
     @Then("Select compOff date {int} for {string} field")
     public void selectCompOffDateDateIndexFromDateField(Integer index, String field) {
-        try {DriverAction.waitSec(5);
+        try {
+            DriverAction.waitSec(5);
             if (DriverAction.isExist(LeaveManagementLocator.field_leaveDropDown(field))) {
 
                 DriverAction.dropDown(LeaveManagementLocator.field_leaveDropDown(field), index);
@@ -1037,7 +1038,7 @@ public class LeaveManagementSteps {
     public void cancelTheLeaveForGivenPeriod() {
         try {
             String id = "tabApplyLeave";
-                DriverAction.waitSec(5);
+            DriverAction.waitSec(5);
             if (DriverAction.isExist(LeaveManagementLocator.button_leaveCancel(id))) {
                 DriverAction.click(LeaveManagementLocator.button_leaveCancel(id), "cancel");
             } else {
@@ -1231,6 +1232,36 @@ public class LeaveManagementSteps {
                             STATUS.FAIL, DriverAction.takeSnapShot());
                 }
             }
+        }
+    }
+
+    @And("Click on alert OK button")
+    public void clickOnAlertOKButton() {
+        try {
+            if (DriverAction.isExist(LeaveManagementLocator.button_alertOK)) {
+                DriverAction.click(LeaveManagementLocator.button_alertOK, "OK");
+            } else {
+                GemTestReporter.addTestStep("Error Occur", "Fail to click OK button",
+                        STATUS.FAIL, DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "Fail to click on alert OK button", STATUS.FAIL);
+        }
+    }
+
+    @And("User clicks on {string} sub tab of Leave tab in MIS")
+    public void userClicksOnSubTabOfLeaveTabInMIS(String childTab) {
+        try {
+            DriverAction.waitSec(3);
+            if (DriverAction.isExist(LeaveManagementLocator.menu_childTabs(childTab))) {
+                DriverAction.click(LeaveManagementLocator.menu_childTabs(childTab), childTab);
+            } else {
+                GemTestReporter.addTestStep("Error Occur", "Fail to click on " + childTab, STATUS.FAIL,
+                        DriverAction.takeSnapShot());
+            }
+        } catch (Exception e) {
+            GemTestReporter.addTestStep("ERROR", "Fail to click on child Tab " + childTab,
+                    STATUS.FAIL);
         }
     }
 }

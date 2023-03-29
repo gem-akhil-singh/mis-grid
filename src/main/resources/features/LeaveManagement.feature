@@ -185,7 +185,7 @@ Feature: MIS - Leave Management
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail                   |
       | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | avilableOnEmail, avilableOnMobile |
 
-  Scenario Outline: Leave Management : Enter required data and apply for the leave
+  Scenario Outline: Leave Management : Enter required data and apply for the leave and cancel the same leave
     When User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
     And Verify "<heading>" of "<childTab>" tab
     And User clicks on "<tab>" Tab
@@ -196,10 +196,22 @@ Feature: MIS - Leave Management
     And Enter leave reason "<reasonMessage>" for "<reason>" field
     And Verify auto populated "textField" field for "<primaryContact>"
     And User clicks on submit button for "<tab>"
+    And Verify popup alert with message "<alertType>" and "<successMessage>"
+    And Click on alert OK button
+    And User clicks on "<secondChildTab>" sub tab of Leave tab in MIS
+    And User clicks on "<tab>" Tab
+    And Verify "<tab>" headers are displayed
+    And Verify Date Range field is present
+    And User enters "<leavePeriod>" period in search box for "<tab>"
+    And Verify "<leavePeriod>" period as search result for "<tab>"
+    And Cancel the leave for given period
+    And User clicks on yes button to cancel the leave
+    And Verify popup alert with message "Success" and "Request processed successfully"
+
 
     Examples:
-      | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | leaveOption | leaveType | reasonMessage         | reason      | primaryContact     |
-      | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/14/2023 | leaveFromDate | 04/14/2023 | leaveTillDate | 1           | leaveType | Sample Reason Message | leaveReason | leaveContactNumber |
+      | parentTab        | childTab | tab   | heading                                                  | fromDate   | fromDateField | toDate     | toDateField   | leaveOption | leaveType | reasonMessage         | reason      | primaryContact     | secondChildTab      | leavePeriod                | alertType | successMessage             |
+      | Leave Management | Apply    | Leave | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 05/18/2023 | leaveFromDate | 05/18/2023 | leaveTillDate | 1           | leaveType | Sample Reason Message | leaveReason | leaveContactNumber | View Request Status | 18-May-2023 to 18-May-2023 | Success   | Leave applied successfully |
 
     # LWP Change Request
   Scenario Outline: Leave Management : Navigate to Leave Management > LWP Change Request tab
@@ -762,21 +774,6 @@ Feature: MIS - Leave Management
     Examples:
       | parentTab        | childTab            | tab   |
       | Leave Management | View Request Status | Leave |
-
-  Scenario Outline: Leave Management : Cancel Leave for Leave Tab
-    Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
-    And User clicks on "<tab>" Tab
-    And Verify "<tab>" headers are displayed
-    And Verify Date Range field is present
-    And User enters "<leavePeriod>" period in search box for "<tab>"
-    And Verify "<leavePeriod>" period as search result for "<tab>"
-    And Cancel the leave for given period
-    And User clicks on yes button to cancel the leave
-    And Verify popup alert with message "Success" and "Request processed successfully"
-
-    Examples:
-      | parentTab        | childTab            | tab   | leavePeriod                |
-      | Leave Management | View Request Status | Leave | 1-Apr-2023 to 14-Apr-2023 |
 
   Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
