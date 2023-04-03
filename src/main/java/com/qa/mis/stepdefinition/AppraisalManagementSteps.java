@@ -1,4 +1,5 @@
 package com.qa.mis.stepdefinition;
+
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
@@ -41,7 +42,7 @@ public class AppraisalManagementSteps {
             if (currenturl.equals(url))
                 GemTestReporter.addTestStep("Url Validation", "Successful<br>Expected URL: " + url + "<br>Actual URL: " + currenturl, STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -53,7 +54,7 @@ public class AppraisalManagementSteps {
             String passwordDecoded = new String(decodingString);
             status = DriverAction.typeText(AppraisalManagementLocator.txtPassword, "Enter Password", "Password", passwordDecoded);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -63,7 +64,7 @@ public class AppraisalManagementSteps {
             status = DriverAction.click(AppraisalManagementLocator.btnSignIn, "Sign In");
             mainWindowHandle = DriverAction.getWindowHandle();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -78,7 +79,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -88,7 +89,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnSignIn, 3);
             DriverAction.click(AppraisalManagementLocator.btnSignIn, "Sign in button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -102,7 +103,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -141,7 +142,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -171,7 +172,7 @@ public class AppraisalManagementSteps {
                     break;
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -181,7 +182,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitSec(1);
             status = DriverAction.click(AppraisalManagementLocator.lnkKRA_KPI, "KRA_KPI link");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -194,7 +195,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -209,7 +210,7 @@ public class AppraisalManagementSteps {
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -219,7 +220,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.btnAddNewKRAKPIMapping, 2);
             DriverAction.click(AppraisalManagementLocator.btnAddNewKRAKPIMapping, "Add New KRA KPI Mapping button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -227,7 +228,7 @@ public class AppraisalManagementSteps {
     public void verify_Add_Goal_Window_Is_Open() {
         try {
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
 
     }
@@ -243,7 +244,7 @@ public class AppraisalManagementSteps {
                 status = STATUS.PASS;
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -256,7 +257,7 @@ public class AppraisalManagementSteps {
             DriverAction.click(AppraisalManagementLocator.btnClose, "Close button");
             DriverAction.waitSec(1);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -266,7 +267,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKRA, 2);
             DriverAction.getElement(AppraisalManagementLocator.txtKRA).isEnabled();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -282,7 +283,7 @@ public class AppraisalManagementSteps {
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -292,7 +293,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKPIDescription, 2);
             DriverAction.getElement(AppraisalManagementLocator.txtKPIDescription).isEnabled();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -302,7 +303,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKRA, 2);
             DriverAction.typeText(AppraisalManagementLocator.txtKRA, "Enter Text in KRA ", "KRA Description", "TestKRA");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -312,7 +313,7 @@ public class AppraisalManagementSteps {
             DriverAction.waitUntilElementAppear(AppraisalManagementLocator.txtKPIDescription, 2);
             DriverAction.typeText(AppraisalManagementLocator.txtKPIDescription, "Enter KPIDescription in text box ", "KPI Description", "TestKPIDescription");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -321,9 +322,9 @@ public class AppraisalManagementSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.KPISuccessOK));
-            DriverAction.click(AppraisalManagementLocator.KPISuccessOK,"Ok button");
+            DriverAction.click(AppraisalManagementLocator.KPISuccessOK, "Ok button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -339,7 +340,7 @@ public class AppraisalManagementSteps {
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -350,7 +351,7 @@ public class AppraisalManagementSteps {
             List<WebElement> lstKRA = DriverAction.getElements(AppraisalManagementLocator.kRAList);
             lstKRA.get(0).click();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -361,7 +362,7 @@ public class AppraisalManagementSteps {
             List<WebElement> btnClose = DriverAction.getElements(AppraisalManagementLocator.btnCloseKPI);
             btnClose.get(btnClose.size() - 1).click();
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -373,7 +374,7 @@ public class AppraisalManagementSteps {
             status = STATUS.PASS;
             GemTestReporter.addTestStep("Verify search entries count at bottom", "Search entries count at bottom: ", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -391,7 +392,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -409,7 +410,7 @@ public class AppraisalManagementSteps {
             else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -424,7 +425,7 @@ public class AppraisalManagementSteps {
             } else
                 status = STATUS.FAIL;
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -448,7 +449,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -458,14 +459,14 @@ public class AppraisalManagementSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnExport));
 
-            DriverAction.click(AppraisalManagementLocator.btnExport,"Export button");
+            DriverAction.click(AppraisalManagementLocator.btnExport, "Export button");
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.lstExport));
 
             Boolean a = DriverAction.getElement(AppraisalManagementLocator.lstExport).isDisplayed();
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("Excel")) {
-                    DriverAction.click(lstExport.get(i), lstExport.get(i).getText()+" option");
+                    DriverAction.click(lstExport.get(i), lstExport.get(i).getText() + " option");
                     Thread.sleep(2000);
                     Boolean result = FileDownloaded.isFileDownloaded("All Self Goals", "xlsx", 5000);
                     if (result = true)
@@ -476,7 +477,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -489,7 +490,7 @@ public class AppraisalManagementSteps {
             List<WebElement> lstExport = DriverAction.getElements(AppraisalManagementLocator.lstExport);
             for (int i = 0; i < lstExport.size(); i++) {
                 if (lstExport.get(i).getText().equalsIgnoreCase("PDF")) {
-                    DriverAction.click(lstExport.get(i), lstExport.get(i).getText()+" option");
+                    DriverAction.click(lstExport.get(i), lstExport.get(i).getText() + " option");
                     Boolean result = FileDownloaded.isFileDownloaded("All Self Goals", "pdf", 5000);
                     if (result = true)
                         status = STATUS.PASS;
@@ -499,7 +500,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -527,7 +528,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -545,7 +546,7 @@ public class AppraisalManagementSteps {
             System.out.println(lst);
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -560,7 +561,7 @@ public class AppraisalManagementSteps {
                 GemTestReporter.addTestStep("Verify the Pagination list", "Verify the Pagination list is displayed", status, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -591,7 +592,7 @@ public class AppraisalManagementSteps {
                 GemTestReporter.addTestStep("click on each page and check navigation", "Verify the Pagination list is displayed", status, DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -600,16 +601,15 @@ public class AppraisalManagementSteps {
         try {
             status = STATUS.FAIL;
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDelete));
-            if (DriverAction.getElement(AppraisalManagementLocator.btnDelete).isDisplayed()) {
+            if (DriverAction.isExist(AppraisalManagementLocator.btnDelete)) {
                 status = STATUS.PASS;
-                DriverAction.click(AppraisalManagementLocator.btnDelete,"Delete button");
+                wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDelete));
+                DriverAction.click(AppraisalManagementLocator.btnDelete, "Delete button");
                 flagDelete = true;
             } else
                 status = STATUS.FAIL;
-
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -618,35 +618,32 @@ public class AppraisalManagementSteps {
     public void check_Remarks_PopUp_Is_Displayed() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSubmitRemark));
-
             if (flagDelete) {
-                if (DriverAction.getElement(AppraisalManagementLocator.windowRemarks).isDisplayed())
-                    DriverAction.click(AppraisalManagementLocator.btnSubmitRemark,"Submit Remark button");
+                if (DriverAction.getElement(AppraisalManagementLocator.windowRemarks).isDisplayed()) {
+                    wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnSubmitRemark));
+                    DriverAction.click(AppraisalManagementLocator.btnSubmitRemark, "Submit Remark button");
+                }
             } else {
                 GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
-
     }
 
     @Then("verify the validation")
     public void verify_The_Validation() {
         try {
             if (flagDelete) {
-
                 String remarks = DriverAction.getElement(AppraisalManagementLocator.txtEnterRemarks).getText();
                 if (remarks.equals(""))
                     GemTestReporter.addTestStep("Check remarks is written", "Please enter remark, it is empty", STATUS.PASS);
                 DriverAction.click(AppraisalManagementLocator.btnCloseRemark, "Close Remark button");
-
             } else {
                 GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -661,7 +658,7 @@ public class AppraisalManagementSteps {
                 GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -675,13 +672,13 @@ public class AppraisalManagementSteps {
                 if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
                     DriverAction.click(AppraisalManagementLocator.btnYesConfirm, "Confirm button");
                     if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
-                        DriverAction.click(AppraisalManagementLocator.btnOkaySuccess,"Ok button");
+                        DriverAction.click(AppraisalManagementLocator.btnOkaySuccess, "Ok button");
                 }
             } else {
                 GemTestReporter.addTestStep("Check remarks pop up is displayed", "No delete action found in Action column", STATUS.PASS);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -691,7 +688,7 @@ public class AppraisalManagementSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnAddUpdateGoal));
-            status = DriverAction.click(AppraisalManagementLocator.btnAddUpdateGoal,"Add Update Goal button");
+            status = DriverAction.click(AppraisalManagementLocator.btnAddUpdateGoal, "Add Update Goal button");
             DriverAction.waitSec(2);
             String tabTitle = DriverAction.getElementText(AppraisalManagementLocator.titleAddGoal);
             if (tabTitle.equalsIgnoreCase("Add goal"))
@@ -700,7 +697,7 @@ public class AppraisalManagementSteps {
                 status = STATUS.FAIL;
 
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -708,9 +705,9 @@ public class AppraisalManagementSteps {
     public void click_On_Plus_Sign_In_Actions_Column() {
         try {
             if (DriverAction.getElement(AppraisalManagementLocator.btnPlus).isDisplayed())
-                DriverAction.click(AppraisalManagementLocator.btnPlus," Plus button");
+                DriverAction.click(AppraisalManagementLocator.btnPlus, " Plus button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -720,14 +717,14 @@ public class AppraisalManagementSteps {
             if (DriverAction.getElement(AppraisalManagementLocator.drpdownKPI).isDisplayed()) {
                 WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
                 wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownKPI));
-                DriverAction.click(AppraisalManagementLocator.drpdownKPI,"KPI dropdown");
+                DriverAction.click(AppraisalManagementLocator.drpdownKPI, "KPI dropdown");
 
                 wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.drpdownKPIValue));
                 DriverAction.click(AppraisalManagementLocator.drpdownKPIValue, "KPI Value dropdown");
-                DriverAction.click(AppraisalManagementLocator.bodyPath,"panel");
+                DriverAction.click(AppraisalManagementLocator.bodyPath, "panel");
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
 
     }
@@ -743,7 +740,7 @@ public class AppraisalManagementSteps {
                 GemTestReporter.addTestStep("Check text box", "Please enter project name, it is empty", STATUS.PASS);
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -752,7 +749,7 @@ public class AppraisalManagementSteps {
         try {
             DriverAction.getElement(AppraisalManagementLocator.txtboxProject).sendKeys(projectName);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -761,7 +758,7 @@ public class AppraisalManagementSteps {
         try {
             DriverAction.getElement(AppraisalManagementLocator.txtGoalDescription).sendKeys(goalDescription);
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -771,9 +768,9 @@ public class AppraisalManagementSteps {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.elementToBeClickable(AppraisalManagementLocator.btnDraft));
 
-            DriverAction.click(AppraisalManagementLocator.btnDraft,"Draft button");
+            DriverAction.click(AppraisalManagementLocator.btnDraft, "Draft button");
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -785,11 +782,11 @@ public class AppraisalManagementSteps {
 
             if (DriverAction.getElement(AppraisalManagementLocator.windowConfirm).isDisplayed()) {
                 if (DriverAction.getElement(AppraisalManagementLocator.statusSuccess).isDisplayed())
-                    DriverAction.click(AppraisalManagementLocator.btnOkaySuccess,"Ok button");
+                    DriverAction.click(AppraisalManagementLocator.btnOkaySuccess, "Ok button");
                 DriverAction.click(AppraisalManagementLocator.btnDraftClose, "Close button");
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -804,7 +801,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
@@ -827,7 +824,7 @@ public class AppraisalManagementSteps {
                         status = STATUS.PASS;
                 }
                 if (lstRowNames.get(i).getText().equalsIgnoreCase("KPI")) {
-                    DriverAction.click(lstRowNames.get(i),lstRowNames.get(i).getText());
+                    DriverAction.click(lstRowNames.get(i), lstRowNames.get(i).getText());
                     String ascProp = lstRowNames.get(i).getAttribute("class");
                     if (ascProp.equalsIgnoreCase("sorting_asc"))
                         status = STATUS.PASS;
@@ -845,7 +842,7 @@ public class AppraisalManagementSteps {
                         status = STATUS.PASS;
                 }
                 if (lstRowNames.get(i).getText().equalsIgnoreCase("Status")) {
-                    DriverAction.click(lstRowNames.get(i),lstRowNames.get(i).getText());
+                    DriverAction.click(lstRowNames.get(i), lstRowNames.get(i).getText());
                     String ascProp = lstRowNames.get(i).getAttribute("class");
                     if (ascProp.equalsIgnoreCase("sorting_asc"))
                         status = STATUS.PASS;
@@ -864,7 +861,7 @@ public class AppraisalManagementSteps {
                 }
             }
         } catch (Exception e) {
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED" , STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 }
