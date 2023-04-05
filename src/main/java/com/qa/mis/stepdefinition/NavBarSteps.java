@@ -592,6 +592,7 @@ public class NavBarSteps {
 
     @And("^Verify tab (.+) with columns (.+)")
     public void verifyECDCColumns(String tab, String columns) {
+        try{
         int Flag = 0;
         String Column = "";
         By locator = null;
@@ -619,6 +620,9 @@ public class NavBarSteps {
             GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", "All columns are present", STATUS.PASS, DriverAction.takeSnapShot());
         } else {
             GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", Column + " Column " + "is not present", STATUS.FAIL, DriverAction.takeSnapShot());
+        }}catch (Exception e){
+            GemTestReporter.addTestStep("verify all the columns of EC CD Hierarchy table", " Columns are not present", STATUS.FAIL, DriverAction.takeSnapShot());
+
         }
     }
 }
