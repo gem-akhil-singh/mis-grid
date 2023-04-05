@@ -325,7 +325,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab | tab           | heading                                                  | fromDate   | fromDateField  | toDate     | toDateField    | outingOption          | outingType | reasonMessage | reason       | primaryContactNo | primaryContact      | otherContactNo | otherContact           | alertType | successMessage                                       |
-      | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 04/26/2023 | outingFromDate | 04/26/2023 | outingTillDate | Tour (Overseas Visit) | outingType | Outing Reason | outingReason | 9878787678       | outingContactNumber | 9878787678     | outingAltContactNumber | Success   | Out Duty/Tour request has been applied successfully. |
+      | Leave Management | Apply    | Out Duty/Tour | Apply Leave / WFH / Comp Off / Out Duty / Change Request | 06/26/2023 | outingFromDate | 06/26/2023 | outingTillDate | Tour (Overseas Visit) | outingType | Outing Reason | outingReason | 9878787678       | outingContactNumber | 9878787678     | outingAltContactNumber | Success   | Out Duty/Tour request has been applied successfully. |
 
   Scenario Outline: Leave Management : Navigate to Leave Management > WFH tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -734,7 +734,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab   | leavePeriod                |
-      | Leave Management | View Request Status | Leave | 28-Dec-2022 to 02-Jan-2023 |
+      | Leave Management | View Request Status | Leave | 18-May-2023 to 18-May-2023 |
 
   Scenario Outline: Leave Management : Sort columns for Leave Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -903,7 +903,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                |
-      | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 |
 
   Scenario Outline: Leave Management : Verify Data is present for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -915,7 +915,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                |
-      | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 |
 
   Scenario Outline: Leave Management : Click on View button for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -929,7 +929,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                | header                       |
-      | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 | Out Duty/Tour Request Detail |
 
   Scenario Outline: Leave Management : Verify Date in View Window for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -944,7 +944,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                | header                       |
-      | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 | Out Duty/Tour Request Detail |
 
   Scenario Outline: Leave Management : Search in View Window for Out Duty/Tour
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
@@ -960,7 +960,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                | header                       | outingDate  |
-      | Leave Management | View Request Status | Out Duty/Tour | 13 Mar 2023 To 14 Mar 2023 | Out Duty/Tour Request Detail | 14-Mar-2023 |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 | Out Duty/Tour Request Detail | 28 Apr 2023 |
 
 
   Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Work From Home
@@ -1089,7 +1089,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab            | period      |
-      | Leave Management | View Request Status | Work From Home | 01-Feb-2023 |
+      | Leave Management | View Request Status | Work From Home | 03-Apr-2023 |
 
   Scenario Outline: Leave Management : Sort columns for WFH Tab
     Then User clicks on "<childTab>" sub tab of "<parentTab>" tab in MIS
