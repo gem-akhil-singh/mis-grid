@@ -960,7 +960,7 @@ Feature: MIS - Leave Management
 
     Examples:
       | parentTab        | childTab            | tab           | leavePeriod                | header                       | outingDate  |
-      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 | Out Duty/Tour Request Detail | 28 Apr 2023 |
+      | Leave Management | View Request Status | Out Duty/Tour | 28 Apr 2023 To 29 Apr 2023 | Out Duty/Tour Request Detail | 28-Apr-2023 |
 
 
   Scenario Outline: Leave Management : Navigate to Leave Management > View Request Status tab > Work From Home
