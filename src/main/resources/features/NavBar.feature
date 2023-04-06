@@ -93,5 +93,5 @@ Feature: NavBar
     Examples:
       | tab                 | columnsname                                                                                            |
       | Engineering Council | Engineering Council,Chair,Co-Chair,EC Teams Channel,EC Email,Governance Teams Channel,Governance Email |
-      | Delivery Council    | Delivery Council,Sub Delivery Council,Chair,Co-Chair,HRBP,Associate HR,Teams Channel,Email Alias / DL  |
+      | Delivery Council    | Delivery Council,Chair,Co-Chair,HRBP,Associate HR,Teams Channel,Email Alias / DL  |
 
