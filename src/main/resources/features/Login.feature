@@ -82,6 +82,7 @@ Feature: Login
       | uname | message                                      |
       | abc   | You are not authorised to perform the action |
 
+@TestGrid
   Scenario Outline: Login: User navigate back to sign In Page after Login
     When User enters "username" as "<uname>"
     Then User enters "password" as "<password>"

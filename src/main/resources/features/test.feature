@@ -1,3 +1,4 @@
+@TestGrid
 Feature: Test
 
   Scenario: Test Google Login

@@ -1,3 +1,4 @@
+@TestGrid
 Feature: Test Window Handle Feature
   Background: User Login into the Gembook Application
     When User Navigates to "https://gembook.geminisolutions.com/#/"
