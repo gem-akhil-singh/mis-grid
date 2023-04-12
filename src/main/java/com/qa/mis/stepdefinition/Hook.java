@@ -55,8 +55,8 @@ public class Hook {
         options.setCapability("useAutomationExtension", false);
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36");
         //options.setCapability("useAutomationExtension", false);
-        options.addArguments("--proxy-server='direct://'");
-        options.addArguments("--proxy-bypass-list=*");
+    //    options.addArguments("--proxy-server='direct://'");
+     //   options.addArguments("--proxy-bypass-list=*");
         WebDriver driver = remoteURL != null ? new RemoteWebDriver(new URL(remoteURL), options) : new RemoteWebDriver(options);
         setWebDriver(driver);
         DriverAction.launchUrl(GemJarUtils.getGemJarConfigData("launchUrl"));

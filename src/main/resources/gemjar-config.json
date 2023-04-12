@@ -10,16 +10,6 @@
   "glueCode": "com.qa.mis.stepdefinition",
   "remoteDriverUrl" : "https://selenium-hub.geminisolutions.com/",
   "email_report": null,
-  "dev": {
-    "browserName": "firefox",
-    "launchUrl": "url",
-    "browserTimeout": 100
-  },
-  "prod": {
-    "browserName": "chrome",
-    "launchUrl": "https://mymis.geminisolutions.com",
-    "browserTimeout": 100
-  },
   "beta": {
     "browserName": "grid",
     "launchUrl": "https://mymis.geminisolutions.com",

@@ -1,6 +1,6 @@
 #Author: charu.garg@geminisolutions.com
 #Keyword: Login
-@TestGrid
+
 Feature: Login
 
   Scenario: Login: User verifies Login Page Elements Before Login
@@ -27,6 +27,7 @@ Feature: Login
       | uname      | password | errormessage          |
       | charu.garg |          | Password is required. |
 
+  @TestGrid
   Scenario Outline: Login: User Enter only password and Clicks on Sign In
     When User enters "username" as "<uname>"
     When User enters "password" as "<password>"
