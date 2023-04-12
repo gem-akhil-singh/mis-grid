@@ -1,6 +1,6 @@
 #Author: charu.garg@geminisolutions.com
 #Keyword: Login
-
+@TestGrid
 Feature: Login
 
   Scenario: Login: User verifies Login Page Elements Before Login

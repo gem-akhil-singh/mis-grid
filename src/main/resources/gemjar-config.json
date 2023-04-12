@@ -1,15 +1,15 @@
 {
   "environment": "beta",
-  "project_name": "MIS",
-  "report_name": "MIS_Report",
+  "project_name": "MIS-grid",
+  "report_name": "MIS_GRID_Report",
   "sub_id": "test_id",
-  "jewel_user": "shubham.kumar",
-  "jewel_bridge_token": "259351c4-1137-4377-b56f-5f2ac3e0db301675253783077",
+  "tagName" :"@TestGrid",
+  "jewel_user": "akhilsingh",
+  "jewel_bridge_token": "13a86f1b-ca6d-477a-8532-b3bb674264a01675112104492",
   "enter_point": "https://apis.gemecosystem.com/enter-point",
   "glueCode": "com.qa.mis.stepdefinition",
+  "remoteDriverUrl" : "https://selenium-hub.geminisolutions.com/",
   "email_report": null,
-  "email_to": "lovish.sanghvi@geminisolutions.us,sajith.j@geminisolutions.com,richa.khatri@geminisolutions.com,akshi.khattar@geminisolutions.com,shruti.kukreja@geminisolutions.com",
-  "email_cc": "shubham.kumar@geminisolutions.com,tushar.chauhan@geminisolutions.com,shruti.singh@geminisolutions.com,divya.madan@geminisolutions.com,charu.garg@geminisolutions.com,laxmi.sisode@geminisolutions.com,touqeer.subhani@geminisolutions.com,smita.mishra@geminisolutions.com,prajjwal.negi@geminisolutions.com",
   "dev": {
     "browserName": "firefox",
     "launchUrl": "url",
@@ -21,7 +21,7 @@
     "browserTimeout": 100
   },
   "beta": {
-    "browserName": "chrome",
+    "browserName": "grid",
     "launchUrl": "https://mymis.geminisolutions.com",
     "browserTimeout": 100
   }
