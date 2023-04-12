@@ -233,7 +233,8 @@ import java.util.Properties;
 
         @When("User Navigates to {string}")
         public void userNavigatesTo(String arg0) {
-            DriverManager.getWebDriver().navigate().to(arg0);
+           // DriverManager.getWebDriver().navigate().to(arg0);
+            DriverAction.launchUrl(arg0);
         }
 
         @Given("Check if Other Portals is present in side bar")
