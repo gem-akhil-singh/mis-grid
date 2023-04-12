@@ -74,6 +74,8 @@ public class OtherPortalsUtils extends DriverAction {
      * @since 23rd Feb, 2023
      */
     public static void clickIfVisible(By elemLocator, String title) {
+        DriverAction.waitSec(200);
+
         waitUntilElementAppear(elemLocator, 10);
         if (OtherPortalsUtils.isElementClickable(elemLocator, 10)) {
             click(elemLocator);

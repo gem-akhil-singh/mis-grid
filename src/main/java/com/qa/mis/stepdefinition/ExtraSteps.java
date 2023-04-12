@@ -32,19 +32,7 @@ import java.util.Properties;
         /**
          * @author Deeksha Singh
          */
-        @When("User clicks on signIn Button")
-        public void signIn() {
-            try {
-                EventsUtils.waitForElement(Login_Locators.signInBtn, 20);
-                if (isElementClickable(Login_Locators.signInBtn, 20)) {
-                    click(Login_Locators.signInBtn, "Click on Sign In Button", "Clicked Sign In Button"); // Click on Sign in Button
-                }
-            } catch (Exception exception) {
-                GemTestReporter.addTestStep("Check visibility of Sigin Button", "Sign in button is not present", STATUS.FAIL, takeSnapShot());
-                throw exception;
-            }
-            waitSec(3);
-        }
+
 
         /**
          * @param credentialType Takes the string to choose between username or password field
@@ -55,7 +43,7 @@ import java.util.Properties;
         public void enterCredentials(String credentialType) throws IOException {
             try {
                 List<String> browserWindows = new ArrayList<>(getWindowHandles());
-                System.out.println(browserWindows.size());// Get all browser windows
+                System.out.println("Handles Numbers are : "+browserWindows.size());// Get all browser windows
                 switchToWindow(browserWindows.get(0)); // Switch focus to 2nd browser window
                 EventsUtils.waitForElement(Login_Locators.credentials(credentialType), 20);
                 switch (credentialType) {
@@ -325,6 +313,22 @@ import java.util.Properties;
 
             GemTestReporter.addTestStep("Verify Google is loaded","User Check the Title ",STATUS.PASS,takeSnapShot());
 
+        }
+
+
+        @And("User clicks on signIn Button GemBook")
+        public void userClicksOnSignInButtonGemBook() {
+            try {
+                waitSec(200);
+                EventsUtils.waitForElement(Login_Locators.signInBtn, 20);
+                if (isElementClickable(Login_Locators.signInBtn, 20)) {
+                    click(Login_Locators.signInBtn, "Click on Sign In Button", "Clicked Sign In Button"); // Click on Sign in Button
+                }
+            } catch (Exception exception) {
+                GemTestReporter.addTestStep("Check visibility of Sigin Button", "Sign in button is not present", STATUS.FAIL, takeSnapShot());
+                throw exception;
+            }
+            waitSec(3);
         }
     }
 

@@ -2,7 +2,7 @@
 Feature: TestWindowHandleFeature
   Background: User Login into the Gembook Application
     When User Navigates to "https://gembook.geminisolutions.com/#/"
-    And User clicks on signIn Button
+    And User clicks on signIn Button GemBook
     Then User enters the "username"
     Then User enters the "password"
     And User logins into the application
