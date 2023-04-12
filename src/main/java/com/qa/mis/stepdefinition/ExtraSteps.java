@@ -234,6 +234,7 @@ import java.util.Properties;
         @When("User Navigates to {string}")
         public void userNavigatesTo(String arg0) {
            // DriverManager.getWebDriver().navigate().to(arg0);
+            DriverAction.waitSec(Long.parseLong("100"));
             DriverAction.launchUrl(arg0);
         }
 
